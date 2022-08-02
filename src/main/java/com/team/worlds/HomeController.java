@@ -32,5 +32,16 @@ public class HomeController {
 		
 		return "index";
 	}
-	
+	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
+	public String goHome(HttpServletRequest req) {
+				
+		//세션 만들고
+		//로그인 체크하고
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "sik/board.jsp");
+		
+		return "home";
+	}
 }

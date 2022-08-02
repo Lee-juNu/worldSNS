@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+
+html, .homeBody{
+	height: 100%;	
+}
+
+
+.homeBody
+{
+	width:100%;
+	margin: 0 0;
+	
+	/* ()배경 색은 이걸로 조정 */
+	background-color:white;
+	
+}
+
+.homeDiv
+{
+	width:100%;
+	height:100%;
+}
+
+
+.homeHeader
+{
+    width: 31%;
+    height :100%;
+    display: flex;
+    margin-right: 0;
+    border-right:1px solid black;
+    float :left;
+    
+}
+
+.homeHeaderDiv
+{
+	width: 100%;
+	height: 100%;
+}
+.homeHeaderMainDiv
+{
+	width : 256px;
+	height : 100%;
+	padding-left: 12px;
+	padding-right: 12px;
+	float:right;
+	
+	border-right:1px solid black;
+	border-left:1px solid black;
+}
+
+.homeMain
+{
+	display: flex;
+	height: 100%;
+	flex:1;
+	
+}
+
+.homeMainDiv
+{
+	width:100%;
+	height: 100%;
+}
+

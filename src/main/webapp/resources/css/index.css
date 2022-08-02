@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+body, .mainDiv
+{
+	margin :0 0;	
+	width: 100%;
+}
+html, body, .mainDiv{
+	height: 98%;	
+}
+
+.leftMain{
+	float :left;
+	width :53%;
+	height : 100%;
+	background-color:  gray;
+	position : relative
+
+	
+}
+
+.rightMain{
+	float :left;
+	width :47%;
+	height : 100%;
+	background-color:  black;
+	position : relative		
+}
+
+.mainMapDiv
+{
+	position: absolute;
+	color:white;
+	text-align:center;
+	top: 50%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.mainLoginDiv{
+	position: absolute;
+	color:white;
+	top: 50%;
+
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
