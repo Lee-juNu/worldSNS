@@ -22,9 +22,7 @@ public class UserDAO {
 		
 		if(dbUser != null)
 		{
-			System.out.println(dbUser.getUser_id());
 			System.out.println(dbUser.getUser_nickName());
-			req.setAttribute("user", dbUser);
 		}
 		else
 		{
