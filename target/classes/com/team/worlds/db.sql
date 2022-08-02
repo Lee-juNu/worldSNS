@@ -1,3 +1,4 @@
+
 create table userTbl
 (
 	user_id varchar(16 char) primary key,
