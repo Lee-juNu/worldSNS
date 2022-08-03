@@ -1,3 +1,4 @@
+drop table userTbl
 
 create table userTbl
 (
@@ -7,10 +8,16 @@ create table userTbl
 	user_phoneNum varchar(16 char) not null,
 	user_name varchar(40 char) not null,
 	user_email varchar(60 char) not null,
+	user_country varchar2(20 char),
+	user_city varchar2(20 char),
+	user_birthDay date not null,
+	user_level number(2) not null,
 	user_regDate date not null
 )
 
+create table profileTbl
+(
+	
+)
 
-select * from  userTbl;
 
-insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
