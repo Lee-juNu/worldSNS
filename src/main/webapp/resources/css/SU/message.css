@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+#chat{
+	margin-top: 50px;
+	width:600px;
+	float: left;
+}
+
+#chatRoom {
+overflow-x:hidden;
+overflow-y:scroll;
+height:700px;
+margin-top: 20px;
+border: 1px solid black;
+}
+	
+	
+#chatList{
+	width: 388px;
+	height: 100%;
+	float: left;
+	border-right: 1px solid black;
+}
+
+#chatTbl{
+	
+}
