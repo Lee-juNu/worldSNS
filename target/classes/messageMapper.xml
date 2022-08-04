@@ -12,7 +12,7 @@ insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{
 
 
 <insert id="open">
-insert into ChatRoomTbl values (#{cr_Num}, #{cr_ownerID}, #{cr_date })
+insert into ChatRoomTbl values (#{cr_Num}||chatroom_seq.nextval, #{cr_ownerID}, #{cr_date })
 </insert>
 
 

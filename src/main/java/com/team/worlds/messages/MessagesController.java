@@ -28,7 +28,7 @@ public class MessagesController {
 	@RequestMapping(value = "/messages.send", method = RequestMethod.POST)
 	public String send(HttpServletRequest req, Message M) {
 		mDAO.send(req, M);
-		
+		mDAO.get(req);
 		return "home";
 	}
 
@@ -38,7 +38,7 @@ public class MessagesController {
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.open(req, M);
-		
+		mDAO.get(req);
 		return "home";
 	}
 }

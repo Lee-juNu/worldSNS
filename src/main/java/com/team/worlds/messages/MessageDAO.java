@@ -60,7 +60,7 @@ public class MessageDAO {
 		
 		User u = (User)req.getSession().getAttribute("User");
 		
-		String cr_num = "cr002412";
+		String cr_num = "CR";
 //		String cr_owner = u.getUser_id();
 		String cr_owner = "yanagi";
 		Date today = new Date();
