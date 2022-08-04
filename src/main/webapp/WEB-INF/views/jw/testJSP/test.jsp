@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <input type="text" id="sender" value="${sessionScope.member.m_id }" style="display: none;">
+        <input type="text" id="sender" value="yorunohosi" style="display: none;">
         <input type="text" id="messageinput">
     </div>
     <div>
@@ -32,7 +32,7 @@
                 return;
             }
             //웹소켓 객체 만드는 코드
-            ws=new WebSocket("ws://localhost:8080/echo.do");
+            ws=new WebSocket("ws://localhost:8080/worlds/echo.do");
             
             ws.onopen=function(event){
                 if(event.data===undefined) return;
@@ -49,6 +49,7 @@
         
         function send(){
             var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+            alert(text);
             ws.send(text);
             text="";
         }
@@ -62,4 +63,3 @@
   </script>
 </body>
 </html>
-Colored

@@ -27,27 +27,38 @@ public class WebSocketServer{
     
     private static final List<Session> sessionList=new ArrayList<Session>();;
     private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+    
+    
     public WebSocketServer() {
-        // TODO Auto-generated constructor stub
+        
+    	// TODO Auto-generated constructor stub
         System.out.println("웹소켓(서버) 객체생성");
+        
+        //서버는 열리는데
     }
+    
     @RequestMapping(value="/chat.do")
     public ModelAndView getChatViewPage(ModelAndView mav) {
         mav.setViewName("chat");
         return mav;
     }
+    
+    
     @OnOpen
     public void onOpen(Session session) {
         logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("Connection Established");
+            basic.sendText("server_Open");
+            
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
         }
         sessionList.add(session);
     }
+    
+    
     /*
      * 모든 사용자에게 메시지를 전달한다.
      * @param self
