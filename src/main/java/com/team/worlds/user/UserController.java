@@ -18,6 +18,9 @@ public class UserController {
 	@RequestMapping(value = "/user.login", method = RequestMethod.POST)
 	public String userLogin(User u, HttpServletRequest req) {
 		
+		//System.out.println(u.getUser_ID());
+		//System.out.println(u.getUser_PW());
+		
 		// 로그인
 		uDAO.login(u, req);
 		
@@ -35,4 +38,17 @@ public class UserController {
 		
 		
 	}
+	
+	
+	@RequestMapping(value = "/user.joinus.go", method = RequestMethod.GET)
+	public String joinusGo() {
+		
+		
+		
+		
+		return "jy/joinus";
+		
+	}
+	
+
 }

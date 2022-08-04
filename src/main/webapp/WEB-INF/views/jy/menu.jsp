@@ -15,9 +15,10 @@
 	<br>
 	
 	
-	<button onclick = "goHome()">임시 게시판버튼</button><br>
-	<button onclick = "goMessages()">임시 채팅버튼</button><br>
-	<button onclick = "goAram()">임시 채팅알림버튼</button><br>
+	<button onclick = "goHome()"><img  width="50px" src="resources/icon/homeIcon.png" alt="HOME"></button><br>
+	<button onclick = "goMessages()"><img  width="50px" src="resources/icon/chatIcon.png" alt="CHAT"></button><br>
+	<button onclick = "goAram()"><img  width="50px" src="resources/icon/noticeIcon.png" alt="NOTICE"></button><br>
+	<jsp:include page="${profileMini }"/><br>
 </body>
 
 </html>

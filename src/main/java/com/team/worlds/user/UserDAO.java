@@ -34,12 +34,17 @@ public class UserDAO {
 	public void login(User u, HttpServletRequest req) {
 
 	
+	
+		
 		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
 
+		
+		
+		
 		if (dbUser != null) {
 			if (u.getUser_PW().equals(dbUser.getUser_PW())) {
 				req.getSession().setAttribute("loginMember", dbUser);
-				req.getSession().setMaxInactiveInterval(60 * 10);
+				req.getSession().setMaxInactiveInterval(600 * 10);
 				System.out.println(dbUser.getUser_nickName());
 			
 			} else {
@@ -62,8 +67,10 @@ public class UserDAO {
 	public boolean loginCheck(HttpServletRequest req) {
 		User u = (User) req.getSession().getAttribute("loginMember");
 		if (u != null) {
+			req.setAttribute("profileMini", "jy/profileMini.jsp");
 			return true;
-		} 
+		}else {
+			
 			return false;
 		}
 		
@@ -71,6 +78,6 @@ public class UserDAO {
 	
 }
 
-
+}
 
 
