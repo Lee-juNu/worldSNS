@@ -33,7 +33,6 @@
             ws.close();
         }
         function writeResponse(text){
-			alert(text);
 			var messages = document.getElementById("messages")
 			messages.innerHTML += '<br>'+ text;
         }
