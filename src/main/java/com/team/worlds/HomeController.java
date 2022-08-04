@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team.worlds.user.User;
 import com.team.worlds.user.UserDAO;
 
 /**
@@ -26,18 +27,18 @@ public class HomeController {
 	UserDAO uDAO;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest req) {
+	public String temp_home(HttpServletRequest req) {
 		
-		uDAO.login(req);
-		
+		uDAO.templogin(req);
+		req.setAttribute("loginPage", "jy/login.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
-	public String goHome(HttpServletRequest req) {
+	public String temp_goHome(User u, HttpServletRequest req) {
 				
 		//세션 만들고
 		//로그인 체크하고
-		
+		uDAO.templogin(req);
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "sik/board.jsp");
