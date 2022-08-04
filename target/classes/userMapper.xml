@@ -6,7 +6,7 @@
 		select * from userTbl where user_id = 'yorunohosi'
 	</select>
 
-	<select id= "getMemberByID"  resultType = "com.team.worlds.user.User">
+	<select id= "getMemberByID" resultType = "com.team.worlds.user.User">
 		select * from userTbl where user_id = #{user_ID}
 	</select>
 

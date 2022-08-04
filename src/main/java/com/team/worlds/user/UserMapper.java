@@ -4,5 +4,5 @@ public interface UserMapper {
 
 	User tempSelectUser();
 
-	User getMemberByID(User u);
+	User getMemberByID(String u);
 }
