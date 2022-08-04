@@ -9,6 +9,20 @@ create table userTbl
 	user_regDate date not null
 )
 
+alter table proFileTbl add unique(pf_userID)
+create table proFileTbl
+(
+	pf_userID 			varchar2(16 char) 	not null,
+	pf_Img 				varchar2(256 char)			,
+	pf_bgImg 			varchar2(256 char)			,
+	pf_contents 		varchar2(160 char)			,
+
+		CONSTRAINT pf_c_user
+			foreign key(pf_userID)
+				references userTbl(user_id)
+					on delete cascade
+)
+
 
 select * from  userTbl;
 

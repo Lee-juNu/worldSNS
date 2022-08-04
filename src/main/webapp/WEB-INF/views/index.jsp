@@ -19,13 +19,16 @@
 <!-- 병합전의 JS를  입력해주세요-->
 </head>
 <body>
-	
+
+
 	<div class = "mainDiv">
 		<div class = "leftMain">
 			<div class = "mainMapDiv">
 				지도 영역-이준우
 			</div>
 		</div>
+		
+		
 		<div class = "rightMain">
 			<div class = "mainLoginDiv">	
 			<!-- 최종에서 빼기! -->
@@ -33,8 +36,9 @@
 			<div><jsp:include page="${loginPage }"/></div>
 			</div>
 		</div>
+		
+		
 	</div>
-	
 </body>
 </html>
 
