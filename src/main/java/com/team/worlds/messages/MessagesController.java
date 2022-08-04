@@ -20,6 +20,7 @@ public class MessagesController {
 		//로그인완성되면 체크 필수
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
+		mDAO.get(req);
 		
 		return "home";
 	}
@@ -27,6 +28,16 @@ public class MessagesController {
 	@RequestMapping(value = "/messages.send", method = RequestMethod.POST)
 	public String send(HttpServletRequest req, Message M) {
 		mDAO.send(req, M);
+		
+		return "home";
+	}
+
+	@RequestMapping(value = "/messages.open", method = RequestMethod.GET)
+	public String open(HttpServletRequest req, Message M) {
+
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "su/message.jsp");
+		mDAO.open(req, M);
 		
 		return "home";
 	}

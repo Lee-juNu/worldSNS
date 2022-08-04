@@ -1,0 +1,70 @@
+
+/*-------------------*/
+/*-------------------*/
+/*---ChatRoom Table--*/
+/*-------------------*/
+/*-------------------*/
+
+create table ChatRoomTbl(
+	cr_Num 			varchar2(10 char) 	primary key	, 
+	cr_ownerID 		varchar2(16 char) 	not null	,
+	cr_date 		date				not null	,
+	
+		CONSTRAINT cr_c_id
+			foreign key(cr_ownerID)
+				references userTbl(user_id)
+					on delete cascade
+);
+
+/*-------------------*/
+/*-------------------*/
+/*-RoomMember Table--*/
+/*-------------------*/
+/*-------------------*/
+
+create table RoomMemberTbl
+(
+	rm_roomNum 		varchar2(10 char) 	not null,
+	rm_userID 		varchar2(16 char) 	not null,
+	rm_lastIndex 	number(10) 			not null,
+	
+	CONSTRAINT rm_c_id
+		foreign key(rm_roomNum)
+			references ChatRoomTbl(cr_Num)
+				on delete cascade,
+		foreign key(rm_userID)
+			references userTbl(user_id)
+				on delete cascade
+)
+
+
+/*-------------------*/
+/*-------------------*/
+/*-messageTbl Table--*/
+/*-------------------*/
+/*-------------------*/
+
+
+create table messageTbl
+(
+	msg_Num 			varchar2(16 char) 	primary key,
+	msg_RoomNum 		varchar2(10 char) 	not null,
+	msg_sendUserID 		varchar2(16 char) 	not null,
+	msg_receiverUserID 	varchar2(16 char) 	not null,
+	msg_sendTime 		date 				not null,
+	msg_index 			number(10) 			not null,
+	msg_img 			varchar2(256 char)			,
+	msg_Contents 		varchar2(400 char)			,
+	
+		CONSTRAINT msg_c_id
+			foreign key(msg_RoomNum)
+				references ChatRoomTbl(cr_Num)
+					on delete cascade,
+			foreign key(msg_sendUserID)
+				references userTbl(user_id)
+					on delete cascade,
+			foreign key(msg_receiverUserID)
+				references userTbl(user_id)
+					on delete cascade
+)
+

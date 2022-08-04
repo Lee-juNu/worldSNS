@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="messageMapper">
+<mapper namespace="com.team.worlds.messages.MessageMapper">
+
+<select id="get" resultType="com.team.worlds.messages.Message">
+		select * from ChatRoomTbl
+</select>
+
+<insert id="send">
+insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{msg_receiverUserID}, #{msg_sendTime}, #{msg_index}, #{msg_img}, #{msg_Contents})
+</insert>
+
+
+<insert id="open">
+insert into ChatRoomTbl values (#{cr_Num}, #{cr_ownerID}, #{cr_date })
+</insert>
+
+
 
 </mapper>

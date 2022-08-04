@@ -14,9 +14,12 @@
 
 <div id="chatList" style="display: none">
 채팅방목록
-<c:forEach var="list" items="${list}" >
+<form action="messages.open" name="openMessage">
+<button id="userID" value="${sessionScope.loginUser.user_id }">채팅방 만들기</button>
+</form>
+<c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
-채팅방목록
+${chat.cr_Num  }
 </div>
 </c:forEach>
 </div>
@@ -26,14 +29,14 @@
 
 <div id="chat">
 <div id="titleMessage">
-채팅방 방제
+${title }
 </div>
 
 <div id="chatRoom">
-여기에 메세지가 올거임<br>
+여기에 메세지가 올1거임<br>
 </div>
 <div id="sendMessage">
-<form action="message.send" method="post" enctype="multipart/form-data"
+<form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
 <input type="file"><input type="text"> <button>송신</button><BR>
 </form>
