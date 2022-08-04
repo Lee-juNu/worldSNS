@@ -30,7 +30,7 @@ public class HomeController {
 		
 		//uDAO.login(req);
 		
-		return "jw/testJSP/test";
+		return "jw/fakeHome";
 	}
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
 	public String goHome(HttpServletRequest req) {

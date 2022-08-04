@@ -4,6 +4,7 @@ package com.team.worlds.server;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
  
 import javax.websocket.server.ServerEndpoint;
@@ -25,16 +26,15 @@ import javax.websocket.RemoteEndpoint.Basic;
 @ServerEndpoint(value="/echo.do")
 public class WebSocketServer{
     
-    private static final List<Session> sessionList=new ArrayList<Session>();;
+	
+	private static final HashMap<String, Session> sessionMap = new HashMap<String, Session>();
+    private static final List<Session> sessionList=new ArrayList<Session>();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
     
     
     public WebSocketServer() {
-        
     	// TODO Auto-generated constructor stub
         System.out.println("웹소켓(서버) 객체생성");
-        
-        //서버는 열리는데
     }
     
     @RequestMapping(value="/chat.do")
@@ -44,6 +44,8 @@ public class WebSocketServer{
     }
     
     
+    
+    //웹소켓 연결될때 나오는 문구
     @OnOpen
     public void onOpen(Session session) {
         logger.info("Open session id:"+session.getId());
@@ -61,8 +63,8 @@ public class WebSocketServer{
     
     /*
      * 모든 사용자에게 메시지를 전달한다.
-     * @param self
-     * @param message
+     * @param self 메시지 보낸 사람 
+     * @param message 나머지 사람들
      */
     private void sendAllSessionToMessage(Session self,String message) {
         try {
@@ -79,6 +81,8 @@ public class WebSocketServer{
     @OnMessage
     public void onMessage(String message,Session session) {
         logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
+        
+        
         try {
             final Basic basic=session.getBasicRemote();
             basic.sendText("to : "+message);
@@ -88,10 +92,14 @@ public class WebSocketServer{
         }
         sendAllSessionToMessage(session, message);
     }
+    
+    
     @OnError
     public void onError(Throwable e,Session session) {
         
     }
+    
+    
     @OnClose
     public void onClose(Session session) {
         logger.info("Session "+session.getId()+" has ended");

@@ -8,10 +8,17 @@
 </head>
 <body>
 
-<form action ="get">
-	<input name = "user_ID">
-	<input name = "user_PW">
-</form>
+<form action="fake.login" method="post" name="loginForm">
+		<div>
+			<div>
+				ID <input name="user_ID">
+			</div>
+			<div>
+			PW <input name="user_PW">
+		</div>
+		<div>
+			<button>로그인</button>
+	</form>
 
 </body>
 </html>
