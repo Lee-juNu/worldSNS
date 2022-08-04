@@ -13,8 +13,11 @@ public class UserDAO {
 	@Autowired
 	SqlSession ss;
 	
-	public void login(HttpServletRequest req)
+	public void templogin(HttpServletRequest req)
 	{
+		
+		
+		
 		User dbUser = ss.getMapper(UserMapper.class).tempSelectUser();
 		
 		if(dbUser != null)
@@ -23,31 +26,48 @@ public class UserDAO {
 		}
 		else
 		{
-			System.out.println("실패");
 		}
 	}
 
 	
-	public void tempLogin(HttpServletRequest req) {
 
-		String user_id = "yorunohosi";
-		
-		User dbUser = ss.getMapper(UserMapper.class).tempSelectUser();
-		
-	//	User U = new User();
+	public void login(User u, HttpServletRequest req) {
 
-		req.getSession().setAttribute("loginMember", dbUser);
-	//	req.getSession().setMaxInactiveInterval(60 * 10);
-		
-		if(dbUser != null)
-		{
-			System.out.println(dbUser.getUser_nickName());
-		}
-		else
-		{
+	
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u);
+
+		if (dbUser != null) {
+			if (u.getUser_PW().equals(dbUser.getUser_PW())) {
+				req.getSession().setAttribute("loginMember", dbUser);
+				req.getSession().setMaxInactiveInterval(60 * 10);
+				System.out.println(dbUser.getUser_nickName());
+			
+			} else {
+				System.out.println("실패");
+				req.setAttribute("result", "로그인을 다시 시도해 주세요.");
+			}
+		} else {
 			System.out.println("실패");
+			req.setAttribute("result", "로그인을 다시 시도해 주세요.");
 		}
+
+		
+		
+		
+		
+		
 	}
+
+
+	public boolean loginCheck(HttpServletRequest req) {
+		User u = (User) req.getSession().getAttribute("loginMember");
+		if (u != null) {
+			return true;
+		} 
+			return false;
+		}
+		
+
 	
 }
 

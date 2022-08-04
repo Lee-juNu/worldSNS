@@ -30,7 +30,7 @@
 			<div class = "mainLoginDiv">	
 			<!-- 최종에서 빼기! -->
 				<button onclick = "goJoin()" >임시 관리자 로그인</button><br><br>
-				<button>로그인,회원가입 만들에주세요</button>		
+			<div><jsp:include page="${loginPage }"/></div>
 			</div>
 		</div>
 	</div>
