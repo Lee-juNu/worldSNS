@@ -26,4 +26,11 @@ create table proFileTbl
 
 select * from  userTbl;
 
+
+create sequence userTBL_tempSeq
+    select userTBL_tempSeq.nextval FROM DUAL
+
+
+select * from MESSageTbl 
+ALTER TABLE MESSageTbl DROP COLUMN MSG_RECEIVERUSERID;
 insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
