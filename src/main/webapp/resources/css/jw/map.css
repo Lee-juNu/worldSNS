@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.container {
+  width: 60%;
+  margin: 0 auto;
+  background-color:black;
+}
+path {fill: lightgray; stroke: white;}
+path:hover {fill: gray;}
