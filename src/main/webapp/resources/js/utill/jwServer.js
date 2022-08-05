@@ -8,7 +8,7 @@
                 return;
             }
             //웹소켓 객체 만드는 코드
-            ws=new WebSocket("ws://121.132.4.14:8080/worlds/echo.do");
+            ws=new WebSocket("ws://localhost:8080/worlds/echo.do");
             
             ws.onopen=function(event){
                 if(event.data===undefined) return;
