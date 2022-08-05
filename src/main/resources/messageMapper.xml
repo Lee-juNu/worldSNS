@@ -6,14 +6,23 @@
 		select * from ChatRoomTbl
 </select>
 
+<select id="getUser" resultType="com.team.worlds.user.User">
+	select * from userTbl where user_id != #{User_ID}
+</select>
+
 <insert id="send">
-insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{msg_receiverUserID}, #{msg_sendTime}, #{msg_index}, #{msg_img}, #{msg_Contents})
+insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{msg_sendTime}, #{msg_index}, #{msg_img}, #{msg_Contents})
 </insert>
 
 
 <insert id="open">
 insert into ChatRoomTbl values (#{cr_Num}||chatroom_seq.nextval, #{cr_ownerID}, #{cr_date })
 </insert>
+
+<insert id="join">
+insert into RoomMemberTbl values (#{rm_roomNum}, #{rm_userID}, #{rm_lastIndex})
+</insert>
+
 
 
 
