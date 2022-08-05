@@ -18,9 +18,12 @@
 <c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
 ${chat.cr_Num }   
+
+<!-- 
 <form action="messages.join" name="joinChat">
 <button name="join" value="${chat.cr_Num }"> 채팅방에 참가하기 </button>
 </form>
+ -->
 
 </div>
 </c:forEach>
@@ -53,9 +56,7 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
 </div>
 </div>
 
-<form action="messages.open" name="openMessage">
 
-</form>
 
 
     <div id="modal" class="modal-overlay">
@@ -66,7 +67,9 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
             <div class="close-area">X</div>
             <div class="content">
 		<c:forEach var="user" items="${userlist}" >
-		${user.user_ID } <button>초대</button>   <br>
+<form action="messages.open" name="openMessage">
+		${user.user_ID } <button name="invite" value="${user.user_ID }">초대</button>   <br>
+</form>
 		</c:forEach>   
             </div>
         </div>

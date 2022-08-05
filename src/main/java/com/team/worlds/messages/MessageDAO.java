@@ -84,7 +84,6 @@ public class MessageDAO {
 		
 		String cr_num = "CR";
 		String cr_owner = u.getUser_ID();
-//		String cr_owner = "yanagi";
 		Date today = new Date();
 				
 		m.setCr_Num(cr_num);
@@ -131,12 +130,12 @@ public class MessageDAO {
 		
 		User u = (User)req.getSession().getAttribute("loginMember");
 		
-		String rm_roomNum = req.getParameter("join");
-		String rm_userID = u.getUser_ID();
+	//	String rm_roomNum = req.getParameter("join");
+		String rm_userID = req.getParameter("invite");
 		int rm_lastIndex = 0;
 		
 		m.setRm_userID(rm_userID);
-		m.setRm_roomNum(rm_roomNum);
+	//	m.setRm_roomNum(rm_roomNum);
 		m.setRm_lastIndex(rm_lastIndex);
 		
 		if (ss.getMapper(MessageMapper.class).join(m) == 1) {

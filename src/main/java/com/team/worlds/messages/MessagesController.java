@@ -41,6 +41,7 @@ public class MessagesController {
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.open(req, M);
+		mDAO.join(req, M);
 		mDAO.get(req);
 		return "home";
 	}

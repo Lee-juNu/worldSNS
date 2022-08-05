@@ -19,8 +19,9 @@ insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{
 insert into ChatRoomTbl values (#{cr_Num}||chatroom_seq.nextval, #{cr_ownerID}, #{cr_date })
 </insert>
 
+
 <insert id="join">
-insert into RoomMemberTbl values (#{rm_roomNum}, #{rm_userID}, #{rm_lastIndex})
+insert into RoomMemberTbl values ((select max(cr_Num) KEEP(DENSE_RANK FIRST ORDER BY #{rm_userID} DESC) from ChatRoomTbl), #{rm_userID}, #{rm_lastIndex})
 </insert>
 
 
