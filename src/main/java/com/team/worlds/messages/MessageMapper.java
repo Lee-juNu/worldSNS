@@ -17,4 +17,6 @@ public interface MessageMapper {
 
 	public List<User> getUser(String User_ID);
 
+	public List<Message> getMsg(String msg_RoomNum);
+
 }

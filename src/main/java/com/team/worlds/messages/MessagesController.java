@@ -24,14 +24,17 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.get(req);
 		mDAO.getUser(req, u);
-		
+		mDAO.getMsg(req);
 		return "home";
 	}
 
 	@RequestMapping(value = "/messages.send", method = RequestMethod.POST)
 	public String send(HttpServletRequest req, Message M) {
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.send(req, M);
 		mDAO.get(req);
+		mDAO.getMsg(req);
 		return "home";
 	}
 
@@ -43,6 +46,7 @@ public class MessagesController {
 		mDAO.open(req, M);
 		mDAO.join(req, M);
 		mDAO.get(req);
+		mDAO.getMsg(req);
 		return "home";
 	}
 
@@ -53,6 +57,18 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.join(req, M);
 		mDAO.get(req);
+		mDAO.getMsg(req);
+		return "home";
+	}
+
+	@RequestMapping(value = "/messages.select", method = RequestMethod.GET)
+	public String select(HttpServletRequest req, Message M) {
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "su/message.jsp");
+		mDAO.select(req, M);
+		mDAO.get(req);
+		mDAO.getMsg(req);
 		return "home";
 	}
 }

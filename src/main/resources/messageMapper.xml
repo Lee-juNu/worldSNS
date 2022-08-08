@@ -10,8 +10,12 @@
 	select * from userTbl where user_id != #{User_ID}
 </select>
 
+<select id="getMsg" resultType="com.team.worlds.messages.Message">
+	select * from messageTbl where msg_RoomNum = #{User_ID}
+</select>
+
 <insert id="send">
-insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{msg_sendTime}, #{msg_index}, #{msg_img}, #{msg_Contents})
+insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum}, #{msg_sendUserID}, #{sendTime}, #{msg_index}, #{msg_img, jdbcType=VARCHAR}, #{msg_Contents})
 </insert>
 
 
@@ -19,9 +23,8 @@ insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{
 insert into ChatRoomTbl values (#{cr_Num}||chatroom_seq.nextval, #{cr_ownerID}, #{cr_date })
 </insert>
 
-
 <insert id="join">
-insert into RoomMemberTbl values ((select max(cr_Num) KEEP(DENSE_RANK FIRST ORDER BY #{rm_userID} DESC) from ChatRoomTbl), #{rm_userID}, #{rm_lastIndex})
+insert into RoomMemberTbl values ((select cr_Num from ChatRoomTbl where cr_ownerid = #{rm_roomNum} and cr_date = (select max(cr_date) from ChatRoomTbl where cr_ownerid = #{rm_roomNum})), #{rm_userID}, #{rm_lastIndex})
 </insert>
 
 

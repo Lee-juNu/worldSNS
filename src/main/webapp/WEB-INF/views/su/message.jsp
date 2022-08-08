@@ -17,13 +17,10 @@
 <button id="btn-modal">채팅방 만들기</button>
 <c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
-${chat.cr_Num }   
-
-<!-- 
-<form action="messages.join" name="joinChat">
-<button name="join" value="${chat.cr_Num }"> 채팅방에 참가하기 </button>
+<form action="messages.select" name="selectroom">
+${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
 </form>
- -->
+
 
 </div>
 </c:forEach>
@@ -32,23 +29,25 @@ ${chat.cr_Num }
 
 <div id="chat">
 <div id="titleMessage">
-${title }
+${roomNum }
 </div>
 
 <div id="chatRoom">
 <div id="chatMsg">
-<c:forEach var="msgs" items="${msglist}" >
-${msg.msg_Contents } ${msg.msg_img }   <br>
+<c:forEach var="msg" items="${msglist}" >
+${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="${msg.msg_img }">   <br>
 </c:forEach>
 </div>
-여기에 메세지가 올1거임<br>
+여기에 메세지가 올12거임<br>
 로그인 중인 아이디 세션 : ${sessionScope.loginMember.user_ID }
 ${userlist}
+
 </div>
 <div id="sendMessage">
 <form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
 <input type="file" name="sendimg"><input type="text" name="sendmsg"> <button>송신</button><BR>
+<input type="hidden" name="roomNum" value="${roomNum }">
 </form>
 <button id="hide" onclick="if(chatList.style.display=='none')
 {chatList.style.display='';}
