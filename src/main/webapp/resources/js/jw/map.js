@@ -50,9 +50,9 @@ window.onload = function(){
 	document.addEventListener("wheel", function (e) {
 	
 	if (e.deltaY > 0) {
-			zoom(-0.2,e);    		 
+			zoom(-0.5,e);    		 
   		} else {
-			zoom(0.25,e);
+			zoom(0.5,e);
   		}
 	});
 }
@@ -97,22 +97,22 @@ function mapMatrixInit()
 }
 
 
-
 function MapMove()
 {
 	var changePtX = prevMousePt.x -onMouse.x;
 	var changePtY = prevMousePt.y -onMouse.y;
 	
-	offsetPtX+=(changePtX);
-	offsetPtY+=(changePtY);
+	
+	offsetPtX+=(changePtX)*transformMatrix[0];
+	offsetPtY+=(changePtY)*transformMatrix[3];
 	pan(-changePtX,-changePtY);
 	prevMousePt.x =onMouse.x;
 	prevMousePt.y =onMouse.y;
 }
 
 
- var prevCursor= null;
-
+ var prevCursorX= 0;
+	
 function zoom(scale,event) {
 
 	var prevScale =  transformMatrix[0];	
@@ -134,14 +134,13 @@ function zoom(scale,event) {
     	transformMatrix[3] += scale;
 	}
 	
-
 	
 
-	console.log(transformMatrix[0]-prevScale);	
-  	transformMatrix[4] += (prevScale -transformMatrix[0]) * (cursorPoint(event).x + offsetPtX);
-  	transformMatrix[5] += (prevScale -transformMatrix[0]) * (cursorPoint(event).y + offsetPtY);
+	
+	console.log("Cx="+cursorPoint(event).x );	
+  	transformMatrix[4] += (prevScale -transformMatrix[0]) * (cursorPoint(event).x+ offsetPtX);
+  	transformMatrix[5] += (prevScale -transformMatrix[3]) * (cursorPoint(event).y+ offsetPtY);
 	console.log(transformMatrix);	
-
 
 
   var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
