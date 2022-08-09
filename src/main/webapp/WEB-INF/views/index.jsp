@@ -10,6 +10,7 @@
 <link rel = "stylesheet" type = "text/css" href = "resources/css/index.css">
 
 <!-- 병합전의 CSS를 입력해주세요 -->
+<link rel = "stylesheet" type = "text/css" href = "resources/css/JY/bootstrap/bootstrap.css">
 
 
 <!-- JS모음-->
@@ -17,6 +18,7 @@
 <script type = "text/javascript" src="resources/js/index.js"></script>
 
 <!-- 병합전의 JS를  입력해주세요-->
+<script type = "text/javascript" src="resources/js/JY/bootstrap/bootstrap.js"></script>
 </head>
 <body>
 

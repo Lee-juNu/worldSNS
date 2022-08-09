@@ -9,12 +9,13 @@
 <!-- CSS모음-->
 <link rel = "stylesheet" type = "text/css" href = "resources/css/home.css">
 
-<!-- 병합전의 CSS를 입력해주세요 -->
 
 
 <!-- JS모음-->
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 
+<!-- 병합전의 JS를 입력해주세요 -->
+<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
 
 </head>
 <body class ="homeBody">

@@ -28,6 +28,7 @@ public class UserController {
 		if (u2 != null) {
 			req.setAttribute("menuPage", "jy/menu.jsp");
 			req.setAttribute("contentsPage", "sik/board.jsp");
+			req.setAttribute("profilePage", "profileMini.jsp");
 			
 			return "home";
 			
@@ -41,14 +42,73 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/user.joinus.go", method = RequestMethod.GET)
-	public String joinusGo() {
+	public String joinusGo(HttpServletRequest req) {
 		
 		
+		req.setAttribute("joinusPage", "joinus1.jsp");
+
 		
-		
-		return "jy/joinus";
+		return "jy/joinusMain";
 		
 	}
+	
+	@RequestMapping(value = "/user.joinus.go2", method = RequestMethod.POST)
+	public String joinusGo2(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus2.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go3", method = RequestMethod.POST)
+	public String joinusGo3(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus3.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go4", method = RequestMethod.POST)
+	public String joinusGo4(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus4.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
+	public String joinusGo5(User u,HttpServletRequest req) {
+		
+		
+		uDAO.joinus(u, req);
+		req.setAttribute("joinusPage", "joinus5.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/setting.go", method = RequestMethod.GET)
+	public String temp_goSetting(User u, HttpServletRequest req) {
+				
+		//세션 만들고
+		//로그인 체크하고
+		uDAO.templogin(req);
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/setting.jsp");
+		
+		return "home";
+	}
+	
 	
 
 }

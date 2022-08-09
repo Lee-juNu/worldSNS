@@ -7,14 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
-<div>닉네임</div>
-<div>아이디</div>
-<div></div>
-<div></div>
+settinginfo
 
-
-</div>
 </body>
 </html>

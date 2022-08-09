@@ -12,3 +12,13 @@ function goHome()
 {
 	location.href = 'home.go';
 }
+
+function goSetting()
+{
+	location.href = 'setting.go';
+}
+
+function goProfile()
+{
+	location.href = 'profile.go';
+}
