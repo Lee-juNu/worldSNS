@@ -7,14 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
-<div>${sessionScope.loginMember.user_nickName }</div>
-<div>아이디</div>
-<div></div>
-<div></div>
-
-
-</div>
+여긴 뭐 탈퇴하면 됨
+탈퇴 기능 만들고 ->
+탈퇴 하는 곳 여러개 찾아서 비교해보면서 창 그럴듯하게 만들자 
 </body>
 </html>

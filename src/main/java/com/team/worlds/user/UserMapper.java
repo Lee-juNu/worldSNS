@@ -6,4 +6,8 @@ public interface UserMapper {
 	User getMemberByID(String u);
 
 	int joinus(User u);
+
+	int secession(User u);
+
+	int update(Profile p);
 }

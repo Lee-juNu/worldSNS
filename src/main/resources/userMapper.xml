@@ -21,4 +21,12 @@ insert into userTbl values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNu
 		select * from userTbl where user_id = #{user_ID}
 	</select>
 
+
+
+<delete id="secession"
+		parameterType="com.team.worlds.user.User">
+		delete from userTbl
+		where user_ID = #{user_ID}	
+	</delete>
+
 </mapper>

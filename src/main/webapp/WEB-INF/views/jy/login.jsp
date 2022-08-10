@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+ 
+
 <script type="text/javascript">
 
 function goJoinUs()
@@ -16,6 +22,10 @@ function goJoinUs()
 </script>
 </head>
 <body>
+
+ 
+ 
+
 
 	${result }
 	<form action="user.login" method="post" name="loginForm">
@@ -29,7 +39,8 @@ function goJoinUs()
 		<div>
 			<button>로그인</button>
 	
-	<button type="button" onclick="goJoinUs()">회원가입!!!!!</button>
+	<button type="button" onclick="goJoinUs()">회원가입!!!!!</button><br>
+<a href="user.joinus.go" data-toggle="modal" data-target="#myModal">이미지 모달띄우기</a>
 	</div>
 	</div>
 	</form>

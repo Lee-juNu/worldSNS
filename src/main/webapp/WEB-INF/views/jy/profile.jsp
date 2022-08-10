@@ -14,7 +14,7 @@
 <div>프로필 사진 </div>
 <div>닉네임</div>
 <div>아이디</div>
-<div><button>프로필 수정</button> </div>
+<div><button onclick = "goSettingProfile()">프로필 수정</button> </div>
 <div>게시판</div>
 <div></div>
 <div></div>

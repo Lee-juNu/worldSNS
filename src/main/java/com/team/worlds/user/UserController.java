@@ -24,13 +24,18 @@ public class UserController {
 		// 로그인
 		uDAO.login(u, req);
 		
-		User u2 = (User) req.getSession().getAttribute("loginMember");
-		if (u2 != null) {
+		
+		u = (User) req.getSession().getAttribute("loginMember");
+		
+		if (u != null) {
+			
 			req.setAttribute("menuPage", "jy/menu.jsp");
 			req.setAttribute("contentsPage", "sik/board.jsp");
 			req.setAttribute("profilePage", "profileMini.jsp");
 			
+			
 			return "home";
+			
 			
 		}else {
 			req.setAttribute("loginPage", "jy/login.jsp");
@@ -99,6 +104,8 @@ public class UserController {
 		//세션 만들고
 		//로그인 체크하고
 		uDAO.templogin(req);
+		uDAO.loginCheck(req);
+		
 		
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
@@ -108,6 +115,7 @@ public class UserController {
 		
 		return "home";
 	}
+	
 	
 	
 

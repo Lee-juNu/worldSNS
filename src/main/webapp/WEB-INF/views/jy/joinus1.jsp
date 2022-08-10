@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-
+/* 
 #joinus1{
 color:black;
-}
+} */
 </style>
 
 <title>Insert title here</title>

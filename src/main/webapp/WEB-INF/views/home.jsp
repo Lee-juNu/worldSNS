@@ -15,7 +15,6 @@
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 
 <!-- 병합전의 JS를 입력해주세요 -->
-<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
 
 </head>
 <body class ="homeBody">

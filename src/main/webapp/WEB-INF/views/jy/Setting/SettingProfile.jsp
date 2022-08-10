@@ -7,14 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
-<div>${sessionScope.loginMember.user_nickName }</div>
-<div>아이디</div>
-<div></div>
-<div></div>
-
-
-</div>
+프로필 그대로 따와서 만들기
+근데 일단 프로필 만들고 싶으니까
+프로필 사진 설정하는 것만 만들어 둘 것
 </body>
 </html>
