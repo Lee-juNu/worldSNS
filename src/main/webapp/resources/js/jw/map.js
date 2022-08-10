@@ -14,18 +14,20 @@ var pt = null;
 var mouseX=null;
 var mouseY=null;
 
+
 var onMouse = null;
 var prevMousePt = null; 
 
 var onClick = false;
+
+
 var prevScale = 1;
+var currentScale = 1;
 
 
 var offsetPtX=0;
 var offsetPtY=0;
 
-var mouseOffsetX = 0;
-var mouseOffsetY = 0;
 
 
 window.onload = function(){
@@ -50,9 +52,9 @@ window.onload = function(){
 	document.addEventListener("wheel", function (e) {
 	
 	if (e.deltaY > 0) {
-			zoom(-0.5,e);    		 
+			zoom(-1,e);    		 
   		} else {
-			zoom(0.5,e);
+			zoom(1,e);
   		}
 	});
 }
@@ -103,52 +105,66 @@ function MapMove()
 	var changePtY = prevMousePt.y -onMouse.y;
 	
 	
-	offsetPtX+=(changePtX)*transformMatrix[0];
-	offsetPtY+=(changePtY)*transformMatrix[3];
+	offsetPtX+=(changePtX)/transformMatrix[0];
+	offsetPtY+=(changePtY)/transformMatrix[0];
 	pan(-changePtX,-changePtY);
 	prevMousePt.x =onMouse.x;
 	prevMousePt.y =onMouse.y;
 }
 
-
- var prevCursorX= 0;
+var PrevMOffsetX = 0;
+var PrevMOffsetY = 0;
 	
 function zoom(scale,event) {
 
-	var prevScale =  transformMatrix[0];	
+	transformMatrix[0] = 1;
+	transformMatrix[1] = 0;
+	transformMatrix[2] = 0;
+	transformMatrix[3] = 1;
 	
 	console.log(transformMatrix);	
     
-	if(transformMatrix[0]+scale<1)
+
+	var prevScale =  currentScale;	
+	
+	if(currentScale+scale<1)
 	{
-		transformMatrix[0]= 1;
-		transformMatrix[3]= 1;
+		currentScale = 1;
 	}
-	else if(transformMatrix[0]+scale>8)
+	else if(currentScale+scale>8)
 	{
-		transformMatrix[0]= 8;
-		transformMatrix[3]= 8;
+		currentScale = 8;
 	}
 	else{
-		transformMatrix[0] += scale;
-    	transformMatrix[3] += scale;
+		currentScale+= scale;
 	}
 	
+	transformMatrix[0] = currentScale;
+    transformMatrix[3] = currentScale;
 	
+	console.log("PrevScale="+prevScale);	
+	console.log("currScale="+currentScale);	
+	console.log("distance="+((cursorPoint(event).x-transformMatrix[4]))/ prevScale);	
+	
+	var centerX = ((cursorPoint(event).x-transformMatrix[4]) / prevScale)*(1-currentScale);
+	var centerY = ((cursorPoint(event).y-transformMatrix[5])/ prevScale)*(1-currentScale);
 
 	
-	console.log("Cx="+cursorPoint(event).x );	
-  	transformMatrix[4] += (prevScale -transformMatrix[0]) * (cursorPoint(event).x+ offsetPtX);
-  	transformMatrix[5] += (prevScale -transformMatrix[3]) * (cursorPoint(event).y+ offsetPtY);
+	console.log("Mx="+(cursorPoint(event).x));	
+	console.log("Mx="+(cursorPoint(event).x));	
+	console.log("Cx="+centerX);	
+  	transformMatrix[4] = centerX-offsetPtX;
+  	transformMatrix[5] = centerY-offsetPtY;
 	console.log(transformMatrix);	
+	
 
-
-  var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
-  matrixGroup.setAttributeNS(null, "transform", newMatrix);
+  	var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
+  	matrixGroup.setAttributeNS(null, "transform", newMatrix);
 }
 
 function pan(dx, dy) {     	
-  transformMatrix[4] += dx;
+  transformMatrix[4] += dx 
+ ;
   transformMatrix[5] += dy;
             
   var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";

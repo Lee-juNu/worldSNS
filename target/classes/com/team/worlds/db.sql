@@ -1,36 +1,75 @@
-create table userTbl
+drop table alarmTbl cascade constraints; ;
+create table alarmTbl
 (
-	user_id varchar(16 char) primary key,
-	user_pw varchar(16 char) not null,
-	user_nickName varchar(16 char) not null,
-	user_phoneNum varchar(16 char) not null,
-	user_name varchar(40 char) not null,
-	user_email varchar(60 char) not null,
-	user_regDate date not null
+	alam_Num varchar2(10 char) primary key	,
+	alam_ReceiverID varchar2(16 char)		  	,
+	alam_type varchar2(8 char) not null		,
+	alam_lastTime date			not null,
+		CONSTRAINT alam_c_main
+			foreign key(alam_ReceiverID)
+				references userTbl(user_ID)
+					on delete cascade
 )
 
-alter table proFileTbl add unique(pf_userID)
-create table proFileTbl
+ALTER TABLE alarmTbl RENAME COLUMN alam_recently TO alam_lastTime
+ALTER TABLE alarmTbl MODIFY alam_recently not null;
+create table alamReply_Tbl
 (
-	pf_userID 			varchar2(16 char) 	not null,
-	pf_Img 				varchar2(256 char)			,
-	pf_bgImg 			varchar2(256 char)			,
-	pf_contents 		varchar2(160 char)			,
-
-		CONSTRAINT pf_c_user
-			foreign key(pf_userID)
-				references userTbl(user_id)
+	alamRp_Num 		varchar2(8 char) 	not null		, 
+	alamRp_ReplyNum varchar2(10 char) 	not null 		,
+	alamRp_regDate 	date								,
+	CONSTRAINT alam_c_reply
+			foreign key(alamRp_Num)
+				references alarmTbl(alam_Num)
+					on delete cascade,
+			foreign key(alamRp_ReplyNum)
+				references BoardTbl(Board_Num)
 					on delete cascade
 )
 
 
-select * from  userTbl;
 
+create table alamLike_Tbl
+(
+	alamLk_Num		varchar2(8 char) 	not null		, 
+	alamLk_LikeNum	varchar2(10 char) 	not null 		,
+	alamLk_regDate	date								,
+	CONSTRAINT alam_c_like
+			foreign key(alamLk_Num)
+				references alarmTbl(alam_Num)
+					on delete cascade,
+			foreign key(alamLk_LikeNum)
+				references BoardTbl(Board_Num)
+					on delete cascade						
+)
 
-create sequence userTBL_tempSeq
-    select userTBL_tempSeq.nextval FROM DUAL
+create table alamShare_Tbl
+(
+	alamShr_Num		varchar2(8 char) 	not null		, 
+	alamShr_ShareNum	varchar2(10 char) 	not null 		,
+	alamShr_regDate	date								,
+	CONSTRAINT alam_c_share
+			foreign key(alamShr_Num)
+				references alarmTbl(alam_Num)
+					on delete cascade,
+			foreign key(alamShr_ShareNum)
+				references ShareTbl(Share_Num)
+					on delete cascade						
+)
+drop table alamAtTag_Tbl
 
+create table alamAtTag_Tbl
+(
+	alamAtTag_Num		varchar2(8 char) 	not null		, 
+	alamAtTag_BoardNum	varchar2(10 char) 	not null 		,
+	alamAtTag_regDate	date								,
+	
+	CONSTRAINT alam_c_atTag
+			foreign key(alamAtTag_Num)
+				references alarmTbl(alam_Num)
+					on delete cascade,
+			foreign key(alamAtTag_BoardNum)
+				references boardTbl(Board_Num)
+					on delete cascade
+)
 
-select * from MESSageTbl 
-ALTER TABLE MESSageTbl DROP COLUMN MSG_RECEIVERUSERID;
-insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
