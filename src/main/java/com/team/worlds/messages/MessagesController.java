@@ -35,6 +35,7 @@ public class MessagesController {
 		mDAO.send(req, M);
 		mDAO.get(req);
 		mDAO.getMsg(req);
+		mDAO.updateIndex(req, M);
 		return "home";
 	}
 
@@ -45,6 +46,7 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.open(req, M);
 		mDAO.join(req, M);
+		mDAO.join2(req, M);
 		mDAO.get(req);
 		mDAO.getMsg(req);
 		return "home";
@@ -69,6 +71,8 @@ public class MessagesController {
 		mDAO.select(req, M);
 		mDAO.get(req);
 		mDAO.getMsg(req);
+		mDAO.getRoom(req, M);
+		mDAO.updateIndex(req, M);
 		return "home";
 	}
 }

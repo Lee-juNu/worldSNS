@@ -29,19 +29,22 @@ ${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
 
 <div id="chat">
 <div id="titleMessage">
-${roomNum }
+${roomNum } 
 </div>
 
 <div id="chatRoom">
 <div id="chatMsg">
+
 <c:forEach var="msg" items="${msglist}" >
-${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="${msg.msg_img }">   <br>
+${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="resources/files/${msg.msg_img }"> 
+<c:forEach var="index" items="${room}" >
+<c:if test="${index.rm_lastIndex < msg.msg_index }">
+${0+1}
+</c:if>
+</c:forEach>
+ <br>
 </c:forEach>
 </div>
-여기에 메세지가 올12거임<br>
-로그인 중인 아이디 세션 : ${sessionScope.loginMember.user_ID }
-${userlist}
-
 </div>
 <div id="sendMessage">
 <form action="messages.send" method="post" enctype="multipart/form-data"

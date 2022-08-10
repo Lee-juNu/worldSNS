@@ -34,6 +34,7 @@ public class MessageDAO {
 		MultipartRequest mr = null;
 		User u = (User)req.getSession().getAttribute("loginMember");
 		
+		
 		try {
 			mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 			
@@ -53,14 +54,15 @@ public class MessageDAO {
 			m.setMsg_img(msg_img);
 			m.setMsg_Contents(msg_Contents);
 
+			System.out.println(path);
 			
-			if (!msg_img.equals(null)||!msg_Contents.equals(null)) {
+//			if (!msg_img.equals(null)||!msg_Contents.equals(null)) {
 				if (ss.getMapper(MessageMapper.class).send(m) == 1) {
 					req.setAttribute("result", "송신성공");
 				} else {
 					req.setAttribute("result", "송신실패");
 				}
-			}
+//			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -98,6 +100,55 @@ public class MessageDAO {
 		}
 	}
 
+	public void join(HttpServletRequest req, Message m) {
+		
+		
+		User u = (User)req.getSession().getAttribute("loginMember");
+		
+		//	String rm_roomNum = req.getParameter("join");
+		String rm_roomNum = u.getUser_ID();
+		String rm_userID = req.getParameter("invite");
+		int rm_lastIndex = 0;
+		
+		System.out.println(rm_userID);
+		
+		m.setRm_roomNum(rm_roomNum);
+		m.setRm_userID(rm_userID);
+		m.setRm_lastIndex(rm_lastIndex);
+		
+		if (ss.getMapper(MessageMapper.class).join(m) == 1) {
+			req.setAttribute("result", "참여성공");
+		} else {
+			req.setAttribute("result", "참여실패");
+			
+		}
+		
+	}
+
+	public void join2(HttpServletRequest req, Message m) {
+		
+		
+		User u = (User)req.getSession().getAttribute("loginMember");
+		
+		//	String rm_roomNum = req.getParameter("join");
+		String rm_roomNum = u.getUser_ID();
+		String rm_userID = u.getUser_ID();
+		int rm_lastIndex = 0;
+		
+		System.out.println(rm_userID);
+		
+		m.setRm_roomNum(rm_roomNum);
+		m.setRm_userID(rm_userID);
+		m.setRm_lastIndex(rm_lastIndex);
+		
+		if (ss.getMapper(MessageMapper.class).join(m) == 1) {
+			req.setAttribute("result", "참여성공");
+		} else {
+			req.setAttribute("result", "참여실패");
+			
+		}
+		
+	}
 
 
 
@@ -137,34 +188,41 @@ public class MessageDAO {
 
 
 
-
-	public void join(HttpServletRequest req, Message m) {
+	public void updateIndex(HttpServletRequest req, Message m) {
 		
-		
+		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
 		User u = (User)req.getSession().getAttribute("loginMember");
 		
-	//	String rm_roomNum = req.getParameter("join");
-		String rm_roomNum = u.getUser_ID();
-		String rm_userID = req.getParameter("invite");
-		int rm_lastIndex = 0;
+		String rm_userID = u.getUser_ID();
 		
-		System.out.println(rm_userID);
-		
-		m.setRm_roomNum(rm_roomNum);
+		m.setRm_roomNum(msg_RoomNum);
 		m.setRm_userID(rm_userID);
-		m.setRm_lastIndex(rm_lastIndex);
 		
-		if (ss.getMapper(MessageMapper.class).join(m) == 1) {
-			req.setAttribute("result", "참여성공");
-		} else {
-			req.setAttribute("result", "참여실패");
-			
+		try {
+			ss.getMapper(MessageMapper.class).updateIndex(m);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
 
 
-
+	public void getRoom(HttpServletRequest req, Message m) {
+		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		User u = (User)req.getSession().getAttribute("loginMember");
+		
+		String rm_userID = u.getUser_ID();
+		
+		m.setRm_roomNum(msg_RoomNum);
+		m.setRm_userID(rm_userID);
+		
+		try {
+			req.setAttribute("room", ss.getMapper(MessageMapper.class).getRoom(m));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void select(HttpServletRequest req, Message m) {
 		
@@ -173,6 +231,14 @@ public class MessageDAO {
 		req.getSession().setAttribute("roomNum", roomno);
 		req.getSession().setMaxInactiveInterval(-1);
 	}
+
+
+
+
+
+
+
+
 	
 	
 	
