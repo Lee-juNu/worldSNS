@@ -10,65 +10,73 @@ create table alarmTbl
 				references userTbl(user_ID)
 					on delete cascade
 )
+ALTER TABLE alamReply_Tbl RENAME COLUMN alamRp_Num 		TO almDetail_Num;
+ALTER TABLE alamReply_Tbl RENAME COLUMN alamRp_ReplyNum TO almDetail_LinkNum;
+ALTER TABLE alamReply_Tbl RENAME COLUMN alamRp_regDate 	TO alamRp_regDate;
 
-ALTER TABLE alarmTbl RENAME COLUMN alam_recently TO alam_lastTime
-ALTER TABLE alarmTbl MODIFY alam_recently not null;
-create table alamReply_Tbl
+
+
+drop table alamReply_Tbl
+create table alamReplyTbl
 (
-	alamRp_Num 		varchar2(8 char) 	not null		, 
-	alamRp_ReplyNum varchar2(10 char) 	not null 		,
-	alamRp_regDate 	date								,
+	almDetail_Num 		varchar2(8 char) 	not null		, 
+	almDetail_LinkNum 	varchar2(10 char) 	not null 		,
+	almDetail_regDate 	date								,
 	CONSTRAINT alam_c_reply
-			foreign key(alamRp_Num)
+			foreign key(almDetail_Num)
 				references alarmTbl(alam_Num)
 					on delete cascade,
-			foreign key(alamRp_ReplyNum)
+			foreign key(almDetail_LinkNum)
 				references BoardTbl(Board_Num)
 					on delete cascade
 )
 
 
 
-create table alamLike_Tbl
+
+create table alamLikeTbl
 (
-	alamLk_Num		varchar2(8 char) 	not null		, 
-	alamLk_LikeNum	varchar2(10 char) 	not null 		,
-	alamLk_regDate	date								,
+	almDetail_Num		varchar2(8 char) 	not null		, 
+	almDetail_LinkNum	varchar2(10 char) 	not null 		,
+	almDetail_regDate	date								,
 	CONSTRAINT alam_c_like
-			foreign key(alamLk_Num)
+			foreign key(almDetail_Num)
 				references alarmTbl(alam_Num)
 					on delete cascade,
-			foreign key(alamLk_LikeNum)
+			foreign key(almDetail_LinkNum)
 				references BoardTbl(Board_Num)
 					on delete cascade						
 )
 
-create table alamShare_Tbl
+
+drop table alamShare_Tbl
+select * from alamShareTbl
+create table alamShareTbl
 (
-	alamShr_Num		varchar2(8 char) 	not null		, 
-	alamShr_ShareNum	varchar2(10 char) 	not null 		,
-	alamShr_regDate	date								,
+	almDetail_Num		varchar2(8 char) 	not null		, 
+	almDetail_LinkNum	varchar2(10 char) 	not null 		,
+	almDetail_regDate	date								,
 	CONSTRAINT alam_c_share
-			foreign key(alamShr_Num)
+			foreign key(almDetail_Num)
 				references alarmTbl(alam_Num)
 					on delete cascade,
-			foreign key(alamShr_ShareNum)
+			foreign key(almDetail_LinkNum)
 				references ShareTbl(Share_Num)
 					on delete cascade						
 )
 drop table alamAtTag_Tbl
 
-create table alamAtTag_Tbl
+create table alamAtTagTbl
 (
-	alamAtTag_Num		varchar2(8 char) 	not null		, 
-	alamAtTag_BoardNum	varchar2(10 char) 	not null 		,
-	alamAtTag_regDate	date								,
+	almDetail_Num		varchar2(8 char) 	not null		, 
+	almDetail_LinkNum	varchar2(10 char) 	not null 		,
+	almDetail_regDate	date								,
 	
 	CONSTRAINT alam_c_atTag
-			foreign key(alamAtTag_Num)
+			foreign key(almDetail_Num)
 				references alarmTbl(alam_Num)
 					on delete cascade,
-			foreign key(alamAtTag_BoardNum)
+			foreign key(almDetail_LinkNum)
 				references boardTbl(Board_Num)
 					on delete cascade
 )

@@ -1,10 +1,9 @@
 package com.team.worlds.alarm;
 
 public class Alarm {
-	String alam_Num;
-	String alam_ReceiverID;
-	String alam_type;
-	
+	private String alam_Num;
+	private String alam_ReceiverID;
+	private String alam_type;
 	
 	public Alarm() {
 		super();
@@ -34,7 +33,4 @@ public class Alarm {
 	public void setAlam_type(String alam_type) {
 		this.alam_type = alam_type;
 	}
-	
-	
-	
 }
