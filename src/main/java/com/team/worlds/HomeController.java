@@ -29,9 +29,21 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String temp_home(HttpServletRequest req) {
 		
-		uDAO.templogin(req);
-		req.setAttribute("loginPage", "jy/login.jsp");
-		return "jw/mapPage";
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		//uDAO.templogin(req);
+		//req.setAttribute("loginPage", "jy/login.jsp");
+		return "jw/fakeHome";
 	}
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
 	public String temp_goHome(User u, HttpServletRequest req) {
@@ -44,5 +56,13 @@ public class HomeController {
 		req.setAttribute("contentsPage", "sik/board.jsp");
 		
 		return "home";
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

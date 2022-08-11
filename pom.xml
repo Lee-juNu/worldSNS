@@ -16,7 +16,7 @@
 	<dependencies>
 	
 	
-	  
+	
 	
 	 <dependency>
             <groupId>javax.websocket</groupId>
@@ -24,6 +24,12 @@
             <version>1.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	<dependency>
+    	<groupId>com.googlecode.json-simple</groupId>
+    	<artifactId>json-simple</artifactId>
+    	<version>1.1.1</version>
+	</dependency>
         
         
 <!--Spring 환경에서 ORMFramework사용 가능하게 -->
@@ -229,8 +235,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
