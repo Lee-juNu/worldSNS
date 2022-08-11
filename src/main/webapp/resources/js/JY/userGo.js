@@ -33,3 +33,20 @@ function goSettingSecession()
 {
 	location.href = 'setting.go.Secession';
 }
+
+function goSecession()
+{
+	location.href = 'setting.go.SecessionR';
+}
+
+
+
+function goInfoUpdate()
+{
+	location.href = 'setting.go.InfoUp';
+}
+
+function goInfoUpdateR()
+{
+	location.href = 'setting.go.InfoUpR';
+}

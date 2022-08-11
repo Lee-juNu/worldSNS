@@ -10,4 +10,9 @@ public interface UserMapper {
 	int secession(User u);
 
 	int update(Profile p);
+
+
+	int updateInfo(User u);
+
+	int updatePW(User u);
 }

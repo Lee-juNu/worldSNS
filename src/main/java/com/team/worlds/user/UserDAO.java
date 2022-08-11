@@ -31,15 +31,23 @@ public class UserDAO {
 		}
 	}
 
-	public void login(User u, HttpServletRequest req) {
+	public void login(User u, Profile p, HttpServletRequest req) {
 
 		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
+	//	Profile dbProfile = ss.getMapper(ProfileMapper.class).getProfileByID(p.getPf_userID());
 
+		//System.out.println("지성이"+ p.getPf_userID());
+		System.out.println("틈만나면네가생각나...");
+		
+		
+		
 		if (dbUser != null) {
 			if (u.getUser_PW().equals(dbUser.getUser_PW())) {
 				req.getSession().setAttribute("loginMember", dbUser);
+			//	req.getSession().setAttribute("loginMember", dbProfile);
 				req.getSession().setMaxInactiveInterval(600 * 10);
 				System.out.println(dbUser.getUser_nickName());
+				System.out.println("빰빰빰"+p.getPf_userID());
 
 			} else {
 				System.out.println("실패");
@@ -61,9 +69,12 @@ public class UserDAO {
 	public boolean loginCheck(HttpServletRequest req) {
 
 		User u = (User) req.getSession().getAttribute("loginMember");
+	//	Profile p = (Profile) req.getSession().getAttribute("loginMember");
 		if (u != null) {
 			req.setAttribute("profileMini", "jy/profileMini.jsp");
+		//	System.out.println("빰빰빰"+p.getPf_userID());
 			return true;
+			
 		} else {
 
 			return false;
@@ -82,7 +93,6 @@ public class UserDAO {
 		String juser_email = req.getParameter("user_email");
 		String juser_city = req.getParameter("user_city");
 		String juser_birthDay = req.getParameter("user_birthDay");
-		int jlevel = Integer.parseInt(req.getParameter("level"));
 		// String jregDate = req.getParameter("regDate");
 		// jm_photo = URLEncoder.encode(jm_photo, "utf-8");
 		// jm_photo = jm_photo.replace("+", " ");
@@ -94,8 +104,7 @@ public class UserDAO {
 		u.setUser_name(juser_name);
 		u.setUser_email(juser_email);
 		u.setUser_city(juser_city);
-		u.setUser_birthDay(juser_birthDay);
-		u.setLevel(jlevel);
+//		u.setUser_birthDay(juser_birthDay);
 		// u.setRegDate(jregDate);
 
 		if (ss.getMapper(UserMapper.class).joinus(u) == 1) {
@@ -116,8 +125,9 @@ public class UserDAO {
 
 				// sDAO.setAllMsgCount(allMsgCount - msgCount);
 
-				logout(req);
-				loginCheck(req);
+				//logout(req);
+				//loginCheck(req);
+				
 			} else {
 				req.setAttribute("result", "탈퇴실패");
 			}
@@ -127,8 +137,49 @@ public class UserDAO {
 		}
 
 	}
+	
+	public void updateInfo(User u, HttpServletRequest req) {
+
+		User loginMember = (User) req.getSession().getAttribute("loginMember");
+		String Nuser_ID = req.getParameter("Nuser_ID");
+		String Nuser_PW = req.getParameter("Nuser_PW");
+		String Nuser_name = req.getParameter("Nuser_name");
+		String Nuser_email = req.getParameter("Nuser_email");
+		String Nuser_nickName = req.getParameter("Nuser_nickName");
+		
+		
+		
+		try {
+			
+			u.setUser_ID(Nuser_ID);
+			u.setUser_PW(Nuser_PW);
+			u.setUser_name(Nuser_name);
+			u.setUser_email(Nuser_email);
+			u.setUser_nickName(Nuser_nickName);
+
+			if (ss.getMapper(UserMapper.class).updateInfo(u) == 1) {
+			
+				
+				System.out.println("수정성공");
+				req.setAttribute("result", "수정성공");
+				req.getSession().setAttribute("loginMember", u);
+
+			} else {
+				System.out.println("수정실패");
+				req.setAttribute("result", "수정실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("수정실패");
+			req.setAttribute("result", "수정실패");
+			}
+		}
 
 	
+
+
+	
+
 	// 우리 것에 맞춰 업데이트 해야함
 	public void update(Profile p, User u, HttpServletRequest req) {
 
@@ -194,40 +245,4 @@ public class UserDAO {
 
 	}
 
-	
-
-	public void SettingPW1(User u, HttpServletRequest req) {
-
-
-		
-		String settingPassword1 = req.getParameter("settingPassword1");
-		
-		System.out.println("어\n\\n\\n\\n\\n어" + settingPassword1);
-		
-		u = (User) req.getSession().getAttribute("loginMember");
-		
-		
-		System.out.println("ㄴㅇㅃㅃㄹ" + u.getUser_PW());
-
-		if (settingPassword1.equals(u.getUser_PW())) {
-			
-			System.out.println("여기까진 옴");
-			req.setAttribute("contentsPage", "jy/Setting/SettingPassword2.jsp");
-
-		} else {
-			req.setAttribute("r", "비밀번호가 틀렸습니다!");
-			req.setAttribute("contentsPage", "jy/Setting/SettingPassword4.jsp");
-
-		}
-		
-		
-		
-	}
-
-	
-	
-	
-	
-	
-	
 }

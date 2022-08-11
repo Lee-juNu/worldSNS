@@ -16,10 +16,14 @@
 			<div>새로운 비밀번호 확인</div>
 
 			<div>
-				<input id="settingPassword3">
+				<input name="settingPassword3">
 			</div>
 			<div>
 				<button>다음으로</button>
+				
+				<input name="settingPassword2" type="hidden" value="${param.settingPassword2 }">
+				
+				
 			</div>
 
 		</div>

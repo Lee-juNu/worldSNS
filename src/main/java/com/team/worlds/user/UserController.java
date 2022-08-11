@@ -16,16 +16,17 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/user.login", method = RequestMethod.POST)
-	public String userLogin(User u, HttpServletRequest req) {
+	public String userLogin(Profile p, User u, HttpServletRequest req) {
 		
 		//System.out.println(u.getUser_ID());
 		//System.out.println(u.getUser_PW());
 		
 		// 로그인
-		uDAO.login(u, req);
+		uDAO.login(u, p, req);
 		
 		
 		u = (User) req.getSession().getAttribute("loginMember");
+//		p = (Profile) req.getSession().getAttribute("loginMember");
 		
 		if (u != null) {
 			

@@ -5,45 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
-<script type="text/javascript">
 
-/* 
-function goInfoUpdate()
-{
-	location.href = 'setting.go.InfoUp';
-}
- */
-</script>
+<script type = "text/javascript" src="resources/js/utill/userGo.js"></script>
 
-</script>
+
 </head>
 <body>
 
 <div>
 <div>${result }</div>
 <div>아이디</div>
-<div>${sessionScope.loginMember.user_ID }</div>
+<div><input value="${sessionScope.loginMember.user_ID }" name="Nuser_ID"> </div>
 <hr>
 
 
 <div>이름 </div>
-<div>${sessionScope.loginMember.user_name }</div>
+<div><input value="${sessionScope.loginMember.user_name }" name="Nuser_name"> </div>
 <hr>
 
 <div>닉네임</div>
-<div>${sessionScope.loginMember.user_nickName }</div>
+<div><input value="${sessionScope.loginMember.user_nickName }" name="Nuser_nickName"> </div>
 <hr>
 
 
+
 <div>휴대폰번호</div>
-<div>${sessionScope.loginMember.user_phoneNumber }</div>
+<div><input value="${sessionScope.loginMember.user_phoneNumber }" name="Nuser_phoneNumber"> </div>
 <hr>
 
 
 <div>이메일</div>
-<div>${sessionScope.loginMember.user_email }</div>
+<div><input value="${sessionScope.loginMember.user_email }" name="Nuser_email"> </div>
 <hr>
+
 
 
 <div>생일 (변경 불가)</div>
@@ -63,7 +57,7 @@ function goInfoUpdate()
 
 <div>
 
-<button onclick="goInfoUpdate()">수정</button>
+<button onclick="">수정하기</button>
 <button>비밀번호 변경하러 가기</button>
 
  </div>

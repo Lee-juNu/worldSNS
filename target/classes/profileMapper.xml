@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.worlds.user.ProfileMapper">
+
+
+	<select id= "getProfileByID" resultType = "com.team.worlds.user.Profile">
+		select * from proFileTbl where pf_userID = #{pf_userID}
+	</select>
+
+
+
+</mapper>

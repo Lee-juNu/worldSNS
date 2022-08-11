@@ -9,6 +9,7 @@ public class User {
 	private String user_phoneNumber;
 	private String user_name;
 	private String user_email;
+	private String user_country;
 	private String user_city;
 	private String user_birthDay;
 	private int level;

@@ -15,6 +15,49 @@ public class SettingController {
 	private UserDAO uDAO;
 	private SettingDAO sDAO;
 	
+
+	@RequestMapping(value = "/setting.go.Info", method = RequestMethod.GET)
+	public String goSettingInfo(User u, HttpServletRequest req) {
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/Setting/SettingInfo.jsp");
+		
+		return "home";
+	}
+	
+
+	@RequestMapping(value = "/setting.go.InfoUp", method = RequestMethod.GET)
+	public String goSettingInfoUp(User u, HttpServletRequest req) {
+		
+		System.out.println("빨리ㅜ시고싶다");
+		
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("profilePage", "profileMini.jsp");
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/Setting/SettingInfoUp.jsp");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/setting.go.InfoUpR", method = RequestMethod.GET)
+	public String goSettingInfoUpR(User u, HttpServletRequest req) {
+		
+		System.out.println("빨리ㅜ시고싶다");
+		
+		
+		uDAO.loginCheck(req);
+		req.setAttribute("profilePage", "profileMini.jsp");
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/Setting/SettingInfoUp.jsp");
+		
+		return "home";
+	}
+	
 	
 	@RequestMapping(value = "/setting.go.Password", method = RequestMethod.GET)
 	public String goSettingPassword(User u, HttpServletRequest req) {
@@ -38,8 +81,7 @@ public class SettingController {
 
 		
 		
-		System.out.println("ㅋㅋ연결됨");
-		System.out.println("ㅇㅇ" + req.getParameter("settingPassword1"));
+		//System.out.println("ㅇㅇ" + req.getParameter("settingPassword1"));
 		
 		uDAO.loginCheck(req);
 		sDAO.SettingPW1(u, req);
@@ -57,6 +99,8 @@ public class SettingController {
 	public String goSettingPassword3(User u, HttpServletRequest req) {
 	
 		uDAO.loginCheck(req);
+		sDAO.SettingPW2(u, req);
+		
 		u = (User) req.getSession().getAttribute("loginMember");
 		System.out.println("연결됨");
 		//System.out.println(Session.getAttribute("user_name"));
@@ -65,7 +109,6 @@ public class SettingController {
 		
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "jy/Setting/SettingPassword3.jsp");
 		
 		return "home";
 	}
@@ -73,6 +116,8 @@ public class SettingController {
 	public String goSettingPassword4(User u, HttpServletRequest req) {
 	
 		uDAO.loginCheck(req);
+		sDAO.SettingPW3(u, req);
+		
 		u = (User) req.getSession().getAttribute("loginMember");
 		System.out.println("연결됨");
 		//System.out.println(Session.getAttribute("user_name"));
@@ -81,7 +126,6 @@ public class SettingController {
 		
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "jy/Setting/SettingPassword4.jsp");
 		
 		return "home";
 	}
@@ -102,19 +146,6 @@ public class SettingController {
 	}
 	
 	
-	@RequestMapping(value = "/setting.go.Info", method = RequestMethod.GET)
-	public String goSettingInfo(User u, HttpServletRequest req) {
-		
-		uDAO.loginCheck(req);
-		req.setAttribute("profilePage", "profileMini.jsp");
-		
-		
-		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "jy/Setting/SettingInfo.jsp");
-		
-		return "home";
-	}
-	
 	
 	@RequestMapping(value = "/setting.go.Profile", method = RequestMethod.GET)
 	public String goSettingProfile(User u, HttpServletRequest req) {
@@ -129,6 +160,7 @@ public class SettingController {
 		return "home";
 	}
 	
+
 	@RequestMapping(value = "/setting.go.Secession", method = RequestMethod.GET)
 	public String goSettingSecession(User u, HttpServletRequest req) {
 		
@@ -139,6 +171,21 @@ public class SettingController {
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "jy/Setting/SettingSecession.jsp");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/setting.go.SecessionR", method = RequestMethod.GET)
+	public String goSettingSecessionR(User u, HttpServletRequest req) {
+		
+		uDAO.loginCheck(req);
+		uDAO.secession(req);
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/Setting/SettingSecessionR.jsp");
 		
 		return "home";
 	}
