@@ -7,14 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
-<div>${sessionScope.loginMember.user_nickName }</div>
-<div>아이디</div>
-<div></div>
-<div></div>
+<!-- 
+흠.. 여긴
 
-
-</div>
+소리로 알려 주기
+전세계 알림 보기 / 그 지역 알림만 보기 선택 ㄱㄴ
+알림이 올 경우 이메일을 보내기
+ -->
 </body>
 </html>

@@ -7,14 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
-<div>${sessionScope.loginMember.user_nickName }</div>
-<div>아이디</div>
-<div></div>
-<div></div>
 
+<div>
+<div>모두 가운데로 배치</div>
+<div>배경 사진</div>
+<div>프로필 사진 </div>
+<div>닉네임</div>
+<div>아이디</div>
+<div><button onclick = "goSettingProfile()">프로필 수정</button> </div>
+<div>게시판</div>
+<div></div>
+<div></div>
 
 </div>
+
+
+
+
 </body>
 </html>

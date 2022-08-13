@@ -4,4 +4,15 @@ public interface UserMapper {
 	User tempSelectUser();
 
 	User getMemberByID(String u);
+
+	int joinus(User u);
+
+	int secession(User u);
+
+	int update(Profile p);
+
+
+	int updateInfo(User u);
+
+	int updatePW(User u);
 }
