@@ -14,31 +14,43 @@
 
 <div id="chatList" style="display: none">
 채팅방목록
-<form action="messages.open" name="openMessage">
-<button id="userID" value="${sessionScope.loginUser.user_id }">채팅방 만들기</button>
-</form>
+<button id="btn-modal">채팅방 만들기</button>
 <c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
-${chat.cr_Num  }
+<form action="messages.select" name="selectroom">
+${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
+</form>
+
+
 </div>
 </c:forEach>
 </div>
 
 
-
-
 <div id="chat">
 <div id="titleMessage">
-${title }
+${roomNum } 
 </div>
 
 <div id="chatRoom">
-여기에 메세지가 올1거임<br>
+<div id="chatMsg">
+
+<c:forEach var="msg" items="${msglist}" >
+${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="resources/files/${msg.msg_img }"> 
+<c:forEach var="index" items="${room}" >
+<c:if test="${index.rm_lastIndex < msg.msg_index }">
+${0+1}
+</c:if>
+</c:forEach>
+ <br>
+</c:forEach>
+</div>
 </div>
 <div id="sendMessage">
 <form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
-<input type="file"><input type="text"> <button>송신</button><BR>
+<input type="file" name="sendimg"><input type="text" name="sendmsg"> <button>송신</button><BR>
+<input type="hidden" name="roomNum" value="${roomNum }">
 </form>
 <button id="hide" onclick="if(chatList.style.display=='none')
 {chatList.style.display='';}
@@ -46,5 +58,24 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
 </div>
 </div>
 
+
+
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>초대할 친구는?</h2>
+            </div>
+            <div class="close-area">X</div>
+            <div class="content">
+		<c:forEach var="user" items="${userlist}" >
+<form action="messages.open" name="openMessage">
+		${user.user_ID } <button name="invite" value="${user.user_ID }">초대</button>   <br>
+</form>
+		</c:forEach>   
+            </div>
+        </div>
+    </div>
+    <script type = "text/javascript" src="resources/js/SU/message.js"></script>
 </body>
 </html>

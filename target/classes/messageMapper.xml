@@ -6,8 +6,20 @@
 		select * from ChatRoomTbl
 </select>
 
+<select id="getUser" resultType="com.team.worlds.user.User">
+	select * from userTbl where user_id != #{User_ID}
+</select>
+
+<select id="getMsg" resultType="com.team.worlds.messages.Message">
+	select * from messageTbl where msg_RoomNum = #{User_ID} order by msg_sendTime
+</select>
+
+<select id="getRoom" resultType="com.team.worlds.messages.Message">
+	select * from RoomMemberTbl where rm_roomNum=#{rm_roomNum}
+</select>
+
 <insert id="send">
-insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{msg_receiverUserID}, #{msg_sendTime}, #{msg_index}, #{msg_img}, #{msg_Contents})
+insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum}, #{msg_sendUserID}, #{sendTime}, (select count(*) from messageTbl where msg_RoomNum = #{msg_RoomNum}) + 1, #{msg_img, jdbcType=VARCHAR}, #{msg_Contents})
 </insert>
 
 
@@ -15,6 +27,21 @@ insert into messageTbl values (#{msg_Num}, #{msg_RoomNum}, #{msg_sendUserID}, #{
 insert into ChatRoomTbl values (#{cr_Num}||chatroom_seq.nextval, #{cr_ownerID}, #{cr_date })
 </insert>
 
+<insert id="join">
+insert into RoomMemberTbl values ((select cr_Num from ChatRoomTbl where cr_ownerid = #{rm_roomNum} and cr_date = (select max(cr_date) from ChatRoomTbl where cr_ownerid = #{rm_roomNum})), #{rm_userID}, #{rm_lastIndex})
+</insert>
+
+<insert id="join2">
+insert into RoomMemberTbl values ((select cr_Num from ChatRoomTbl where cr_ownerid = #{rm_roomNum} and cr_date = (select max(cr_date) from ChatRoomTbl where cr_ownerid = #{rm_roomNum})), #{rm_roomNum}, #{rm_lastIndex});
+</insert>
+
+
+<update id="updateIndex" parameterType="com.team.worlds.messages.Message">
+		update RoomMemberTbl
+		set rm_lastIndex=(select max(msg_index) from messageTbl)
+		where
+		rm_roomNum=#{rm_roomNum} and rm_userID=#{rm_userID}
+	</update>
 
 
 </mapper>

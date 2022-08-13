@@ -17,7 +17,7 @@ public class Message {
 	private String msg_RoomNum;
 	private String msg_sendUserID;
 	private String msg_receiverUserID;
-	private Date sendTime;
+	private Date msg_sendTime;
 	private int msg_index;
 	private String msg_img;
 	private String msg_Contents;
@@ -107,11 +107,11 @@ public class Message {
 	}
 
 	public Date getSendTime() {
-		return sendTime;
+		return msg_sendTime;
 	}
 
 	public void setSendTime(Date sendTime) {
-		this.sendTime = sendTime;
+		this.msg_sendTime = sendTime;
 	}
 
 	public int getMsg_index() {
@@ -152,7 +152,7 @@ public class Message {
 		this.msg_RoomNum = msg_RoomNum;
 		this.msg_sendUserID = msg_sendUserID;
 		this.msg_receiverUserID = msg_receiverUserID;
-		this.sendTime = sendTime;
+		this.msg_sendTime = sendTime;
 		this.msg_index = msg_index;
 		this.msg_img = msg_img;
 		this.msg_Contents = msg_Contents;
@@ -179,7 +179,7 @@ public class Message {
 		this.msg_RoomNum = msg_RoomNum;
 		this.msg_sendUserID = msg_sendUserID;
 		this.msg_receiverUserID = msg_receiverUserID;
-		this.sendTime = sendTime;
+		this.msg_sendTime = sendTime;
 		this.msg_index = msg_index;
 		this.msg_img = msg_img;
 		this.msg_Contents = msg_Contents;
