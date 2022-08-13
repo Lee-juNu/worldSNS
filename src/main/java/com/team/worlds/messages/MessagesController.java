@@ -17,7 +17,7 @@ public class MessagesController {
 	private MessageDAO mDAO;
 	
 	@RequestMapping(value = "/messages.go", method = RequestMethod.GET)
-	public String home(HttpServletRequest req) {
+	public String home(HttpServletRequest req, User u) {
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		//로그인완성되면 체크 필수

@@ -6,7 +6,7 @@
 		else
 		{
 
-            ws=new WebSocket("ws://localhost:80/worlds/echo.do/yorunohosi");
+            ws=new WebSocket("ws://localhost:8080/worlds/echo.do/yorunohosi");
             
             ws.onopen=function(event){
                 if(event.data===undefined) return;
