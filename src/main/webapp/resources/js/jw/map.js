@@ -1,4 +1,4 @@
-  var transformMatrix = [1, 0, 0, 1, 0, 0];
+var transformMatrix = [1, 0, 0, 1, 0, 0];
   	
 var svg = null;
 var centerX  = null;
@@ -9,7 +9,6 @@ var matrixGroup =null;
 
 // Create an SVGPoint for future math
 var pt = null;
-
 
 var mouseX=null;
 var mouseY=null;
@@ -28,12 +27,7 @@ var currentScale = 1;
 var offsetPtX=0;
 var offsetPtY=0;
 
-
-
 window.onload = function(){
-		
-
-
 	addCountrySelectEvent();
 	mapMatrixInit();
 	addMapDivEvnet();
@@ -57,6 +51,7 @@ window.onload = function(){
 			zoom(1,e);
   		}
 	});
+	
 }
 
 
@@ -71,8 +66,6 @@ function addCountrySelectEvent()
     }
 }
 
-
-
 function addMapDivEvnet()
 {
 	var mapDiv = document.getElementById("tempMapDiv");
@@ -84,7 +77,6 @@ function addMapDivEvnet()
   			mapMouseUp();
 		});
 }
-
 function mapMatrixInit()
 {
 		svg = document.getElementById('mapID');
@@ -95,19 +87,18 @@ function mapMatrixInit()
     	pt = svg.createSVGPoint(); 
  		var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
   		matrixGroup.setAttributeNS(null, "transform", newMatrix);
-
 }
-
 
 function MapMove()
 {
 	var changePtX = prevMousePt.x -onMouse.x;
 	var changePtY = prevMousePt.y -onMouse.y;
 	
-	
 	offsetPtX+=(changePtX)/transformMatrix[0];
 	offsetPtY+=(changePtY)/transformMatrix[0];
+	
 	pan(-changePtX,-changePtY);
+	
 	prevMousePt.x =onMouse.x;
 	prevMousePt.y =onMouse.y;
 }
@@ -172,9 +163,6 @@ function pan(dx, dy) {
 	console.log(transformMatrix);	
 
 }
-
-
-
 
 
 // Get point in global SVG space

@@ -1,5 +1,3 @@
-
-
 package com.team.worlds.server;
 
 
@@ -36,11 +34,15 @@ public class WebSocketServer{
     
 	
 	private static final HashMap<String, Session> sessionMap = new HashMap<String, Session>();
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+	JSONParser jsonP = new JSONParser();
+	
     BufferedOutputStream bos;
+    
+    
     String path = "E:\\TeamProject\\img\\";
-    
-    
+   
+   
     public WebSocketServer() {
     	// TODO Auto-generated constructor stub
         System.out.println("웹소켓(서버) 객체생성");
@@ -51,8 +53,7 @@ public class WebSocketServer{
         mav.setViewName("chat");
         return mav;
     }
-    
-    
+
     
     //웹소켓 연결될때 나오는 문구
     @OnOpen
@@ -71,7 +72,6 @@ public class WebSocketServer{
         sessionMap.put(userId, session);
     }
     
-    
     /*
      * 모든 사용자에게 메시지를 전달한다.
      * @param self 메시지 보낸 사람 
@@ -79,15 +79,11 @@ public class WebSocketServer{
      */
     private void sendAllSessionToMessage(Session self,String message) {
         try {
-        	
         	for (Map.Entry<String, Session> entry : sessionMap.entrySet()) {
         		if(!self.getId().equals(entry.getValue().getId())) {
         			entry.getValue().getBasicRemote().sendText(message.split(",")[1]+" : "+message);
         		}				
 			}
-        	
-        	
-
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -96,23 +92,47 @@ public class WebSocketServer{
     
     @OnMessage
     public void onMessage(String message,Session session) {
-        logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
-        
-        	JSONParser jsonP = new JSONParser();
+        logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]); 
+
         try {
         	JSONObject result = (JSONObject)jsonP.parse(message);
         	
         	String type = (String) result.get("type");
-        
-        	if(type.equals("msg"))
+        	
+        	if(type.equals("chat"))
         	{
-        		String id = (String) result.get("id");
+        		wsChatController.onMessage(message,session);        		
+        	}
+        	else if(type.equals("board"))
+        	{
+        		wsBoardController.onMessage(message,session);
+        	}
+        	else if(type.equals("alarm"))
+        	{
+        		wsAlaramController.onMessage(message,session);
+        	}
+        	
+        	
+        }catch (Exception e) {
+		}
+        
+       	
+        	try {
+        	JSONObject result = (JSONObject)jsonP.parse(message);
+        	
+        	String type = (String) result.get("type");
+        	
+        	if(type.equals("chat"))
+        	{
+        	
+        		String id 		= (String) result.get("id");
         		String contents = (String) result.get("contents");
         		System.out.println("id : " + id);
         		System.out.println("내용 : " + contents);
         		
         		final Basic basic=session.getBasicRemote();
         		basic.sendText(id+" : "+contents);
+                sendAllSessionToMessage(session, message);
         	}
         	if(type.equals("file"))
         	{
@@ -132,21 +152,20 @@ public class WebSocketServer{
                        bos.close();
                        System.out.println("파일 업로드 끝");
         		   }
+        		   
         	}
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
         }
-        sendAllSessionToMessage(session, message);
+        
     }
-    
     @OnMessage
     public void processUpload(ByteBuffer msg, boolean last, Session session) {
-        
         while(msg.hasRemaining()){
             try {
                 bos.write(msg.get());
-            } catch (IOException e) {
+            } catch (IOException e) {	
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -155,7 +174,6 @@ public class WebSocketServer{
     @OnError
     public void onError(Throwable e,Session session) {
     }
-    
     
     @OnClose
     public void onClose(Session session) {

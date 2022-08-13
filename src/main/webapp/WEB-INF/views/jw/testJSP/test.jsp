@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 <script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
+<script type = "text/javascript" src="resources/js/jw/tempServerUse.js"></script>
 
 </head>
 
@@ -18,7 +19,7 @@
     </div>
     <div>
         <button type="button" onclick="openSocket()">Open</button>
-        <button type="button" onclick="send()">Send</button>
+        <button type="button" onclick="jwSend()">Send</button>
         <button type="button" onclick="closeSocket()">Close</button>
         <button type="button" onclick="goFakeHome()">돌아가기</button>
     </div>
