@@ -19,7 +19,7 @@
     </div>
     <div>
         <button type="button" onclick="openSocket()">Open</button>
-        <button type="button" onclick="jwSend()">Send</button>
+        <button type="button" onclick="jwSendWithFile()">Send</button>
         <button type="button" onclick="closeSocket()">Close</button>
         <button type="button" onclick="goFakeHome()">돌아가기</button>
     </div>
