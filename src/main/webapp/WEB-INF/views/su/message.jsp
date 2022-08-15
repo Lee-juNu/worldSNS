@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/SU/message.css">
+<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 </head>
 <body>
 
@@ -34,7 +35,6 @@ ${roomNum }
 
 <div id="chatRoom">
 <div id="chatMsg">
-
 <c:forEach var="msg" items="${msglist}" >
 ${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="resources/files/${msg.msg_img }"> 
 <c:forEach var="index" items="${room}" >
@@ -47,11 +47,14 @@ ${0+1}
 </div>
 </div>
 <div id="sendMessage">
+
 <form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
-<input type="file" name="sendimg" id="sendimg"><input type="text" name="sendmsg" id="sendmsg"> <button name="send" id="send">송신</button><BR>
-<input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
 </form>
+<input type="file" name="sendimg" id="sendimg"><input type="text" name="sendmsg" id="sendmsg">
+<button name="send" id="send">송신</button><BR>
+<input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
+<input type="hidden" name="userID" id="userID" value="${loginMember.user_ID }">
 <button id="hide" onclick="if(chatList.style.display=='none')
 {chatList.style.display='';}
 else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button>

@@ -32,27 +32,24 @@ window.addEventListener("keyup", e => {
     }
 })
 
----
 
 $(function() {
 	
-	 $("#send").click(function() {
+	 $('#send').click(function() {
 		
-		 let msg = $("#sendmsg").val();
-		 let img = $("#sendimg").val();
-		 let room = $("#roomNum").val();
-		 
+		 let msg = $('#sendmsg').val();
+		 let room = $('#roomNum').val();
+		 let user = $('#userID').val();
 		 
 	$.ajax({
 				
 				url:"messages.send",
-				data:{msg_Contents: msg,
-					msg_img: img,
-					msg_RoomNum: room,
+				data:{"msg_Contents": msg,
+					"msg_RoomNum": room,
+					"msg_sendUserID": user,
 					},
-				type:"post",
-			    contentType : false,
-		        processData : false,
+				type:'GET',
+				dataType: 'json',
 		        	
 				success:function(result){
 					if(result==1){
@@ -65,4 +62,23 @@ $(function() {
 		 $('#sendmsg').val('');
 		 $('#sendimg').val('');
 	 });
+	 });
+
+
+$(function() {
+
+	 let room = $('#roomNum').val();
+	$.ajax({
+				
+				url:"messages.getMsg",
+				data:{"msg_RoomNum": room},
+				type:'GET',
+				dataType: 'json',
+		           success :  
+		        	   function(data) {
+						alert('s1s') },
+						error:function(){
+							alert('s2s');
+						}
+		           });
 	 });

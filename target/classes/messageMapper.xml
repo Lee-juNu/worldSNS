@@ -11,7 +11,7 @@
 </select>
 
 <select id="getMsg" resultType="com.team.worlds.messages.Message">
-	select * from messageTbl where msg_RoomNum = #{User_ID} order by msg_sendTime
+	select * from messageTbl where msg_RoomNum = #{msg_RoomNum} order by msg_sendTime
 </select>
 
 <select id="getRoom" resultType="com.team.worlds.messages.Message">
@@ -19,7 +19,7 @@
 </select>
 
 <insert id="send">
-insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum}, #{msg_sendUserID}, #{sendTime}, (select count(*) from messageTbl where msg_RoomNum = #{msg_RoomNum}) + 1, #{msg_img, jdbcType=VARCHAR}, #{msg_Contents})
+insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum, jdbcType=VARCHAR}, #{msg_sendUserID, jdbcType=VARCHAR}, sysdate, (select count(*) from messageTbl where msg_RoomNum = #{msg_RoomNum}) + 1, #{msg_Contents, jdbcType=VARCHAR}, #{msg_Contents, jdbcType=VARCHAR})
 </insert>
 
 

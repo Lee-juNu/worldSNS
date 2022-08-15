@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.worlds.user.User;
 
@@ -24,11 +25,11 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.get(req);
 		mDAO.getUser(req, u);
-		mDAO.getMsg(req);
+//		mDAO.getMsg(req);
 		return "home";
 	}
 
-	@RequestMapping(value = "/messages.send", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/messages.send", method = RequestMethod.POST)
 	public String send(HttpServletRequest req, Message M) {
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
@@ -37,6 +38,20 @@ public class MessagesController {
 		mDAO.getMsg(req);
 		mDAO.updateIndex(req, M);
 		return "home";
+	}
+*/	
+	@RequestMapping(value = "/messages.send", method = RequestMethod.GET)
+	public @ResponseBody Message send(HttpServletRequest req, Message M) {
+		mDAO.send(M);
+		System.out.println("dd");
+		return mDAO.send;
+	}
+
+	@RequestMapping(value = "/messages.getMsg", method = RequestMethod.GET)
+	public @ResponseBody Message getMsg(HttpServletRequest req, Message M) {
+		mDAO.getMsg(M);
+		System.out.println("d2d");
+		return mDAO.getMsg;
 	}
 
 	@RequestMapping(value = "/messages.open", method = RequestMethod.GET)
@@ -48,7 +63,7 @@ public class MessagesController {
 		mDAO.join(req, M);
 		mDAO.join2(req, M);
 		mDAO.get(req);
-		mDAO.getMsg(req);
+//		mDAO.getMsg(req);
 		return "home";
 	}
 
@@ -59,7 +74,7 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.join(req, M);
 		mDAO.get(req);
-		mDAO.getMsg(req);
+//		mDAO.getMsg(req);
 		return "home";
 	}
 
@@ -70,7 +85,7 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.select(req, M);
 		mDAO.get(req);
-		mDAO.getMsg(req);
+//		mDAO.getMsg(req);
 		mDAO.getRoom(req, M);
 		mDAO.updateIndex(req, M);
 		return "home";

@@ -18,10 +18,16 @@ public interface MessageMapper {
 
 	public List<User> getUser(String User_ID);
 
-	public List<Message> getMsg(String msg_RoomNum);
+//	public List<Message> getMsg(String msg_RoomNum);
+	public List<Message> getMsg(Message m);
 
 	public List<Message> updateIndex(Message m);
 
 	public List<Message> getRoom(Message m);
+
+	Object send();
+
+	Object getMsg();
+
 
 }

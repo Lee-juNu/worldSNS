@@ -26,6 +26,5 @@ create table proFileTbl
 
 select * from  userTbl;
 
+	select * from messageTbl where msg_RoomNum = 'CR216' order by msg_sendTime
 insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
-
-

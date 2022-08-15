@@ -22,13 +22,15 @@ public class MessageDAO {
 
 	
 	
+	public static final Message send = null;
+	public static final Message getMsg = null;
 	@Autowired
 	private SqlSession ss;
 
 	
 
 	
-	public void send(HttpServletRequest req, Message m) {
+	/*public void send(HttpServletRequest req, Message m) {
 		
 		String path = req.getSession().getServletContext().getRealPath("resources/files");
 		MultipartRequest mr = null;
@@ -73,7 +75,7 @@ public class MessageDAO {
 		}
 		
 	}
-
+*/
 
 
 
@@ -161,7 +163,7 @@ public class MessageDAO {
 		
 	}
 
-	public void getMsg(HttpServletRequest req) {
+/*	public void getMsg(HttpServletRequest req) {
 		
 		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
 		
@@ -171,7 +173,7 @@ public class MessageDAO {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 
 	public void getUser(HttpServletRequest req, User u) {
 		User lu = (User)req.getSession().getAttribute("loginMember");
@@ -186,8 +188,23 @@ public class MessageDAO {
 		
 	}
 
-
-
+	public void getRoom(HttpServletRequest req, Message m) {
+		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		User u = (User)req.getSession().getAttribute("loginMember");
+		
+		String rm_userID = u.getUser_ID();
+		
+		m.setRm_roomNum(msg_RoomNum);
+		m.setRm_userID(rm_userID);
+		
+		try {
+			req.setAttribute("room", ss.getMapper(MessageMapper.class).getRoom(m));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void updateIndex(HttpServletRequest req, Message m) {
 		
 		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
@@ -207,22 +224,6 @@ public class MessageDAO {
 	}
 
 
-	public void getRoom(HttpServletRequest req, Message m) {
-		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
-		User u = (User)req.getSession().getAttribute("loginMember");
-		
-		String rm_userID = u.getUser_ID();
-		
-		m.setRm_roomNum(msg_RoomNum);
-		m.setRm_userID(rm_userID);
-		
-		try {
-			req.setAttribute("room", ss.getMapper(MessageMapper.class).getRoom(m));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 	public void select(HttpServletRequest req, Message m) {
 		
@@ -232,9 +233,27 @@ public class MessageDAO {
 		req.getSession().setMaxInactiveInterval(-1);
 	}
 
+	public Message send(Message m) {
+		
+/*		int msg_index = 0;
+		Date msg_sendTime = new Date();
+		String msg_img = "dd";
+		
+		m.setMsg_index(msg_index);
+		m.setSendTime(msg_sendTime);
+		m.setMsg_img(msg_img);*/
+		
+				
+		return new Message(ss.getMapper(MessageMapper.class).send(m));
+		// TODO Auto-generated method stub
+		
+	}
 
-
-
+	public Message getMsg(Message m) {
+		System.out.println(ss.getMapper(MessageMapper.class).getMsg(m));
+		
+		return new Message(ss.getMapper(MessageMapper.class).getMsg(m));
+	}
 
 
 

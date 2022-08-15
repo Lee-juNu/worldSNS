@@ -184,6 +184,10 @@ public class Message {
 		this.msg_img = msg_img;
 		this.msg_Contents = msg_Contents;
 	}
+
+	public Message(Object send) {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	
