@@ -31,3 +31,38 @@ window.addEventListener("keyup", e => {
         modalOff()
     }
 })
+
+---
+
+$(function() {
+	
+	 $("#send").click(function() {
+		
+		 let msg = $("#sendmsg").val();
+		 let img = $("#sendimg").val();
+		 let room = $("#roomNum").val();
+		 
+		 
+	$.ajax({
+				
+				url:"messages.send",
+				data:{msg_Contents: msg,
+					msg_img: img,
+					msg_RoomNum: room,
+					},
+				type:"post",
+			    contentType : false,
+		        processData : false,
+		        	
+				success:function(result){
+					if(result==1){
+						alert('전송 성공')
+					}else{
+						alert('전송 실패')
+					}
+				}		 
+		});
+		 $('#sendmsg').val('');
+		 $('#sendimg').val('');
+	 });
+	 });

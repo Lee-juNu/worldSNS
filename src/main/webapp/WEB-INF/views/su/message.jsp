@@ -49,8 +49,8 @@ ${0+1}
 <div id="sendMessage">
 <form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
-<input type="file" name="sendimg"><input type="text" name="sendmsg"> <button>송신</button><BR>
-<input type="hidden" name="roomNum" value="${roomNum }">
+<input type="file" name="sendimg" id="sendimg"><input type="text" name="sendmsg" id="sendmsg"> <button name="send" id="send">송신</button><BR>
+<input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
 </form>
 <button id="hide" onclick="if(chatList.style.display=='none')
 {chatList.style.display='';}
