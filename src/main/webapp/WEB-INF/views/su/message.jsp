@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/SU/message.css">
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
+<script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
+<script type = "text/javascript" src="resources/js/SU/serverMessage.js"></script>
 </head>
 <body>
 
@@ -52,7 +54,7 @@ ${0+1}
 		name="sendMessage">
 </form>
 <input type="file" name="sendimg" id="sendimg"><input type="text" name="sendmsg" id="sendmsg">
-<button name="send" id="send">송신</button><BR>
+<button onclick="jwSendWithFile()">송신</button><BR>
 <input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
 <input type="hidden" name="userID" id="userID" value="${loginMember.user_ID }">
 <button id="hide" onclick="if(chatList.style.display=='none')

@@ -1,6 +1,22 @@
 //메시지를 보낼때
+
+/*
+ * 	
+				data:{"msg_Contents": msg,
+					"msg_RoomNum": room,
+					"msg_sendUserID": user,
+					},
+
+ */
+
+
 function jwSendWithFile(){	
 		
+	
+	 let msg = $('#sendmsg').val();
+	 let room = $('#roomNum').val();
+	 let user = $('#userID').val();
+	
 		//type으로  메시지 종류를 정한다
 		//type ex) "chat" "board" "alarm"등등 자신이 원하는대로 커스터마이즈
 		//id ex) 보내는 사람의 id
@@ -9,8 +25,9 @@ function jwSendWithFile(){
 		var memberData = 
 		{
 			type : "chat",
-			id : $("#sender").val(),
-			contents : $("#messageinput").val() 
+			msg_Contents: msg,
+			msg_RoomNum: room,
+			msg_sendUserID: user
 		}	
 		sendMsg(memberData);
 
@@ -20,7 +37,7 @@ function jwSendWithFile(){
 		//파일의 id를 입력합니다.
 /*		var fileId = 'inputFile';
 		sendFile(fileId);
-*/        }
+  */      }
 
 
 //메시지를 받을때

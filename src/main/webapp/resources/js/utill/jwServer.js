@@ -6,10 +6,12 @@
 		else
 		{
 
-            ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/main/yorunohosi");
+            ws=new WebSocket("ws://localhost:8081/worlds/jwSocket/main/yorunohosi");
             
+           
             ws.onopen=function(event){
-                if(event.data===undefined) return;
+           console.log('ss')
+            	if(event.data===undefined) return;
 				writeResponse(event.data);
             };
 			/*
