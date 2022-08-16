@@ -31,9 +31,9 @@ public class HomeController {
 		
 		
 		
-		//uDAO.templogin(req);
-		//req.setAttribute("loginPage", "jy/login.jsp");
-		return "jw/fakeHome";
+		uDAO.templogin(req);
+		req.setAttribute("loginPage", "jy/login.jsp");
+		return "index";
 	}
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)
 	public String temp_goHome(User u, HttpServletRequest req) {
