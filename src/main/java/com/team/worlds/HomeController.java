@@ -29,6 +29,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String temp_home(HttpServletRequest req) {
 		
+		
+		
 		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");
 		return "index";
@@ -40,9 +42,33 @@ public class HomeController {
 		//로그인 체크하고
 		uDAO.templogin(req);
 		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "sik/board.jsp");
 		
 		return "home";
+		
+		
+		
+		
+		
+		
+		
+		
 	}
+	@RequestMapping(value = "/profile.go", method = RequestMethod.GET)
+	public String temp_goProfile(User u, HttpServletRequest req) {
+				
+		//세션 만들고
+		//로그인 체크하고
+		uDAO.templogin(req);
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/profile.jsp");
+		
+		return "home";
+	}
+
 }

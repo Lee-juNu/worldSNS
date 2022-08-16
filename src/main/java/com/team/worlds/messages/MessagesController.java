@@ -19,6 +19,7 @@ public class MessagesController {
 	
 	@RequestMapping(value = "/messages.go", method = RequestMethod.GET)
 	public String home(HttpServletRequest req, User u) {
+		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		//로그인완성되면 체크 필수
 		req.setAttribute("menuPage", "jy/menu.jsp");
@@ -56,7 +57,8 @@ public class MessagesController {
 
 	@RequestMapping(value = "/messages.open", method = RequestMethod.GET)
 	public String open(HttpServletRequest req, Message M) {
-
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.open(req, M);

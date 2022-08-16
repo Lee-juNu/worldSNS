@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 <script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
+<script type = "text/javascript" src="resources/js/jw/tempServerUse.js"></script>
 
 </head>
 
@@ -13,12 +15,13 @@
     <div>
         <input type="text" id="sender" value="${sessionScope.user_ID}" style="display: none;">
         <input type="text" id="messageinput">
+        <input type="file" id="inputFile">
     </div>
     <div>
-        <button type="button" onclick="openSocket();">Open</button>
-        <button type="button" onclick="send();">Send</button>
-        <button type="button" onclick="closeSocket();">Close</button>
-        <button type="button" onclick="goFakeHome();">돌아가기</button>"
+        <button type="button" onclick="openSocket()">Open</button>
+        <button type="button" onclick="jwSendWithFile()">Send</button>
+        <button type="button" onclick="closeSocket()">Close</button>
+        <button type="button" onclick="goFakeHome()">돌아가기</button>
     </div>
     <!-- Server responses get written here -->
     <div id="messages"></div>

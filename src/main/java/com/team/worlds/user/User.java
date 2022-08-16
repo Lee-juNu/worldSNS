@@ -9,9 +9,10 @@ public class User {
 	private String user_phoneNumber;
 	private String user_name;
 	private String user_email;
+	private String user_country;
 	private String user_city;
 	private String user_birthDay;
-	private String level;
+	private int level;
 	private String regDate;
 	
 	
@@ -19,6 +20,23 @@ public class User {
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
+			String user_email, String user_city, String user_birthDay, int level, String regDate) {
+		super();
+		this.user_ID = user_ID;
+		this.user_PW = user_PW;
+		this.user_nickName = user_nickName;
+		this.user_phoneNumber = user_phoneNumber;
+		this.user_name = user_name;
+		this.user_email = user_email;
+		this.user_city = user_city;
+		this.user_birthDay = user_birthDay;
+		this.level = level;
+		this.regDate = regDate;
 	}
 
 
@@ -119,13 +137,13 @@ public class User {
 
 
 
-	public String getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
 
 
-	public void setLevel(String level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
 
@@ -138,23 +156,6 @@ public class User {
 
 
 	public void setRegDate(String regDate) {
-		this.regDate = regDate;
-	}
-
-
-
-	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
-			String user_email, String user_city, String user_birthDay, String level, String regDate) {
-		super();
-		this.user_ID = user_ID;
-		this.user_PW = user_PW;
-		this.user_nickName = user_nickName;
-		this.user_phoneNumber = user_phoneNumber;
-		this.user_name = user_name;
-		this.user_email = user_email;
-		this.user_city = user_city;
-		this.user_birthDay = user_birthDay;
-		this.level = level;
 		this.regDate = regDate;
 	}
 

@@ -2,12 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.worlds.user.UserMapper">
 
-	<select id= "tempSelectUser"  resultType = "com.team.worlds.user.User">
+	<!-- id 다시 보기! -->
+	<insert id="joinus">
+
+		insert into userTbl
+		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
+		null,null, sysdate ,1 ,sysdate)
+
+
+	</insert>
+
+
+
+
+	<select id="tempSelectUser"
+		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_id = 'yorunohosi'
 	</select>
 
-	<select id= "getMemberByID" resultType = "com.team.worlds.user.User">
+	<select id="getMemberByID"
+		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_id = #{user_ID}
 	</select>
+
+
+
+	<delete id="secession" parameterType="com.team.worlds.user.User">
+		delete from userTbl
+		where
+		user_ID = #{user_ID}
+	</delete>
+	
+	<update id="updatePW"	parameterType="com.team.worlds.user.User">
+		update userTbl set user_PW=#{user_PW} where user_ID=#{user_ID}
+	</update>
+	
+	
+	<update id="updateInfo"	parameterType="com.team.worlds.user.User">
+		update userTbl set 
+		user_ID=#{user_ID}, 
+		user_name=#{user_name}, 
+		user_nickName=#{user_nickName}, 
+		user_phoneNumber=#{user_phoneNumber}, 
+		user_email=#{user_email}
+		
+		
+		
+		where user_ID=#{user_ID}
+	</update>
+	
+	
+	
 
 </mapper>

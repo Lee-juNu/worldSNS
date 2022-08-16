@@ -47,6 +47,7 @@
 			<beans:list>
 				<beans:value>classpath:userMapper.xml</beans:value>
 				<beans:value>classpath:messageMapper.xml</beans:value>
+				<beans:value>classpath:profileMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

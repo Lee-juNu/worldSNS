@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div href="profile.go">
+<div>조그맣고 동그란 프로필사진</div>
+<div>${sessionScope.loginMember.user_nickName }</div>
+<div>아이디</div>
+<div></div>
+<div></div>
 
+
+</div>
 </body>
 </html>

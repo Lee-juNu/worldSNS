@@ -27,7 +27,6 @@ public class MessageDAO {
 	@Autowired
 	private SqlSession ss;
 
-	
 
 	
 	/*public void send(HttpServletRequest req, Message m) {

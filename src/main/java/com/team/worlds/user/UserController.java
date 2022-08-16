@@ -16,20 +16,27 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/user.login", method = RequestMethod.POST)
-	public String userLogin(User u, HttpServletRequest req) {
+	public String userLogin(Profile p, User u, HttpServletRequest req) {
 		
 		//System.out.println(u.getUser_ID());
 		//System.out.println(u.getUser_PW());
 		
 		// 로그인
-		uDAO.login(u, req);
+		uDAO.login(u, p, req);
 		
-		User u2 = (User) req.getSession().getAttribute("loginMember");
-		if (u2 != null) {
+		
+		u = (User) req.getSession().getAttribute("loginMember");
+//		p = (Profile) req.getSession().getAttribute("loginMember");
+		
+		if (u != null) {
+			
 			req.setAttribute("menuPage", "jy/menu.jsp");
 			req.setAttribute("contentsPage", "sik/board.jsp");
+			req.setAttribute("profilePage", "profileMini.jsp");
+			
 			
 			return "home";
+			
 			
 		}else {
 			req.setAttribute("loginPage", "jy/login.jsp");
@@ -41,14 +48,76 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/user.joinus.go", method = RequestMethod.GET)
-	public String joinusGo() {
+	public String joinusGo(HttpServletRequest req) {
 		
 		
+		req.setAttribute("joinusPage", "joinus1.jsp");
+
 		
-		
-		return "jy/joinus";
+		return "jy/joinusMain";
 		
 	}
+	
+	@RequestMapping(value = "/user.joinus.go2", method = RequestMethod.POST)
+	public String joinusGo2(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus2.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go3", method = RequestMethod.POST)
+	public String joinusGo3(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus3.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go4", method = RequestMethod.POST)
+	public String joinusGo4(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "joinus4.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
+	public String joinusGo5(User u,HttpServletRequest req) {
+		
+		
+		uDAO.joinus(u, req);
+		req.setAttribute("joinusPage", "joinus5.jsp");
+		
+		
+		return "jy/joinusMain";
+		
+	}
+	@RequestMapping(value = "/setting.go", method = RequestMethod.GET)
+	public String temp_goSetting(User u, HttpServletRequest req) {
+				
+		//세션 만들고
+		//로그인 체크하고
+		uDAO.templogin(req);
+		uDAO.loginCheck(req);
+		
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/setting.jsp");
+		
+		return "home";
+	}
+	
+	
 	
 
 }
