@@ -30,6 +30,8 @@ import org.springframework.stereotype.Service;
 
 import javax.websocket.RemoteEndpoint.Basic;
  
+
+/*
 @Service
 class alarmThread{
    @PostConstruct
@@ -55,7 +57,7 @@ class alarmThread{
    }
 }
 
-
+*/
 @Controller
 @ServerEndpoint(value="/jwSocket/{pageType}/{userId}")
 public class WebSocketServer{
@@ -86,14 +88,14 @@ public class WebSocketServer{
     	// TODO Auto-generated constructor stub
         System.out.println("웹소켓(서버) 객체생성");
     }
-    
+   /* 
     public static synchronized void Allnotice() throws IOException
     {
     	for (Map.Entry<String, Session> entry : WebSocketServer.sessionMap.entrySet()) {
 			entry.getValue().getBasicRemote().sendText("공지왔어용");
     	}
     }
-
+*/
     
     /*실험중
     @RequestMapping(value="/chat.do/")
