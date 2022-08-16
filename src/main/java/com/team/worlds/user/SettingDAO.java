@@ -13,7 +13,7 @@ public class SettingDAO {
 	SqlSession ss;
 
 
-	public static void SettingPW1(User u, HttpServletRequest req) {
+	public void SettingPW1(User u, HttpServletRequest req) {
 
 
 		
@@ -40,7 +40,7 @@ public class SettingDAO {
 
 	
 
-	public static void SettingPW2(User u, HttpServletRequest req) {
+	public void SettingPW2(User u, HttpServletRequest req) {
 
 
 		

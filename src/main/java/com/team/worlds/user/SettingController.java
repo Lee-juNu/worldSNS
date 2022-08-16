@@ -13,6 +13,7 @@ public class SettingController {
 
 	@Autowired
 	private UserDAO uDAO;
+	@Autowired
 	private SettingDAO sDAO;
 	
 
@@ -51,9 +52,11 @@ public class SettingController {
 		
 		
 		uDAO.loginCheck(req);
+		uDAO.updateInfo(u, req);
+		
 		req.setAttribute("profilePage", "profileMini.jsp");
 		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "jy/Setting/SettingInfoUp.jsp");
+		req.setAttribute("contentsPage", "jy/Setting/SettingInfo.jsp");
 		
 		return "home";
 	}
