@@ -7,11 +7,9 @@ import javax.websocket.Session;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import com.team.worlds.messages.MessageDAO;
-import com.team.worlds.user.UserDAO;
 
 import javax.annotation.PostConstruct;
 import javax.websocket.RemoteEndpoint.Basic;
@@ -22,8 +20,6 @@ import javax.websocket.RemoteEndpoint.Basic;
 @Service
 public class wsChatController {
 
-	private static UserDAO staicUserDao;
-	private static MessageDAO staticDao;
 	/*
 	 * TODO
 	 *1.제일먼저 채팅방에 들어온사람끼리만 웹소켓 채팅 (간단한메시지)주고받기
@@ -31,12 +27,17 @@ public class wsChatController {
 	 *3.onMessage로 받았을떄 lastIndex바꿔주는거 잊지 않기
 	 *4.채팅방에는 없지만 멤버들이 전체Map에 존재하는지 확인 후 있으면 알림(이건 나중에 알림쪽이 되야되는데 언제될련지...)
 	*/
+	
+	
+	//실제로 사용하면 되는 mDAO
+	private static MessageDAO mDAO;
+	//끌어오기 위한  임시dao
 	@Autowired
-	private MessageDAO mDAO;
+	private MessageDAO mTempDAO;
 	
 	  @PostConstruct     
 	  private void initStaticDao () {
-		  staticDao = mDAO;
+		  mDAO = mTempDAO;
 	  }
 
 	  private static HashMap<String, ArrayList<ChatUser>> chatRoomMap = new HashMap<String, ArrayList<ChatUser>>();
@@ -55,7 +56,49 @@ public class wsChatController {
 				{
 					System.out.println(e);
 				}
-		}	
+		}
+		
+		
+		public static void sendAllChatRoomMember(JSONObject message, Session session,String pageType, String userId)
+		{
+			try
+			{
+				//해당하는 채팅방을 찾아서
+				ArrayList<ChatUser> tempUserList = chatRoomMap.get(pageType);
+				
+				//mDAO로 DB로 메시지를 보내자!!
+				//mDAO.send(m);
+				//해당하는 채팅멤버들에게 보낸다
+				//Text부분에 JSon으로 보내기!
+				//유저의 이름
+				for (ChatUser chatUser : tempUserList) {
+					chatUser.getSession().getBasicRemote().sendText("");
+				}				
+			}
+			catch (Exception e) {
+				System.out.println("\n전체 멤버 보내는 도중에 에러!!\n"+e);
+			}
+		}
+		/*
+		  private void sendAllSessionToMessage(Session self,String message) {
+		        try {
+		        	//들어와있는 모든 사람에게 보내라!
+		        	for (Entry<String, ArrayList<Session>> entry : sessionMap.entrySet()) {
+		        		for (Session session : entry.getValue()) {
+		        			if(!self.getId().equals(session.getId())) {
+		        				session.getBasicRemote().sendText(message);
+		            		}	
+						}
+					}
+		        }catch (Exception e) {
+		            // TODO: handle exception
+		            System.out.println(e.getMessage());
+		        }
+		    }
+		*/
+		
+		
+		
 	public static void onUserOpen(Session session, String pageType, String userId)
 	{ 
 		//채팅방 들어가는데
@@ -71,8 +114,8 @@ public class wsChatController {
 			roomEnter(session, pageType,userId);			
 		}
 	}
-	
 	public static void onUserExit(Session session, String pageType, String userId)
+	
 	{
 		
 		if(chatRoomMap.get(pageType).size()<=1)

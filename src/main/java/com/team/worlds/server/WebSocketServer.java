@@ -76,22 +76,22 @@ public class WebSocketServer{
 	//Buffer을 쪼개서 사용자가 업로드하는걸 받아와서 처리해줍니다.
     BufferedOutputStream bos;
     
-    //파일 경로입니다만. 서로 다르게 만들어질 예정입니다.
-    String path = "E:\\TeamProject\\img\\";
+
    
    //생성자 모르면 쌤꼐 혼나요
     public WebSocketServer() {
     	// TODO Auto-generated constructor stub
-        System.out.println("웹소켓(서버) 객체생성" + sessionMap.size());
+        System.out.println("웹소켓(서버) 객체생성");
+        
     }
-   /* 
+    /* 
     public static synchronized void Allnotice() throws IOException
     {
     	for (Map.Entry<String, Session> entry : WebSocketServer.sessionMap.entrySet()) {
 			entry.getValue().getBasicRemote().sendText("공지왔어용");
     	}
     }
-*/
+    */
     
     //웹소켓 연결될때 나오는 문구
     //생성후 사용자와 "연결"이 될때 불려지는 함수입니다.
@@ -179,7 +179,7 @@ public class WebSocketServer{
         	{                
         		wsChatController.onMessage(result,session, sessionMap,pageType,userId);        		
         	}
-        	if(type.equals("board"))
+        	else if(type.equals("board"))
         	{
         		wsBoardController.onMessage(result,session, sessionMap);
         	}
@@ -195,7 +195,7 @@ public class WebSocketServer{
         		   if(!msg){
         	        	String fileName = (String) result.get("fileName");
         		         System.out.println("파일명 :" + fileName);
-        		         File file = new File(path + fileName);
+        		         File file = new File(wsFileManager.getFilePath()+fileName);
         		         bos = new BufferedOutputStream(new FileOutputStream(file));
         		         System.out.println("파일 업로드 준비 완료");
         		   }

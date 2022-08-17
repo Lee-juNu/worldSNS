@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team.worlds.server.wsFileManager;
 import com.team.worlds.user.User;
 import com.team.worlds.user.UserDAO;
 
@@ -28,6 +29,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String temp_home(HttpServletRequest req) {
+		
+		
+		if(wsFileManager.getFilePath()=="")
+		{
+			wsFileManager.setFilePath(req.getSession().getServletContext().getRealPath("resources/img/"));
+			//파일 이미지 경로가 셋팅되었습니다.
+			System.out.println(wsFileManager.getFilePath());	
+		}
 		
 		
 		
@@ -48,14 +57,6 @@ public class HomeController {
 		req.setAttribute("contentsPage", "sik/board.jsp");
 		
 		return "home";
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	@RequestMapping(value = "/profile.go", method = RequestMethod.GET)
 	public String temp_goProfile(User u, HttpServletRequest req) {
