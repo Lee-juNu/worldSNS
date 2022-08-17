@@ -1,13 +1,21 @@
 		var ws;
 		
+		
+		const wsUserId = document.getElementById('wsUserId').value;
+		const wsRoomType = document.getElementById('wsRoomType').value;
+		
+		console.log(wsUserId);
+		console.log(wsRoomType);
+		
+		
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
                 writeResponse("WebSocket is already opened.");
             }
 		else
 		{
-
-            ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/main/yorunohosi");
-            
+														//여기까진  //들어가있는 채팅방//ID
+            ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
+            	
             ws.onopen=function(event){
                 if(event.data===undefined) return;
 				writeResponse(event.data);

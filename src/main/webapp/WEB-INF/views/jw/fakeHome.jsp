@@ -10,7 +10,7 @@
 
 <form action="fake.login" method="post" name="loginForm">
 		<div>
-				ID <input name="user_ID">
+			ID <input name="user_ID">
 			</div>
 			<div>
 			PW <input name="user_PW">
