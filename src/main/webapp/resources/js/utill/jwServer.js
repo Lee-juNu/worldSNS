@@ -12,8 +12,8 @@
                 writeResponse("WebSocket is already opened.");
             }
 		else
-		{
-														//여기까진  //들어가있는 채팅방//ID
+		{														
+														//여기까진  //chatroom12345//dkdkd
             ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
             	
             ws.onopen=function(event){

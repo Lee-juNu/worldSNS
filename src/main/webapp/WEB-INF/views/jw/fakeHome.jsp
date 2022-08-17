@@ -8,12 +8,12 @@
 </head>
 <body>
 
-<form action="fake.login" method="post" name="loginForm">
+<form action="fake.login" method="POST">
 		<div>
 			ID <input name="user_ID">
 			</div>
 			<div>
-			PW <input name="user_PW">
+			RoomNumber <input name="roomNum">
 		</div>
 			<button>로그인</button>
 	</form>

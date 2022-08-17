@@ -1,6 +1,5 @@
 package com.team.worlds.server;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,25 +8,60 @@ import javax.websocket.Session;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import com.team.worlds.messages.MessageDAO;
+import com.team.worlds.user.UserDAO;
 
+import javax.annotation.PostConstruct;
 import javax.websocket.RemoteEndpoint.Basic;
 
 
 
 
-
+@Service
 public class wsChatController {
 
+	private static UserDAO staicUserDao;
+	private static MessageDAO staticDao;
+	/*
+	 * TODO
+	 *1.제일먼저 채팅방에 들어온사람끼리만 웹소켓 채팅 (간단한메시지)주고받기
+	 *2.js에서 Div등을 사용하여 채팅창 만들기
+	 *3.onMessage로 받았을떄 lastIndex바꿔주는거 잊지 않기
+	 *4.채팅방에는 없지만 멤버들이 전체Map에 존재하는지 확인 후 있으면 알림(이건 나중에 알림쪽이 되야되는데 언제될련지...)
+	*/
 	@Autowired
 	private MessageDAO mDAO;
 	
-	private static HashMap<String, ArrayList<ChatUser>> chatRoomMap = new HashMap<String, ArrayList<ChatUser>>();
+	  @PostConstruct     
+	  private void initStaticDao () {
+		  staticDao = mDAO;
+	  }
+
+	  private static HashMap<String, ArrayList<ChatUser>> chatRoomMap = new HashMap<String, ArrayList<ChatUser>>();
 	
-	
+	  
+	//1.자신이 속해있는 방이 어디인가
+		public static void onMessage(JSONObject message, Session session
+				, HashMap<String, ArrayList<Session>> sessionMap, String pageType, String userId) {
+				try
+				{
+					//타입에 맞게 바꿔주세요
+					String contents = (String)message.get("contents");
+					final Basic basic=session.getBasicRemote();
+					basic.sendText(userId+":"+ contents+ pageType);	
+				}catch (Exception e) 
+				{
+					System.out.println(e);
+				}
+		}	
 	public static void onUserOpen(Session session, String pageType, String userId)
 	{ 
+		//채팅방 들어가는데
+		//유저한명도 없으면
+		//채팅방을 만든다-DB방만들어져있는거
+		//배열 			
 		if(!chatRoomMap.containsKey(pageType))
 		{
 			createChatRoom(session, pageType,userId);
@@ -53,34 +87,22 @@ public class wsChatController {
 		}
 	}
 	
-	
-	
-	//1.자신이 속해있는 방이 어디인가
-	public static void onMessage(JSONObject result, Session session
-			, HashMap<String, ArrayList<Session>> sessionmap, String pageType, String userId) {
-		try
-		{
-			//타입에 맞게 바꿔주세요
-			String contents = (String)result.get("contents");
-			
-			final Basic basic=session.getBasicRemote();
-			basic.sendText(userId+":"+ contents+ pageType);	
-			
-		}catch (Exception e) 
-		{
-			System.out.println(e);
-		}
-	}	
-	
-		//방에 입장
-		//전체 방을 관리하는 ChatRoomMap에 key로서 방번호를 입력
-		private static void roomEnter(Session session, String pageType, String userId)
-		{
-			System.out.println(userId+session.getId()+"님이 방에 입장하셨습니다 방넘버:"+ pageType);
 
-			chatRoomMap.get(pageType).add(new ChatUser(session, userId));
-		}
+	
 		
+		//방을 만든다
+		//처음 들어가는 사람이 방을 만드는 방식
+		private static void createChatRoom(Session session, String pageType, String userId)
+		{
+			//먼저 유저들을 담을 배열하나 만들고 제일 처음 들어가는 사람 유저정보(유저,세션)를 입력 
+			ArrayList<ChatUser> arrUser =  new ArrayList<ChatUser>();
+			arrUser.add(new ChatUser(session, userId));
+			//(방번호와 만든 유저배열) 로 Map을 하나 생성
+			chatRoomMap.put(pageType, arrUser);
+
+			
+			System.out.println(userId+session.getId()+"방 만든다  방넘버"+ pageType);
+		}
 		
 		private static void dystroyRoom(Session session, String pageType, String userId)
 		{
@@ -90,6 +112,22 @@ public class wsChatController {
 
 			chatRoomMap.get(pageType).clear();
 		}
+		
+		//방에 입장
+		//전체 방을 관리하는 ChatRoomMap에 key로서 방번호를 입력
+		private static void roomEnter(Session session, String pageType, String userId)
+		{
+			ArrayList<ChatUser> arrUsers =  chatRoomMap.get(pageType);
+		
+			
+			ChatUser enterUser = new ChatUser(session, userId);
+			arrUsers.add(enterUser);
+			
+			
+			chatRoomMap.get(pageType).add(new ChatUser(session, userId));
+		}
+
+		
 		private static void roomExit(Session session, String pageType, String userId)
 		{
 			//룸에서 사람이 나갈때  두명 이상이면 호출된다.
@@ -108,16 +146,5 @@ public class wsChatController {
 			}
 		}
 		
-		//방을 만든다
-		//처음 들어가는 사람이 방을 만드는 방식
-		private static void createChatRoom(Session session, String pageType, String userId)
-		{
-			//먼저 유저들을 담을 배열하나 만들고 제일 처음 들어가는 사람 유저정보(유저,세션)를 입력 
-			ArrayList<ChatUser> arrUser =  new ArrayList<ChatUser>();
-			arrUser.add(new ChatUser(session, userId));
-			//(방번호와 만든 유저배열) 로 Map을 하나 생성
-			chatRoomMap.put(pageType, arrUser);
-			
-			System.out.println(userId+session.getId()+"방 만든다  방넘버"+ pageType);
-		}
+		
 }

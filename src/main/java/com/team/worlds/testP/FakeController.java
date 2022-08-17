@@ -13,7 +13,8 @@ public class FakeController {
 		
 		System.out.println(req.getParameter("user_ID"));
 		req.getSession().setAttribute("user_ID",req.getParameter("user_ID")); 
-		
+		req.setAttribute("roomNum", req.getParameter("roomNum"));
+
 		return "jw/testJSP/test";
 	}
 	

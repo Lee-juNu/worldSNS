@@ -12,8 +12,10 @@
 
 <body>
     <div>
-        <input type="text" id="wsUserId" value="yorunohosi" style="display: none;">
-        <input type="text" id="wsRoomType" value="chatRoom12345" style="display: none;">
+        <input type="text" id="wsUserId" value=${sessionScope.user_ID } style="display: none;">
+        <input type="text" id="wsRoomType" value="${roomNum} " style="display: none;">
+        
+        
         <input type="text" id="messageinput">
         <input type="file" id="inputFile">
     </div>

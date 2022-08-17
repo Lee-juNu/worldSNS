@@ -10,23 +10,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
-import javax.websocket.PongMessage;
+import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
+import javax.websocket.server.ServerEndpoint;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-
-
-import javax.websocket.RemoteEndpoint.Basic;
  
 
 
@@ -59,16 +56,15 @@ class alarmThread{
 }
 
 */
-@Controller
+@Controller						//chatroom12345	//adsfasd
 @ServerEndpoint(value="/jwSocket/{pageType}/{userId}")
 public class WebSocketServer{
-    
-	
-	
 	//여기서 말하는 세션은 우리가 배우는 그 세션이 아닌 
 	//웹소켓 접속한 사람을 구별하기 위한 개별ID라고 생각하시면좋아요
 	//홈페이지가 이동할때마다 세션은 새로 주어집니다.
 	//맵을 통해서 (UserID,Session)으로 이루어집니다.
+	
+																					//id     배열
 	public static final HashMap<String, ArrayList<Session>> sessionMap = new HashMap<String, ArrayList<Session>>();
 	//로그를 남겨주는 아이입니다 몰라도되요
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
@@ -104,7 +100,6 @@ public class WebSocketServer{
     		, @PathParam(value = "pageType") String pageType
     		, @PathParam(value = "userId") String userId) {
     	
-    	
     	if(pageType.contains("chatRoom"))
     	{
     		wsChatController.onUserOpen(session,pageType,userId);    		
@@ -115,7 +110,6 @@ public class WebSocketServer{
             final Basic basic=session.getBasicRemote();
             System.out.println("userID=" + userId);
             basic.sendText("server_Open");
-            sendAllSessionToMessage(session,"Welcome : " + userId);
 
         }catch (Exception e) {
             // TODO: handle exception
@@ -127,13 +121,17 @@ public class WebSocketServer{
         {
         	ArrayList<Session> arrayList = new ArrayList<Session>();
         	arrayList.add(session);
+        	System.out.println(userId + session.getId() +"넣는다");
         	sessionMap.put(userId, arrayList);
+        	System.out.println("동시접속자 수 :"+sessionMap.get(userId).size());
+            sendAllSessionToMessage(session,"Welcome : " + userId);
         }
         else
         {
         	sessionMap.get(userId).add(session);
+        	System.out.println("동시접속자 수 :"+sessionMap.get(userId).size());
         }
-        
+
         System.out.println("Welcome : "  +sessionMap.get(userId).size()+" 번째"+ userId);
         //sessionMap.put(userId, session);
     }
@@ -151,7 +149,7 @@ public class WebSocketServer{
         	for (Entry<String, ArrayList<Session>> entry : sessionMap.entrySet()) {
         		for (Session session : entry.getValue()) {
         			if(!self.getId().equals(session.getId())) {
-        				session.getBasicRemote().sendText(message.split(",")[1]+" : "+message);
+        				session.getBasicRemote().sendText(message);
             		}	
 				}
 			}
