@@ -58,6 +58,58 @@ public class UserController {
 		
 	}
 	
+	
+	@RequestMapping(value = "/user.findid.go", method = RequestMethod.GET)
+	public String findid(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "Find/FID.jsp");
+
+		
+		return "jy/joinusMain";
+		
+	}
+
+	@RequestMapping(value = "/user.findid.idr", method = RequestMethod.POST)
+	public String findidR(User u, HttpServletRequest req) {
+		
+		System.out.println("컨트롤러");
+		
+		uDAO.findID(u, req);
+		
+		req.setAttribute("joinusPage", "Find/FIDR.jsp");
+
+		
+		return "jy/joinusMain";
+		
+	}
+	
+	@RequestMapping(value = "/user.findid.pw", method = RequestMethod.GET)
+	public String findpw(HttpServletRequest req) {
+		
+		
+		req.setAttribute("joinusPage", "Find/FPW.jsp");
+
+		
+		return "jy/joinusMain";
+		
+	}
+
+	@RequestMapping(value = "/user.findid.pwr", method = RequestMethod.POST)
+	public String findpwR(User u, HttpServletRequest req) {
+		
+		uDAO.findPW(u, req);
+		req.setAttribute("joinusPage", "Find/FPWR.jsp");
+
+		
+		return "jy/joinusMain";
+		
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/user.joinus.go2", method = RequestMethod.POST)
 	public String joinusGo2(HttpServletRequest req) {
 		
@@ -91,6 +143,8 @@ public class UserController {
 	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
 	public String joinusGo5(User u,HttpServletRequest req) {
 		
+
+		System.out.println("흠");
 		
 		uDAO.joinus(u, req);
 		req.setAttribute("joinusPage", "joinus5.jsp");

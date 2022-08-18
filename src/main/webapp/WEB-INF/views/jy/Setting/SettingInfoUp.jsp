@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type = "text/javascript" src="resources/js/utill/userGo.js"></script>
+<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
 
 
 </head>
@@ -57,8 +57,8 @@
 
 <div>
 
-<button onclick="">수정하기</button>
-<button>비밀번호 변경하러 가기</button>
+<button onclick="goInfoUpdateR()">수정하기</button>
+<button onclick="goSettingPassword()">비밀번호 변경하러 가기</button>
 
  </div>
 </div>

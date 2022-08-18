@@ -46,10 +46,6 @@ function goInfoUpdate()
 <hr>
 
 
-<div>생일 (변경 불가)</div>
-<div>${sessionScope.loginMember.user_birthDay }</div>
-<hr>
-
 
 <div>레벨 확인</div>
 <div>${sessionScope.loginMember.level }</div>

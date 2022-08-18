@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 <script type = "text/javascript" src="resources/js/JY/validCheck.js"></script>
+<script type = "text/javascript" src="resources/js/JY/check.js"></script>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/JY/joinus.css">
 <style type="text/css">
 

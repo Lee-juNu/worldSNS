@@ -1,10 +1,16 @@
-/*function goJoinUs()
+function goLogin()
 {
-	location.href = 'user.joinus.go';
-	alert('외않되');
+	location.href = 'index.go';
+	
 }
 
-*/
+
+function goJoinUs()
+{
+	location.href = 'user.joinus.go';
+	
+}
+
 
 function goSettingPassword()
 {
@@ -50,3 +56,33 @@ function goInfoUpdateR()
 {
 	location.href = 'setting.go.InfoUpR';
 }
+
+
+function findid()
+{
+	location.href = 'user.findid.go';
+	
+}
+
+
+
+
+function findidR()
+{
+	location.href = 'user.findid.idr';
+	
+}
+
+function findpw()
+{
+	location.href = 'user.findid.pw';
+	
+}
+
+function findpwR()
+{
+	location.href = 'user.findid.pwr';
+	
+}
+
+

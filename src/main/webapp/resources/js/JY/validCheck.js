@@ -12,6 +12,13 @@ function lessThan(input, len) {
 	return (input.value.length < len);
 }
 
+function moreThan(input, len) {
+	return (input.value.length > len);
+}
+
+
+
+
 // <input>을 넣었을때
 // 영어, 숫자이외의 것이 있으면 true, 아니면 false
 function containsHS(input) {
