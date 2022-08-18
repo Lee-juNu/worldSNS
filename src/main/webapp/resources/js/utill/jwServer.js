@@ -17,7 +17,7 @@
             ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
             	
             ws.onopen=function(event){
-                if(event.data===undefined) return;
+            	if(event.data===undefined) return;
 				writeResponse(event.data);
             };
 			/*
