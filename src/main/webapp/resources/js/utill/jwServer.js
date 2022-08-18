@@ -51,7 +51,7 @@
         			
 	
 
-		function sendFile(fileId)
+		function sendFile(fileId, folderSendName)
 		{
 			//파일의 풀 경로 (ex:"C:\\teamProject\\resource\\img\\file.img")
 			var filePathName = $("#"+fileId).val().split("\\");
@@ -60,13 +60,12 @@
 			//멀티플일때 첫번째파일(업로드 데이터)
 			var file = document.getElementById(fileId).files[0];
 			
+			
 			console.log(fileSendName);	//파일명 잘 들어갔는지 확인			
-
 
 			//파일이 안비어있으면
 			if(fileSendName!="")
 			{
-				
 				//보낼 타입은 File이고
 				//보낼 사람id
 				//파일명
@@ -76,6 +75,7 @@
 					type : "file",
 					id : $("#sender").val(),
 					fileName : fileSendName,
+					folderName : folderSendName,
 					isEnd : false
 				}
 				

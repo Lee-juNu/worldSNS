@@ -9,6 +9,7 @@ create table userTbl
 	user_regDate date not null
 )
 
+select * from chatroomTbl
 alter table proFileTbl add unique(pf_userID)
 create table proFileTbl
 (

@@ -16,10 +16,13 @@ function jwSendWithFile(){
 
 
 
-		//파일 보내기 영역
-		//파일의 id를 입력합니다.
-		var fileId = 'inputFile';
-		sendFile(fileId);
+			//파일 보내기 영역
+			//파일의 id를 입력합니다.
+			var fileId = 'inputFile';
+			//기본 img폴더에 저장됩니다
+			//img SNS
+			var addFolderName = '폴더이름';
+			sendFile(fileId, addFolderName);
         }
 
 

@@ -71,9 +71,14 @@ public class wsChatController {
 				//해당하는 채팅멤버들에게 보낸다
 				//Text부분에 JSon으로 보내기!
 				//유저의 이름
+				//JSON.put("senderID" , id);
+				
+				//제일처음에 메시지 보내기전에 파일업로드-> 메시지 보내기->파일명저장 DB(메시지 같이)
+				
+				
 				for (ChatUser chatUser : tempUserList) {
 					chatUser.getSession().getBasicRemote().sendText("");
-				}				
+				}			
 			}
 			catch (Exception e) {
 				System.out.println("\n전체 멤버 보내는 도중에 에러!!\n"+e);

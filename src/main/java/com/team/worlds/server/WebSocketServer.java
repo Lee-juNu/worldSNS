@@ -3,6 +3,7 @@ package com.team.worlds.server;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -36,8 +37,7 @@ class alarmThread{
    private void resendThread()
    {
 	   int sleepSec = 1;
-	   
-	   
+   	   
 	   final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(2);
 	   
 	   exec.scheduleAtFixedRate(new Runnable() {
@@ -54,9 +54,9 @@ class alarmThread{
 	}, 0, sleepSec, TimeUnit.SECONDS);
    }
 }
-
 */
-@Controller						//chatroom12345	//adsfasd
+								
+@Controller						//CR001 	//adsfasd
 @ServerEndpoint(value="/jwSocket/{pageType}/{userId}")
 public class WebSocketServer{
 	//여기서 말하는 세션은 우리가 배우는 그 세션이 아닌 
@@ -64,7 +64,6 @@ public class WebSocketServer{
 	//홈페이지가 이동할때마다 세션은 새로 주어집니다.
 	//맵을 통해서 (UserID,Session)으로 이루어집니다.
 	
-																					//id     배열
 	public static final HashMap<String, ArrayList<Session>> sessionMap = new HashMap<String, ArrayList<Session>>();
 	//로그를 남겨주는 아이입니다 몰라도되요
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
@@ -76,8 +75,6 @@ public class WebSocketServer{
 	//Buffer을 쪼개서 사용자가 업로드하는걸 받아와서 처리해줍니다.
     BufferedOutputStream bos;
     
-
-   
    //생성자 모르면 쌤꼐 혼나요
     public WebSocketServer() {
     	// TODO Auto-generated constructor stub
@@ -100,7 +97,7 @@ public class WebSocketServer{
     		, @PathParam(value = "pageType") String pageType
     		, @PathParam(value = "userId") String userId) {
     	
-    	if(pageType.contains("chatRoom"))
+    	if(pageType.contains("CR"))
     	{
     		wsChatController.onUserOpen(session,pageType,userId);    		
     	}
@@ -135,7 +132,6 @@ public class WebSocketServer{
         System.out.println("Welcome : "  +sessionMap.get(userId).size()+" 번째"+ userId);
         //sessionMap.put(userId, session);
     }
- 
     
     /*
      * 모든 사용자에게 메시지를 전달한다.
@@ -190,31 +186,52 @@ public class WebSocketServer{
         	else if(type.equals("file"))
         	{
         		System.out.println("타입File로 들어왔습니다.");
-        		System.out.println(message);
         		boolean msg = (boolean)result.get("isEnd");
-        		   if(!msg){
-        	        	String fileName = (String) result.get("fileName");
-        		         System.out.println("파일명 :" + fileName);
-        		         File file = new File(wsFileManager.getFilePath()+fileName);
-        		         bos = new BufferedOutputStream(new FileOutputStream(file));
-        		         System.out.println("파일 업로드 준비 완료");
-        		   }
-        		   else
-        		   {
-        			   bos.flush();
-                       bos.close();
-                       System.out.println("파일 업로드 끝");
-        		   }
+        		if(!msg)
+        		{
+        			fileUploadRead(result);
+        		}
+        		else
+        		{
+        			bos.flush();
+                    bos.close();
+                    System.out.println("파일 업로드 완료!");
+        		}
         	}
         	else if(type.equals("others"))
         	{
         		
         	}
-        	
-        	
         }catch (Exception e) {
         	System.out.println(e);
         }        
+    }
+    
+    private void fileUploadRead(JSONObject result) throws FileNotFoundException
+    {
+    	String fileName = (String) result.get("fileName");
+        System.out.println("파일명 :" + fileName);
+        String folderName = (String)result.get("folderName");
+        createUploadFolder(folderName);
+        File file = new File(wsFileManager.getFilePath()+"/"+folderName+"/"+fileName);
+        bos = new BufferedOutputStream(new FileOutputStream(file));
+        System.out.println("파일 업로드 준비 완료");
+    }
+    private void createUploadFolder(String folderName) throws FileNotFoundException
+    {
+    	File Folder = new File(wsFileManager.getFilePath()+"/"+folderName);
+    	// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+    	if (!Folder.exists()) {
+    		try{
+    		    Folder.mkdir(); //폴더 생성합니다.
+    		    System.out.println("폴더가 생성되었습니다.");
+    	        } 
+    	        catch(Exception e){
+    		    e.getStackTrace();
+    		}        
+             }else {
+    		System.out.println("이미 폴더가 생성되어 있습니다.");
+    	}
     }
     
     //여기는 받아오는 프로그램 메시지를 처리하는부분입니다.

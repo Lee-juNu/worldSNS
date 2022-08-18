@@ -10,13 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class wsBoardController {
-
 	public static void onMessage(JSONObject result, Session session, HashMap<String, ArrayList<Session>> sessionmap) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	
-
 }
