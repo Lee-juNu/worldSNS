@@ -50,7 +50,6 @@ create table messageTbl
 	msg_Num 			varchar2(16 char) 	primary key,
 	msg_RoomNum 		varchar2(10 char) 	not null,
 	msg_sendUserID 		varchar2(16 char) 	not null,
-	msg_receiverUserID 	varchar2(16 char) 	not null,
 	msg_sendTime 		date 				not null,
 	msg_index 			number(10) 			not null,
 	msg_img 			varchar2(256 char)			,

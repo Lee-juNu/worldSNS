@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type = "text/javascript" src="resources/js/JY/validCheck.js"></script>
+<script type = "text/javascript" src="resources/js/JY/check.js"></script>
 </head>
 <body>
-<form action="user.joinus.go5"   name="joinForm4"  method="post">
+<form action="user.joinus.go5"   name="joinForm4"  method="post" onsubmit="return joinCheck4();">
 <div  class="slide-in">
 <div>마지막으로 비밀번호를 입력하면 끝입니다!</div>
 <div>비밀번호는 대문자, 소문자, 숫자가 하나씩 들어가게 만들어주세요!</div>
@@ -23,8 +25,8 @@
 <input  type="hidden"  name="user_ID" value="${param.user_ID }">
 
 
+</div>
 </form>
 
-</div>
 </body>
 </html>

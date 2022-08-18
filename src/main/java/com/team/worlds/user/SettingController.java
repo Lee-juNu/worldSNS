@@ -18,7 +18,7 @@ public class SettingController {
 	
 
 	@RequestMapping(value = "/setting.go.Info", method = RequestMethod.GET)
-	public String goSettingInfo(User u, HttpServletRequest req) {
+	public String goSettingInfo(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		req.setAttribute("profilePage", "profileMini.jsp");
@@ -32,7 +32,7 @@ public class SettingController {
 	
 
 	@RequestMapping(value = "/setting.go.InfoUp", method = RequestMethod.GET)
-	public String goSettingInfoUp(User u, HttpServletRequest req) {
+	public String goSettingInfoUp(Profile p, User u, HttpServletRequest req) {
 		
 		System.out.println("빨리ㅜ시고싶다");
 		
@@ -46,7 +46,7 @@ public class SettingController {
 	}
 	
 	@RequestMapping(value = "/setting.go.InfoUpR", method = RequestMethod.GET)
-	public String goSettingInfoUpR(User u, HttpServletRequest req) {
+	public String goSettingInfoUpR(Profile p, User u, HttpServletRequest req) {
 		
 		System.out.println("빨리ㅜ시고싶다");
 		
@@ -63,7 +63,7 @@ public class SettingController {
 	
 	
 	@RequestMapping(value = "/setting.go.Password", method = RequestMethod.GET)
-	public String goSettingPassword(User u, HttpServletRequest req) {
+	public String goSettingPassword(Profile p, User u, HttpServletRequest req) {
 	
 		uDAO.loginCheck(req);
 		u = (User) req.getSession().getAttribute("loginMember");
@@ -80,14 +80,14 @@ public class SettingController {
 		return "home";
 	}
 	@RequestMapping(value = "/setting.go.Password2", method = RequestMethod.POST)
-	public String goSettingPassword2(User u, HttpServletRequest req) {
+	public String goSettingPassword2(Profile p, User u, HttpServletRequest req) {
 
 		
 		
 		//System.out.println("ㅇㅇ" + req.getParameter("settingPassword1"));
 		
 		uDAO.loginCheck(req);
-		sDAO.SettingPW1(u, req);
+		sDAO.SettingPW1(u, p, req);
 		//u = (User) req.getSession().getAttribute("loginMember");
 		//System.out.println(Session.getAttribute("user_name"));
 
@@ -99,10 +99,10 @@ public class SettingController {
 		return "home";
 	}
 	@RequestMapping(value = "/setting.go.Password3", method = RequestMethod.GET)
-	public String goSettingPassword3(User u, HttpServletRequest req) {
+	public String goSettingPassword3(Profile p, User u, HttpServletRequest req) {
 	
 		uDAO.loginCheck(req);
-		sDAO.SettingPW2(u, req);
+		sDAO.SettingPW2(u, p, req);
 		
 		u = (User) req.getSession().getAttribute("loginMember");
 		System.out.println("연결됨");
@@ -116,10 +116,10 @@ public class SettingController {
 		return "home";
 	}
 	@RequestMapping(value = "/setting.go.Password4", method = RequestMethod.GET)
-	public String goSettingPassword4(User u, HttpServletRequest req) {
+	public String goSettingPassword4(Profile p, User u, HttpServletRequest req) {
 	
 		uDAO.loginCheck(req);
-		sDAO.SettingPW3(u, req);
+		sDAO.SettingPW3(u, p, req);
 		
 		u = (User) req.getSession().getAttribute("loginMember");
 		System.out.println("연결됨");
@@ -135,7 +135,7 @@ public class SettingController {
 	
 	
 	@RequestMapping(value = "/setting.go.Notice", method = RequestMethod.GET)
-	public String goSettingNotice(User u, HttpServletRequest req) {
+	public String goSettingNotice(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		
@@ -151,7 +151,7 @@ public class SettingController {
 	
 	
 	@RequestMapping(value = "/setting.go.Profile", method = RequestMethod.GET)
-	public String goSettingProfile(User u, HttpServletRequest req) {
+	public String goSettingProfile(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		req.setAttribute("profilePage", "profileMini.jsp");
@@ -165,7 +165,7 @@ public class SettingController {
 	
 
 	@RequestMapping(value = "/setting.go.Secession", method = RequestMethod.GET)
-	public String goSettingSecession(User u, HttpServletRequest req) {
+	public String goSettingSecession(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		
@@ -179,7 +179,7 @@ public class SettingController {
 	}
 	
 	@RequestMapping(value = "/setting.go.SecessionR", method = RequestMethod.GET)
-	public String goSettingSecessionR(User u, HttpServletRequest req) {
+	public String goSettingSecessionR(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		uDAO.secession(req);

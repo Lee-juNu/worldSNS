@@ -10,7 +10,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
  
-
+<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
+ 
+ 
+ 
+<!-- 
 <script type="text/javascript">
 
 function goJoinUs()
@@ -19,7 +23,13 @@ function goJoinUs()
 	
 }
 
-</script>
+function findID()
+{
+	location.href = 'user.findid.go';
+	
+}
+
+</script> -->
 </head>
 <body>
 
@@ -40,6 +50,7 @@ function goJoinUs()
 			<button>로그인</button>
 	
 	<button type="button" onclick="goJoinUs()">회원가입!!!!!</button><br>
+	<button type="button" onclick="findid()">아이디 / 비밀번호 찾기</button>
 <a href="user.joinus.go" data-toggle="modal" data-target="#myModal">이미지 모달띄우기</a>
 	</div>
 	</div>

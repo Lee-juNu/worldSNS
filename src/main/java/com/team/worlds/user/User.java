@@ -1,6 +1,8 @@
 package com.team.worlds.user;
 
+import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class User {
 	private String user_ID;
@@ -11,7 +13,8 @@ public class User {
 	private String user_email;
 	private String user_country;
 	private String user_city;
-	private String user_birthDay;
+	   @DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date user_birthDay;
 	private int level;
 	private String regDate;
 	
@@ -25,7 +28,7 @@ public class User {
 
 
 	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
-			String user_email, String user_city, String user_birthDay, int level, String regDate) {
+			String user_email, String user_country, String user_city, Date user_birthDay, int level, String regDate) {
 		super();
 		this.user_ID = user_ID;
 		this.user_PW = user_PW;
@@ -33,6 +36,7 @@ public class User {
 		this.user_phoneNumber = user_phoneNumber;
 		this.user_name = user_name;
 		this.user_email = user_email;
+		this.user_country = user_country;
 		this.user_city = user_city;
 		this.user_birthDay = user_birthDay;
 		this.level = level;
@@ -113,6 +117,18 @@ public class User {
 
 
 
+	public String getUser_country() {
+		return user_country;
+	}
+
+
+
+	public void setUser_country(String user_country) {
+		this.user_country = user_country;
+	}
+
+
+
 	public String getUser_city() {
 		return user_city;
 	}
@@ -125,13 +141,13 @@ public class User {
 
 
 
-	public String getUser_birthDay() {
+	public Date getUser_birthDay() {
 		return user_birthDay;
 	}
 
 
 
-	public void setUser_birthDay(String user_birthDay) {
+	public void setUser_birthDay(Date user_birthDay) {
 		this.user_birthDay = user_birthDay;
 	}
 
@@ -159,7 +175,7 @@ public class User {
 		this.regDate = regDate;
 	}
 
-	
+
 	
 	
 }

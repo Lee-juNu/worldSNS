@@ -7,11 +7,10 @@
 
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
-		null,null, sysdate ,1 ,sysdate)
+		null,null, 1 ,sysdate,null)
 
 
 	</insert>
-
 
 
 
@@ -20,9 +19,21 @@
 		select * from userTbl where user_id = 'yorunohosi'
 	</select>
 
+
+
 	<select id="getMemberByID"
 		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_id = #{user_ID}
+	</select>
+
+	<select id="getMemberByEmail"
+		resultType="com.team.worlds.user.User">
+		select user_ID from userTbl where user_email = #{user_email} and user_name = #{user_name}
+	</select>
+
+	<select id="getMemberByIDEmail"
+		resultType="com.team.worlds.user.User">
+		select user_ID from userTbl where user_email = #{user_email} and user_name = #{user_name} and user_ID = #{user_ID}
 	</select>
 
 
@@ -33,6 +44,11 @@
 		user_ID = #{user_ID}
 	</delete>
 	
+	<update id="updateFindPW"	parameterType="com.team.worlds.user.User">
+		update userTbl set user_PW='0000' where user_ID=#{user_ID}
+	</update>
+	
+
 	<update id="updatePW"	parameterType="com.team.worlds.user.User">
 		update userTbl set user_PW=#{user_PW} where user_ID=#{user_ID}
 	</update>

@@ -15,4 +15,12 @@ public interface UserMapper {
 	int updateInfo(User u);
 
 	int updatePW(User u);
+
+	User getMemberByEmail(User u);
+
+	User getMemberByIDEmail(User u);
+
+	int updateFindPW(User u);
+
+	int updateProfile(Profile p, User u);
 }

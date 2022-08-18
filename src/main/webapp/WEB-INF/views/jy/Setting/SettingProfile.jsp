@@ -5,10 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
 <body>
-프로필 그대로 따와서 만들기
-근데 일단 프로필 만들고 싶으니까
-프로필 사진 설정하는 것만 만들어 둘 것
+
+<div>
+
+<div>배경</div>
+<div><input type="file" name="pf_Img"></div>
+<div>프로필</div>
+<div><input type="file" name="pf_bgImg"></div>
+<div>닉네임</div>
+<div><input name="user_nickName"></div>
+<div>자기소개</div>
+<div><input name="pf_contents"></div>
+<c:if test = "${empty sessionScope.loginMember.user_birthDay }">
+<div>생일 (후에 설정 가능, 설정한 이후 바꿀 수 없음)</div>
+<div><input type="date"></div>
+
+
+      </c:if>
+
+</div>
+
+
+
+
 </body>
 </html>
