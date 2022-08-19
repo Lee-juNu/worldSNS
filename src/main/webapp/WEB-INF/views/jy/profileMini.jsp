@@ -8,7 +8,7 @@
 </head>
 <body>
 <div href="profile.go">
-<div>조그맣고 동그란 프로필사진</div>
+<div><img width="300px" height="300px" src="resources/pf_Img/${sessionScope.loginMemberp.pf_Img }"/></div>
 <div>${sessionScope.loginMember.user_nickName }</div>
 <div>아이디</div>
 <div></div>

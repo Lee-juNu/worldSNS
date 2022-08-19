@@ -35,6 +35,11 @@ function goSettingProfile()
 	location.href = 'setting.go.Profile';
 }
 
+function goSettingProfileR()
+{
+	location.href = 'setting.go.ProfileR';
+}
+
 function goSettingSecession()
 {
 	location.href = 'setting.go.Secession';

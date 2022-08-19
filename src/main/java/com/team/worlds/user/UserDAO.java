@@ -20,6 +20,14 @@ public class UserDAO {
 
 	@Autowired
 	SqlSession ss;
+	
+	private Profile getProfileByID(String user_ID) {
+		
+		return ss.getMapper(ProfileMapper.class).getProfileByID(user_ID);
+		
+	}
+	
+	
 
 	public void templogin(HttpServletRequest req) {
 
@@ -31,13 +39,11 @@ public class UserDAO {
 		}
 	}
 
-	public void login(User u, Profile p, HttpServletRequest req) {
+	public void login(User u, HttpServletRequest req) {
 
 		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
 	//	Profile dbProfile = ss.getMapper(ProfileMapper.class).getProfileByID(p.getPf_userID());
 
-		//System.out.println("지성이"+ p.getPf_userID());
-		System.out.println("틈만나면네가생각나...");
 		
 		
 		
@@ -47,7 +53,6 @@ public class UserDAO {
 			//	req.getSession().setAttribute("loginMember", dbProfile);
 				req.getSession().setMaxInactiveInterval(600 * 10);
 				System.out.println(dbUser.getUser_nickName());
-				System.out.println("빰빰빰"+p.getPf_userID());
 
 			} else {
 				System.out.println("실패");
@@ -71,6 +76,9 @@ public class UserDAO {
 		User u = (User) req.getSession().getAttribute("loginMember");
 	//	Profile p = (Profile) req.getSession().getAttribute("loginMember");
 		if (u != null) {
+			
+			req.setAttribute("profile", getProfileByID(u.getUser_ID()));
+			
 			req.setAttribute("profileMini", "jy/profileMini.jsp");
 		//	System.out.println("빰빰빰"+p.getPf_userID());
 			return true;
@@ -116,6 +124,26 @@ public class UserDAO {
 
 	}
 
+	public void joinusp(Profile p, HttpServletRequest req) {
+		// TODO Auto-generated method stub
+
+		String juser_ID = req.getParameter("user_ID");
+
+		p.setPf_userID(juser_ID);
+		
+
+		if (ss.getMapper(UserMapper.class).joinusp(p) == 1) {
+			req.setAttribute("result", "성공적으로 가입이 완료되었습니다!");
+		} else {
+			req.setAttribute("result", "가입에 실패하였습니다.. 잠시 후 다시 시도해 주세요!");
+
+		}
+
+	}
+
+	
+	
+	
 	public void secession(HttpServletRequest req) {
 		try {
 			User u = (User) req.getSession().getAttribute("loginMember");

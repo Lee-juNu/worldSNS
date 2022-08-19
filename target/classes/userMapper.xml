@@ -8,10 +8,17 @@
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
 		null,null, 1 ,sysdate,null)
+		
 
 
 	</insert>
+	<insert id="joinusp">
 
+			
+		insert into proFileTbl values(#{pf_userID},null,null,null)
+
+
+	</insert>
 
 
 	<select id="tempSelectUser"
@@ -25,6 +32,15 @@
 		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_id = #{user_ID}
 	</select>
+
+	<select id="getMemberProfileByID"
+		resultType="com.team.worlds.user.Profile">
+		select * from proFileTbl where pf_userID = #{pf_userID}
+	</select>
+
+
+
+
 
 	<select id="getMemberByEmail"
 		resultType="com.team.worlds.user.User">
@@ -67,7 +83,23 @@
 		where user_ID=#{user_ID}
 	</update>
 	
+		
+	<update id="updateProfile"	parameterType="com.team.worlds.user.Profile">
+		update proFileTbl set 
+		pf_Img=#{pf_Img}, 
+		pf_bgImg=#{pf_bgImg}, 
+		pf_contents=#{pf_contents}
+		where pf_userID=#{pf_userID}
+		
+		
+		
+		
+	</update>
 	
+	<update id="updateUserProfile" >
 	
+	update userTbl set user_birthDay = #{user_birthDay} where user_ID = #{user_ID}
+	
+	</update>
 
 </mapper>

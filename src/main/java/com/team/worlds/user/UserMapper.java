@@ -5,6 +5,8 @@ public interface UserMapper {
 
 	User getMemberByID(String u);
 
+	User getMemberProfileByID(String p);
+	
 	int joinus(User u);
 
 	int secession(User u);
@@ -22,5 +24,10 @@ public interface UserMapper {
 
 	int updateFindPW(User u);
 
-	int updateProfile(Profile p, User u);
+	int updateProfile(Profile p);
+
+	int updateUserProfile(User u);
+	
+	int joinusp(Profile p);
+
 }

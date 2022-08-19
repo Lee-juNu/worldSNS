@@ -22,7 +22,7 @@ public class UserController {
 		//System.out.println(u.getUser_PW());
 		
 		// 로그인
-		uDAO.login(u, p, req);
+		uDAO.login(u, req);
 		
 		
 		u = (User) req.getSession().getAttribute("loginMember");
@@ -141,12 +141,13 @@ public class UserController {
 		
 	}
 	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
-	public String joinusGo5(User u,HttpServletRequest req) {
+	public String joinusGo5(Profile p, User u,HttpServletRequest req) {
 		
 
 		System.out.println("흠");
 		
 		uDAO.joinus(u, req);
+		uDAO.joinusp(p, req);
 		req.setAttribute("joinusPage", "joinus5.jsp");
 		
 		

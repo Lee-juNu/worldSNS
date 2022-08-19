@@ -163,6 +163,22 @@ public class SettingController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/setting.go.ProfileR", method = RequestMethod.POST)
+	public String goSettingProfileR(Profile p, User u, HttpServletRequest req) {
+		
+		uDAO.loginCheck(req);
+		sDAO.updateProfile(u, p, req);
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/profile.jsp");
+		
+		return "home";
+	}
+	
+	
+	
 
 	@RequestMapping(value = "/setting.go.Secession", method = RequestMethod.GET)
 	public String goSettingSecession(Profile p, User u, HttpServletRequest req) {

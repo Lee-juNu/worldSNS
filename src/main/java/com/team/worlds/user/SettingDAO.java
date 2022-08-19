@@ -2,6 +2,7 @@ package com.team.worlds.user;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -113,62 +114,74 @@ public class SettingDAO {
 
 		
 		User loginMember = (User) req.getSession().getAttribute("loginMember");
-		Profile loginMemberp = (Profile) req.getSession().getAttribute("loginMember");
+		User user = loginMember;
+		Profile tempProfile = ss.getMapper(ProfileMapper.class).getProfileByID(loginMember.getUser_ID());
 		
 		
-		String path1 = req.getSession().getServletContext().getRealPath("WEB-INF/views/jy/Setting/pf_Img");
-			String path2 = req.getSession().getServletContext().getRealPath("WEB-INF/views/jy/Setting/pf_bgImg");
+		
+		
+		
+		String path = req.getSession().getServletContext().getRealPath("resources/pf_Img");
 			try {
 				
 				MultipartRequest mr = null;
-				MultipartRequest mr2 = null;
-				mr = new MultipartRequest(req, path1, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-				mr2 = new MultipartRequest(req, path2, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+				mr = new MultipartRequest(req, path, 10 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 				String newFile1 = null;
 				String newFile2 = null;
 				
+				p.setPf_userID(loginMember.getUser_ID());
+				
+				System.out.println("stadt" + mr.getParameter("user_birthDay"));
+		        Date date = Date.valueOf(mr.getParameter("user_birthDay"));
+		        user.setUser_birthDay(date);
 				
 				newFile1 = mr.getFilesystemName("pf_Img");
-				newFile2 = mr2.getFilesystemName("pf_bgImg");
+				newFile2 = mr.getFilesystemName("pf_bgImg");
+				
+				
+				String oldFile1 = tempProfile.getPf_Img();
+				String oldFile2 = tempProfile.getPf_bgImg();
+				
+				if (newFile1 == null) {
+					newFile1 = oldFile1;
+				} else {
+					newFile1 = URLEncoder.encode(newFile1, "utf-8");
+					newFile1 = newFile1.replace("+", " ");
+				}
+				
+				if (newFile2 == null) {
+					newFile2 = oldFile1;
+				} else {
+					newFile2 = URLEncoder.encode(newFile2, "utf-8");
+					newFile2 = newFile1.replace("+", " ");
+				}
+				
+				System.out.println("확인용" + p.getPf_userID());
+				
 				
 				
 				String Spf_contents = mr.getParameter("pf_contents");
-		//	jm_photo = URLEncoder.encode(jm_photo, "utf-8");
-		//	jm_photo = jm_photo.replace("+", " ");
 
 			
+		
+			p.setPf_Img(newFile1);
+			p.setPf_bgImg(newFile2);
+			p.setPf_contents(Spf_contents);
 			
-			
-		/*	p.setPf_Img(Spf_Img);
-			p.setPf_bgImg(Spf_bgImg);
-			p.setPf_contents(Spf_contents); */
-
-			String oldFile1 = loginMemberp.getPf_Img();
-			String oldFile2 = loginMemberp.getPf_bgImg();
-			
-			if (newFile1 == null) {
-				newFile1 = oldFile1;
-			} else {
-				newFile1 = URLEncoder.encode(newFile1, "utf-8");
-				newFile1 = newFile1.replace("+", " ");
-			}
-			
-			if (newFile2 == null) {
-				newFile2 = oldFile1;
-			} else {
-				newFile2 = URLEncoder.encode(newFile2, "utf-8");
-				newFile2 = newFile1.replace("+", " ");
-			}
-			
-			if (ss.getMapper(UserMapper.class).updateProfile(p, u) == 1) {
+			if (ss.getMapper(UserMapper.class).updateProfile(p) == 1) {
+				
+				
 				req.setAttribute("result", "수정 성공");
+				ss.getMapper(UserMapper.class).updateUserProfile(user);
+				
+				
 			} else {
 				req.setAttribute("result", "수정 실패");
 			}
 			
 		}catch (Exception e) {
 				e.printStackTrace();
-				req.setAttribute("result", "수정실패");
+				req.setAttribute("result", "실패");
 				return;
 			
 		}
