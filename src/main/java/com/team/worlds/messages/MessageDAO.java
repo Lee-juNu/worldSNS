@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -252,6 +253,12 @@ public class MessageDAO {
 		System.out.println(ss.getMapper(MessageMapper.class).getMsg(m));
 		
 		return new Message(ss.getMapper(MessageMapper.class).getMsg(m));
+	}
+
+	
+	
+	public void send(JSONObject message) {
+		System.out.println("ddddd");
 	}
 
 

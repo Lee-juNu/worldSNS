@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/SU/message.css">
-<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
-<script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
-<script type = "text/javascript" src="resources/js/SU/serverMessage.js"></script>
+
+ 
+
 </head>
 <body>
 
@@ -37,15 +37,9 @@ ${roomNum }
 
 <div id="chatRoom">
 <div id="chatMsg">
-<c:forEach var="msg" items="${msglist}" >
-${msg.msg_sendUserID } : ${msg.msg_Contents } <img src="resources/files/${msg.msg_img }"> 
-<c:forEach var="index" items="${room}" >
-<c:if test="${index.rm_lastIndex < msg.msg_index }">
-${0+1}
-</c:if>
-</c:forEach>
- <br>
-</c:forEach>
+
+
+
 </div>
 </div>
 <div id="sendMessage">
@@ -53,6 +47,7 @@ ${0+1}
 <form action="messages.send" method="post" enctype="multipart/form-data"
 		name="sendMessage">
 </form>
+
 <input type="file" name="sendimg" id="sendimg"><input type="text" name="sendmsg" id="sendmsg">
 <button onclick="jwSendWithFile()">송신</button><BR>
 <input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
@@ -64,7 +59,8 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
 </div>
 
 
-
+<input type="hidden" id="wsRoomType" value="${roomNum }">
+<input type="hidden" id="wsUserId" value="${loginMember.user_ID }">
 
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
@@ -81,6 +77,11 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
             </div>
         </div>
     </div>
-    <script type = "text/javascript" src="resources/js/SU/message.js"></script>
+    
 </body>
+    <script type = "text/javascript" src="resources/js/SU/message.js"></script>
+<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
+<script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
+<script type = "text/javascript" src="resources/js/SU/serverMessage.js"></script>
+
 </html>

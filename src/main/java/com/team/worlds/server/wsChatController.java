@@ -48,10 +48,12 @@ public class wsChatController {
 				, HashMap<String, ArrayList<Session>> sessionMap, String pageType, String userId) {
 				try
 				{
+					System.out.println(message);
 					//타입에 맞게 바꿔주세요
-					String contents = (String)message.get("contents");
+					String contents = (String)message.get("msg_Contents");
 					final Basic basic=session.getBasicRemote();
 					basic.sendText(userId+":"+ contents+ pageType);	
+					
 				}catch (Exception e) 
 				{
 					System.out.println(e);
@@ -67,11 +69,11 @@ public class wsChatController {
 				ArrayList<ChatUser> tempUserList = chatRoomMap.get(pageType);
 				
 				//mDAO로 DB로 메시지를 보내자!!
-				//mDAO.send(m);
+				mDAO.send(message);
 				//해당하는 채팅멤버들에게 보낸다
 				//Text부분에 JSon으로 보내기!
 				//유저의 이름
-				//JSON.put("senderID" , id);
+				// JSON.put("senderID" , userId);
 				
 				//제일처음에 메시지 보내기전에 파일업로드-> 메시지 보내기->파일명저장 DB(메시지 같이)
 				
