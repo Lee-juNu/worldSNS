@@ -165,13 +165,6 @@ public class wsChatController {
 		//전체 방을 관리하는 ChatRoomMap에 key로서 방번호를 입력
 		private static void roomEnter(Session session, String pageType, String userId)
 		{
-			ArrayList<ChatUser> arrUsers =  chatRoomMap.get(pageType);
-		
-			
-			ChatUser enterUser = new ChatUser(session, userId);
-			arrUsers.add(enterUser);
-			
-			
 			chatRoomMap.get(pageType).add(new ChatUser(session, userId));
 		}
 

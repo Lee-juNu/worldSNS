@@ -34,7 +34,7 @@
 		function sendMsg(msgData)
 		{
 			var jsonData = JSON.stringify(msgData);
-			console.log(jsonData)
+			console.log(msgData);
 			ws.send(jsonData);
 		}
         function send(){	
@@ -123,6 +123,5 @@
             ws.close();
         }
         function writeResponse(text){
-			var messages = document.getElementById("messages")
-			messages.innerHTML += '<br>'+ text;
+			console.log(text);
         }

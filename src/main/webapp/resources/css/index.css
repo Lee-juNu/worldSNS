@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 body, .mainDiv
 {
 	margin :0 0;	
@@ -15,8 +17,6 @@ html, body, .mainDiv{
 	height : 100%;
 	background-color:  gray;
 	position : relative
-
-	
 }
 
 .rightMain{
@@ -69,4 +69,7 @@ transform: translate(-50%, -50%); */
 
 
 }
+
+
+
 

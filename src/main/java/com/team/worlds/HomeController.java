@@ -38,19 +38,14 @@ public class HomeController {
 			System.out.println(wsFileManager.getFilePath());	
 		}
 		
-		
-		
 		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");
-		return "index";
+		return "fakeIndex";
 	}
 	
 
 	@RequestMapping(value = "/index.go", method = RequestMethod.GET)
 	public String go_index(HttpServletRequest req) {
-		
-		
-		
 		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");
 		return "index";
@@ -72,7 +67,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/profile.go", method = RequestMethod.GET)
 	public String temp_goProfile(User u, HttpServletRequest req) {
-				
 		//세션 만들고
 		//로그인 체크하고
 		uDAO.templogin(req);

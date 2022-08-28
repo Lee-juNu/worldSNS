@@ -3,6 +3,10 @@
 <mapper namespace="com.team.worlds.user.ProfileMapper">
 
 
+	<insert id="createProfile">
+		insert into proFileTbl values (#{user_ID}, null , null, null)
+	</insert>
+
 	<select id= "getProfileByID" resultType = "com.team.worlds.user.Profile">
 		select * from proFileTbl where pf_userID = #{pf_userID}
 	</select>

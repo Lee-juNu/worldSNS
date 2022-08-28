@@ -8,6 +8,22 @@ create table userTbl
 	user_email varchar(60 char) not null,
 	user_regDate date not null
 )
+select * from profileTbl
+
+SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'userTbl';
+select * from profileTbl where pf_userID = 'sadfds321'
+
+select * from userTbl where user_id = 'sadfds321'
+insert into profileTbl values ('admin', null, null, null)
+select * from profileTbl where pf_userID = 'admin'
+select * from profileTbl where pf_userID = 'admin'
+delete userTbl where user_id ='yorunohosisadfad'
+create table countryTbl
+(
+	country_Num  Num(3) primary key,
+	country_Name varchar2(60 char) not null
+)
+
 
 select * from chatroomTbl
 alter table proFileTbl add unique(pf_userID)

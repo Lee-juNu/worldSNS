@@ -65,6 +65,7 @@ public class WebSocketServer{
 	//맵을 통해서 (UserID,Session)으로 이루어집니다.
 	
 	public static final HashMap<String, ArrayList<Session>> sessionMap = new HashMap<String, ArrayList<Session>>();
+	public static final ArrayList<Session> lobbyMap = new ArrayList<Session>();
 	//로그를 남겨주는 아이입니다 몰라도되요
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
 	
@@ -97,17 +98,24 @@ public class WebSocketServer{
     		, @PathParam(value = "pageType") String pageType
     		, @PathParam(value = "userId") String userId) {
     	
+    	
+    	if(pageType.contains("lobby"))
+    	{
+    		System.out.println("로비");
+    		return;
+    	}
+    	
     	if(pageType.contains("CR"))
     	{
     		wsChatController.onUserOpen(session,pageType,userId);    		
     	}
-        
+    	
+    	
     	logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
-            System.out.println("userID=" + userId);
+            System.out.println("보냈는데 말이죠");
             basic.sendText("server_Open");
-
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -162,7 +170,7 @@ public class WebSocketServer{
     		, @PathParam(value = "pageType") String pageType
     		, @PathParam(value="userId") String userId) {
     	//누구에게서 메시지가 왔는지 확인
-    	logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]); 
+    	logger.info("Message From "+message); 
     	
     	 JSONParser jsonParser = new JSONParser();
     	//JsonParser
@@ -217,6 +225,7 @@ public class WebSocketServer{
         bos = new BufferedOutputStream(new FileOutputStream(file));
         System.out.println("파일 업로드 준비 완료");
     }
+   
     private void createUploadFolder(String folderName) throws FileNotFoundException
     {
     	File Folder = new File(wsFileManager.getFilePath()+"/"+folderName);
@@ -233,6 +242,8 @@ public class WebSocketServer{
     		System.out.println("이미 폴더가 생성되어 있습니다.");
     	}
     }
+    
+    
     
     //여기는 받아오는 프로그램 메시지를 처리하는부분입니다.
     @OnMessage
@@ -274,7 +285,6 @@ public class WebSocketServer{
         {
         	arrUser.remove(session);
         }
-        
     }
 }
  

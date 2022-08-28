@@ -4,7 +4,7 @@ public interface UserMapper {
 	User tempSelectUser();
 
 	User getMemberByID(String u);
-
+	User login(User u);
 	int joinus(User u);
 
 	int secession(User u);

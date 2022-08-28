@@ -116,6 +116,9 @@ public class UserDAO {
 
 	}
 
+	
+	
+	
 	public void secession(HttpServletRequest req) {
 		try {
 			User u = (User) req.getSession().getAttribute("loginMember");
@@ -224,7 +227,48 @@ public class UserDAO {
 		}
 		}
 	}
+
+	public boolean login(User u, HttpServletRequest req) {
+
+		
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
+			
+			
+			if (dbUser != null) {
+				if (u.getUser_PW().equals(dbUser.getUser_PW())) {
+					req.getSession().setAttribute("loginMember", dbUser);
+					req.getSession().setMaxInactiveInterval(600 * 10);
+					return true;
+				} else {
+					System.out.println("실패");
+				}
+			} else {
+				System.out.println("실패");
+			}
+			return false;
+	}
 	
+	public boolean joinUs(User u, HttpServletRequest req)
+	{
+		
+		Date date = Date.valueOf(req.getParameter("str_user_birthDay")); 
+		u.setUser_birthDay(date);
+		
+		System.out.println(u.getUser_ID());
+		System.out.println(u.getUser_PW());
+		System.out.println(u.getUser_birthDay());
+		
+		ss.getMapper(UserMapper.class).joinus(u);
+		
+		if(login(u,req))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 		
 		

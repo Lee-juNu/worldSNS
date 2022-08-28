@@ -32,9 +32,6 @@
 			</div>
 		</div>
 		
-		
-		
-		
 		<div class = "rightMain">
 			<div class = "mainLoginDiv">	
 			<!-- 최종에서 빼기! -->
@@ -60,7 +57,7 @@
         <!-- Modal body -->
         <div class="modal-body">
     	<div><jsp:include page="${loginPage }"/></div>
-      </div>
+      	</div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -70,9 +67,6 @@
       </div>
     </div>
 </div>
-		
-	
-	
 </body>
 </html>
 
