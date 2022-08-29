@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body class ="bgColor">
 
 
-<div class = "contentsDiv">
-	<div class = "contentsMainDiv">
+<div class = "contentsDiv" >
+	<div class = "contentsMainDiv bgColor">
 	
 		<div class = "contesntsBlank">
 		</div>

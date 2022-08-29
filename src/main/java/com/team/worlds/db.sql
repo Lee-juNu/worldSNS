@@ -13,7 +13,7 @@ select * from profileTbl
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'userTbl';
 select * from profileTbl where pf_userID = 'sadfds321'
 
-select * from userTbl where user_id = 'sadfds321'
+select * from userTbl where user_id = 'yorunohosi'
 insert into profileTbl values ('admin', null, null, null)
 select * from profileTbl where pf_userID = 'admin'
 select * from profileTbl where pf_userID = 'admin'
@@ -40,6 +40,7 @@ create table proFileTbl
 					on delete cascade
 )
 
+select * from messageTbl
 
 select * from  userTbl;
 ss

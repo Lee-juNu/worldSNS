@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.subColor
+{
+	color : rgba(82,82,82,0.5);
+}
+.subBgColor
+{
+	background-color : #202020;
+}
+
+
+.bgColor
+{
+	background-color : black;
+	color: white;
+}

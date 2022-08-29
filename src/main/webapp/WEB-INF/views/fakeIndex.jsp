@@ -9,6 +9,7 @@
 <!-- CSS모음-->
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/fakeIndex.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/loginModal.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/colorTemplet.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/map.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,10 +31,6 @@
 
 </head>
 <body class = "homeBody subColor bgColor">
- 		
-
-
-
 	<div class = "headerDiv subBgColor">
 		<div class = "logoDiv subColor">
 			<img class = "logoImg" alt="LOGO" src="resources/img/util/logo/wlogo.png">		

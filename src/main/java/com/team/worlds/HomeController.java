@@ -61,7 +61,7 @@ public class HomeController {
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "sik/board.jsp");
+		req.setAttribute("contentsPage", "jw/fakeBoard.jsp");
 		
 		return "home";
 	}

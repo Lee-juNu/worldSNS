@@ -47,9 +47,15 @@ public class FakeController {
 	
 	@RequestMapping(value = "/loginTest", method = RequestMethod.GET)
 	public @ResponseBody boolean testLogin(HttpServletRequest req, User u) {
-		System.out.println(u.getUser_ID());
 		if(uDAO.login(u,req))
+		{
+			
+			req.setAttribute("profilePage", "profileMini.jsp");
+			
+			req.setAttribute("menuPage", "jy/menu.jsp");
+			req.setAttribute("contentsPage", "fakePage");
 			return true;			
+		}
 		else
 			return false;
 	}
