@@ -60,6 +60,7 @@
         <!-- Modal body -->
         <div class="modal-body">
     	<div><jsp:include page="${loginPage }"/></div>
+    	<div><button>9번으로 가기</button></div>
       </div>
         
         <!-- Modal footer -->

@@ -118,9 +118,6 @@ public class SettingDAO {
 		Profile tempProfile = ss.getMapper(ProfileMapper.class).getProfileByID(loginMember.getUser_ID());
 		
 		
-		
-		
-		
 		String path = req.getSession().getServletContext().getRealPath("resources/pf_Img");
 			try {
 				
@@ -131,42 +128,71 @@ public class SettingDAO {
 				
 				p.setPf_userID(loginMember.getUser_ID());
 				
+				System.out.println("아이디확인" + p.getPf_userID());
 				System.out.println("stadt" + mr.getParameter("user_birthDay"));
 		        Date date = Date.valueOf(mr.getParameter("user_birthDay"));
-		        user.setUser_birthDay(date);
+		        String user_nickName = mr.getParameter("user_nickName");
+		    	String Spf_contents = mr.getParameter("pf_contents");
+		    	
+		    	
+		    	System.out.println("왜안되지");
+		        
+		        
+		        u.setUser_birthDay(date);
+		        p.setPf_Img(newFile1);
+				p.setPf_bgImg(newFile2);
+				p.setPf_contents(Spf_contents);
+				u.setUser_nickName(user_nickName);
 				
+				
+				System.out.println("왜안되지2");
+			
 				newFile1 = mr.getFilesystemName("pf_Img");
 				newFile2 = mr.getFilesystemName("pf_bgImg");
 				
+				System.out.println("왜안되지3");
 				
 				String oldFile1 = tempProfile.getPf_Img();
 				String oldFile2 = tempProfile.getPf_bgImg();
 				
+				System.out.println("왜안되지31");
+				
 				if (newFile1 == null) {
 					newFile1 = oldFile1;
+					System.out.println("왜안되지4");
 				} else {
 					newFile1 = URLEncoder.encode(newFile1, "utf-8");
 					newFile1 = newFile1.replace("+", " ");
 				}
 				
 				if (newFile2 == null) {
-					newFile2 = oldFile1;
+					newFile2 = oldFile2;
 				} else {
 					newFile2 = URLEncoder.encode(newFile2, "utf-8");
-					newFile2 = newFile1.replace("+", " ");
+					newFile2 = newFile2.replace("+", " ");
 				}
 				
 				System.out.println("확인용" + p.getPf_userID());
 				
+				System.out.println("왜안되지5");
+				System.out.println("왜안되지5");
+				
+				p.setPf_Img(newFile1);
+				p.setPf_bgImg(newFile2);
+				p.setPf_contents(Spf_contents);
+				u.setUser_nickName(user_nickName);
 				
 				
-				String Spf_contents = mr.getParameter("pf_contents");
-
+				System.out.println("오1"+p.getPf_Img());
+				System.out.println("어11"+p.getPf_bgImg());
+				System.out.println("어13"+p.getPf_contents());
+				System.out.println("어14"+u.getUser_nickName());
 			
-		
-			p.setPf_Img(newFile1);
-			p.setPf_bgImg(newFile2);
-			p.setPf_contents(Spf_contents);
+				System.out.println("왜안되지6");
+			
+	
+			
+			System.out.println("자기소개 확인" + p.getPf_contents());
 			
 			if (ss.getMapper(UserMapper.class).updateProfile(p) == 1) {
 				
@@ -174,12 +200,19 @@ public class SettingDAO {
 				req.setAttribute("result", "수정 성공");
 				ss.getMapper(UserMapper.class).updateUserProfile(user);
 				
+				System.out.println();
+				
+				
+				
+				
 				
 			} else {
 				req.setAttribute("result", "수정 실패");
 			}
 			
 		}catch (Exception e) {
+			System.err.println("자기소개 확인" + p.getPf_contents());
+			
 				e.printStackTrace();
 				req.setAttribute("result", "실패");
 				return;

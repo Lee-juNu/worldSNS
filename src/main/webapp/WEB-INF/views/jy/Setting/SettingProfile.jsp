@@ -21,7 +21,7 @@
 <div><input type="file" name="pf_bgImg"></div>
 <div>닉네임</div>
 <div><input name="user_nickName" value="${sessionScope.loginMember.user_nickName }"></div>
-<div>자기소개</div>
+<div>자기소개!!</div>
 <div><input name="pf_contents" value="${sessionScope.loginMemberp.pf_contents }"></div>
 <div>생일 (후에 설정 가능)</div>
 <div><input name="user_birthDay" type="date"></div>

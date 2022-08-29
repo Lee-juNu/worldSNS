@@ -12,6 +12,10 @@
 <body>
 
 <div>
+
+<div><button onclick="goto9()">9번으로 가기</button></div>
+
+
 <div>${result }</div>
 <div>모두 가운데로 배치</div>
 <div>배경 사진</div>

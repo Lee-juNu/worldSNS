@@ -1,3 +1,16 @@
+
+
+function goto9()
+{
+	location.href = 'profile/go/9';
+	
+}
+
+
+
+
+
+
 function goLogin()
 {
 	location.href = 'index.go';

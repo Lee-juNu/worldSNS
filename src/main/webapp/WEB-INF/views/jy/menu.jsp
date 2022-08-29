@@ -21,6 +21,15 @@
 	<div><button onclick = "goAram()"><img  width="50px" src="resources/icon/noticeIcon.png" alt="NOTICE"></button></div>
 	<div><button onclick = "goSetting()"><img  width="50px" src="resources/icon/settingIcon.png" alt="SETTING"></button></div>
 	<div><button onclick = "goProfile()"><img width="50px" src="resources/icon/profileIcon1.png"></button></div>
+	
+	<form action="Search.user">
+	
+	<div>
+	<input name="searchWord" placeholder="검색어를 입력해 주세요"> <button>검색</button>
+	
+	</div>
+	</form>
+	
 	<div><jsp:include page="${profilePage }"/></div>
 	<!-- 이미지 주소 생성 후에 이미지 주소 넣기 -->
 	

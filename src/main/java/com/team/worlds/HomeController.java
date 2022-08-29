@@ -11,11 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team.worlds.user.Profile_o;
 import com.team.worlds.user.User;
 import com.team.worlds.user.UserDAO;
+import com.team.worlds.user.User_o;
 
 /**
  * Handles requests for the application home page.
@@ -75,6 +78,8 @@ public class HomeController {
 		//세션 만들고
 		//로그인 체크하고
 		uDAO.templogin(req);
+		uDAO.loginCheck(req);
+		
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
@@ -83,4 +88,7 @@ public class HomeController {
 		return "home";
 	}
 
+	
+	
+	
 }

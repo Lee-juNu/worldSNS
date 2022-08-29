@@ -30,4 +30,11 @@ public interface UserMapper {
 	
 	int joinusp(Profile p);
 
+	int checkOverId(String user_ID);
+
+	User_o getOtherMemberByID(User_o u_o);
+
+
+	User_o getOtherProfileMemberByID(Profile_o p_o);
+
 }

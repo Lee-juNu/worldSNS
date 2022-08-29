@@ -9,8 +9,10 @@ import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -20,6 +22,9 @@ public class UserDAO {
 
 	@Autowired
 	SqlSession ss;
+	
+	@Autowired
+	private SqlSessionTemplate userSqlSessin;
 	
 	private Profile getProfileByID(String user_ID) {
 		
@@ -123,6 +128,17 @@ public class UserDAO {
 		}
 
 	}
+	
+	
+
+	// 중복 아이디 체크
+	public int userIdCheck(String user_ID) {
+
+		
+		return ss.getMapper(UserMapper.class).checkOverId(user_ID);
+		
+	
+}
 
 	public void joinusp(Profile p, HttpServletRequest req) {
 		// TODO Auto-generated method stub
@@ -252,6 +268,79 @@ public class UserDAO {
 		}
 		}
 	}
+
+
+/*
+	public void goProfile(String user_ID_o, User_o u_o, Profile_o p_o, HttpServletRequest req) {
+
+		
+		System.out.println(user_ID_o);
+		System.out.println("호오잉");
+		
+		//User dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
+		
+//		System.out.println("에엥" + dbUser.getUser_ID());
+		
+		String user_ID = user_ID_o;
+		
+		u_o.setUser_ID("9");
+		p_o.setPf_userID("9");
+		
+		User_o dbUser_o = ss.getMapper(UserMapper.class).getOtherMemberByID(u_o);
+		User_o dbUser_p = ss.getMapper(UserMapper.class).getOtherProfileMemberByID(p_o);
+		
+		System.out.println(u_o.getUser_ID());
+		System.out.println(p_o.getPf_userID());
+		
+		
+		
+		
+		System.out.println("흠" + dbUser_o.getUser_ID());
+		
+	//	req.getSession().setAttribute("loginMember", dbUser);
+		req.getSession().setAttribute("OtherMember", dbUser_o);
+		req.getSession().setAttribute("OtherMemberP", dbUser_p);
+		
+		System.out.println("열ㅋ" + dbUser_o.getUser_ID());
+		
+		
+	}
+*/
+
+
+	public void goProfile(String user_ID_o, User_o u_o, Profile_o p_o, HttpServletRequest req) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(user_ID_o);
+		System.out.println("호오잉");
+		
+//		User dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
+		
+//		System.out.println("에엥" + dbUser.getUser_ID());
+		
+		String user_ID = user_ID_o;
+		
+		u_o.setUser_ID(user_ID);
+		p_o.setPf_userID(user_ID);
+		
+		System.out.println(u_o.getUser_ID());
+		System.out.println(p_o.getPf_userID());
+		
+		
+		
+		User_o dbUser_o = ss.getMapper(UserMapper.class).getOtherMemberByID(u_o);
+		User_o dbUser_p = ss.getMapper(UserMapper.class).getOtherProfileMemberByID(p_o);
+		
+		
+		System.out.println("흠" + dbUser_o.getUser_ID());
+		
+	//	req.getSession().setAttribute("loginMember", dbUser);
+		req.getSession().setAttribute("OtherMember", dbUser_o);
+		req.getSession().setAttribute("OtherMemberP", dbUser_p);
+		
+		System.out.println("열ㅋ" + dbUser_o.getUser_ID());
+		
+	}
 	
 	
 		
@@ -292,7 +381,7 @@ public void update(Profile p, User u, HttpServletRequest req) {
 		String juser_name = mr.getParameter("jm_name");
 		String jpf_Img = newFile;
 		
-		u.setUser_ID(juser_ID);
+		u.setuser_ID(juser_ID);
 		u.setUser_PW(juser_PW);
 		u.setUser_name(juser_name);
 		p.setPf_Img(jpf_Img);
