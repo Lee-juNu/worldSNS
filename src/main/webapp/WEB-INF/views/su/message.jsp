@@ -18,6 +18,7 @@
 <div id="chatList" style="display: none">
 채팅방목록
 <button id="btn-modal">채팅방 만들기</button>
+<button id="btn-modal2">채팅에 초대하기</button>
 <c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
 <form action="messages.select" name="selectroom">
@@ -65,7 +66,7 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
             <div class="title">
-                <h2>초대할 친구는?</h2>
+                <h2>채팅방을 만들래?</h2>
             </div>
             <div class="close-area">X</div>
             <div class="content">
@@ -74,6 +75,20 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
 		${user.user_ID } <button name="invite" value="${user.user_ID }">초대</button>   <br>
 </form>
 		</c:forEach>   
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>초대할 친구는?</h2>
+            </div>
+            <div class="close-area">X</div>
+            <div class="content">
+<form action="messages.open" name="openMessage">
+		<input name="searchUser"> <button name="invite" value="${user.user_ID }">초대</button>   <br>
+</form>
             </div>
         </div>
     </div>

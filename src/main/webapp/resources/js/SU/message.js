@@ -33,6 +33,37 @@ window.addEventListener("keyup", e => {
 })
 
 
+const modal2 = document.getElementById("modal2")
+function modalOn2() {
+	modal2.style.display = "flex"
+}
+function isModalOn2() {
+	return modal2.style.display === "flex"
+}
+function modalOff2() {
+	modal2.style.display = "none"
+}
+const btnModal2 = document.getElementById("btn-modal2")
+btnModal2.addEventListener("click", e => {
+	modalOn2()
+})
+const closeBtn2 = modal2.querySelector(".close-area")
+closeBtn2.addEventListener("click", e => {
+	modalOff2()
+})
+modal2.addEventListener("click", e => {
+	const evTarget = e.target
+	if(evTarget.classList.contains("modal-overlay")) {
+		modalOff2()
+	}
+})
+window.addEventListener("keyup", e => {
+	if(isModalOn() && e.key === "Escape") {
+		modalOff2()
+	}
+})
+
+
 $(function() {
 	
 	 $('#send').click(function() {
@@ -67,17 +98,19 @@ $(function() {
 
 $(function() {
 
-	 let room = $('#roomNum').val();
+	 let search = $('#searchUser').val();
 	$.ajax({
 				
 				url:"messages.getMsg",
-				data:{"msg_RoomNum": room},
+				data:{"user_ID": search},
 				type:'GET',
 				dataType: 'json',
-		           success :  
-		        	   function(data) {
-						alert('s1s') },
-						error:function(){
-						}
+				success:function(result){
+					if(result==1){
+						alert('전송 성공')
+					}else{
+						alert('전송 실패')
+					}
+				}	
 		           });
 	 });
