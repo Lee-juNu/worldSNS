@@ -1,14 +1,22 @@
 package com.team.worlds.server;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.websocket.Session;
 
+import org.apache.jasper.compiler.StringInterpreterFactory;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team.worlds.messages.Message;
 import com.team.worlds.messages.MessageDAO;
 
 import javax.annotation.PostConstruct;
@@ -46,40 +54,66 @@ public class wsChatController {
 	//1.자신이 속해있는 방이 어디인가
 		public static void onMessage(JSONObject message, Session session
 				, HashMap<String, ArrayList<Session>> sessionMap, String pageType, String userId) {
-				try
+			
+			JSONParser jsonParser = new JSONParser();
+//			JSONObject result = (JSONObject)jsonParser.parse(message);
+			String Dtype = (String)message.get("dataType");
+			final Basic basic=session.getBasicRemote();
+			String contents = (String)message.get("msg_Contents");
+			String img = (String)message.get("msg_img");
+			
+			//타입에 맞게 바꿔주세요
+			System.out.println(img);
+			try
 				{
-					System.out.println(message);
-					//타입에 맞게 바꿔주세요
-					String contents = (String)message.get("msg_Contents");
-					final Basic basic=session.getBasicRemote();
-					basic.sendText(userId+":"+ contents+ pageType);	
-					
-				}catch (Exception e) 
+
+				mDAO.updateIndex2(message);
+			
+/*				if (Dtype.equals("send")&&contents!=null) {
+//					basic.sendText(message.toString());	
+					mDAO.send(message);
+					sendAllChatRoomMember(message, session, pageType, userId);
+					}else if (Dtype.equals("send")&&img!=null) {
+						
+					}else if (contents!=null&&img!=null&&Dtype.equals("send")) {
+						
+					}*/
+				if (Dtype.equals("send")) {
+					mDAO.send(message);
+					sendAllChatRoomMember(message, session, pageType, userId);
+
+				}}catch (Exception e) 
 				{
 					System.out.println(e);
 				}
 		}
 		
 		
-		public static void sendAllChatRoomMember(JSONObject message, Session session,String pageType, String userId)
+	 private static void sendAllChatRoomMember(JSONObject message, Session session,String pageType, String userId)
 		{
 			try
 			{
 				//해당하는 채팅방을 찾아서
 				ArrayList<ChatUser> tempUserList = chatRoomMap.get(pageType);
 				
+				JSONParser jsonParser = new JSONParser();
+//				JSONObject result = (JSONObject)jsonParser.parse(message);
+				String type = (String)message.get("dataType");
+				final Basic basic=session.getBasicRemote();
+
 				//mDAO로 DB로 메시지를 보내자!!
-				mDAO.send(message);
+//				mDAO.send(message);
 				//해당하는 채팅멤버들에게 보낸다
 				//Text부분에 JSon으로 보내기!
 				//유저의 이름
 				// JSON.put("senderID" , userId);
 				
 				//제일처음에 메시지 보내기전에 파일업로드-> 메시지 보내기->파일명저장 DB(메시지 같이)
-				
-				
+				String contents = (String)message.get("msg_Contents");
+				String img = (String)message.get("msg_img");
+//				mDAO.send(message);
 				for (ChatUser chatUser : tempUserList) {
-					chatUser.getSession().getBasicRemote().sendText("");
+					chatUser.getSession().getBasicRemote().sendText(message.toString());
 				}			
 			}
 			catch (Exception e) {
@@ -120,6 +154,24 @@ public class wsChatController {
 		{
 			roomEnter(session, pageType,userId);			
 		}
+		
+		final Basic basic=session.getBasicRemote();
+		
+		try {
+			
+			Message msg = new Message();
+			msg.setMsg_RoomNum(pageType);
+			
+			
+			basic.sendText(mDAO.getMsg3(msg).toString());
+
+			
+			mDAO.updateIndex2(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	public static void onUserExit(Session session, String pageType, String userId)
 	
@@ -167,11 +219,11 @@ public class wsChatController {
 		//전체 방을 관리하는 ChatRoomMap에 key로서 방번호를 입력
 		private static void roomEnter(Session session, String pageType, String userId)
 		{
-			ArrayList<ChatUser> arrUsers =  chatRoomMap.get(pageType);
+/*			ArrayList<ChatUser> arrUsers =  chatRoomMap.get(pageType);
 		
 			
 			ChatUser enterUser = new ChatUser(session, userId);
-			arrUsers.add(enterUser);
+			arrUsers.add(enterUser);*/
 			
 			
 			chatRoomMap.get(pageType).add(new ChatUser(session, userId));

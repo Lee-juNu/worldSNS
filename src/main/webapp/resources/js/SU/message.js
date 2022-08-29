@@ -78,7 +78,6 @@ $(function() {
 		        	   function(data) {
 						alert('s1s') },
 						error:function(){
-							alert('s2s');
 						}
 		           });
 	 });

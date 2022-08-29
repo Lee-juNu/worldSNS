@@ -1,6 +1,7 @@
 package com.team.worlds.messages;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Message {
 
@@ -21,6 +22,7 @@ public class Message {
 	private int msg_index;
 	private String msg_img;
 	private String msg_Contents;
+	
 	
 	public Message() {
 		// TODO Auto-generated constructor stub

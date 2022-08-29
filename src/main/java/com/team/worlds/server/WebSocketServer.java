@@ -97,17 +97,17 @@ public class WebSocketServer{
     		, @PathParam(value = "pageType") String pageType
     		, @PathParam(value = "userId") String userId) {
     	
-    	if(pageType.contains("CR"))
-    	{
-    		wsChatController.onUserOpen(session,pageType,userId);    		
-    	}
+  
         
     	logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
             System.out.println("userID=" + userId);
-            basic.sendText("server_Open");
-
+   //         basic.sendText("server_Open");
+          	if(pageType.contains("CR"))
+        	{
+        		wsChatController.onUserOpen(session,pageType,userId);    		
+        	}
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -216,6 +216,7 @@ public class WebSocketServer{
         File file = new File(wsFileManager.getFilePath()+"/"+folderName+"/"+fileName);
         bos = new BufferedOutputStream(new FileOutputStream(file));
         System.out.println("파일 업로드 준비 완료");
+        System.out.println(file);
     }
     private void createUploadFolder(String folderName) throws FileNotFoundException
     {

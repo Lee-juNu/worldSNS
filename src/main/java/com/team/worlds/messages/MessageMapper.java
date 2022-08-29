@@ -1,6 +1,9 @@
 package com.team.worlds.messages;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.json.simple.JSONObject;
 
 import com.team.worlds.user.User;
 
@@ -28,6 +31,18 @@ public interface MessageMapper {
 	Object send();
 
 	Object getMsg();
+
+
+	void updateIndex2(JSONObject jsonObj);
+
+	public ArrayList<Message> getMsg2(JSONObject jsonObj);
+
+	ArrayList<Message> getMsg2(Message msg);
+
+	void updateIndex2(Message msg);
+
+	void sendMsg2(JSONObject message);
+
 
 
 }

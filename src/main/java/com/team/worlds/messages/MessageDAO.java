@@ -2,18 +2,26 @@ package com.team.worlds.messages;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Session;
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.team.worlds.user.User;
@@ -258,9 +266,66 @@ public class MessageDAO {
 	
 	
 	public void send(JSONObject message) {
-		System.out.println("ddddd");
+		try {
+			System.out.println("message" + ":" + message);
+			ss.getMapper(MessageMapper.class).sendMsg2(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	public void updateIndex2(JSONObject message) {
+
+		System.out.println(message);
+		JSONObject jsonObj = (JSONObject)message;
+//		System.out.println((String)jsonObj.get("msg_Contents"));
+		ss.getMapper(MessageMapper.class).updateIndex2(jsonObj);
+	}
+
+	
+	public JsonArray getMsg2(JSONObject message) {
+		JSONObject jsonObj = (JSONObject)message;
+		
+		ArrayList<Message> ar = ss.getMapper(MessageMapper.class).getMsg2(jsonObj);
+		Gson gson = new GsonBuilder().create();
+		JsonArray jsar = gson.toJsonTree(ar).getAsJsonArray();
+		
+		return jsar;
+	}
+
+	public void updateIndex2(Message msg) {
+		ss.getMapper(MessageMapper.class).updateIndex2(msg);
+	}
+
+	
+	public Object getMsg3(Message msg) {
+		ArrayList<Message> ar = ss.getMapper(MessageMapper.class).getMsg2(msg);
+		Gson gson = new GsonBuilder().create();
+		JsonArray jsar = gson.toJsonTree(ar).getAsJsonArray();
+		
+		if (jsar.size()<1||jsar.isEmpty()) {
+			return msg;
+		} else {
+			return jsar;
+			
+		}
+		
+	}
+
+	
+	
+/*	public void updateIndex2(String userId, String pageType, Message m) {
+		
+		m.setRm_roomNum(pageType);
+		m.setRm_userID(userId);
+	
+		try {
+		ss.getMapper(MessageMapper.class).updateIndex2(userId, pageType);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+*/
 
 
 

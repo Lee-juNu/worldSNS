@@ -89,7 +89,7 @@ public class MessagesController {
 		mDAO.get(req);
 //		mDAO.getMsg(req);
 		mDAO.getRoom(req, M);
-		mDAO.updateIndex(req, M);
+//		mDAO.updateIndex(req, M);
 		return "home";
 	}
 }
