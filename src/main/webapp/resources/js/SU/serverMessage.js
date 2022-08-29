@@ -84,9 +84,7 @@ function jwSendWithFile(){
 						 if (typeof rs[i].msg_img != "undefined") {
 							 for (msg_sendUserID in rs[i]) {
 								var sendimg = rs[i].msg_img
-								console.log(sendimg)
 								var sendimg = sendimg.replace('C:\\fakepath', 'resources\\img\\chatimg\\')
-								console.log(sendimg)
 								var imgtag = "<img src="+sendimg+">"								
 							 }
 							

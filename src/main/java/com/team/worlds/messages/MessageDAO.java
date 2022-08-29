@@ -258,7 +258,6 @@ public class MessageDAO {
 	}
 
 	public Message getMsg(Message m) {
-		System.out.println(ss.getMapper(MessageMapper.class).getMsg(m));
 		
 		return new Message(ss.getMapper(MessageMapper.class).getMsg(m));
 	}
@@ -310,6 +309,11 @@ public class MessageDAO {
 			
 		}
 		
+	}
+
+	public List<User> search(String name) {
+		ss.getMapper(MessageMapper.class).search(name);
+		return ss.getMapper(MessageMapper.class).search(name);				
 	}
 
 	

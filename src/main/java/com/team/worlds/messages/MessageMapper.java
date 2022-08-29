@@ -45,4 +45,8 @@ public interface MessageMapper {
 
 
 
+	public List<User> search(String name);
+
+
+
 }

@@ -86,9 +86,12 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
             </div>
             <div class="close-area">X</div>
             <div class="content">
-<form action="messages.open" name="openMessage">
-		<input name="searchUser"> <button name="invite" value="${user.user_ID }">초대</button>   <br>
-</form>
+            <div>
+		<input name="searchUser" id="searchUser"> 
+		<button id="searchButton" onclick="search()">초대</button>   <br>
+            </div>
+            <div id="userList">
+            </div>
             </div>
         </div>
     </div>

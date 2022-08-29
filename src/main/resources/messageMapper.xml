@@ -10,6 +10,10 @@
 	select * from userTbl where user_id != #{User_ID}
 </select>
 
+<select id="search" resultType="com.team.worlds.user.User">
+	select * from userTbl where user_id like '%' ||#{User_ID} || '%'
+</select>
+
 <select id="getMsg" resultType="com.team.worlds.messages.Message">
 	select * from messageTbl where msg_RoomNum = #{msg_RoomNum} order by msg_sendTime
 </select>

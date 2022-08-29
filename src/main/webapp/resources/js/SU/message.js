@@ -98,19 +98,59 @@ $(function() {
 
 $(function() {
 
-	 let search = $('#searchUser').val();
+	 let room = $('#roomNum').val();
 	$.ajax({
 				
 				url:"messages.getMsg",
+				data:{"msg_RoomNum": room},
+				type:'GET',
+				dataType: 'json',
+		           success :  
+		        	   function(data) {
+						alert('s1s') },
+						error:function(){
+						}
+		           });
+	 });
+
+
+
+
+function search() {
+
+	
+	
+	 let search = $('#searchUser').val();
+	 console.log(search);
+	 
+	$.ajax({
+				url:"messages.searchUser",
 				data:{"user_ID": search},
 				type:'GET',
 				dataType: 'json',
-				success:function(result){
-					if(result==1){
-						alert('전송 성공')
-					}else{
-						alert('전송 실패')
-					}
-				}	
+		           success :  
+		        	   function(search) {
+		        	   console.log(search)
+		        	   const userdata = search;
+		        	   console.log(typeof(search))
+		        	   
+		        	   for (var i = 0; i < userdata.length; i++) {
+		        		   var friendlist = userdata[i].user_ID
+							console.log(friendlist)
+							console.log(i)
+						var user = document.createElement('div'); 
+						user.innerHTML = "<div>"+ friendlist+"</div>";
+						document.getElementById('userList').appendChild(user);
+		        	   }
+		        	   
+						
+						
+						 },
+						error:function(error){
+							console.log(error)
+						}
 		           });
-	 });
+	 };
+
+	 
+	 
