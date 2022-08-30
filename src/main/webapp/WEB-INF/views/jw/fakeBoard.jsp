@@ -27,7 +27,7 @@
 		
 	</div>
 	<div class = "contentsSubDiv"> 
-	
+		<jsp:include page="subPage.jsp"/>
 	</div>
 
 </div>

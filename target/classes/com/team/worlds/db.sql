@@ -17,7 +17,8 @@ select * from userTbl where user_id = 'yorunohosi'
 insert into profileTbl values ('admin', null, null, null)
 select * from profileTbl where pf_userID = 'admin'
 select * from profileTbl where pf_userID = 'admin'
-delete userTbl where user_id ='yorunohosisadfad'
+delete userTbl where user_id ='worldIs'
+delete profileTbl where pf_userID ='worldIs'
 create table countryTbl
 (
 	country_Num  Num(3) primary key,

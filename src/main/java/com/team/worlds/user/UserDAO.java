@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.worlds.fileUtil.FileManager;
 
 @Service
 public class UserDAO {
@@ -262,6 +263,13 @@ public class UserDAO {
 		
 		if(login(u,req))
 		{
+			try
+			{
+				FileManager.createUploadFolder("profile/"+u.getUser_ID());				
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
 			return true;
 		}
 		else

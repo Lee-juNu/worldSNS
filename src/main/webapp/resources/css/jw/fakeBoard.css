@@ -4,7 +4,6 @@
 {
 	width:100%;
 	height:100%;
-	background-color: gray;
 	display:flex;
 }
 .contentsMainDiv
@@ -17,9 +16,6 @@
 {
 	width:100%;
 	height:50px;
-	
-	
-	background-color:gray;
 }
 
 .regContents
@@ -59,7 +55,6 @@
 .contentsSubDiv
 {
 	width:100%;
-	background-color: black;
 	border-left:1px solid #202020;
 	
 }
@@ -77,6 +72,14 @@
 	height : 100%;
 }
 
+.menuMainDiv
+{
+	height :100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .menuFlex
 {
 	display :inline-flex;
@@ -88,9 +91,23 @@
 .menuButton
 {
 	width:250px;
-	height: 60px;
+	height: 50px;
 	padding : 4px;
 }
+		
+		.submitBtn
+        {
+        	width:225px;
+        	height:52px;
+        	padding : 0 32px;
+        	background-color: #ee005d;
+        	border-radius: 25px; 
+        	display:block;
+        	font-size : 20px;
+			font-family: 'Fredoka One', cursive;
+			color : white;
+        }
+        
 .menuTitle
 {
 	height : 25px;
@@ -100,6 +117,23 @@
 	font-family: 'Fredoka One', cursive;
 	color : white;
 	text-decoration: none;
+	letter-spacing : 5px;
+	
+}
+
+.menuProfile
+{
+	width : 227px; 
+	height : 40px; 
+	backgorund-color:red;
+	border-radius: 25px;
+	padding :12px;
+	display :flex;
+}
+.profileIcon
+{
+	width : 40px;
+	height : 40px;
 }
 
 .menuButton a
@@ -109,9 +143,9 @@
 	height:100%;
 	text-decoration: none;
 }
-.menuButton a:hover + 
+.menuButton:hover a .menuFlex
 {
-	background-color: rgba(0.2,0.2,0.2,0.5);
+	background-color: #202020;
 }
 
 .menuImg

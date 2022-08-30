@@ -11,12 +11,12 @@
 </head>
 
 <body>
-<div>
+<div class = "menuMainDiv">
+	
+	
+	
+	<div class = "menuTopDiv">
 	<div class = "homeLogoImg"><img alt="" src="resources/img/util/logo/wlogo.png"></div>
-	
-	
-	
-	
 	<!-- 메뉴 링크 홈컨트롤러로 연결해놨는데 다른 곳에 있으면 옮기기 ! -->
 	<div class = "menuButton">
 		<a href=""><div class = "menuFlex">
@@ -73,11 +73,26 @@
 			</div>
 		</div></a>
 	</div>
-	<div><jsp:include page="${profilePage }"/></div>
-	<!-- 이미지 주소 생성 후에 이미지 주소 넣기 -->
-	
+		<div>
+			<button class = "submitBtn">World is...</button>		
+		</div>	
 	</div>
 	
+	<div class = "menuProfile" >
+		<div class = "profileIcon"> 
+		<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
+		onerror="this.src='resources/img/profile/s.png';"/> </div>
+		<div class = "profileAccount">
+			<div class = "profileNickName">
+				<span>${sessionScope.loginMember.user_nickName}</span>
+			</div>
+			<div class = "profileID">
+				<span>@${sessionScope.loginMember.user_ID}</span>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- 이미지 주소 생성 후에 이미지 주소 넣기 -->
 </body>
 
 </html>
