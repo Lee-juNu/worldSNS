@@ -64,7 +64,6 @@ public class wsChatController {
 			
 			//타입에 맞게 바꿔주세요
 			System.out.println(img);
-			mDAO.updateIndex2(message);
 			try
 				{
 
@@ -162,8 +161,8 @@ public class wsChatController {
 			
 			Message msg = new Message();
 			msg.setMsg_RoomNum(pageType);
-			
-			
+			msg.setMsg_sendUserID(userId);
+			mDAO.updateIndex2(msg);
 			basic.sendText(mDAO.getMsg3(msg).toString());
 
 			

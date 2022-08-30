@@ -295,6 +295,7 @@ public class MessageDAO {
 	public void updateIndex2(Message msg) {
 		ss.getMapper(MessageMapper.class).updateIndex2(msg);
 	}
+	
 
 	
 	public Object getMsg3(Message msg) {
