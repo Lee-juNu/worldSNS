@@ -56,17 +56,31 @@ public class MessagesController {
 	@RequestMapping(value = "/messages.getMsg", method = RequestMethod.GET)
 	public @ResponseBody Message getMsg(HttpServletRequest req, Message M) {
 		mDAO.getMsg(M);
-		System.out.println("d2d");
 		return mDAO.getMsg;
 	}
 
 	@RequestMapping(value = "/messages.searchUser", method = RequestMethod.GET)
 	public @ResponseBody List<User> search(User u) {
-		System.out.println("d3d");
 		String name = u.getUser_ID();
 		System.out.println(name);
 		mDAO.search(name);
 		return mDAO.search(name);
+	}
+
+	@RequestMapping(value = "/messages.searchbyUser", method = RequestMethod.GET)
+	public @ResponseBody List<Message> searchbyUser(Message m) {
+		String name = m.getRm_userID();
+		System.out.println(name);
+		mDAO.searchbyUser(name);
+		return mDAO.searchbyUser(name);
+	}
+
+	@RequestMapping(value = "/messages.inviteUser", method = RequestMethod.GET)
+	public @ResponseBody void invite(Message msg) {
+		String name = msg.getRm_roomNum();
+		System.out.println(msg);
+		System.out.println(name);
+		mDAO.inviteUser(msg);
 	}
 
 	@RequestMapping(value = "/messages.open", method = RequestMethod.GET)
@@ -81,6 +95,20 @@ public class MessagesController {
 		mDAO.get(req);
 //		mDAO.getMsg(req);
 		return "home";
+	}
+
+	@RequestMapping(value = "/messages.out", method = RequestMethod.GET)
+	public String out(HttpServletRequest req, Message M) {
+		req.setAttribute("profilePage", "profileMini.jsp");
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "su/message.jsp");
+		mDAO.out(req, M);
+		if (mDAO.checkRoom(req, M) == null) {
+			mDAO.destroy(req, M);
+			return "home";
+		} else {
+			return "home";
+		}
 	}
 
 	@RequestMapping(value = "/messages.join", method = RequestMethod.GET)

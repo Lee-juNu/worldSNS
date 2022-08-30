@@ -47,6 +47,16 @@ public interface MessageMapper {
 
 	public List<User> search(String name);
 
+	void inviteUser(Message msg);
+
+	void outRoom(Message m);
+
+	public Message checkRoom(Message msg);
+
+	void destroyRoom(Message m);
+
+	public List<Message> searchbyUser(String name);
+
 
 
 }

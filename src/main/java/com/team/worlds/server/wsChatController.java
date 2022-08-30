@@ -64,10 +64,10 @@ public class wsChatController {
 			
 			//타입에 맞게 바꿔주세요
 			System.out.println(img);
+			mDAO.updateIndex2(message);
 			try
 				{
 
-				mDAO.updateIndex2(message);
 			
 /*				if (Dtype.equals("send")&&contents!=null) {
 //					basic.sendText(message.toString());	
@@ -81,6 +81,7 @@ public class wsChatController {
 				if (Dtype.equals("send")) {
 					mDAO.send(message);
 					sendAllChatRoomMember(message, session, pageType, userId);
+					mDAO.updateIndex2(message);
 
 				}}catch (Exception e) 
 				{

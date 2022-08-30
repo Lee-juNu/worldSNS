@@ -112,6 +112,8 @@ function jwSendWithFile(){
 						var sendId = rs.msg_sendUserID
 						if (rs.msg_img!="") {
 							var sendimg = rs.msg_img
+							var sendimg = sendimg.replace('C:\\fakepath', 'resources\\img\\chatimg\\')
+							console.log(sendimg)
 							var imgtag = "<img src="+sendimg+">"
 						}
 					 if (imgtag !=null && sendCon!=null) {

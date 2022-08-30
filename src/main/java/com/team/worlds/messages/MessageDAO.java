@@ -311,9 +311,42 @@ public class MessageDAO {
 		
 	}
 
+
+	public void inviteUser(Message msg) {
+		ss.getMapper(MessageMapper.class).inviteUser(msg);
+	}
+
+	public void out(HttpServletRequest req, Message m) {
+				
+		String outRoom = req.getParameter("outRoom");
+		String outID = req.getParameter("outID");
+		System.out.println(outID);
+		m.setRm_roomNum(outRoom);
+		m.setRm_userID(outID);
+		ss.getMapper(MessageMapper.class).outRoom(m);
+	}
+
+	public Message checkRoom(HttpServletRequest req, Message msg) {
+		
+		String room = req.getParameter("outRoom");
+		msg.setRm_roomNum(room);
+			return ss.getMapper(MessageMapper.class).checkRoom(msg);
+	}
+
+	public void destroy(HttpServletRequest req, Message m) {
+		String room = req.getParameter("outRoom");
+		m.setRm_roomNum(room);
+		ss.getMapper(MessageMapper.class).destroyRoom(m);		
+	}
+
 	public List<User> search(String name) {
 		ss.getMapper(MessageMapper.class).search(name);
 		return ss.getMapper(MessageMapper.class).search(name);				
+	}
+	
+	public List<Message> searchbyUser(String name) {
+		ss.getMapper(MessageMapper.class).searchbyUser(name);
+		return ss.getMapper(MessageMapper.class).searchbyUser(name);
 	}
 
 	

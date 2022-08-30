@@ -136,13 +136,15 @@ function search() {
 		        	   
 		        	   for (var i = 0; i < userdata.length; i++) {
 		        		   var friendlist = userdata[i].user_ID
-							console.log(friendlist)
-							console.log(i)
 						var user = document.createElement('div'); 
-						user.innerHTML = "<div>"+ friendlist+"</div>";
+						user.innerHTML =
+							
+							"<form onsubmit=\"invite()\" id=\"invite\"><div>"+friendlist+"<button>초대</button></div>" +
+							"<input type=\"hidden\" id=\"inviteUser\" value="+ friendlist +"></form>";
 						document.getElementById('userList').appendChild(user);
 		        	   }
 		        	   
+//		        	   user.innerHTML ="<div>"+friendlist+"<button onclick=+"+ "invite()"+ ">초대</button>"+"</div>";
 						
 						
 						 },
@@ -150,6 +152,66 @@ function search() {
 							console.log(error)
 						}
 		           });
+	 };
+
+	 function searchbyUser() {
+		 
+		 
+		 
+		 let searchBU = $('#searchbyUser').val();
+		 console.log(searchBU);
+		 
+		 $.ajax({
+			 url:"messages.searchbyUser",
+			 data:{"rm_userID": searchBU},
+			 type:'GET',
+			 dataType: 'json',
+			 success :  
+				 function(searchbyUser) {
+				 const SBUdata = searchbyUser;
+				 console.log(SBUdata)
+				 console.log(typeof(searchbyUser))
+				 
+				 for (var i = 0; i < SBUdata.length; i++) {
+					 var SBUlist = SBUdata[i].cr_Num
+					 var user = document.createElement('div'); 
+					 user.innerHTML =
+						 "<div>"+SBUlist+"</div>";
+					 document.getElementById('sbuDiv').appendChild(user);
+				 }
+				 
+				 
+				 
+			 },
+			 error:function(error){
+				 console.log(error)
+			 }
+		 });
+	 };
+	 
+	 
+	 function invite() {
+		 
+		 
+		 
+		 let inviteU = $('#inviteUser').val();
+		 let roomType = $('#wsRoomType').val();
+		 console.log(inviteU);
+		
+		 $.ajax({
+			 url:"messages.inviteUser",
+			 data:{"rm_userID": inviteU,
+				 "rm_roomNum":roomType},
+			 type:'GET',
+			 dataType: 'json',
+			 success :  
+				 function(invite) {
+				 console.log("invite")
+				 },
+			 error:function(error){
+				 console.log(error)
+			 }
+		 });
 	 };
 
 	 

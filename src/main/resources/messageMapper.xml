@@ -63,4 +63,24 @@ insert into RoomMemberTbl values ((select cr_Num from ChatRoomTbl where cr_owner
 insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum, jdbcType=VARCHAR}, #{msg_sendUserID, jdbcType=VARCHAR}, sysdate, (select count(*) from messageTbl where msg_RoomNum = #{msg_RoomNum}) + 1, #{msg_img, jdbcType=VARCHAR}, #{msg_Contents, jdbcType=VARCHAR})
 </insert>
 
+<insert id="inviteUser">
+insert into RoomMemberTbl values (#{rm_roomNum}, #{rm_userID}, 0)
+</insert>
+
+<delete id="outRoom">
+delete from RoomMemberTbl where RM_ROOMNUM = #{rm_roomNum} and RM_USERID = #{rm_userID}
+</delete>
+
+<delete id="destroyRoom">
+delete from chatroomTbl where CR_NUM = #{rm_roomNum}
+</delete>
+
+<select id="checkRoom" resultType="com.team.worlds.messages.Message">
+select * from RoomMemberTbl where RM_ROOMNUM = #{rm_roomNum}
+</select>
+
+<select id="searchbyUser" resultType="com.team.worlds.messages.Message">
+select * from chatroomTbl where cr_num in (select rm_roomnum from RoomMemberTbl where rm_userid like '%' ||#{rm_userID} || '%')
+</select>
+
 </mapper>
