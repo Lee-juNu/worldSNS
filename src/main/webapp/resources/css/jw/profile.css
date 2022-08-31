@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+
+.profileSectionDiv
+{
+	display:flex;
+}
+
+.profileMainDiv
+{
+	width:598px;
+	height:100%;
+}
+
+.profileDiv
+{
+	width			:100%;
+}
+
+.profileBlank
+{
+	width:100%;
+	height:50px;
+}
+.profileBGDiv
+{
+	width			:598px;
+	height			:200px;
+	
+	display: flex;
+}
+.profileBGDiv a
+{
+	width : 100%;
+	height : 100%;
+	overflow: hidden;	
+}
+
+.profileBGDiv a img
+{
+	width : 100%;
+}
+
+
+.profileDetailDiv
+{
+	display: flex;
+	flex-direction: column;
+	height : 400px;
+	padding: 16px 12px;
+	padding-bottom: 0px; 
+}
+
+
+.profileDetailDiv .iconEditDiv
+{
+	width: 100%;
+	height: 69px;
+	display: flex;
+	justify-content: space-between; 
+}
+
+.iconEditDiv .iconDiv
+{
+	position:relative;
+	margin-top: -15%;
+	width:141.5px;
+	height:141.5px;
+	border-radius: 9999px;	
+}
+
+
+.iconEditDiv .iconDiv img
+{
+	position : absolute;
+	width: 133.5px;
+	height : 133.5px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.iconEditDiv .editDiv
+{
+	width : 169px;
+	height : 48px;
+}
+
+.iconEditDiv .editDiv button
+{
+	background: transparent;
+	
+	width: 167px;
+	height : 36px;
+	border: 1px solid gray;
+	border-radius: 25px;
+	color : white;
+}
+
+
+.iconEditDiv .editDiv button:hover
+{
+	background-color: #202020;
+	cursor: pointer;
+}

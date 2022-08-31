@@ -40,6 +40,16 @@ create table proFileTbl
 				references userTbl(user_id)
 					on delete cascade
 )
+select * from roomMemberTbl
+
+update roomMemberTbl
+set rm_lastIndex=(select max(msg_index) from messageTbl where MSG_roomnum ='CR456')
+        where
+        rm_roomNum= 'CR456' and rm_userID='admin'
+
+select max(msg_index) from messageTbl where msg_roomnum ='CR456'
+
+select * from chatroomTbl
 
 select * from messageTbl
 

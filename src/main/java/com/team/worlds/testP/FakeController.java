@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,4 +60,20 @@ public class FakeController {
 		else
 			return false;
 	}
+	
+	
+	@RequestMapping(value = "{profile}", method = RequestMethod.GET)
+	public String goProfile(HttpServletRequest req, @PathVariable("profile") String profile) {
+
+		uDAO.loginCheck(req);
+		
+		
+		uDAO.getUserByID(profile, req);
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jw/fakeProfile.jsp");
+		
+		return "home";
+	}
+	
 }

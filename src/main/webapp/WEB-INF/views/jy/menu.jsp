@@ -19,7 +19,7 @@
 	<div class = "homeLogoImg"><img alt="" src="resources/img/util/logo/wlogo.png"></div>
 	<!-- 메뉴 링크 홈컨트롤러로 연결해놨는데 다른 곳에 있으면 옮기기 ! -->
 	<div class = "menuButton">
-		<a href=""><div class = "menuFlex">
+		<a href="home.go"><div class = "menuFlex">
 			<div>
 			<img class = "menuImg" alt="" src="resources/icon/white/homeIcon.png"> 
 			</div>
@@ -42,7 +42,7 @@
 	</div>
 	
 	<div class = "menuButton">
-		<a href=""><div class = "menuFlex">
+		<a href="messages.go"><div class = "menuFlex">
 			<div>
 			<img class = "menuImg" alt="" src="resources/icon/white/chatIcon.png"> 
 			</div>
@@ -64,7 +64,7 @@
 	</div>
 	
 	<div class = "menuButton">
-		<a href=""><div class = "menuFlex">
+		<a href="${sessionScope.loginMember.user_ID}"><div class = "menuFlex">
 			<div>
 			<img class = "menuImg" alt="" src="resources/icon/white/profileIcon1.png"> 
 			</div>

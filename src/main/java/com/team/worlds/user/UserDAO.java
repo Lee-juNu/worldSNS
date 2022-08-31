@@ -72,8 +72,6 @@ public class UserDAO {
 		User u = (User) req.getSession().getAttribute("loginMember");
 	//	Profile p = (Profile) req.getSession().getAttribute("loginMember");
 		if (u != null) {
-			req.setAttribute("profileMini", "jy/profileMini.jsp");
-		//	System.out.println("빰빰빰"+p.getPf_userID());
 			return true;
 			
 		} else {
@@ -278,7 +276,13 @@ public class UserDAO {
 		}
 	}
 	
+	public void getUserByID(String userId, HttpServletRequest req)
+	{
+		User user = ss.getMapper(UserMapper.class).getMemberByID(userId);
 		
+		
+		req.setAttribute("findUser", user);
+	}
 		
 	
 

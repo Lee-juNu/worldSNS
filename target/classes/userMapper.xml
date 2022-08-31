@@ -64,8 +64,6 @@
 		user_phoneNumber=#{user_phoneNumber}, 
 		user_email=#{user_email}
 		
-		
-		
 		where user_ID=#{user_ID}
 	</update>
 	

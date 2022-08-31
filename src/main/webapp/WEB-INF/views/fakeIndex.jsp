@@ -10,6 +10,7 @@
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/fakeIndex.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/loginModal.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/colorTemplet.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/profile.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/map.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
