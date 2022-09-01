@@ -48,6 +48,8 @@
 				<beans:value>classpath:userMapper.xml</beans:value>
 				<beans:value>classpath:messageMapper.xml</beans:value>
 				<beans:value>classpath:profileMapper.xml</beans:value>
+				<beans:value>classpath:searchMapper.xml</beans:value>
+				<beans:value>classpath:followMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

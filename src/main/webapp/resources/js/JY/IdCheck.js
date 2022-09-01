@@ -1,16 +1,11 @@
-
+window.onload = function()
+{
 
 
 window.alert("yeah!");
 
-function btn(){
-    alert('버튼이 클릭되었습니다');
-    
-}
-
-/*
 // 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-	$("#user_ID").onblur(function() {
+	$("#user_ID").blur(function() {
 		alert("eeeeeee")
 
 		var user_ID = $('#user_ID').val();
@@ -18,12 +13,12 @@ function btn(){
 		// id = "id_reg" / name = "userId"
 		
 		$.ajax({
-			url : '${pageContext.request.contextPath}/user/idCheck?user_ID='+ user_ID,
+			url : 'user/idCheck?user_ID='+ user_ID,
 			type : 'get',
 			success : function(data) {
 				console.log("1 = 중복o / 0 = 중복x : "+ data);							
 				
-				if (data == 1) {
+				if (data == true) {
 						// 1 : 아이디가 중복되는 문구
 						$("#id_check").text("사용중인 아이디입니다 :p");
 						$("#id_check").css("color", "red");
@@ -53,4 +48,6 @@ function btn(){
 						console.log("실패");
 				}
 			});
-		});*/
+		});
+	
+}

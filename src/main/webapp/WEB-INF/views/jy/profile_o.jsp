@@ -12,17 +12,17 @@
 <body>
 
 <div>
-<div>배경 사진</div>
+<%-- <div>배경 사진</div>
 <div><img src="resources/pf_Img/${sessionScope.OtherMember.pf_Img }"> </div>
 <div>프로필 사진 </div>
-<div><img src="resources/pf_Img/${sessionScope.OtherMember.pf_bgImg }"> </div>
+<div><img src="resources/pf_Img/${sessionScope.OtherMember.pf_bgImg }"> </div> --%>
 <div>닉네임</div>
 <div>${sessionScope.OtherMember.user_nickName }</div>
 <div>아이디</div>
 <div>${sessionScope.OtherMember.user_ID }</div>
 
 <div>자기소개</div>
-<div>${sessionScope.OtherMember.pf_contents }</div>
+<div>${sessionScope.OtherMember.user_contents }</div>
 <div>생일 (변경 불가)</div>
 <div>${sessionScope.OtherMember.user_birthDay }</div>
 <hr>
@@ -31,8 +31,8 @@
 <div>게시판</div>
 <div></div>
 
-</div>
-
+</div> 
+<div>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>
 
 </body>
 </html>

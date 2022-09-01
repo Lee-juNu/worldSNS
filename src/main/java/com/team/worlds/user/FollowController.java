@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class SearchController {
+public class FollowController {
 
-	@Autowired
+	/*@Autowired
 	private UserDAO uDAO;
 	@Autowired
 	private SearchDAO seaDAO;
@@ -52,6 +52,6 @@ public class SearchController {
 		
 		return "home";
 	}
-	
+	*/
 	
 }

@@ -110,7 +110,7 @@ public class SettingDAO {
 	
 	
 
-	public void updateProfile(User u, Profile p, HttpServletRequest req) {
+	public void updateProfile(User u,  HttpServletRequest req) {
 
 		
 		User loginMember = (User) req.getSession().getAttribute("loginMember");
@@ -126,9 +126,9 @@ public class SettingDAO {
 				String newFile1 = null;
 				String newFile2 = null;
 				
-				p.setPf_userID(loginMember.getUser_ID());
+				u.setUser_ID(loginMember.getUser_ID());
 				
-				System.out.println("아이디확인" + p.getPf_userID());
+				System.out.println("아이디확인" + u.getUser_ID());
 				System.out.println("stadt" + mr.getParameter("user_birthDay"));
 		        Date date = Date.valueOf(mr.getParameter("user_birthDay"));
 		        String user_nickName = mr.getParameter("user_nickName");
@@ -139,9 +139,9 @@ public class SettingDAO {
 		        
 		        
 		        u.setUser_birthDay(date);
-		        p.setPf_Img(newFile1);
-				p.setPf_bgImg(newFile2);
-				p.setPf_contents(Spf_contents);
+		       /* u.setPf_Img(newFile1);
+				u.setPf_bgImg(newFile2);*/
+				u.setUser_contents(Spf_contents);
 				u.setUser_nickName(user_nickName);
 				
 				
@@ -172,29 +172,27 @@ public class SettingDAO {
 					newFile2 = newFile2.replace("+", " ");
 				}
 				
-				System.out.println("확인용" + p.getPf_userID());
-				
 				System.out.println("왜안되지5");
 				System.out.println("왜안되지5");
 				
-				p.setPf_Img(newFile1);
+				/*u.setPf_Img(newFile1);
 				p.setPf_bgImg(newFile2);
-				p.setPf_contents(Spf_contents);
+				*/
+				u.setUser_contents(Spf_contents);
+			
 				u.setUser_nickName(user_nickName);
 				
 				
-				System.out.println("오1"+p.getPf_Img());
-				System.out.println("어11"+p.getPf_bgImg());
-				System.out.println("어13"+p.getPf_contents());
+				System.out.println("어13"+u.getUser_contents());
 				System.out.println("어14"+u.getUser_nickName());
 			
 				System.out.println("왜안되지6");
 			
 	
 			
-			System.out.println("자기소개 확인" + p.getPf_contents());
+		//	System.out.println("자기소개 확인" + p.getPf_contents());
 			
-			if (ss.getMapper(UserMapper.class).updateProfile(p) == 1) {
+			if (ss.getMapper(UserMapper.class).updateProfile(u) == 1) {
 				
 				
 				req.setAttribute("result", "수정 성공");
@@ -211,7 +209,7 @@ public class SettingDAO {
 			}
 			
 		}catch (Exception e) {
-			System.err.println("자기소개 확인" + p.getPf_contents());
+			System.err.println("자기소개 확인" + u.getUser_contents());
 			
 				e.printStackTrace();
 				req.setAttribute("result", "실패");

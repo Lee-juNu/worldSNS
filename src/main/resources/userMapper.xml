@@ -14,8 +14,8 @@
 	</insert>
 	
 	
-	<select id="checkOverId" parameterType="String"	resultType="int">
-		select * from userTbl where user_ID = ${user_ID}
+	<select id="checkOverId" parameterType="String"	resultType="com.team.worlds.user.User">
+		select * from userTbl where user_ID = #{user_ID}
 	</select>
 	
 	
@@ -113,7 +113,7 @@
 	</update>
 	
 		
-	<update id="updateProfile"	parameterType="com.team.worlds.user.Profile">
+	<update id="updateProfile"	parameterType="com.team.worlds.user.User">
 		update proFileTbl set 
 		pf_Img=#{pf_Img}, 
 		pf_bgImg=#{pf_bgImg}, 

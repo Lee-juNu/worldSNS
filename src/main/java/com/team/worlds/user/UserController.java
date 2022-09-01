@@ -47,16 +47,15 @@ public class UserController {
 		//로그인 체크하고
 
 		uDAO.loginCheck(req);
-		uDAO.goProfile(user_ID_o, u_o,p_o, req);
+		uDAO.goProfile(user_ID_o, u_o,req);
 		
 		
 		
 		req.setAttribute("profilePage", "profileMini.jsp");
-		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "jy/profile_o.jsp");
 		
-		return "index";
+		return "home";
 	}
 	
 	 
@@ -126,8 +125,12 @@ public class UserController {
 	// id 중복 체크 컨트롤러
 	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public int idCheck(@RequestParam("user_ID") String user_ID) {
+	public boolean idCheck(@RequestParam("user_ID") String user_ID) {
 
+		
+
+		System.out.println(user_ID);
+		
 		return uDAO.userIdCheck(user_ID);
 	}
 
@@ -219,7 +222,6 @@ public class UserController {
 		System.out.println("흠");
 		
 		uDAO.joinus(u, req);
-		uDAO.joinusp(p, req);
 		req.setAttribute("joinusPage", "joinus5.jsp");
 		
 		

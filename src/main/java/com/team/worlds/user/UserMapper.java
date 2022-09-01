@@ -24,17 +24,18 @@ public interface UserMapper {
 
 	int updateFindPW(User u);
 
-	int updateProfile(Profile p);
 
 	int updateUserProfile(User u);
 	
 	int joinusp(Profile p);
 
-	int checkOverId(String user_ID);
+	User checkOverId(String user_ID);
 
 	User_o getOtherMemberByID(User_o u_o);
 
 
 	User_o getOtherProfileMemberByID(Profile_o p_o);
+
+	int updateProfile(User u);
 
 }

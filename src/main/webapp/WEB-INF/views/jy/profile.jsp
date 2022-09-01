@@ -27,6 +27,8 @@
 <div>아이디</div>
 <div>${sessionScope.loginMember.user_ID }</div>
 
+<div><button>팔로우, 언팔로우 버튼</button></div>
+
 <div>자기소개</div>
 <div>${sessionScope.loginMemberp.pf_contents }</div>
 <div>생일 (변경 불가)</div>

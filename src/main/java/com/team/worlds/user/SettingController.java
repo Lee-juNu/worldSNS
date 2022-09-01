@@ -167,7 +167,7 @@ public class SettingController {
 	public String goSettingProfileR(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
-		sDAO.updateProfile(u, p, req);
+		sDAO.updateProfile(u, req);
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		
