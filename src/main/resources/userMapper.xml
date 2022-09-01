@@ -4,14 +4,9 @@
 
 	<!-- id 다시 보기! -->
 	<insert id="joinus">
-    DECLARE
-	BEGIN
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
-		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay});
-		
-		insert into proFileTbl values (#{user_ID}, null , null, null);
-	END;
+		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null);
 	</insert>
 
 

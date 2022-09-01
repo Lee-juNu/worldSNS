@@ -17,7 +17,7 @@ public class User {
 	private Date user_birthDay;
 	private int level;
 	private String regDate;
-	
+	private String user_contents;
 	
 	
 	public User() {
@@ -28,7 +28,8 @@ public class User {
 
 
 	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
-			String user_email, String user_country, String user_city, Date user_birthDay, int level, String regDate) {
+			String user_email, String user_country, String user_city, Date user_birthDay, int level, String regDate
+			,String user_contents) {
 		super();
 		this.user_ID = user_ID;
 		this.user_PW = user_PW;
@@ -41,6 +42,7 @@ public class User {
 		this.user_birthDay = user_birthDay;
 		this.level = level;
 		this.regDate = regDate;
+		this.user_contents = user_contents;
 	}
 
 
@@ -101,6 +103,18 @@ public class User {
 
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+
+
+
+	public String getUser_contents() {
+		return user_contents;
+	}
+
+
+
+	public void setUser_contents(String user_contents) {
+		this.user_contents = user_contents;
 	}
 
 

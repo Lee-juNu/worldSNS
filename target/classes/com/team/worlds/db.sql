@@ -9,7 +9,10 @@ create table userTbl
 	user_regDate date not null
 )
 select * from profileTbl
+ alter table userTbl add user_contents varchar2(160 char);
 
+ update userTbl set user_contents = 'japan oosaka like' where user_id = 'yorunohosi'
+ 
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'userTbl';
 select * from profileTbl where pf_userID = 'sadfds321'
 

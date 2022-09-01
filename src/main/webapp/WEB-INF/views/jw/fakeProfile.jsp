@@ -36,8 +36,6 @@
 					<c:if test ="${findUser.user_ID!=sessionScope.loginMember.user_ID}">
 						<button>팔로우</button>
 					</c:if>
-					
-					
 					</div>
 				</div>
 				<div class = "ProfileIdNameDiv">
@@ -45,10 +43,10 @@
 					<div class = "idDiv">@${findUser.user_ID}</div>
 				</div>				
 				<div class = "profileContentsDiv">
-				설명설명이 들어올 곳 아직 DB안갖춰짐
+					${findUser.user_contents}
 				</div>
 			</div>
-				
+			
 			</div>
 		</div>
 	</div>
