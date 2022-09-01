@@ -9,8 +9,10 @@ import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -20,6 +22,9 @@ public class UserDAO {
 
 	@Autowired
 	SqlSession ss;
+	
+	
+	
 
 	public void templogin(HttpServletRequest req) {
 
@@ -31,23 +36,18 @@ public class UserDAO {
 		}
 	}
 
-	public void login(User u, Profile p, HttpServletRequest req) {
+	public void login(User u, HttpServletRequest req) {
 
 		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
-	//	Profile dbProfile = ss.getMapper(ProfileMapper.class).getProfileByID(p.getPf_userID());
 
-		//System.out.println("지성이"+ p.getPf_userID());
-		System.out.println("틈만나면네가생각나...");
 		
 		
 		
 		if (dbUser != null) {
 			if (u.getUser_PW().equals(dbUser.getUser_PW())) {
 				req.getSession().setAttribute("loginMember", dbUser);
-			//	req.getSession().setAttribute("loginMember", dbProfile);
 				req.getSession().setMaxInactiveInterval(600 * 10);
 				System.out.println(dbUser.getUser_nickName());
-				System.out.println("빰빰빰"+p.getPf_userID());
 
 			} else {
 				System.out.println("실패");
@@ -69,10 +69,8 @@ public class UserDAO {
 	public boolean loginCheck(HttpServletRequest req) {
 
 		User u = (User) req.getSession().getAttribute("loginMember");
-	//	Profile p = (Profile) req.getSession().getAttribute("loginMember");
 		if (u != null) {
 			req.setAttribute("profileMini", "jy/profileMini.jsp");
-		//	System.out.println("빰빰빰"+p.getPf_userID());
 			return true;
 			
 		} else {
@@ -115,7 +113,26 @@ public class UserDAO {
 		}
 
 	}
+	
+	
 
+	// 중복 아이디 체크
+	public boolean userIdCheck(String user_ID) {
+
+		System.out.println(user_ID);
+		
+		if (ss.getMapper(UserMapper.class).checkOverId(user_ID) == null) {
+			
+			return false;
+			
+		}
+		
+		return true;
+	
+}
+
+	
+	
 	public void secession(HttpServletRequest req) {
 		try {
 			User u = (User) req.getSession().getAttribute("loginMember");
@@ -224,6 +241,75 @@ public class UserDAO {
 		}
 		}
 	}
+
+
+/*
+	public void goProfile(String user_ID_o, User_o u_o, Profile_o p_o, HttpServletRequest req) {
+
+		
+		System.out.println(user_ID_o);
+		System.out.println("호오잉");
+		
+		//User dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
+		
+//		System.out.println("에엥" + dbUser.getUser_ID());
+		
+		String user_ID = user_ID_o;
+		
+		u_o.setUser_ID("9");
+		p_o.setPf_userID("9");
+		
+		User_o dbUser_o = ss.getMapper(UserMapper.class).getOtherMemberByID(u_o);
+		User_o dbUser_p = ss.getMapper(UserMapper.class).getOtherProfileMemberByID(p_o);
+		
+		System.out.println(u_o.getUser_ID());
+		System.out.println(p_o.getPf_userID());
+		
+		
+		
+		
+		System.out.println("흠" + dbUser_o.getUser_ID());
+		
+	//	req.getSession().setAttribute("loginMember", dbUser);
+		req.getSession().setAttribute("OtherMember", dbUser_o);
+		req.getSession().setAttribute("OtherMemberP", dbUser_p);
+		
+		System.out.println("열ㅋ" + dbUser_o.getUser_ID());
+		
+		
+	}
+*/
+
+
+	public void goProfile(String user_ID_o, User_o u_o, HttpServletRequest req) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(user_ID_o);
+		System.out.println("호오잉");
+		
+//		User dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
+		
+//		System.out.println("에엥" + dbUser.getUser_ID());
+		
+		String user_ID = user_ID_o;
+		
+		u_o.setUser_ID(user_ID);
+		
+		System.out.println(u_o.getUser_ID());
+		
+		
+		
+		User_o dbUser_o = ss.getMapper(UserMapper.class).getOtherMemberByID(u_o);
+		
+		
+		System.out.println("흠" + dbUser_o.getUser_ID());
+		
+	//	req.getSession().setAttribute("loginMember", dbUser);
+		req.getSession().setAttribute("OtherMember", dbUser_o);
+		
+		System.out.println("열ㅋ" + dbUser_o.getUser_ID());
+		
+	}
 	
 	
 		
@@ -264,7 +350,7 @@ public void update(Profile p, User u, HttpServletRequest req) {
 		String juser_name = mr.getParameter("jm_name");
 		String jpf_Img = newFile;
 		
-		u.setUser_ID(juser_ID);
+		u.setuser_ID(juser_ID);
 		u.setUser_PW(juser_PW);
 		u.setUser_name(juser_name);
 		p.setPf_Img(jpf_Img);
@@ -297,4 +383,22 @@ public void update(Profile p, User u, HttpServletRequest req) {
 	}
 	
 }*/
+	/*
+	public void joinusp( HttpServletRequest req) {
+
+		String juser_ID = req.getParameter("user_ID");
+
+		p.setPf_userID(juser_ID);
+		
+
+		if (ss.getMapper(UserMapper.class).joinusp(p) == 1) {
+			req.setAttribute("result", "성공적으로 가입이 완료되었습니다!");
+		} else {
+			req.setAttribute("result", "가입에 실패하였습니다.. 잠시 후 다시 시도해 주세요!");
+
+		}
+
+	}
+
+	*/
 }

@@ -4,25 +4,88 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserDAO uDAO;
+	/*
+	
+	@RequestMapping(value = "/profile/go/ID={user_ID_o}", method = RequestMethod.GET)
+	public String goOtherProfile(@PathVariable("user_ID_o") String user_ID_o,
+			User u, HttpServletRequest req, User_o u_o, Profile_o p_o) {
+		
+		//세션 만들고
+		//로그인 체크하고
+
+		uDAO.loginCheck(req);
+		uDAO.goProfile(user_ID_o, u, u_o,p_o, req);
+		
+		
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/profile_o.jsp");
+		
+		return "index";
+	}
+	
+	*/
 	
 	
+	@RequestMapping(value = "/profile/go/{user_ID_o}", method = RequestMethod.GET)
+	public String goOtherProfile(@PathVariable("user_ID_o") String user_ID_o,
+			User u, HttpServletRequest req, User_o u_o, Profile_o p_o) {
+		
+		//세션 만들고
+		//로그인 체크하고
+
+		uDAO.loginCheck(req);
+		uDAO.goProfile(user_ID_o, u_o,req);
+		
+		
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/profile_o.jsp");
+		
+		return "home";
+	}
 	
+	 
+/*	@RequestMapping(value = "/profile.go/ID={user_ID_o}", method = RequestMethod.GET)
+	public String temp_gootherdsss(@PathVariable("user_ID_o") String user_ID_o, User u, HttpServletRequest req) {
+				
+		//세션 만들고
+		//로그인 체크하고
+	//	uDAO.templogin(req);
+	//	uDAO.loginCheck(req);
+		
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/setting.jsp");
+		
+		return "home";
+	}
+	*/
 	
 	@RequestMapping(value = "/user.login", method = RequestMethod.POST)
 	public String userLogin(Profile p, User u, HttpServletRequest req) {
 		
-		//System.out.println(u.getUser_ID());
+		//System.out.println(u.getuser_ID());
 		//System.out.println(u.getUser_PW());
 		
 		// 로그인
-		uDAO.login(u, p, req);
+		uDAO.login(u, req);
 		
 		
 		u = (User) req.getSession().getAttribute("loginMember");
@@ -58,7 +121,19 @@ public class UserController {
 		
 	}
 	
-	
+
+	// id 중복 체크 컨트롤러
+	@RequestMapping(value = "/user/idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean idCheck(@RequestParam("user_ID") String user_ID) {
+
+		
+
+		System.out.println(user_ID);
+		
+		return uDAO.userIdCheck(user_ID);
+	}
+
 	@RequestMapping(value = "/user.findid.go", method = RequestMethod.GET)
 	public String findid(HttpServletRequest req) {
 		
@@ -141,7 +216,7 @@ public class UserController {
 		
 	}
 	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
-	public String joinusGo5(User u,HttpServletRequest req) {
+	public String joinusGo5(Profile p, User u,HttpServletRequest req) {
 		
 
 		System.out.println("흠");

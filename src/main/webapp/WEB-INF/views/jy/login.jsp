@@ -40,6 +40,7 @@ function findID()
 	${result }
 	<form action="user.login" method="post" name="loginForm">
 		<div>
+		
 			<div>
 				ID <input id="user_ID" name="user_ID">
 			</div>

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User {
+public class User_o {
 	private String user_ID;
 	private String user_PW;
 	private String user_nickName;
@@ -22,10 +22,9 @@ public class User {
 	
 	
 	
-	public User() {
+	public User_o() {
 		// TODO Auto-generated constructor stub
 	}
-
 
 
 
@@ -198,7 +197,7 @@ public class User {
 
 
 
-	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
+	public User_o(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
 			String user_email, String user_country, String user_city, String user_contents, Date user_birthDay,
 			int level, String regDate) {
 		super();

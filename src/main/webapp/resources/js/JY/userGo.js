@@ -1,3 +1,16 @@
+
+
+function goto9()
+{
+	location.href = 'profile/go/9';
+	
+}
+
+
+
+
+
+
 function goLogin()
 {
 	location.href = 'index.go';
@@ -33,6 +46,11 @@ function goSettingInfo()
 function goSettingProfile()
 {
 	location.href = 'setting.go.Profile';
+}
+
+function goSettingProfileR()
+{
+	location.href = 'setting.go.ProfileR';
 }
 
 function goSettingSecession()

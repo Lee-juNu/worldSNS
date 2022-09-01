@@ -76,6 +76,8 @@ public class HomeController {
 		//세션 만들고
 		//로그인 체크하고
 		uDAO.templogin(req);
+		uDAO.loginCheck(req);
+		
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
