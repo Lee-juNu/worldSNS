@@ -50,7 +50,7 @@ insert into RoomMemberTbl values ((select cr_Num from ChatRoomTbl where cr_owner
 
 <update id="updateIndex2" parameterType="com.team.worlds.messages.Message">
 		update RoomMemberTbl
-		set rm_lastIndex=(select max(msg_index) from messageTbl)
+		set rm_lastIndex=(select max(msg_index) from messageTbl where msg_roomnum =#{msg_RoomNum})
 		where
 		rm_roomNum=#{msg_RoomNum} and rm_userID=#{msg_sendUserID}
 	</update>
