@@ -14,7 +14,7 @@
 		else
 		{														
 														//여기까진  //chatroom12345//dkdkd
-            ws=new WebSocket("ws://localhost:8081/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
+            ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
             	
             ws.onopen=function(event){
             	if(event.data===undefined) return;
@@ -34,10 +34,9 @@
 		function sendMsg(msgData)
 		{
 			var jsonData = JSON.stringify(msgData);
-			console.log(jsonData)
+			console.log(msgData);
 			ws.send(jsonData);
 		}
-		
         function send(){	
 			var memberData = 
 			{
@@ -55,23 +54,14 @@
 		function sendFile(fileId, folderSendName)
 		{
 			//파일의 풀 경로 (ex:"C:\\teamProject\\resource\\img\\file.img")
-			
-			
-			var regex = / /gi;
-			if(fileId != null && fileId != ''){
-				fileId.replace(regex, '');
-			}
-				
-			
 			var filePathName = $("#"+fileId).val().split("\\");
-//			var filePathName = (fileId||'').split(".");
 			//파일명(ex:"file.png")
 			var fileSendName = filePathName[filePathName.length-1];
 			//멀티플일때 첫번째파일(업로드 데이터)
 			var file = document.getElementById(fileId).files[0];
 			
-			console.log(fileSendName);	//파일명 잘 들어갔는지 확인			
 			
+			console.log(fileSendName);	//파일명 잘 들어갔는지 확인			
 
 			//파일이 안비어있으면
 			if(fileSendName!="")
@@ -132,8 +122,6 @@
         function closeSocket(){
             ws.close();
         }
-        
         function writeResponse(text){
-			var messages = document.getElementById("sendmsg")
-			messages.innerHTML += '<br>'+ text;
+			console.log(text);
         }

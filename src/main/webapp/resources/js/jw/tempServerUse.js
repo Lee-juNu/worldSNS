@@ -45,9 +45,6 @@ window.onload = function()
 }
 function receiveMessage(message)
 {
-	//간단한 메모입니다 innerHTML은 HTML에 어떠한 내용을 추가한다는걸로 <br> <div>등등 아무거나 다 추가 가능
-	//웹소켓쪽에서 메시지를 보내면 messages라는 div를 참조해서 그 안에 한줄 띄우고 메시지를 입력
-		var messages = document.getElementById("messages")
-			messages.innerHTML += '<br>'+ message;
+	console.log("asdf");
 }
 

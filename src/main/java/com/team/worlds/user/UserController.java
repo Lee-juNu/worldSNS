@@ -105,8 +105,6 @@ public class UserController {
 			req.setAttribute("loginPage", "jy/login.jsp");
 			return "index";
 		}
-		
-		
 	}
 	
 	

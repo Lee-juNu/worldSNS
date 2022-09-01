@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.worlds.fileUtil.FileManager;
 
 @Service
 public class UserDAO {
@@ -312,7 +313,62 @@ public class UserDAO {
 	}
 	
 	
+	public boolean login2(User u, HttpServletRequest req) {
+
 		
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
+			
+			
+			if (dbUser != null) {
+				if (u.getUser_PW().equals(dbUser.getUser_PW())) {
+					req.getSession().setAttribute("loginMember", dbUser);
+					req.getSession().setMaxInactiveInterval(600 * 10);
+					return true;
+				} else {
+					System.out.println("실패");
+				}
+			} else {
+				System.out.println("실패");
+			}
+			return false;
+	}
+	
+	public boolean joinUs(User u, HttpServletRequest req)
+	{
+		
+		Date date = Date.valueOf(req.getParameter("str_user_birthDay")); 
+		u.setUser_birthDay(date);
+		
+		System.out.println(u.getUser_ID());
+		System.out.println(u.getUser_PW());
+		System.out.println(u.getUser_birthDay());
+		
+		ss.getMapper(UserMapper.class).joinus(u);
+		
+		if(login2(u,req))
+		{
+			try
+			{
+				FileManager.createUploadFolder("profile/"+u.getUser_ID());				
+			}
+			catch (Exception e) {
+				System.out.println(e);
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public void getUserByID(String userId, HttpServletRequest req)
+	{
+		User user = ss.getMapper(UserMapper.class).getMemberByID(userId);
+		
+		
+		req.setAttribute("findUser", user);
+	}
 		
 	
 

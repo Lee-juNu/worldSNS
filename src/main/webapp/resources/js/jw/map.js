@@ -27,17 +27,18 @@ var currentScale = 1;
 var offsetPtX=0;
 var offsetPtY=0;
 
-window.onload = function(){
+
+
+function mapInit(){
 	addCountrySelectEvent();
 	mapMatrixInit();
 	addMapDivEvnet();
-
 	svg.addEventListener('mousemove',function(evt){
   		var loc = cursorPoint(evt);
 		onMouse = loc;
 		if(onClick)
 		{
-			MapMove();			
+			//MapMove();			
 		}
 		
 		
@@ -46,9 +47,9 @@ window.onload = function(){
 	document.addEventListener("wheel", function (e) {
 	
 	if (e.deltaY > 0) {
-			zoom(-1,e);    		 
+			//zoom(-1,e);    		 
   		} else {
-			zoom(1,e);
+			//zoom(1,e);
   		}
 	});
 	

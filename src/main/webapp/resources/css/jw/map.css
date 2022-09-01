@@ -1,25 +1,23 @@
 @charset "UTF-8";
 
 .container {
-  width: 1000px;
-  height :647px;
+  height :100%;
   margin: 0 auto;
   overflow:hidden;
+  display: flex;
+  justify-content: center;
 }
-path {fill: lightgray; stroke: white;}
-path:hover {fill: gray;}
+
+
+path {fill: #202020; stroke: #ee005d;}
+path:hover {fill: #ee005d;}
 
 
 .mapSvg
 {
+	height : 100%;
 	stroke-linejoin: round; 
 	stroke:#000;
 	fill: none;
-	version:1.1; 
-	cursor: move;
-	width: 1000px;
-	height: 647px;
-	transform: scale(1);
-	max-width: 1000px;
-    max-height: 647px;
+	text-align: center;
 }

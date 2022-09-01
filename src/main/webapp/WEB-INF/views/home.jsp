@@ -4,10 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>W's</title>
 
 <!-- CSS모음-->
 <link rel = "stylesheet" type = "text/css" href = "resources/css/home.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/fakeBoard.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/subPage.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/profile.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/colorTemplet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 
 
@@ -17,7 +24,7 @@
 <!-- 병합전의 JS를 입력해주세요 -->
 
 </head>
-<body class ="homeBody">
+<body class ="homeBody bgColor">
 
 
 <div class = "homeDiv">
@@ -43,7 +50,6 @@
 		</div>
 	</div>
 </div>
-
 
 </body>
 </html>

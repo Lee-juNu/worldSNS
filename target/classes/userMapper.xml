@@ -4,13 +4,9 @@
 
 	<!-- id 다시 보기! -->
 	<insert id="joinus">
-
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
-		null,null, 1 ,sysdate,null)
-		
-
-
+		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null);
 	</insert>
 	
 	
@@ -106,8 +102,6 @@
 		user_nickName=#{user_nickName}, 
 		user_phoneNumber=#{user_phoneNumber}, 
 		user_email=#{user_email}
-		
-		
 		
 		where user_ID=#{user_ID}
 	</update>

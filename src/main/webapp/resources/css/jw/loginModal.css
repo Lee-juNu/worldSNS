@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+
+#modal.modal-overlay, #modalJoin.modal-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+    		display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        #modal .modal-window,  #modalJoin .modal-window {
+            background: rgba( 0,0,0, 1);
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 400px;
+            height: 500px;
+            top: -100px;
+            padding: 10px;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+            
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        #modal .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            color: white;
+            text-align: center;
+        }
+        #modal .mLogoDiv
+        {
+        	width: 100%;
+        	text-align: center;
+        	margin-top: 5%;
+        }
+        
+        #modal input
+        {
+        	width : 90%;
+        	height : 30px;
+        	margin : auto 0;
+        	background-color : #121212;
+        	color: white;
+        	margin-top: 3%;
+        	border:none;
+        }
+        
+        #modal input:hover
+        {
+       		outline: 1px solid #ee005d;
+        }
+        #modal input:focus
+        {
+       		outline: 1px solid #ee005d;
+        }
+        #modal .mloginBtn
+        {
+        	width :90%;
+        	height : 40px;
+        	background-color: #ee005d;
+        	margin-top: 3%;
+        	border-radius: 5px; 
+        }
+        #modal .forgotPwDiv
+        {
+            margin-top: 5%;
+        }
+        #modal .joinUsDiv
+        {
+            margin-top: 5%;
+        }
+        
+        #modal a
+        {
+        	color : #ee005d;
+        }
+        
+        
+        
+        
+        
+        
+        #modalJoin .title {
+            padding-left: 10px;
+            display: inline;
+            text-shadow: 1px 1px 2px gray;
+            color: white;
+            
+        }
+        #modalJoin .title h2 {
+            display: inline;
+        }
+        #modalJoin .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        #modalJoin .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            color: white;
+            text-align: center;
+        }
+        #modalJoin .mLogoDiv
+        {
+        	width: 100%;
+        	text-align: center;
+        	margin-top: 5%;
+        }
+        
+        #modalJoin input
+        {
+        	width : 90%;
+        	height : 40px;
+        	margin : auto 0;
+        	background-color : #121212;
+        	color: white;
+        	margin-top: 8%;
+        	border:none;
+        }
+        
+        #modalJoin input:hover
+        {
+       		outline: 1px solid #ee005d;
+        }
+        #modalJoin input:focus
+        {
+       		outline: 1px solid #ee005d;
+        }
+        
+        #modalJoin select
+        {
+        	color : black;
+        }
+    
+        
+       
+        #modalJoin #joinDiv2
+        {
+        	display : none;
+        }
+        #modalJoin #joinDiv3
+        {
+        	display : none;
+        }
+        #modalJoin #joinDiv4
+        {
+        	display : none;
+        }
+        
+        #modalJoin .stepBtnDiv
+        {
+        	display : flex;
+        	left : 0;
+        	position :absolute;
+        	bottom :30px;
+        	width : 100%;
+        	height : 10%;
+        }
+        
+        #modalJoin .stepLeftDiv
+        {
+        	width: 30%;
+        	left : 20px;
+        	margin-left: 10%;
+        	margin-right : auto;
+        }
+        #modalJoin .stepRightDiv
+        {
+        	width: 30%;
+        	margin-left: auto;
+        	margin-right : 10%;
+        }
+        
+        #modalJoin .stepBtn
+        {
+        	width:100%;
+        	height:100%;
+        	background-color: #ee005d;
+        	border-radius: 5px; 
+        }
+        
+        
+        #modalJoin .birthDayDiv
+		{
+			margin-left: 5%;
+			margin-top: 15%;
+			text-align: left;
+		}
+		
+        #modalJoin .birthDaySelectDiv
+        {
+        	display: flex;
+        	margin-top: 5%;
+        }
+        #modalJoin .joinBirthDiv
+        {
+        	border : 1px solid #3c3c3c;
+        	border-radius: 5px;
+        	height : 50px;
+        }
+        
+        #modalJoin .joinBirthSel
+        {
+        	border : none;
+        	border-radius:0;
+        	background:url(../) no-repeat 80% 50%;
+        	color: white;
+        	width:100%;
+        }
+        #modalJoin .joinBirthSel option
+        {
+        background-color: black;
+        }
+		#modalJoin .birthTextDiv
+		{
+			text-align: left;
+		}       
+		
+		#modalJoin .monthDiv
+		{
+			width:35%;
+		}
+		#modalJoin .dayDiv
+		{
+			margin-left : 5%;
+			width:20%;
+		}
+		#modalJoin .yearDiv
+		{
+			margin-left : 5%;
+		
+			width:30%;
+		}
+		
+		
+		
+		
