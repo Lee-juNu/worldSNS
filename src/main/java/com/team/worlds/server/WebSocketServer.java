@@ -98,7 +98,7 @@ public class WebSocketServer{
     		, @PathParam(value = "userId") String userId) {
     	
   
-        
+        System.out.println("시도중"+userId);
     	logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();

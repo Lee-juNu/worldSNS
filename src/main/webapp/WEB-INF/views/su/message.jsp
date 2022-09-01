@@ -71,7 +71,7 @@ else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button
 
 
 <input type="hidden" id="wsRoomType" value="${roomNum }">
-<input type="hidden" id="wsUserId" value="${loginMember.user_ID }">
+<input type="hidden" id="wsUserId" value="${sessionScope.loginMember.user_ID}">
 
     <div id="modal" class="modal-overlay">
         <div class="modal-window">

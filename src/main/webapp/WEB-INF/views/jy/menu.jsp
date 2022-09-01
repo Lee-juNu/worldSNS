@@ -81,7 +81,8 @@
 	<div class = "menuProfile" >
 		<div class = "profileIcon"> 
 		<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
-		onerror="this.src='resources/img/profile/s.png';"/> </div>
+		onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/> </div>
+		
 		<div class = "profileAccount">
 			<div class = "profileNickName">
 				<span>${sessionScope.loginMember.user_nickName}</span>

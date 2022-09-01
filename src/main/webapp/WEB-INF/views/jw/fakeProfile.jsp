@@ -19,7 +19,7 @@
 		<div class = "profileDiv">
 			<div class = "profileBGDiv">
 				<a> <img alt="" src="resources/img/profile/${findUser.user_ID}/BG.png"
-				onerror="this.src='resources/img/profile/bg.png';"/> </a>
+				onerror="this.onerror=null; this.src='resources/img/profile/bg.png';"/> </a>
 				<div class = ""></div>
 			</div>
 			
@@ -27,7 +27,7 @@
 				<div class = "iconEditDiv">
 					<div class = "iconDiv bgColor">
 						<img alt="" src="resources/img/profile/${findUser.user_ID}/photo.png"
-		onerror="this.src='resources/img/profile/s.png';"/> 
+		onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/> 
 					</div>
 					<div class = "editDiv">
 					<c:if test ="${findUser.user_ID==sessionScope.loginMember.user_ID}">
