@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 
 <script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
-
+<script type = "text/javascript" src="resources/js/JY/followGo.js"></script>
+ 
+ 
 </head>
 <body>
 
@@ -26,7 +28,7 @@
 <div>생일 (변경 불가)</div>
 <div>${sessionScope.OtherMember.user_birthDay }</div>
 <hr>
-<div><button>팔로우</button></div>
+<div><a onclick="follow()">팔로우</a></div>
 <div><a>팔로잉 __(명)</a><a>팔로워 __(명)</a></div>
 <div>게시판</div>
 <div></div>

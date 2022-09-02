@@ -1,5 +1,10 @@
 
 
+window.alert("yeah!");
+
+
+
+
 function goto9()
 {
 	location.href = 'profile/go/9';
