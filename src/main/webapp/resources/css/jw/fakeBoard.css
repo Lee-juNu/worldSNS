@@ -10,7 +10,6 @@
 {
 	width:598px;
 	height:100%;
-	background-color:white;
 }
 .contesntsBlank
 {
@@ -21,37 +20,97 @@
 .regContents
 {
 	width			:100%;
-	height			:116px;
-	background-color:gray;
+	display : flex;
+	flex-direction:column;
 	border-bottom	: 1px solid black;
-	
 }
 .regContentsDiv1
 {
 	width			:566px;
-	height			:108px;
-	background-color:#ccccff;
 	padding-top		: 8px;
 	padding-bottom	: 8px;
 	padding-left : 16px;
 	padding-right : 16px;
+	display: flex;
 }
-.regContLeftDiv
+
+.regContentsDiv2
+{
+	width:100%;
+	display: flex;
+ 	justify-content: space-between;	
+}
+
+ 		.birthDaySelectDiv
+        {
+        	margin-left: 10px;
+        	display: flex;
+        	height : 40px;
+        }
+        .joinBirthDiv
+        {
+        	border : 1px solid #3c3c3c;
+        	border-radius: 5px;
+        	height : 40px;
+        }
+        
+        .joinBirthSel
+        {
+        	border : none;
+        	border-radius:0;
+        	background:url(../) no-repeat 80% 50%;
+        	color: white;
+        	width:100%;
+        }
+        .joinBirthSel option
+        {
+        	background-color: black;
+        }
+		.birthTextDiv
+		{
+			text-align: left;
+			font-size: 10pt;
+		}       
+		
+		.monthDiv
+		{
+			width:35%;
+		}
+
+.subContents
+{
+	display: flex;
+	
+}
+
+.regContentsDiv1 .profileDiv
 {
 	width:48px;
-	height:104px;
 	padding-bottom:4px;
-	background-color:#e6ffcc;
 	margin-right: 12px;
-	float:left;
 }
-.regContRightDiv
+.regContentsDiv1 .regContRightDiv
 {
-	
 	width : 500px;
-	height : 108px;
-	float:left;
+	display: flex;
+	flex-direction: column;
 }
+
+.regContRightDiv .textInputDiv {
+			width: 100%;
+		}
+
+.regContRightDiv .textInputDiv textarea
+{
+	width:100%;
+	box-sizing: border-box;
+	border: none;
+	font-size: 16px;
+	resize: none;
+	background:  transparent;
+}
+
+
 .contentsSubDiv
 {
 	width:100%;
@@ -155,11 +214,59 @@
 }
 
 
-textarea {
-			width: 90%;
-			height: 90%;
-			box-sizing: border-box;
-			border: none;
-			font-size: 16px;
-			resize: none;
-		}
+
+
+
+
+
+
+
+
+
+
+ .upload__img-close {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        line-height: 24px;
+        z-index: 1;
+        cursor: pointer;
+        }
+
+.img-bg {
+	width:250px;
+	height:250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+
+.imgContainerDiv
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;	
+	
+}
+
+.uploadImgBox
+{
+	padding-bottom:10px;
+	width:49%;
+}
+
+.uploadImgBox img
+{
+	width:100%;
+	height:100%;
+	
+	border-radius: 5px;
+}

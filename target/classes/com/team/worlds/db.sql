@@ -29,6 +29,35 @@ create table countryTbl
 )
 
 
+drop table countryTbl
+create table countryTbl
+(
+	country_id	varchar2(2 char) primary key,
+	country_Name varchar2(60 char) not null
+)
+
+create table regionTbl
+(
+	region_Name		varchar2(60 char) primary key,
+	region_country 	varchar2(60 char) not null,
+		CONSTRAINT region_c_country
+			foreign key(region_country)
+				references countryTbl(country_id)
+					on delete cascade
+)
+
+insert into countryTbl values ('KR','Republic of Korea')
+insert into countryTbl values ('JP','Japan')
+
+
+delete regionTbl
+insert into regionTbl values ('Seoul', 'KR')
+insert into regionTbl values ('Osaka', 'JP')
+insert into regionTbl values ('Tokyo', 'JP')
+
+select * from countryTbl;
+
+
 select * from chatroomTbl
 alter table proFileTbl add unique(pf_userID)
 create table proFileTbl
@@ -56,6 +85,9 @@ select * from chatroomTbl
 
 select * from messageTbl
 
+
+select * from boardTbl
+(#{board_num},#{board_parentNum},#{board_userid},#{board_img1},#{board_img2},#{board_img3},#{board_img4},#{board_contents},#{board_city})
 select * from  userTbl;
 	select * from messageTbl where msg_RoomNum = 'CR215' order by msg_sendTime
 	select * from RoomMemberTbl

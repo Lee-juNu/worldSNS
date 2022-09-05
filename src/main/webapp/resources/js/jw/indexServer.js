@@ -9,7 +9,9 @@ window.onload = function()
 		$("#loginBtn").on('click', function(event){
 			login();
 		});
-		
+		$("#testBtn").on('click', function(event){
+			testLogin();
+		});
 		$("#joinBtn").on('click', function(event){
 			joinDo();
 		});
@@ -41,6 +43,26 @@ window.onload = function()
 				data:{
 					"user_ID": $("#user_ID").val(),
 					"user_PW": $("#user_PW").val()
+					},
+				type:'GET',
+				dataType: 'json',
+		        	
+				success:function(result){
+					if(result==true){
+				loginSucessed();
+					}else{
+				loginFailed();
+					}
+				}		 
+		});
+	}
+	function testLogin()
+	{
+		$.ajax({
+				url:"loginTest",
+				data:{
+					"user_ID": "admin",
+					"user_PW": "0000"
 					},
 				type:'GET',
 				dataType: 'json',

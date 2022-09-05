@@ -45,8 +45,7 @@ modalJoin.addEventListener("mousedown", e => {
     }
 })
 
-
-var maxStep = 5;
+var maxStep = 4;
 var currentStep=1;
 const joinDivStep = "joinDiv";
 

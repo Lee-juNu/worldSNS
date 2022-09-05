@@ -18,13 +18,12 @@
             	
             ws.onopen=function(event){
             	if(event.data===undefined) return;
-				writeResponse(event.data);
+				writeResponse(event.data)
             };
 			/*
             ws.onmessage=function(event){
                 writeResponse(event.data);
             };
-				올리고싶은 js에 window.onload에 evnetAdder기능을 사용합시다!
 			*/
             ws.onclose=function(event){
                 writeResponse("Connection closed");

@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
+import javax.annotation.PostConstruct;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -25,12 +29,11 @@ import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
  
 
 
 /*
- * 
- * 이거할때 핑퐁도 같이하자
 @Service
 class alarmThread{
    @PostConstruct
@@ -81,11 +84,13 @@ public class WebSocketServer{
         System.out.println("웹소켓(서버) 객체생성");
         
     }
-    /* 
+    /*
     public static synchronized void Allnotice() throws IOException
     {
-    	for (Map.Entry<String, Session> entry : WebSocketServer.sessionMap.entrySet()) {
-			entry.getValue().getBasicRemote().sendText("공지왔어용");
+    	for (Map.Entry<String, ArrayList<Session>> entry : WebSocketServer.sessionMap.entrySet()) {
+			for (Session arrSession: entry.getValue()){
+				arrSession.getBasicRemote().sendText("공지왔어용");				
+			}
     	}
     }
     */
@@ -103,7 +108,9 @@ public class WebSocketServer{
         try {
             final Basic basic=session.getBasicRemote();
             System.out.println("userID=" + userId);
-   //         basic.sendText("server_Open");
+            basic.sendText("server_Open");
+            
+            
           	if(pageType.contains("CR"))
         	{
         		wsChatController.onUserOpen(session,pageType,userId);    		
@@ -275,7 +282,6 @@ public class WebSocketServer{
         {
         	arrUser.remove(session);
         }
-        
     }
 }
  
