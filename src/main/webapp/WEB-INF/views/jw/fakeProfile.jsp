@@ -45,6 +45,39 @@ function follow(){
 };
 
 </script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#unfollowButton").click(unfollow);
+});
+function unfollow(){
+     var user_ID_o = ${findUser.user_ID};
+     alert(user_ID_o);
+     
+     $.ajax({
+    	              
+    	 type: "POST",            
+    	 url:  "follow.unfollow/" + user_ID_o,        
+    	    
+    	 context: document.body,          
+    	 async : false,           
+    	 success : function(url) { // 결과 성공 콜백함수
+    	        console.log(result);
+    	    	alert("언팔로우 성공!");
+    	    },
+        error : function(request, status, error) { // 결과 에러 콜백함수
+    	        console.log(error);
+    	        alert("실패라고 봐도 됩니다!!");
+    	           alert("code = "+ request.status)
+    	        	alert	( " message = " + request.responseText)
+    	        	alert	( " error = " + error); // 실패 시 처리        	        
+    	     alert(user_ID_o);
+    	    }
+})
+};
+
+</script>
 <!-- jy수정 :팔로우 끝 -->
 
 
@@ -77,9 +110,12 @@ function follow(){
 					
 					
 					<c:if test ="${findUser.user_ID!=sessionScope.loginMember.user_ID}">
+						
 						<button id="followButton">팔로우!!!!</button>
 						<!-- jy수정 : 아이디 추가 -->
+						<button id="unfollowButton">언팔로우</button>
 					</c:if>
+					
 					
 					
 					</div>
@@ -97,8 +133,8 @@ function follow(){
 			
 			<div>
 			
-			<div>팔로우 ${follow_count}</div>
-			<div>팔로워 ${follower_count}</div>
+			<div><a href="${findUser.user_ID}/follow">팔로우 ${follow_count}</a></div>
+			<div><a href="#">팔로워 ${follower_count}</a></div>
 			
 			</div>
 			

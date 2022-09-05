@@ -15,18 +15,49 @@
 		Flw_FromId = #{Flw_FromId} and Flw_ToId = #{Flw_ToId}
 	</delete>
 	
-	<select id="follow_count" resultType="int">
+	<select id="follow_count" resultType="String">
 	
-	SELECT COUNT(*) FROM FollowTbl where Flw_ToId=#{Flw_FromId}
+	SELECT COUNT(*) FROM FollowTbl where Flw_FromId=#{Flw_FromId}
 	
 	</select>
 	
-	<select id="follower_count" resultType="int">
+	<select id="follower_count" resultType="String">
 	
 	SELECT COUNT(*) FROM FollowTbl where Flw_ToId=#{Flw_ToId}
 	
 
 	</select>
+	
+	
+	<select id="follow_list"
+		parameterType="com.team.worlds.user.Follow"
+		resultType="com.team.worlds.user.Follow">
+		select * from FollowTbl where Flw_FromId=#{Flw_FromId}
+	</select>
+	
 
+	
+	
+	<select id="getfollow_list"
+		parameterType="com.team.worlds.user.Follow"
+		resultType="com.team.worlds.user.User">
+		select * from userTbl
+		where user_ID = #{Flw_ToId}
+		order
+		by c_when desc
+	</select>
+	
+	<select id="already_follow" parameterType="com.team.worlds.user.Follow"  resultType="int">
+	
+	SELECT COUNT(*) FROM FollowTbl where Flw_FromId = #{Flw_FromId} and Flw_ToId = #{Flw_ToId}
+
+	</select>
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>
