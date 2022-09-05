@@ -49,6 +49,7 @@ public class wsBoardController {
 			obj.put("type", "changeRegion");
 			obj.put("regions",bDAO.getRegionByCountry(countryName));
 			System.out.println(obj.toJSONString());
+			session.getBasicRemote().sendText(obj.toJSONString());
 
 		}catch (Exception e) {
 			System.out.println(e);

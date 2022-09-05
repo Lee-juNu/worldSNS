@@ -15,7 +15,8 @@
         
         
         <input type="text" id="messageinput">
-        <input type="file" id="inputFile">
+        
+        <input type="file" id="inputFile" multiple="" data-max_length="4" >
     </div>
     <div>
         <button type="button" onclick="openSocket()">Open</button>

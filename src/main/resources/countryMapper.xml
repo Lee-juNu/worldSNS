@@ -7,7 +7,7 @@
 </select>
 
 <select id = "getRegionByCountry" resultType="com.team.worlds.util.Region">
-	select * from regionTbl where = #{country_id}
+	select * from regionTbl where region_country = #{country_id}
 </select>
 
 </mapper>

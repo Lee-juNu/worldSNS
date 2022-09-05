@@ -18,7 +18,6 @@
 			<button>로그인</button>
 	</form>
 
-<img src="resources/img/icon/KakaoTalk_20220816_134825012.jpg">
 
 </body>
 </html>

@@ -8,9 +8,9 @@
 		console.log(wsRoomType);
 		
 		
-            if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
-                writeResponse("WebSocket is already opened.");
-            }
+        if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
+            writeResponse("WebSocket is already opened.");
+        }
 		else
 		{														
 														//여기까진  //chatroom12345//dkdkd
@@ -49,7 +49,6 @@
         }	
         			
 	
-
 		function sendFile(fileId, folderSendName)
 		{
 			//파일의 풀 경로 (ex:"C:\\teamProject\\resource\\img\\file.img")

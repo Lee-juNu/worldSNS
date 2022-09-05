@@ -36,6 +36,10 @@ create table countryTbl
 	country_Name varchar2(60 char) not null
 )
 
+
+select * from BoardTbl
+ alter table BoardTbl add board_regDate date not null;
+
 create table regionTbl
 (
 	region_Name		varchar2(60 char) primary key,

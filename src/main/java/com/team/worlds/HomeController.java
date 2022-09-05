@@ -40,7 +40,7 @@ public class HomeController {
 		
 		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");
-		return "fakeIndex";
+		return "jw/fakeHome";
 	}
 	
 
