@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.worlds.user.Follow;
+import com.team.worlds.user.FollowDAO;
 import com.team.worlds.user.User;
 import com.team.worlds.user.UserDAO;
 
@@ -17,6 +19,11 @@ public class FakeController {
 	
 	@Autowired
 	UserDAO uDAO = new UserDAO();
+	
+
+	@Autowired
+	FollowDAO fDAO = new FollowDAO();
+	
 	
 	
 	@RequestMapping(value = "/fake.login", method = RequestMethod.POST)
@@ -62,9 +69,10 @@ public class FakeController {
 	}
 	
 	
-	@RequestMapping(value = "{profile}", method = RequestMethod.GET)
+	/*	원래 profile
+	 * @RequestMapping(value = "{profile}", method = RequestMethod.GET)
 	public String goProfile(HttpServletRequest req, @PathVariable("profile") String profile) {
-
+		
 		uDAO.loginCheck(req);
 		
 		
@@ -75,5 +83,29 @@ public class FakeController {
 		
 		return "home";
 	}
+	 */	
 	
+	@RequestMapping(value = "{profile}", method = RequestMethod.GET)
+	public String goProfile(HttpServletRequest req, @PathVariable("profile") String profile
+			,User u, Follow f, @PathVariable("profile") String user_ID_o // jy수정 : 팔로워 수를 위한
+			) {
+										
+		uDAO.loginCheck(req);
+		
+		
+		uDAO.getUserByID(profile, req);
+		
+		
+		// jy수정 : 팔로워 수를 위한
+		fDAO.follow_count(req,u,user_ID_o,f);
+		fDAO.follower_count(req,u,user_ID_o,f);
+		
+		
+		
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jw/fakeProfile.jsp");
+		
+		return "home";
+	}
+
 }

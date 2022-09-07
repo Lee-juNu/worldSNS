@@ -28,11 +28,11 @@
 		
 		
 		<div>
-			<c:forEach var="user_o" items="${otherMember }">
+			<c:forEach var="f" items="${follow_list }">
 			
-			<div><a onclick="location.href = 'profile/go/${otherMember.user_ID}'">${otherMember.user_ID}</a></div>
-			<div>${otherMember.user_nickName}</div>
-			<div>${otherMember.user_contents}</div>
+			<div><a onclick="location.href='profile/go/${f.user_ID}'">${f.user_ID}</a></div>
+			<div>${f.user_nickName}</div>
+			<div>${f.user_contents}</div>
 			<hr>
 				
 			</c:forEach>

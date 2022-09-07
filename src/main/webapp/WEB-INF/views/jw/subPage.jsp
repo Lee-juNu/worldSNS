@@ -10,7 +10,10 @@
 	<div class = "subContentsDiv">
 		<div class = "subSearchDiv subBgColor">
 			<div class = "iconDiv"> <img alt="" src="resources/icon/white/serach.png"> </div>
-			<div class = "searchDiv"><input placeholder="검색"> </div>
+		
+			<form action="Search.user">
+			<div class = "searchDiv"><input placeholder="검색"> <button  name="searchWord">검색</button></div>
+			</form>
 		</div>
 		
 		<div class = "searchBlankDiv">

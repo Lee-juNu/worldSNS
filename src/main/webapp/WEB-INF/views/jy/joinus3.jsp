@@ -24,7 +24,7 @@
 </head>
 <body>
 
-<form action="user.joinus.go4"  name="joinForm3" method="post" onsubmit="return joinCheck3();">
+<form action="Search.user"  name="joinForm3" method="post" onsubmit="return joinCheck3();">
 <div  class="slide-in">
 <div>세상에서 가장 멋진 아이디를 정해 주세요!!</div>
 <div>중복 아이디는 허용되지 않습니다~</div>
