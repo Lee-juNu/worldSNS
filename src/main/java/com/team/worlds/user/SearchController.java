@@ -36,6 +36,32 @@ public class SearchController {
 		
 		return "home";
 	}
+	
+	
+	/*	@RequestMapping(value = "/Search.user?searchWord={user_ID_o}", method = RequestMethod.GET)
+	public String goSearchUser(@PathVariable("user_ID_o") String searchWord,  Profile p, User_o u_o, HttpServletRequest req) {
+		
+		uDAO.loginCheck(req);
+		seaDAO.getUserSearchResult(req,u_o);
+		
+		
+		req.setAttribute("profilePage", "profileMini.jsp");
+		req.setAttribute("menuPage", "jy/menu.jsp");
+		req.setAttribute("contentsPage", "jy/Search/Search.jsp");
+		req.setAttribute("searchPage", "SearchUser.jsp");
+		
+		
+		
+		
+		
+		
+		return "home";
+	}*/
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/Search.post", method = RequestMethod.GET)
 	public String goSearchPost(Profile p, User u, HttpServletRequest req) {
 		

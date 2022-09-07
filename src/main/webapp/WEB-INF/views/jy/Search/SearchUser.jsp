@@ -26,9 +26,8 @@
 		</c:if>
 		
 		
-		
 		<div>
-			<c:forEach var="user_o" items="${otherMember }">
+			<c:forEach var="user_o" items="${otherMember}">
 			
 			
 			<div>${otherMember.user_ID}</div>
