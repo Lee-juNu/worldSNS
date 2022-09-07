@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body class ="bgColor">
-   <input type="text" id="wsUserId" value= "admin" style="display: none;">
-   <input type="text" id="wsRoomType" value="board" style="display: none;">
+
 
 <div class = "contentsDiv" >
 	<div class = "contentsMainDiv bgColor">
@@ -17,6 +16,10 @@
 		</div>
 		
 		<div class = "regContents">
+			<form id="fileUploadForm" method='post' action='' enctype="multipart/form-data">
+			   	<input type="text" name = "user_id" id="wsUserId" value= '${sessionScope.loginMember.user_ID}'  style="display: none;">
+   				<input type="text" id="wsRoomType" value="board" style="display: none;">
+   
 				<div class = "regContentsDiv1">
 					
 					<div class = "profileDiv">
@@ -28,40 +31,40 @@
 					
 						<div class = "uploadContainer">
 							<div class = "textInputDiv ">
-								<textarea class = "bgColor" rows="" cols="" placeholder="your Wolrd is..."></textarea>					
+								<textarea id="board_contents" name= "board_contents" class = "bgColor" rows="" cols="" placeholder="your Wolrd is..."></textarea>					
 							</div>
 							<div class = "imgContainerDiv">
-						 		<input class = "inputFile" id = "input-file" multiple="" data-max_length="4" type="file" style = "display: none">
+						 		<input name = "board_img[]" class = "inputFile" id = "inputFile" multiple="" data-max_length="4" type="file" style = "display: none">
 							</div>					
 						</div>
 					
 						<div class = "regContentsDiv2">
 							<div class = "subContents">
 								<div>
-									<label for="input-file">
+									<label for="inputFile">
 						 				<img class = "menuImg" alt="" src="resources/icon/white/img.png"> 
 							 		</label>
 								</div>
 								<div class = "birthDaySelectDiv">
-           	   				
            	   						<div class = "monthDiv joinBirthDiv" style= "width:150px;">
            	   							<div class = "birthTextDiv">나라</div>
-										<select name="mm" id="country" class ="joinBirthSel"></select>
+										<select name="board_country" id="country" class ="joinBirthSel"></select>
 									</div>
            	   				
            	   						<div class = "dayDiv joinBirthDiv"  style= "width:150px;">
 										<div class = "birthTextDiv">도시</div>
-										<select name="dd" id="region" class ="joinBirthSel"></select>
+										<select name="board_region" id="region" class ="joinBirthSel"></select>
 									</div>
 									
            	   					</div>
 							</div>
 						<div>
-							<button>Wolrds</button>
+							<button type="button" id="submit">Wolrds</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 	<div class = "contentsSubDiv"> 

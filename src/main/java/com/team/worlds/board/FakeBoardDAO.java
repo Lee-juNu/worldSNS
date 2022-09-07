@@ -1,14 +1,22 @@
 package com.team.worlds.board;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.worlds.fileUtil.FileManager;
+import com.team.worlds.user.User;
 import com.team.worlds.util.Country;
 import com.team.worlds.util.CountryMapper;
 import com.team.worlds.util.Region;
@@ -20,7 +28,47 @@ public class FakeBoardDAO {
 	private SqlSession ss;
 
 	
-	
+	public void insertBoard(JSONObject result)
+	{
+		Board board = new Board();
+		board.setBoard_userID(result.get("board_userId").toString());
+		board.setBoard_Contents(result.get("board_contents").toString());
+		board.setBoard_Country(result.get("board_country").toString());
+		board.setBoard_City(result.get("board_region").toString());
+		board.setBoard_ParentNum(result.get("board_parent").toString());
+				
+		
+		String[] imgs =  result.get("board_imgs").toString().split("/");
+		for(int i = 0 ; i<imgs.length;i++)
+		{
+			if(i==0)
+			{
+				board.setBoard_img1(imgs[i]);				
+			}
+			if(i==1)
+			{
+				board.setBoard_img2(imgs[i]);				
+			}
+			if(i==2)
+			{
+				board.setBoard_img3(imgs[i]);				
+			}
+			if(i==3)
+			{
+				board.setBoard_img4(imgs[i]);				
+			}
+		}
+		
+		if(1== ss.getMapper(BoardMapper.class).boardInsert(board))
+		{
+			System.out.println("성공이닷");
+		}
+		else
+		{
+			System.out.println("실패쓰");
+		}
+		
+	}
 	
 	public JsonArray getAllCountry()
 	{

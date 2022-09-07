@@ -13,6 +13,7 @@ select * from profileTbl
 
  update userTbl set user_contents = 'japan oosaka like' where user_id = 'yorunohosi'
  
+select * from followTbl
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'userTbl';
 select * from profileTbl where pf_userID = 'sadfds321'
 
@@ -29,6 +30,10 @@ create table countryTbl
 )
 
 
+create sequence board_seq
+
+select * from boardTbl
+
 drop table countryTbl
 create table countryTbl
 (
@@ -37,7 +42,7 @@ create table countryTbl
 )
 
 
-select * from BoardTbl
+select * from BoardTbl 
  alter table BoardTbl add board_regDate date not null;
 
 create table regionTbl

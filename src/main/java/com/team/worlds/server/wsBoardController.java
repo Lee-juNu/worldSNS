@@ -31,7 +31,14 @@ public class wsBoardController {
 	public static void onMessage(JSONObject result, Session session, HashMap<String, ArrayList<Session>> sessionmap) {
 		// TODO Auto-generated method stub
 		
-		if(result.get("contents").toString().equals("regionInit"))
+		
+		if(result.get("contents").toString().equals("upload"))
+		{
+			bDAO.insertBoard(result);
+			
+			
+		}
+		else if(result.get("contents").toString().equals("regionInit"))
 		{
 			regionInit(session,result.get("countryName").toString());
 		}

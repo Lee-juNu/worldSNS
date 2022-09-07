@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.worlds.board.BoardMapper">
+
+<insert id="boardInsert" parameterType="com.team.worlds.board.Board">
+	insert into boardTbl values(board_seq.nextval,#{board_ParentNum},#{board_userID},
+	#{board_img1},#{board_img2},#{board_img3},#{board_img4},#{board_Contents},#{board_Country},#{board_City},sysdate)
+</insert>
+
+</mapper>

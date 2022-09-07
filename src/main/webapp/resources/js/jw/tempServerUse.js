@@ -1,29 +1,6 @@
 //메시지를 보낼때
-function jwSendWithFile(){	
-		
-		//type으로  메시지 종류를 정한다
-		//type ex) "chat" "board" "alarm"등등 자신이 원하는대로 커스터마이즈
-		//id ex) 보내는 사람의 id
-		//contents등등은 내용 이나 자기가 원하는대로 해도 됩니다
-		//원하는 이름  : 원하는 변수로 채워서 보내면 됩니다.
-		var memberData = 
-		{
-			type : "chat",
-			id : $("#sender").val(),
-			contents : $("#messageinput").val() 
-		}	
-		sendMsg(memberData);
 
 
-
-			//파일 보내기 영역
-			//파일의 id를 입력합니다.
-			var fileId = 'inputFile';
-			//기본 img폴더에 저장됩니다
-			//img SNS
-			var addFolderName = '폴더이름';
-			sendFile(fileId, addFolderName);
-        }
 
 
 //메시지를 받을때
@@ -43,8 +20,34 @@ window.onload = function()
 					//알람은 알람추가하는 형식으로 커스터마이징 합시다					
 		});
 }
+
+var currentFileIndex = 0;
+const  maxFile = 4;
+const  fileId = 'inputFile';
+const  addFolderName = '폴더이름';
+
+function jwSendWithFile(){	
+		multiFileUpload(fileId, addFolderName,currentFileIndex);
+}
 function receiveMessage(message)
 {
-	console.log("asdf");
+	var resultJson = JSON.parse(message);
+
+	console.log(resultJson.type);
+	
+	if(resultJson.type=="reqNextFile")
+	{
+		currentFileIndex++;
+		console.log(document.getElementById('inputFile').files.length);
+		if(currentFileIndex<document.getElementById('inputFile').files.length && currentFileIndex < maxFile)
+		{
+			multiFileUpload(fileId, addFolderName,currentFileIndex);
+		}
+		else
+		{
+			console.log("다중 업로드 완료");
+			currentFileIndex = 0;
+		}
+	}
 }
 
