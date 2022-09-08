@@ -14,7 +14,7 @@
 		else
 		{														
 														//여기까진  //chatroom12345//dkdkd
-            ws=new WebSocket("ws://localhost:8080/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
+            ws=new WebSocket("ws://localhost:8081/worlds/jwSocket/"+wsRoomType+"/"+wsUserId );
             	
             ws.onopen=function(event){
             	if(event.data===undefined) return;

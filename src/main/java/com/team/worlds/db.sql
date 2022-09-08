@@ -67,3 +67,13 @@ select rm_roomnum from RoomMemberTbl where rm_userid = '5'
 	delete from MESSAGETBL
 insert into messageTbl values('0', 'CR216', 'admin', sysdate, '0', 'cont', 'cont')	
 insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
+
+
+select max(msg_index) as msg_index from MESSAGETBL where msg_roomnum in (select rm_roomnum from ROOMMEMBERTBL where rm_userid ='admin') group by msg_roomnum
+select rm_lastindex from RoomMemberTbl where rm_userid = 'admin' 
+select rm_lastindex from RoomMemberTbl where rm_userid = 'admin'
+
+
+
+select rm_lastindex from RoomMemberTbl where rm_userid = 'yanagi'
+select max(msg_index) as msg_index from MESSAGETBL where msg_roomnum in (select rm_roomnum from ROOMMEMBERTBL where rm_userid ='yanagi') group by msg_roomnum

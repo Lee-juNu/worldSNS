@@ -64,7 +64,7 @@ insert into messageTbl values (msg_seq.nextval, #{msg_RoomNum, jdbcType=VARCHAR}
 </insert>
 
 <insert id="inviteUser">
-insert into RoomMemberTbl values (#{rm_roomNum}, #{rm_userID}, 0)
+insert into RoomMemberTbl values (#{rm_roomNum}, #{rm_userID}, 1)
 </insert>
 
 <delete id="outRoom">
@@ -81,6 +81,14 @@ select * from RoomMemberTbl where RM_ROOMNUM = #{rm_roomNum}
 
 <select id="searchbyUser" resultType="com.team.worlds.messages.Message">
 select * from chatroomTbl where cr_num in (select rm_roomnum from RoomMemberTbl where rm_userid like '%' ||#{rm_userID} || '%')
+</select>
+
+<select id="checkroomindex" resultType="com.team.worlds.messages.Message">
+select rm_lastindex from RoomMemberTbl where rm_userid = #{rm_userID} 
+</select>
+
+<select id="checkuserindex" resultType="com.team.worlds.messages.Message">
+select max(msg_index) as msg_index from MESSAGETBL where msg_roomnum in (select rm_roomnum from ROOMMEMBERTBL where rm_userid =#{rm_userID}) group by msg_roomnum
 </select>
 
 </mapper>

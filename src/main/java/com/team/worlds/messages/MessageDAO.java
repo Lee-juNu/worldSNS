@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -118,7 +119,7 @@ public class MessageDAO {
 		//	String rm_roomNum = req.getParameter("join");
 		String rm_roomNum = u.getUser_ID();
 		String rm_userID = req.getParameter("invite");
-		int rm_lastIndex = 0;
+		int rm_lastIndex = 1;
 		
 		System.out.println(rm_userID);
 		
@@ -143,7 +144,7 @@ public class MessageDAO {
 		//	String rm_roomNum = req.getParameter("join");
 		String rm_roomNum = u.getUser_ID();
 		String rm_userID = u.getUser_ID();
-		int rm_lastIndex = 0;
+		int rm_lastIndex = 1;
 		
 		System.out.println(rm_userID);
 		
@@ -202,8 +203,8 @@ public class MessageDAO {
 		
 		String rm_userID = u.getUser_ID();
 		
-		m.setRm_roomNum(msg_RoomNum);
 		m.setRm_userID(rm_userID);
+		m.setRm_roomNum(msg_RoomNum);
 		
 		try {
 			req.setAttribute("room", ss.getMapper(MessageMapper.class).getRoom(m));
@@ -348,6 +349,38 @@ public class MessageDAO {
 	public List<Message> searchbyUser(String name) {
 		ss.getMapper(MessageMapper.class).searchbyUser(name);
 		return ss.getMapper(MessageMapper.class).searchbyUser(name);
+	}
+
+	public int indexcheck(Message m, HttpServletRequest req) {
+		User u = (User)req.getSession().getAttribute("loginMember");
+		String rm_userID = u.getUser_ID();
+		m.setRm_userID(rm_userID);
+		
+		ArrayList<Message> roomindex = ss.getMapper(MessageMapper.class).checkroomindex(m);
+		ArrayList<Message> userindex = ss.getMapper(MessageMapper.class).checkuserindex(m);
+		System.out.println("y1esy2esy3es");
+		int ri = 0;
+		int ui = 0;
+		
+		for (Message message : roomindex) {
+			int sttp = message.getRm_lastIndex();
+			ri = ri+sttp;
+			System.out.println("qq:"+ri);
+			System.out.println("ww:"+sttp);
+		}
+		for (Message message : userindex) {
+			int sttp = message.getMsg_index();
+			ui = ui+sttp;
+			System.out.println("ee:"+ui);
+			System.out.println("rr:"+sttp);
+		}
+		int indexresult = ui - ri;
+		System.out.println(ri);
+		System.out.println(ui);
+		System.out.println(indexresult);
+		
+		
+		return indexresult;
 	}
 
 	
