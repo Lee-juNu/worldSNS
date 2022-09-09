@@ -15,27 +15,27 @@
 <div>
 <div>${result }</div>
 <div>아이디</div>
-<div><input value="${sessionScope.loginMember.user_ID }" name="Nuser_ID"> </div>
+<div><input value="${sessionScope.loginMember.user_ID }" name="user_ID"> </div>
 <hr>
 
 
 <div>이름 </div>
-<div><input value="${sessionScope.loginMember.user_name }" name="Nuser_name"> </div>
+<div><input value="${sessionScope.loginMember.user_name }" name="user_name"> </div>
 <hr>
 
 <div>닉네임</div>
-<div><input value="${sessionScope.loginMember.user_nickName }" name="Nuser_nickName"> </div>
+<div><input value="${sessionScope.loginMember.user_nickName }" name="user_nickName"> </div>
 <hr>
 
 
 
 <div>휴대폰번호</div>
-<div><input value="${sessionScope.loginMember.user_phoneNumber }" name="Nuser_phoneNumber"> </div>
+<div><input value="${sessionScope.loginMember.user_phoneNumber }" name="user_phoneNumber"> </div>
 <hr>
 
 
 <div>이메일</div>
-<div><input value="${sessionScope.loginMember.user_email }" name="Nuser_email"> </div>
+<div><input value="${sessionScope.loginMember.user_email }" name="user_email"> </div>
 <hr>
 
 

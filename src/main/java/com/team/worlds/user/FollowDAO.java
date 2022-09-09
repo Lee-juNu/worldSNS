@@ -136,9 +136,10 @@ public class FollowDAO {
 		try {
 
 			f.setFlw_FromId(user_ID_o);
-			System.out.println("어우" + f.getFlw_FromId());
+			System.out.println("왜안돼" + f.getFlw_FromId());
 
-			req.setAttribute("follows", ss.getMapper(FollowMapper.class).follow_list(f));
+			req.setAttribute("Follow", ss.getMapper(FollowMapper.class).follow_list(f));
+			System.out.println("아좀돼라"+req.getAttribute("Follow"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -159,48 +160,5 @@ public class FollowDAO {
 
 	}
 
-	/*
-	 * 
-	 * public void follow_count(HttpServletRequest req, User u, String user_ID_o,
-	 * Follow f) { // TODO Auto-generated method stub
-	 * 
-	 * u = (User) req.getSession().getAttribute("loginMember");
-	 * 
-	 * String user_ID = u.getUser_ID();
-	 * 
-	 * f.setFlw_FromId(user_ID);
-	 * 
-	 * if (ss.getMapper(FollowMapper.class).follow_count(f) != null) {
-	 * 
-	 * req.setAttribute("follow_count",
-	 * ss.getMapper(FollowMapper.class).follow_count(f)); } else {
-	 * 
-	 * req.setAttribute("follow_count", "0");
-	 * 
-	 * }
-	 * 
-	 * }
-	 * 
-	 * public void follower_count(HttpServletRequest req, User u, String user_ID_o,
-	 * Follow f) { // TODO Auto-generated method stub u = (User)
-	 * req.getSession().getAttribute("loginMember");
-	 * 
-	 * // String user_ID = u.getUser_ID();
-	 * 
-	 * f.setFlw_ToId(user_ID_o);
-	 * 
-	 * if (ss.getMapper(FollowMapper.class).follower_count(f) != null) {
-	 * 
-	 * req.setAttribute("follower_count",
-	 * ss.getMapper(FollowMapper.class).follower_count(f)); } else {
-	 * 
-	 * System.out.println(ss.getMapper(FollowMapper.class).follower_count(f));
-	 * req.setAttribute("follower_count", "0");
-	 * 
-	 * }
-	 * 
-	 * 
-	 * 
-	 */
 
 }

@@ -21,11 +21,13 @@ public class SettingController {
 	public String goSettingInfo(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
-		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "jy/Setting/SettingInfo.jsp");
+		
+		
+		
 		
 		return "home";
 	}
@@ -34,11 +36,10 @@ public class SettingController {
 	@RequestMapping(value = "/setting.go.InfoUp", method = RequestMethod.GET)
 	public String goSettingInfoUp(Profile p, User u, HttpServletRequest req) {
 		
-		System.out.println("빨리ㅜ시고싶다");
 		
 		
 		uDAO.loginCheck(req);
-		req.setAttribute("profilePage", "profileMini.jsp");
+	
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "jy/Setting/SettingInfoUp.jsp");
 		
@@ -48,13 +49,12 @@ public class SettingController {
 	@RequestMapping(value = "/setting.go.InfoUpR", method = RequestMethod.GET)
 	public String goSettingInfoUpR(Profile p, User u, HttpServletRequest req) {
 		
-		System.out.println("빨리ㅜ시고싶다");
 		
 		
 		uDAO.loginCheck(req);
 		uDAO.updateInfo(u, req);
 		
-		req.setAttribute("profilePage", "profileMini.jsp");
+	
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "jy/Setting/SettingInfo.jsp");
 		
@@ -71,7 +71,6 @@ public class SettingController {
 
 		//System.out.println(Session.getAttribute("user_name"));
 		// req.setParameter("settingPassword1","settingPassword1")
-		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		
 		req.setAttribute("menuPage", "jy/menu.jsp");

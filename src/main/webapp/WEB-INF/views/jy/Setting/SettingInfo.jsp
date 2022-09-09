@@ -60,7 +60,7 @@ function goInfoUpdate()
 <div>
 
 <button onclick="goInfoUpdate()">수정</button>
-<button>비밀번호 변경하러 가기</button>
+<button onclick="goSettingPassword()">비밀번호 변경하러 가기</button>
 
  </div>
 </div>

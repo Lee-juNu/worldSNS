@@ -52,8 +52,7 @@ public class Follow {
 	public void setFlw_time(Date flw_time) {
 		Flw_time = flw_time;
 	}
-	
-	
+
 	
 	
 	

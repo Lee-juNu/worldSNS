@@ -28,6 +28,9 @@
 
 <!-- 병합전의 JS를  입력해주세요-->
 <script type = "text/javascript" src="resources/js/JY/bootstrap/bootstrap.min.js"></script>
+<script type = "text/javascript" src="resources/js/JY/validCheck.js"></script>
+<script type = "text/javascript" src="resources/js/JY/check.js"></script>
+
 
 
 </head>
@@ -69,6 +72,8 @@
             </div>
         </div>
     </div>
+    
+    <form method="post" onsubmit="return joinCheck4();">
     
     <div id="modalJoin" class="modal-overlay">
         <div class="modal-window">
@@ -169,7 +174,7 @@
 
         </div>
     </div>
-    
+    </form>
 <script type = "text/javascript" src="resources/js/jw/indexServer.js"></script>
     <script type = "text/javascript" src="resources/js/jw/map.js"></script>
 </body>

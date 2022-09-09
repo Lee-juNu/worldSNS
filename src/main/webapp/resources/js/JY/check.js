@@ -2,7 +2,7 @@
 
 
 function joinCheck1() {
-	var emailInput = document.joinForm1.user_email;
+	var emailInput = document.joinForm1.join_email;
 
 
 	if (isEmpty(emailInput)) {
@@ -20,9 +20,9 @@ function joinCheck1() {
 
 
 function joinCheck2() {
-	var nickNameInput = document.joinForm2.user_nickName;
-	var nameInput = document.joinForm2.user_name;
-	var phoneNumberInput = document.joinForm2.user_phoneNumber;
+	var nickNameInput = document.joinForm2.join_nickName;
+	var nameInput = document.joinForm2.join_name;
+	var phoneNumberInput = document.joinForm2.join_phoneNumber;
 
 	if (isEmpty(nickNameInput)) {
 		
@@ -54,7 +54,7 @@ function joinCheck2() {
 
 
 function joinCheck3() {
-	var idInput = document.joinForm3.user_ID;
+	var idInput = document.joinForm3.join_ID;
 
 
 	if (isEmpty(idInput)) {
@@ -72,8 +72,7 @@ function joinCheck3() {
 
 
 function joinCheck4() {
-	var pwInput = document.joinForm4.user_PW;
-	var pwInput2 = document.joinForm4.user_PWC;
+	var pwInput = document.joinForm4.join_ID;
 
 
 	if (isEmpty(pwInput) ||isEmpty(pwInput2) || 

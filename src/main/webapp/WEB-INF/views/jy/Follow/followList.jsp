@@ -16,10 +16,8 @@
 
 	<div>
 
-		<div>사용자결과영역</div>
-		<div>${param.searchWord }</div>
-
-		<c:if test="${sessionScope.OtherMember == null }">
+		
+		<c:if test="${sessionScope.follows == null }">
 			<div>
 				<div>팔로우가 없습니다. 지금 팔로우하고 새로운 친구를 사귀어 볼까요?</div>
 			</div>
@@ -27,17 +25,18 @@
 		
 		
 		
-		<div>
-			<c:forEach var="f" items="${follow_list }">
+		<%-- <div>${follows}</div>
+		 --%>
+		 <div>
+			<c:forEach var="f" items="${Follow}">
 			
-			<div><a onclick="location.href='profile/go/${f.user_ID}'">${f.user_ID}</a></div>
-			<div>${f.user_nickName}</div>
-			<div>${f.user_contents}</div>
+			<div><a onclick="location.href='profile/go/${f.Flw_num}'">${f.Flw_num}</a></div>
+			
 			<hr>
 				
 			</c:forEach>
 		</div>
-
+ 
 
 	</div>
 

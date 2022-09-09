@@ -17,7 +17,20 @@ public class SearchDAO {
 
 		
 		try {
-			req.setAttribute("otherMember", ss.getMapper(SearchMapper.class).getOtherProfile());
+			String searchWord = req.getParameter("searchWord");
+			System.out.println("거엄색어"+ searchWord);
+			
+			
+		/*	List<MemberBoardDTO> list = memberboardservice.listAll(search_option, keyword, start, end);
+		  */      
+			req.setAttribute("otherMember", ss.getMapper(SearchMapper.class).getOtherProfile(searchWord));
+			
+			System.out.println("거엄색어2"+ searchWord);
+			
+			
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

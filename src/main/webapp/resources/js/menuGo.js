@@ -22,3 +22,8 @@ function goProfile()
 {
 	location.href = 'profile.go';
 }
+
+function goLogout()
+{
+	location.href = 'logout';
+}

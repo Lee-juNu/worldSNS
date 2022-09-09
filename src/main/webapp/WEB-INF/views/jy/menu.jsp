@@ -53,7 +53,7 @@
 	</div>
 	
 	<div class = "menuButton">
-		<a href=""><div class = "menuFlex">
+		<a href="setting.go"><div class = "menuFlex">
 			<div>
 			<img class = "menuImg" alt="" src="resources/icon/white/settingIcon.png"> 
 			</div>
@@ -62,6 +62,7 @@
 			</div>
 		</div></a>
 	</div>
+	
 	
 	<div class = "menuButton">
 		<a href="${sessionScope.loginMember.user_ID}"><div class = "menuFlex">
@@ -77,6 +78,11 @@
 			<button class = "submitBtn">World is...</button>		
 		</div>	
 	</div>
+	
+	<div>
+	<div><button onclick="goLogout();">로그아웃</button></div>
+	</div>
+	
 	
 	<div class = "menuProfile" >
 		<div class = "profileIcon"> 

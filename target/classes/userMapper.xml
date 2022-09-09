@@ -95,7 +95,7 @@
 	</update>
 	
 	
-	<update id="updateInfo"	parameterType="com.team.worlds.user.User">
+	<update id="updateInfo"	parameterType="com.team.worlds.user.User" >
 		update userTbl set 
 		user_ID=#{user_ID}, 
 		user_name=#{user_name}, 

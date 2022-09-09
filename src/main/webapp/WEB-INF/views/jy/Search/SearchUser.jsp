@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
@@ -24,18 +26,27 @@
 				<div>검색 결과가 없습니다.</div>
 			</div>
 		</c:if>
-		
-		
-		<div>
-			<c:forEach var="user_o" items="${otherMember}">
-			
-			
-			<div>${otherMember.user_ID}</div>
-			<div>${otherMember.user_nickName}</div>
-			<div>${otherMember.user_contents}</div>
-				
-			</c:forEach>
-		</div>
+
+
+
+
+
+
+		<%-- <c:if test="${sessionScope.OtherMember != null }">
+ --%>
+		<c:forEach var="otherMember" items="${otherMember}">
+			<div>
+				<a href="${otherMember.user_ID}">
+
+
+					<div>${otherMember.user_ID}</div>
+					<div>${otherMember.user_nickName}</div>
+					<div>${otherMember.user_contents}</div>
+					<hr>
+				</a>
+			</div>
+		</c:forEach>
+		<%-- </c:if> --%>
 
 
 	</div>

@@ -2,6 +2,7 @@ package com.team.worlds.user;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "/Search.user", method = RequestMethod.GET)
-	public String goSearchUser(Profile p, User_o u_o, HttpServletRequest req) {
+	public String goSearchUser( Profile p, User_o u_o, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		seaDAO.getUserSearchResult(req,u_o);

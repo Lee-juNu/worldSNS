@@ -1,10 +1,5 @@
 
 
-window.alert("yeah!");
-
-
-
-
 function goto9()
 {
 	location.href = 'profile/go/9';
@@ -105,6 +100,14 @@ function findpw()
 function findpwR()
 {
 	location.href = 'user.findid.pwr';
+	
+}
+
+
+
+function goIndex()
+{
+	location.href = '/worlds';
 	
 }
 

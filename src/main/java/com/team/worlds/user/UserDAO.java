@@ -158,23 +158,27 @@ public class UserDAO {
 	
 	public void updateInfo(User u, HttpServletRequest req) {
 
+		
+		System.out.println("어디까지");
 		User loginMember = (User) req.getSession().getAttribute("loginMember");
-		String Nuser_ID = req.getParameter("Nuser_ID");
-		String Nuser_PW = req.getParameter("Nuser_PW");
-		String Nuser_name = req.getParameter("Nuser_name");
-		String Nuser_email = req.getParameter("Nuser_email");
-		String Nuser_nickName = req.getParameter("Nuser_nickName");
+		String user_ID = req.getParameter("user_ID");
+		String user_name = req.getParameter("user_name");
+		String user_email = req.getParameter("user_email");
+		String user_nickName = req.getParameter("user_nickName");
+		String user_phoneNumber = req.getParameter("user_phoneNumber");
 		
-		
+		System.out.println("왔을까 + user_phoneNumber");
 		
 		try {
 			
-			u.setUser_ID(Nuser_ID);
-			u.setUser_PW(Nuser_PW);
-			u.setUser_name(Nuser_name);
-			u.setUser_email(Nuser_email);
-			u.setUser_nickName(Nuser_nickName);
+			u.setUser_ID(user_ID);
+			u.setUser_name(user_name);
+			u.setUser_email(user_email);
+			u.setUser_nickName(user_nickName);
+			u.setUser_phoneNumber(user_phoneNumber);
 
+			
+			System.out.println("흠");
 			if (ss.getMapper(UserMapper.class).updateInfo(u) == 1) {
 			
 				

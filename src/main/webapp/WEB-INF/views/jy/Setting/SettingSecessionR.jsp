@@ -5,11 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
+
+
 </head>
 <body>
 
 ${result }
-
+<button onclick="goIndex();">인덱스로 돌아가기</button>
 
 
 </body>

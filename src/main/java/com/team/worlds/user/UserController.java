@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.worlds.server.wsFileManager;
+
 @Controller
 public class UserController {
 	@Autowired
@@ -39,24 +41,7 @@ public class UserController {
 	*/
 	
 	
-	@RequestMapping(value = "/profile/go/{user_ID_o}", method = RequestMethod.GET)
-	public String goOtherProfile(@PathVariable("user_ID_o") String user_ID_o,
-			User u, HttpServletRequest req, User_o u_o, Profile_o p_o) {
-		
-		//세션 만들고
-		//로그인 체크하고
 
-		uDAO.loginCheck(req);
-		uDAO.goProfile(user_ID_o, u_o,req);
-		
-		
-		
-		req.setAttribute("profilePage", "profileMini.jsp");
-		req.setAttribute("menuPage", "jy/menu.jsp");
-		req.setAttribute("contentsPage", "jy/profile_o.jsp");
-		
-		return "home";
-	}
 	
 	 
 /*	@RequestMapping(value = "/profile.go/ID={user_ID_o}", method = RequestMethod.GET)
@@ -106,6 +91,19 @@ public class UserController {
 			return "index";
 		}
 	}
+	
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String temp_home(HttpServletRequest req) {
+		
+		
+	
+		uDAO.logout(req);
+		
+		return "redirect:/";
+		
+	}
+	
 	
 	
 	@RequestMapping(value = "/user.joinus.go", method = RequestMethod.GET)

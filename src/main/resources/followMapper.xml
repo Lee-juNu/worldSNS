@@ -23,16 +23,16 @@
 	
 	<select id="follower_count" resultType="String">
 	
-	SELECT COUNT(*) FROM FollowTbl where Flw_ToId=#{Flw_ToId}
+	SELECT COUNT(*) FROM FollowTbl where Flw_ToId = #{Flw_ToId}
 	
 
 	</select>
 	
 	
 	<select id="follow_list"
-		parameterType="com.team.worlds.user.Follow"
+	parameterType="com.team.worlds.user.Follow"
 		resultType="com.team.worlds.user.Follow">
-		select * from FollowTbl where Flw_FromId=#{Flw_FromId}
+		select * from FollowTbl where Flw_FromId = #{Flw_FromId}
 	</select>
 	
 
