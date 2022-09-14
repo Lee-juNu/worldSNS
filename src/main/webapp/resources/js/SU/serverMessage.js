@@ -69,7 +69,7 @@ function jwSendWithFile(){
 					const rr = event.data;
 					var rs = JSON.parse(rr);
 					
-//					console.log(typeof(rs))
+					console.log(rs)
 					
 				if (Array.isArray(rs)) {
 					 console.log("array")
@@ -86,9 +86,10 @@ function jwSendWithFile(){
 								var sendimg = rs[i].msg_img
 								var sendimg = sendimg.replace('C:\\fakepath', 'resources\\img\\chatimg\\')
 								var imgtag = "<img src="+sendimg+">"								
-							 }
-							
-						}
+							 } 
+						} else {
+							 var imgtag = null;
+						 }
 						 
 						 if (imgtag !=null && sendCon != null) {
 							 var chatdiv = document.createElement('div'); 
@@ -117,7 +118,6 @@ function jwSendWithFile(){
 							var imgtag = "<img src="+sendimg+">"
 						}
 					 if (imgtag !=null && sendCon!=null) {
-							
 						 var chatdiv = document.createElement('div'); 
 						 chatdiv.innerHTML = "<div>"+ sendId + ":" + sendCon + imgtag + "</div>";
 						 document.getElementById('chatMsg').appendChild(chatdiv);
