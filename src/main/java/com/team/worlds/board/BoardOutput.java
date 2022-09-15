@@ -1,6 +1,6 @@
 package com.team.worlds.board;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class BoardOutput
 {
@@ -14,7 +14,7 @@ public class BoardOutput
 	private String board_Contents;	
 	private String board_Country;	
 	private String board_City;
-	private Date regDate;
+	private Date board_regDate;
 	private String user_nickName;
 	public BoardOutput() {
 		super();
@@ -34,7 +34,7 @@ public class BoardOutput
 		this.board_Contents = board_Contents;
 		this.board_Country = board_Country;
 		this.board_City = board_City;
-		this.regDate = regDate;
+		this.board_regDate = regDate;
 		this.user_nickName = user_nickName;
 	}
 	public String getBoard_Num() {
@@ -98,10 +98,10 @@ public class BoardOutput
 		this.board_City = board_City;
 	}
 	public Date getRegDate() {
-		return regDate;
+		return board_regDate;
 	}
 	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+		this.board_regDate = regDate;
 	}
 	public String getUser_nickName() {
 		return user_nickName;

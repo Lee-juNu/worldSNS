@@ -1,16 +1,38 @@
 @charset "UTF-8";
 
+
+
+.hideDiv
+{
+	width : 100%;
+	height : 20px;
+	text-align: center;
+}
+
+.mapDiv
+{
+	padding-top : 10px;
+	padding-bottom : 10px;
+	
+	border-top		: 1px solid #3c3c3c;
+	border-bottom	: 1px solid #3c3c3c;
+	
+	width : 100%;
+}
+
 .contentsDiv
 {
 	width:100%;
-	height:100%;
 	display:flex;
 }
+
 .contentsMainDiv
 {
 	width:598px;
-	height:100%;
+	border-left: 1px solid #3c3c3c;
+	border-right: 1px solid #3c3c3c;
 }
+
 .contesntsBlank
 {
 	width:100%;
@@ -24,6 +46,7 @@
 	flex-direction:column;
 	border-bottom	: 1px solid black;
 }
+
 .regContentsDiv1
 {
 	width			:566px;
@@ -269,4 +292,30 @@
 	height:100%;
 	
 	border-radius: 5px;
+}
+
+
+
+.boardDiv
+{
+	display:flex; 
+	flex-direction : column;
+	padding-left : 16px; 
+	
+}
+
+.boardDiv .imgDiv
+{
+	width : 502px;
+}
+
+
+.board
+{
+	display:flex;
+	
+	padding : 8px 16px; 
+	
+	border-bottom: 1px solid #3c3c3c;
+	
 }

@@ -35,7 +35,7 @@ public class FakeBoardDAO {
 		if(arrBoard.size()!=0)
 		{
 			System.out.println(arrBoard.get(0).getBoard_Contents());			
-			System.out.println(arrBoard.get(0).getBoard_userID());			
+			System.out.println(arrBoard.get(0).getRegDate());			
 			
 			return new GsonBuilder().create().toJsonTree(arrBoard).getAsJsonArray();
 		}
