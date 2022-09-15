@@ -66,7 +66,28 @@ insert into regionTbl values ('Tokyo', 'JP')
 
 select * from countryTbl;
 
+SELECT *
+FROM 
+ (
+select ROWNUM rm, user_nickName, boardTbl.* from USERTBL, boardTbl  where board_userId in (
+	select Flw_toId from followTbl where Flw_FromId = 'admin'
+) and user_id = board_userId or board_userId = 'admin' and user_id = board_userId
+order by  board_regdate desc
+)
+where rm  between 3 and 6
 
+인피니트 스크롤
+
+
+
+
+select userTbl.*,followTbl.Flw_FromId,followTbl.Flw_ToId from userTbl ,followTbl 
+where userTbl.user_id = 'admin'
+
+select userTbl.*,followTbl.Flw_FromId,followTbl.Flw_ToId from userTbl ,followTbl 
+where userTbl.user_id = followTbl.Flw_FromId
+
+select * from followTbl
 select * from chatroomTbl
 alter table proFileTbl add unique(pf_userID)
 create table proFileTbl

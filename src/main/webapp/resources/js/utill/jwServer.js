@@ -170,8 +170,8 @@
 				reader.onload = function(e) {
 				rawData = e.target.result;
 				ws.send(rawData);
-				alert("파일 전송이 완료 되었습니다.");
 				
+				console.log("파일 전송이 완료 되었습니다.");
 				
 				//위와 같으나 isEnd가 True 파일을 전부 보냈습니다.
 				var fileEndData = 

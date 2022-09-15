@@ -28,15 +28,18 @@ public class wsBoardController {
 			 bDAO = bTempDAO;
 		  }
 	
-	public static void onMessage(JSONObject result, Session session, HashMap<String, ArrayList<Session>> sessionmap) {
+	public static void onMessage(JSONObject result, Session session,
+			HashMap<String, ArrayList<Session>> sessionmap, String userID) {
 		// TODO Auto-generated method stub
 		
 		
 		if(result.get("contents").toString().equals("upload"))
 		{
 			bDAO.insertBoard(result);
-			
-			
+		}
+		else if(result.get("contents").toString().equals("boardInit"))
+		{
+			getBoardID(session,userID);
 		}
 		else if(result.get("contents").toString().equals("regionInit"))
 		{
@@ -62,7 +65,22 @@ public class wsBoardController {
 			System.out.println(e);
 		}
 	}
+	
+	private static void getBoardID(Session session, String userID)
+	{
+		try {
 
+		JSONObject obj = new JSONObject();
+		
+		obj.put("type", "getBoard");
+		obj.put("arrBoard",bDAO.getBoardByUserID(userID));
+		System.out.println(obj.toJSONString());
+		session.getBasicRemote().sendText(obj.toJSONString());
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
 	private static void countryInit(Session session)
 	{
 		try {

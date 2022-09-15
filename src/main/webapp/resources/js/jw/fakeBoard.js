@@ -1,6 +1,7 @@
 function boardInit()
 {
 	selectCountryInit();
+	getBoardInit();
 }
 function selectCountryInit()
 {
@@ -10,7 +11,16 @@ function selectCountryInit()
 			contents : "countryInit"
 		}	
 	sendMsg(country);
-	
+}
+
+function getBoardInit()
+{
+	var boardInitMsg = 
+		{
+			type : "board",
+			contents : "boardInit"
+		}
+	sendMsg(boardInitMsg);	
 }
 
 var 	currentFileIndex = 0;
@@ -24,7 +34,14 @@ window.onload = function()
 	boardInit();
 	userId = $('#wsUserId').val();
 	$('#submit').click(function(){
-		jwSendWithFile();
+		if(0!=document.getElementById(fileId).files.length)
+		{
+			jwSendWithFile();
+		}
+		else
+		{
+			uploadBoard();
+		}
 	});		
 
 
@@ -64,6 +81,10 @@ function receiveMessage(message)
 	{
 		changeRegions(resultJson.regions);
 	}
+	else if(resultJson.type =="getBoard")
+	{
+		addBoard(resultJson.arrBoard);
+	}
 	else if(resultJson.type =="countryInit")
 	{
 		addCountries(resultJson.countries);
@@ -72,7 +93,11 @@ function receiveMessage(message)
 	{
 		nextFileUpload();
 	}
-	
+}
+
+function addBoard(arrBoard)
+{
+	console.log(arrBoard);
 }
 
 function changeRegions(regions)
@@ -112,7 +137,6 @@ function nextFileUpload()
 		}
 		else
 		{
-			console.log("이미지 업로드 완료 보드 등록");
 			currentFileIndex = 0;
 			uploadBoard();
 		}

@@ -16,7 +16,6 @@
 		</div>
 		
 		<div class = "regContents">
-			<form id="fileUploadForm" method='post' action='' enctype="multipart/form-data">
 			   	<input type="text" name = "user_id" id="wsUserId" value= '${sessionScope.loginMember.user_ID}'  style="display: none;">
    				<input type="text" id="wsRoomType" value="board" style="display: none;">
    
@@ -64,7 +63,29 @@
 					</div>
 				</div>
 			</div>
-			</form>
+		</div>
+		<div class ="container" style = "width : 100%;">
+			<div class = "containerList" style = "width : 100%;">
+				<div class = "board" style = "display:flex;">
+					<div class = "boardProfile">
+					프로필
+					</div>
+					<div class = "boardDiv" style = "display:flex; flex-direction : column">
+						<div class = "accountDiv">
+						계정
+						</div>
+						<div class = "contentsDiv">
+						콘텐츠
+						</div>
+						<div class = "imgDiv">
+						이미지
+						</div>
+						<div class = "reactDiv">
+						</div>
+						우리들의 워 게임				
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class = "contentsSubDiv"> 

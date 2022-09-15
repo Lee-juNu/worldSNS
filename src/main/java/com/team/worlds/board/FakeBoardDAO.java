@@ -2,6 +2,7 @@ package com.team.worlds.board;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,24 @@ public class FakeBoardDAO {
 	@Autowired
 	private SqlSession ss;
 
+	
+	public JsonArray getBoardByUserID(String userId)
+	{
+		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollower(userId);
+		if(arrBoard.size()!=0)
+		{
+			System.out.println(arrBoard.get(0).getBoard_Contents());			
+			System.out.println(arrBoard.get(0).getBoard_userID());			
+			
+			return new GsonBuilder().create().toJsonTree(arrBoard).getAsJsonArray();
+		}
+		else 
+		{
+			System.out.println("실패인듯");
+		}
+		return null;
+	}
+	
 	
 	public void insertBoard(JSONObject result)
 	{
@@ -89,6 +108,10 @@ public class FakeBoardDAO {
 		ArrayList<Region> arrRegion = ss.getMapper(CountryMapper.class).getRegionByCountry(countryName);
 		return new GsonBuilder().create().toJsonTree(arrRegion).getAsJsonArray();
 
+	}
+
+	public void getBoardByID(HttpServletRequest req) {
+		
 	}
 	
 }

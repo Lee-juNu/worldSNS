@@ -7,4 +7,17 @@
 	#{board_img1},#{board_img2},#{board_img3},#{board_img4},#{board_Contents},#{board_Country},#{board_City},sysdate)
 </insert>
 
+
+<select id="getBoardByFollower" resultType="com.team.worlds.board.BoardOutput">
+SELECT *
+FROM 
+ (
+select ROWNUM rm, user_nickName, boardTbl.* from USERTBL, boardTbl  where board_userId in (
+	select Flw_toId from followTbl where Flw_FromId = 'admin'
+) and user_id = board_userId or board_userId = 'admin' and user_id = board_userId
+order by  board_regdate desc
+)
+where rm  between 1 and 6
+</select>
+
 </mapper>
