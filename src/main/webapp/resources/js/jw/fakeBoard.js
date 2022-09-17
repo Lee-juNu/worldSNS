@@ -9,7 +9,7 @@ function selectCountryInit()
 		{
 			type : "board",
 			contents : "countryInit"
-		}	
+		}
 	sendMsg(country);
 }
 
@@ -54,10 +54,6 @@ window.onload = function()
 	});
 }
 
-
-
-
-
 function changeRegionByCountry(countryId)
 {
 	if(countryId == "")	return;
@@ -95,43 +91,86 @@ function receiveMessage(message)
 	}
 }
 
+
+	var boardContainer = $('#containerList');
 function addBoard(arrBoard)
 {
 	console.log(arrBoard);
+	//data.board_City
 	
-	var html = `
+	//data.board_Country
+	//data.board_Num
+
+	var imgs = "";
+	
+	
+	var html = ""
+	arrBoard.forEach(function(data, index) {
+		
+		if(data.board_img4 != undefined)
+		{
+		}
+		else if(data.board_img3 != undefined)
+		{
+			
+		}
+		else if(data.board_img2 != undefined)
+		{
+			imgs = `<img style="width:100%; height:100%;" alt="" src="resources/img/board/`+data.board_img1+`/photo.png"
+								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>`;
+		}
+		else if(data.board_img1 != undefined)
+		{
+			imgs = `<img style="width:100%; height:100%;" alt="" src="resources/img/board/`+data.board_img1+`/photo.png"
+								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>`;
+		}
+		html += `
 	<div class = "board" style = "">
 					<div class = "boardProfile">
 					<div class = "profileIcon" style = "margin: auto;"> 
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/{sessionScope.loginMember.user_ID}/photo.png"
+								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/`+data.board_userID+`/photo.png"
 								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
 								 </div>
 					</div>
 					<div class = "boardDiv" style = "">
 						<div class = "accountDiv">
-						{sessionScope.loginMember.user_nickName}
-						@{sessionScope.loginMember.user_ID} reg Date
+						`+data.board_userID + `@` +data.board_userID+data.board_regDate+`
 						</div>
 						
 						<div class = "contentsDiv">
-							콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아
+							`+data.board_Contents+`
 						</div>
-						<div class = "imgDiv">
+						<div class = "imgDiv"
 							<div class = "imgContainer">
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/{sessionScope.loginMember.user_ID}/photo.png"
-								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
+							`+imgs+`
 							</div>
 						</div>
 						<div class = "reactDiv">
 						</div>
 					</div>
-				</div>`;	
-
-				
-				
-	
+				</div>`;
+	});
+	boardContainer.append(html);
 }
 
+
+
+function addImg1(data)
+{
+	
+}
+function addImg2(data)
+{
+	
+}
+function addImg3(data)
+{
+	
+}
+function addImg4(data)
+{
+	
+}
 function changeRegions(regions)
 {
 	$("#region").empty();

@@ -16,13 +16,14 @@ public class BoardOutput
 	private String board_City;
 	private Date board_regDate;
 	private String user_nickName;
+	private int imgSize;
 	public BoardOutput() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BoardOutput(String board_Num, String board_ParentNum, String board_userID, String board_img1,
 			String board_img2, String board_img3, String board_img4, String board_Contents, String board_Country,
-			String board_City, Date regDate, String user_nickName) {
+			String board_City, Date board_regDate, String user_nickName, int imgSize) {
 		super();
 		this.board_Num = board_Num;
 		this.board_ParentNum = board_ParentNum;
@@ -34,8 +35,9 @@ public class BoardOutput
 		this.board_Contents = board_Contents;
 		this.board_Country = board_Country;
 		this.board_City = board_City;
-		this.board_regDate = regDate;
+		this.board_regDate = board_regDate;
 		this.user_nickName = user_nickName;
+		this.imgSize = imgSize;
 	}
 	public String getBoard_Num() {
 		return board_Num;
@@ -97,11 +99,11 @@ public class BoardOutput
 	public void setBoard_City(String board_City) {
 		this.board_City = board_City;
 	}
-	public Date getRegDate() {
+	public Date getBoard_regDate() {
 		return board_regDate;
 	}
-	public void setRegDate(Date regDate) {
-		this.board_regDate = regDate;
+	public void setBoard_regDate(Date board_regDate) {
+		this.board_regDate = board_regDate;
 	}
 	public String getUser_nickName() {
 		return user_nickName;
@@ -109,7 +111,11 @@ public class BoardOutput
 	public void setUser_nickName(String user_nickName) {
 		this.user_nickName = user_nickName;
 	}
-
-	
+	public int getImgSize() {
+		return imgSize;
+	}
+	public void setImgSize(int imgSize) {
+		this.imgSize = imgSize;
+	}	
 	
 }

@@ -78,64 +78,11 @@
 		
 		
 		<div class ="container" style = "width : 100%;">
-			<div class = "containerList" style = "width : 100%;">
+			<div id = "containerList" class = "containerList" style = "width : 100%;">
+				<div class = "contents">
 				
-				<div class = "board" style = "">
-					<div class = "boardProfile">
-					<div class = "profileIcon" style = "margin: auto;"> 
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
-								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
-								 </div>
-					</div>
-					<div class = "boardDiv" style = "">
-						<div class = "accountDiv">
-						${sessionScope.loginMember.user_nickName}
-						@${sessionScope.loginMember.user_ID} reg Date
-						</div>
-						
-						<div class = "contentsDiv">
-							콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아
-						</div>
-						<div class = "imgDiv">
-							<div class = "imgContainer">
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
-								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
-							</div>
-						</div>
-						<div class = "reactDiv">
-						</div>
-					</div>
 				</div>
 				
-				
-				<div class = "board">
-					<div class = "boardProfile">
-					<div class = "profileIcon" style = "margin: auto;"> 
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
-								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
-								 </div>
-					</div>
-					<div class = "boardDiv" style = "">
-						<div class = "accountDiv">
-						${sessionScope.loginMember.user_nickName}
-						@${sessionScope.loginMember.user_ID} reg Date
-						</div>
-						
-						<div class = "contentsDiv">
-							콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아콘텐츠다아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아
-						</div>
-						
-						<div class = "imgDiv">
-							<div class = "imgContainer">
-								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/${sessionScope.loginMember.user_ID}/photo.png"
-								onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/>
-							</div>
-						</div>
-						<div class = "reactDiv">
-							
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
