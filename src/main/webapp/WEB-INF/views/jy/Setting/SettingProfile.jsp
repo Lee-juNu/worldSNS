@@ -1,40 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
+<title>${findUser.user_ID}sProfile</title>
+
+<script type="text/javascript" src="resources/js/utill/jQuery.js"></script>
+
 
 
 </head>
-<body>
-<form action="setting.go.ProfileR" 	method="post" enctype="multipart/form-data"
-		name="settingProfile">
-<div>
+<body class="bgColor">
 
-<div>배경</div>
-<div><input type="file" name="pf_Img"></div>
-<div>프로필</div>
-<div><input type="file" name="pf_bgImg"></div>
-<div>닉네임</div>
-<div><input name="user_nickName" value="${sessionScope.loginMember.user_nickName }"></div>
-<div>자기소개!!</div>
-<div><input name="pf_contents" value="${sessionScope.loginMemberp.pf_contents }"></div>
-<div>생일 (후에 설정 가능)</div>
-<div><input name="user_birthDay" type="date"></div>
+	<div class="profileSectionDiv">
+		<div class="profileMainDiv ">
+
+			<div class="profileBlank"></div>
+
+			<div class="profileDiv">
+				<div class="profileBGDiv">
+					<a> <img alt=""
+						src="resources/img/profile/${findUser.user_ID}/BG.png"
+						onerror="this.onerror=null; this.src='resources/img/profile/bg.png';" />
+					</a>
+					<div class=""></div>
+				</div>
+
+				<div class="profileDetailDiv">
+					<div class="iconEditDiv">
+						<div class="iconDiv bgColor">
+							<img alt=""
+								src="resources/img/profile/${findUser.user_ID}/photo.png"
+								onerror="this.onerror=null; this.src='resources/img/profile/s.png';" />
+								<input type="image" name="${findUser.user_ID}">
+						</div>
+					
+					</div>
+					<div class="ProfileIdNameDiv">
+						<div class="nickNameDiv">
+						닉네임<input value="${findUser.user_nickName}" name="user_nickName">
+						
+					</div>
+					<div class="profileContentsDiv">
+					
+					자기소개<input value="${findUser.user_contents}" name="user_contents">
+					</div>
+					<div class="profileContentsDiv">
+					
+					위치<input value="${findUser.user_contents}" name="user_contents">
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</div>
+
+				<!-- jy수정 : 팔로우 수, 팔로워 수 추가 -->
+
+				<div></div>
 
 
 
-<input name="pf_userID" value="${sessionScope.loginMember.user_ID }">
 
 
-<div><button>수정하기</button></div>
-</div>
+			</div>
+		</div>
+	</div>
 
-</form>
 
 
 </body>

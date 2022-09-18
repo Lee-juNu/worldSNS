@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.team.worlds.user.User;
+import com.team.worlds.user.LoginDTO;
 
 @Controller
 public class MessagesController {
@@ -23,7 +23,7 @@ public class MessagesController {
 	private MessageDAO mDAO;
 	
 	@RequestMapping(value = "/messages.go", method = RequestMethod.GET)
-	public String home(HttpServletRequest req, User u) {
+	public String home(HttpServletRequest req, LoginDTO u) {
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		//로그인완성되면 체크 필수
@@ -60,7 +60,7 @@ public class MessagesController {
 	}
 
 	@RequestMapping(value = "/messages.searchUser", method = RequestMethod.GET)
-	public @ResponseBody List<User> search(User u) {
+	public @ResponseBody List<LoginDTO> search(LoginDTO u) {
 		String name = u.getUser_ID();
 		System.out.println(name);
 		mDAO.search(name);

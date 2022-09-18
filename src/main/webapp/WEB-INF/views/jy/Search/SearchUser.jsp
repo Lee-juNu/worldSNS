@@ -38,7 +38,8 @@
 			<div>
 				<a href="${otherMember.user_ID}">
 
-
+					<div><img width="50px" height="50px" alt="" src="resources/img/profile/${findUser.user_ID}/photo.png"
+		onerror="this.onerror=null; this.src='resources/img/profile/s.png';"/> </div>
 					<div>${otherMember.user_ID}</div>
 					<div>${otherMember.user_nickName}</div>
 					<div>${otherMember.user_contents}</div>

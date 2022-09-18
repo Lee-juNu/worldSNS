@@ -2,24 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.worlds.user.UserMapper">
 
+
+	<resultMap id="userResultMap" type="User">
+		<result property="user_ID" column="user_ID" />
+		<result property="user_PW" column="user_PW" />
+		<result property="user_nickName" column="user_nickName" />
+		<result property="user_phoneNumber" column="user_phoneNumber" />
+		<result property="user_name" column="user_name" />
+		<result property="user_email" column="user_email" />
+		<result property="user_country" column="user_country" />
+		<result property="user_city" column="user_city" />
+		<result property="user_birthDay" column="user_birthDay" />
+		<result property="level" column="level" />
+		<result property="regDate" column="regDate" />
+		<result property="user_contents" column="user_contents" />
+		<result property="session_key" column="session_key" />
+		<result property="session_limit" column="session_limit" />
+	</resultMap>
+
 	<!-- id 다시 보기! -->
 	<insert id="joinus">
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
 		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null)
 	</insert>
-	
-	
-	<select id="checkOverId" parameterType="String"	resultType="com.team.worlds.user.User">
+
+
+	<select id="checkOverId" parameterType="String"
+		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_ID = #{user_ID}
 	</select>
-	
-	
-	
+
+
+	<update id="keepLogin">
+		UPDATE userTbl
+		SET session_key = #{sessionId}
+		,
+		session_limit = #{sessionLimit}
+		WHERE user_ID = #{user_ID}
+	</update>
+
+	<select id="checkUserWithSessionKey" resultMap="userResultMap">
+		SELECT
+		*
+		FROM
+		userTbl
+		WHERE session_key = #{value}
+	</select>
+
+
 	<insert id="joinusp">
 
-			
-		insert into proFileTbl values(#{pf_userID},null,null,null)
+
+		insert into proFileTbl
+		values(#{pf_userID},null,null,null)
 
 
 	</insert>
@@ -48,29 +84,31 @@
 
 	<select id="getMemberByEmail"
 		resultType="com.team.worlds.user.User">
-		select user_ID from userTbl where user_email = #{user_email} and user_name = #{user_name}
+		select user_ID from userTbl where user_email =
+		#{user_email} and user_name = #{user_name}
 	</select>
 
 	<select id="getMemberByIDEmail"
 		resultType="com.team.worlds.user.User">
-		select user_ID from userTbl where user_email = #{user_email} and user_name = #{user_name} and user_ID = #{user_ID}
+		select user_ID from userTbl where user_email =
+		#{user_email} and user_name = #{user_name} and user_ID = #{user_ID}
 	</select>
 
 
 	<select id="getOtherMemberByID"
 		resultType="com.team.worlds.user.User_o">
-		
-		
+
+
 		select * from userTbl where user_ID = #{user_ID}
-		
+
 	</select>
-	
+
 	<select id="getOtherProfileMemberByID"
 		resultType="com.team.worlds.user.Profile_o">
-		
-		
+
+
 		select * from proFileTbl where pf_userID = #{pf_userID}
-		
+
 	</select>
 
 
@@ -84,48 +122,53 @@
 		where
 		user_ID = #{user_ID}
 	</delete>
-	
-	<update id="updateFindPW"	parameterType="com.team.worlds.user.User">
-		update userTbl set user_PW='0000' where user_ID=#{user_ID}
-	</update>
-	
 
-	<update id="updatePW"	parameterType="com.team.worlds.user.User">
-		update userTbl set user_PW=#{user_PW} where user_ID=#{user_ID}
+	<update id="updateFindPW"
+		parameterType="com.team.worlds.user.User">
+		update userTbl set user_PW='0000' where
+		user_ID=#{user_ID}
 	</update>
-	
-	
-	<update id="updateInfo"	parameterType="com.team.worlds.user.User" >
-		update userTbl set 
-		user_ID=#{user_ID}, 
-		user_name=#{user_name}, 
-		user_nickName=#{user_nickName}, 
-		user_phoneNumber=#{user_phoneNumber}, 
+
+
+	<update id="updatePW" parameterType="com.team.worlds.user.User">
+		update userTbl set
+		user_PW=#{user_PW} where user_ID=#{user_ID}
+	</update>
+
+
+	<update id="updateInfo"
+		parameterType="com.team.worlds.user.User">
+		update userTbl set
+		user_name=#{user_name},
+		user_nickName=#{user_nickName},
+		user_phoneNumber=#{user_phoneNumber},
 		user_email=#{user_email}
-		
+
 		where user_ID=#{user_ID}
 	</update>
-	
-		
-	<update id="updateProfile"	parameterType="com.team.worlds.user.User">
-		update proFileTbl set 
-		pf_Img=#{pf_Img}, 
-		pf_bgImg=#{pf_bgImg}, 
+
+
+	<update id="updateProfile"
+		parameterType="com.team.worlds.user.User">
+		update proFileTbl set
+		pf_Img=#{pf_Img},
+		pf_bgImg=#{pf_bgImg},
 		pf_contents=#{pf_contents}
-		where pf_userID=#{pf_userID}
-		
-		
-		
-		
+		where
+		pf_userID=#{pf_userID}
+
+
+
+
 	</update>
-	
-	<update id="updateUserProfile" >
-	
-	update userTbl set user_birthDay = #{user_birthDay} ,
-						user_nickName = #{user_nickName}
-	
-	where user_ID = #{pf_userID}
-	
+
+	<update id="updateUserProfile">
+
+		update userTbl set user_birthDay = #{user_birthDay} ,
+		user_nickName = #{user_nickName}
+
+		where user_ID = #{pf_userID}
+
 	</update>
 
 </mapper>

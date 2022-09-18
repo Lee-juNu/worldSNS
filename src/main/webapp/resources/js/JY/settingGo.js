@@ -15,3 +15,9 @@ function goSettingPassword4()
 
 	location.href = 'setting.go.Password4';
 }
+
+function goSettingProfile()
+{
+	
+	location.href = 'setting.go.Profile';
+}

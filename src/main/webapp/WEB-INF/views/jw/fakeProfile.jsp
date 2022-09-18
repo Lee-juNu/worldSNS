@@ -12,6 +12,7 @@
 	jy/followcontroller 에 연결되어 있음 -->
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 <script type = "text/javascript" src="resources/js/JY/followGo.js"></script>
+<script type = "text/javascript" src="resources/js/JY/userGo.js"></script>
 
 <script type="text/javascript">
 
@@ -105,13 +106,13 @@ function unfollow(){
 					</div>
 					<div class = "editDiv">
 					<c:if test ="${findUser.user_ID==sessionScope.loginMember.user_ID}">
-						<button>Profile Edit</button>
+						<button onclick="goSettingProfile()">Profile Edit</button>
 					</c:if>
 					
 					
 					<c:if test ="${findUser.user_ID!=sessionScope.loginMember.user_ID}">
 						
-						<button id="followButton">팔로우!!!!</button>
+						<button id="followButton">팔로우</button>
 						<!-- jy수정 : 아이디 추가 -->
 						<button id="unfollowButton">언팔로우</button>
 					</c:if>

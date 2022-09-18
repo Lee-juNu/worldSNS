@@ -64,8 +64,9 @@
             <div class="content">   
                 <input id="user_ID" class = "input-modal" name="user_ID" placeholder="아이디를 입력해주세요"><br>
                 <input id="user_PW" type='password' class = "input-modal" name="user_PW" placeholder="비밀번호를 입력해주세요"><br>
-                <div>로그인에 실패하였습니다.</div>
+               
                 <button id="loginBtn" class = "mloginBtn">로그인</button><br>
+               <!--  <input type="checkbox" name="useCookie"> 로그인유지 -->
                 <div class = "forgotPwDiv"><a>비밀번호를 잊어버리셨나요?</a></div>
                 <div class = "joinUsDiv">계정이 없으신가요? <a id = "joinUsTag">회원가입</a></div>
                 <div class = "tempLogin"></div>                               
@@ -73,8 +74,7 @@
         </div>
     </div>
     
-    <form method="post" onsubmit="return joinCheck4();">
-    
+   
     <div id="modalJoin" class="modal-overlay">
         <div class="modal-window">
         <div class = "joinTitle">
@@ -104,8 +104,8 @@
            	   	</div>
            	   	
            	   	<div class = "stepBtnDiv"> 	        
-           	   		<div class = "stepLeftDiv"> <button class = "returnModalBtn stepBtn">돌아가기</button></div>
-           	   		<div class = "stepRightDiv"> <button class = "nextModalBtn stepBtn">다음</button></div>
+           	   		<div class = "stepLeftDiv"> <button type="button" class = "returnModalBtn stepBtn">돌아가기</button></div>
+           	   		<div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
            	   	</div>	
         	</div>            
         </div>
@@ -142,8 +142,8 @@
            	   		</div>
            	  </div>
         <div class = "stepBtnDiv"> 	        
-        <div class = "stepLeftDiv"> <button class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button class = "nextModalBtn stepBtn">다음</button></div>
+        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
+        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
 		</div>
         
         </div>
@@ -156,8 +156,8 @@
          
          
          <div class = "stepBtnDiv">
-        <div class = "stepLeftDiv"> <button class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button class = "nextModalBtn stepBtn">다음</button></div>
+        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
+        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
         </div>
         
         </div>
@@ -165,8 +165,8 @@
 
         <div id = "joinDiv4" class="content"> 
         <div class = "stepBtnDiv">
-        <div class = "stepLeftDiv"> <button class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">가입하기</button></div>
+        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
+        <div class = "stepRightDiv"> <button type="submit" id = "joinBtn" class = "stepBtn">가입하기</button></div>
         </div>
         </div>
         
@@ -174,7 +174,7 @@
 
         </div>
     </div>
-    </form>
+  
 <script type = "text/javascript" src="resources/js/jw/indexServer.js"></script>
     <script type = "text/javascript" src="resources/js/jw/map.js"></script>
 </body>

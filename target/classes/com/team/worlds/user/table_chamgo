@@ -14,7 +14,7 @@ user_phoneNumber 	varchar2(16 char)		unique not null	,
 user_name 			varchar2(40 char)		not null		,
 user_email 			varchar2(60 char)		not null		,
 user_country 		varchar2(50 char)						,
-user_city 			varchar2(40 char)						,
+
 user_level 			number(2) not null						,
 user_regDate 		date not null							,
 user_birthDay 		date									

@@ -13,10 +13,12 @@
 <body>
 
 <div>
-<div>${result }</div>
+<form  action="setting.go.InfoUpR"  name="UpdateForm"  method="post">
+
 <div>아이디</div>
 <div><input value="${sessionScope.loginMember.user_ID }" name="user_ID"> </div>
 <hr>
+
 
 
 <div>이름 </div>
@@ -57,12 +59,15 @@
 
 <div>
 
-<button onclick="goInfoUpdateR()">수정하기</button>
+<button>수정하기</button>
+</form>
+
+
+
 <button onclick="goSettingPassword()">비밀번호 변경하러 가기</button>
 
  </div>
 </div>
-
 <!-- 나중에 할 수 있음 트위터같이 하나에 하나 수정하는 걸로 수정하기 
 일단은 한번에 수정하는 걸로 만들기 
  -->

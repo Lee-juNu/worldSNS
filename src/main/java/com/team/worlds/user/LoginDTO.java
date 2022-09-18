@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class User {
+public class LoginDTO {
 	private String user_ID;
 	private String user_PW;
 	private String user_nickName;
@@ -23,7 +23,7 @@ public class User {
 	
 	
 	
-	public User() {
+	public LoginDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -198,7 +198,7 @@ public class User {
 
 
 
-	public User(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
+	public LoginDTO(String user_ID, String user_PW, String user_nickName, String user_phoneNumber, String user_name,
 			String user_email, String user_country, String user_city, Date user_birthDay, int level, String regDate,
 			String user_contents, String session_key, Date session_limit) {
 		super();
@@ -216,6 +216,13 @@ public class User {
 		this.user_contents = user_contents;
 		this.session_key = session_key;
 		this.session_limit = session_limit;
+	}
+
+
+
+	public boolean isUseCookie() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

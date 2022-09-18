@@ -14,7 +14,7 @@ public interface FollowMapper {
 	
 	public List<Follow> follow_list(Follow f);
 	
-	public List<User> getfollow_list(Follow f);
+	public List<LoginDTO> getfollow_list(Follow f);
 
 	int already_follow(Follow f);
 

@@ -18,10 +18,10 @@ public class FollowDAO {
 	 * uuid.getUUID();
 	 */
 
-	public void follow(HttpServletRequest req, User u, String user_ID_o, Follow f) {
+	public void follow(HttpServletRequest req, LoginDTO u, String user_ID_o, Follow f) {
 		// TODO Auto-generated method stub
 
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 
 		System.out.println("ㅇ왜안되지");
 
@@ -57,9 +57,9 @@ public class FollowDAO {
 
 	}
 
-	public void unfollow(HttpServletRequest req, User u, String user_ID_o, Follow f) {
+	public void unfollow(HttpServletRequest req, LoginDTO u, String user_ID_o, Follow f) {
 
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 		
 		String user_ID = u.getUser_ID();
 
@@ -89,7 +89,7 @@ public class FollowDAO {
 */
 	
 
-	public void follow_count(HttpServletRequest req, User u, String user_ID_o, Follow f) {
+	public void follow_count(HttpServletRequest req, LoginDTO u, String user_ID_o, Follow f) {
 		// TODO Auto-generated method stub
 
 		/*u = (User) req.getSession().getAttribute("loginMember");
@@ -111,9 +111,9 @@ public class FollowDAO {
 
 	}
 
-	public void follower_count(HttpServletRequest req, User u, String user_ID_o, Follow f) {
+	public void follower_count(HttpServletRequest req, LoginDTO u, String user_ID_o, Follow f) {
 		// TODO Auto-generated method stub
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 
 		// String user_ID = u.getUser_ID();
 
@@ -146,7 +146,7 @@ public class FollowDAO {
 
 	}
 
-	public void getfollow_list(String user_ID_o, User u, HttpServletRequest req, Follow f) {
+	public void getfollow_list(String user_ID_o, LoginDTO u, HttpServletRequest req, Follow f) {
 
 		f = (Follow) req.getSession().getAttribute("follows");
 

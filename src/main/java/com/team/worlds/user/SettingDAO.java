@@ -20,14 +20,14 @@ public class SettingDAO {
 	SqlSession ss;
 
 
-	public void SettingPW1(User u,Profile p, HttpServletRequest req) {
+	public void SettingPW1(LoginDTO u,Profile p, HttpServletRequest req) {
 
 
 		
 		String settingPassword1 = req.getParameter("settingPassword1");
 		
 		
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 		
 		
 		
@@ -47,13 +47,13 @@ public class SettingDAO {
 
 	
 
-	public void SettingPW2(User u,Profile p, HttpServletRequest req) {
+	public void SettingPW2(LoginDTO u,Profile p, HttpServletRequest req) {
 
 
 		
 		String settingPassword1 = req.getParameter("settingPassword1");
 		String settingPassword2 = req.getParameter("settingPassword2");
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 		
 		
 		if (settingPassword2 == settingPassword1) {
@@ -77,13 +77,13 @@ public class SettingDAO {
 
 	
 	
-	public void SettingPW3(User u,Profile p, HttpServletRequest req) {
+	public void SettingPW3(LoginDTO u,Profile p, HttpServletRequest req) {
 		
 
 		
 		String settingPassword2 = req.getParameter("settingPassword2");
 		String settingPassword3 = req.getParameter("settingPassword3");
-		u = (User) req.getSession().getAttribute("loginMember");
+		u = (LoginDTO) req.getSession().getAttribute("loginMember");
 		//System.out.println("마지막"+settingPassword2);
 		System.out.println("마지막"+settingPassword3);
 		
@@ -110,11 +110,11 @@ public class SettingDAO {
 	
 	
 
-	public void updateProfile(User u,  HttpServletRequest req) {
+	public void updateProfile(LoginDTO u,  HttpServletRequest req) {
 
 		
-		User loginMember = (User) req.getSession().getAttribute("loginMember");
-		User user = loginMember;
+		LoginDTO loginMember = (LoginDTO) req.getSession().getAttribute("loginMember");
+		LoginDTO user = loginMember;
 		Profile tempProfile = ss.getMapper(ProfileMapper.class).getProfileByID(loginMember.getUser_ID());
 		
 		
