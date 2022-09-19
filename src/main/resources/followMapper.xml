@@ -31,8 +31,21 @@
 	
 	<select id="follow_list"
 	parameterType="com.team.worlds.user.Follow"
-		resultType="com.team.worlds.user.Follow">
-		select * from FollowTbl where Flw_FromId = #{Flw_FromId}
+		resultType="com.team.worlds.user.User">
+		
+
+select userTbl.user_id,userTbl.user_nickname,userTbl.user_contents from userTbl ,followTbl  where userTbl.user_id = followTbl.Flw_ToId and followTbl.Flw_ToId = #{Flw_ToId}
+	
+	</select>
+	
+	
+	<select id="follower_list"
+	parameterType="com.team.worlds.user.Follow"
+		resultType="com.team.worlds.user.User">
+		
+
+select userTbl.user_id,userTbl.user_nickname,userTbl.user_contents from userTbl ,followTbl  where userTbl.user_id = followTbl.Flw_FromId and followTbl.Flw_FromId = #{Flw_FromId}
+	
 	</select>
 	
 

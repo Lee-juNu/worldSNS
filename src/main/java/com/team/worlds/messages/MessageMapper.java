@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 
-import com.team.worlds.user.LoginDTO;
+import com.team.worlds.user.User;
 
 
 public interface MessageMapper {
@@ -19,7 +19,7 @@ public interface MessageMapper {
 	int join(Message m);
 	int join2(Message m);
 
-	public List<LoginDTO> getUser(String User_ID);
+	public List<User> getUser(String User_ID);
 
 //	public List<Message> getMsg(String msg_RoomNum);
 	public List<Message> getMsg(Message m);
@@ -45,7 +45,7 @@ public interface MessageMapper {
 
 
 
-	public List<LoginDTO> search(String name);
+	public List<User> search(String name);
 
 	void inviteUser(Message msg);
 

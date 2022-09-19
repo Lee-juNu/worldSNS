@@ -20,6 +20,9 @@
 		<result property="session_limit" column="session_limit" />
 	</resultMap>
 
+
+
+
 	<!-- id 다시 보기! -->
 	<insert id="joinus">
 		insert into userTbl

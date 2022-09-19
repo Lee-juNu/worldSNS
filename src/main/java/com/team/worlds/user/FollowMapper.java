@@ -13,8 +13,7 @@ public interface FollowMapper {
 	String follower_count(Follow f);
 	
 	public List<Follow> follow_list(Follow f);
-	
-	public List<LoginDTO> getfollow_list(Follow f);
+	public List<Follow> follower_list(Follow f);
 
 	int already_follow(Follow f);
 

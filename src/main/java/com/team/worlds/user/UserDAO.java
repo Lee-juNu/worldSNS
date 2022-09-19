@@ -32,7 +32,7 @@ public class UserDAO {
 
 	public void templogin(HttpServletRequest req) {
 
-		LoginDTO dbUser = ss.getMapper(UserMapper.class).tempSelectUser();
+		User dbUser = ss.getMapper(UserMapper.class).tempSelectUser();
 
 		if (dbUser != null) {
 			System.out.println(dbUser.getUser_nickName());
@@ -40,10 +40,15 @@ public class UserDAO {
 		}
 	}
 
-	public void login(LoginDTO u, HttpServletRequest req, HttpServletResponse response, HttpSession httpSession) {
+	
+	
+	
+	public void login(User u, HttpServletRequest req, HttpServletResponse response, HttpSession httpSession) {
 
+		
+		System.out.println();
 		System.out.println("되나?");
-		LoginDTO dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
 
 		if (dbUser != null) {
 		
@@ -89,7 +94,7 @@ public class UserDAO {
 
 	public boolean loginCheck(HttpServletRequest req) {
 
-		LoginDTO u = (LoginDTO) req.getSession().getAttribute("loginMember");
+		User u = (User) req.getSession().getAttribute("loginMember");
 		if (u != null) {
 			req.setAttribute("profileMini", "jy/profileMini.jsp");
 			return true;
@@ -101,7 +106,7 @@ public class UserDAO {
 
 	}
 
-	public void joinus(LoginDTO u, HttpServletRequest req) {
+	public void joinus(User u, HttpServletRequest req) {
 		// TODO Auto-generated method stub
 
 		String juser_ID = req.getParameter("join_ID");
@@ -163,7 +168,7 @@ public class UserDAO {
 
 	public void secession(HttpServletRequest req) {
 		try {
-			LoginDTO u = (LoginDTO) req.getSession().getAttribute("loginMember");
+			User u = (User) req.getSession().getAttribute("loginMember");
 
 			if (ss.getMapper(UserMapper.class).secession(u) == 1) {
 				req.setAttribute("result", "탈퇴성공");
@@ -183,9 +188,9 @@ public class UserDAO {
 
 	}
 
-	public void updateInfo(LoginDTO u, HttpServletRequest req) {
+	public void updateInfo(User u, HttpServletRequest req) {
 
-		LoginDTO loginMember = (LoginDTO) req.getSession().getAttribute("loginMember");
+		User loginMember = (User) req.getSession().getAttribute("loginMember");
 
 		System.out.println((String) req.getSession().getAttribute("이렇게" + "user_ID"));
 
@@ -228,11 +233,11 @@ public class UserDAO {
 		}
 	}
 
-	public void findID(LoginDTO u, HttpServletRequest req) {
+	public void findID(User u, HttpServletRequest req) {
 
 		System.out.println("아이디찾기" + req.getParameter("user_name"));
 
-		LoginDTO dbUser = ss.getMapper(UserMapper.class).getMemberByEmail(u);
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByEmail(u);
 
 		System.out.println("아이디찾음" + req.getParameter("user_name"));
 
@@ -248,11 +253,11 @@ public class UserDAO {
 
 	}
 
-	public void findPW(LoginDTO u, HttpServletRequest req) {
+	public void findPW(User u, HttpServletRequest req) {
 
 		System.out.println("비밀번호 찾기" + req.getParameter("user_name"));
 
-		LoginDTO dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByIDEmail(u);
 
 		if (dbUser != null) {
 
@@ -330,9 +335,9 @@ public class UserDAO {
 
 	}
 
-	public boolean login2(LoginDTO u, HttpServletRequest req) {
+	public boolean login2(User u, HttpServletRequest req) {
 		System.out.println("되나?login2");
-		LoginDTO dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
+		User dbUser = ss.getMapper(UserMapper.class).getMemberByID(u.getUser_ID());
 		System.out.println(u.getUser_ID() + "제발뭐하냐");
 
 		if (dbUser != null) {
@@ -352,7 +357,7 @@ public class UserDAO {
 		return false;
 	}
 
-	public boolean joinUs(LoginDTO u, HttpServletRequest req) {
+	public boolean joinUs(User u, HttpServletRequest req) {
 
 		Date date = Date.valueOf(req.getParameter("str_user_birthDay"));
 		u.setUser_birthDay(date);
@@ -376,12 +381,12 @@ public class UserDAO {
 	}
 
 	public void getUserByID(String userId, HttpServletRequest req) {
-		LoginDTO user = ss.getMapper(UserMapper.class).getMemberByID(userId);
+		User user = ss.getMapper(UserMapper.class).getMemberByID(userId);
 
 		req.setAttribute("findUser", user);
 	}
 
-	public void settingProfile(LoginDTO u, HttpServletRequest req) {
+	public void settingProfile(User u, HttpServletRequest req) {
 
 	}
 	public void keepLogin(String user_ID, String sessionId, Date sessionLimit) throws Exception {
@@ -394,7 +399,7 @@ public class UserDAO {
 	}
 
 	// 세션키 검증
-	public LoginDTO checkUserWithSessionKey(String user_ID, String value) throws Exception {
+	public User checkUserWithSessionKey(String user_ID, String value) throws Exception {
 		return ss.selectOne(user_ID + ".checkUserWithSessionKey", value);
 	}
 	

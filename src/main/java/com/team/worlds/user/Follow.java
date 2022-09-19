@@ -3,12 +3,12 @@ package com.team.worlds.user;
 import java.sql.Date;
 
 public class Follow {
-	
+
 	private String Flw_num;
 	private String Flw_FromId;
 	private String Flw_ToId;
 	private Date Flw_time;
-	
+
 	public Follow() {
 		// TODO Auto-generated constructor stub
 	}
@@ -53,11 +53,6 @@ public class Follow {
 		Flw_time = flw_time;
 	}
 
-	
-	
-	
-	
-	
 	
 	
 	

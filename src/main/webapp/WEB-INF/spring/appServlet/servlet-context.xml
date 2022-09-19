@@ -24,6 +24,10 @@
 	<tx:annotation-driven />
 	<resources mapping="/resources/**" location="/resources/" />
 
+
+
+
+
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -70,25 +74,9 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<beans:bean id="loggerInterceptor"
-				class="com.team.worlds.login.loginIntercepter"></beans:bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
-	<bean id="rememberMeInterceptor" class="com.team.worlds.user.RememberMeInterceptor"/>
 
-<mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/**/"/>
-        <ref bean="rememberMeInterceptor"/>
-    </mvc:interceptor>
-</mvc:interceptors>
 	
 </beans:beans>
-
 
 
 	

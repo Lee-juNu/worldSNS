@@ -22,7 +22,7 @@ public class FollowController {
 	
 	
 	@RequestMapping(value = "/follow.follow/{user_ID_o}", method = RequestMethod.POST)
-	public String follow(@PathVariable("user_ID_o") String user_ID_o, LoginDTO u, HttpServletRequest req,Follow f) {
+	public String follow(@PathVariable("user_ID_o") String user_ID_o, User u, HttpServletRequest req,Follow f) {
 		
 		System.out.println("되나?되나?되나?되나?되나?");
 
@@ -42,7 +42,7 @@ public class FollowController {
 
 	
 	@RequestMapping(value = "/follow.unfollow/{user_ID_o}", method = RequestMethod.POST)
-	public String unfollow(@PathVariable("user_ID_o") String user_ID_o, LoginDTO u, HttpServletRequest req,Follow f) {
+	public String unfollow(@PathVariable("user_ID_o") String user_ID_o, User u, HttpServletRequest req,Follow f) {
 		
 		System.out.println("되나?되나?되나?되나?되나?");
 
@@ -62,7 +62,7 @@ public class FollowController {
 
 
 	@RequestMapping(value = "/{user_ID_o}/follow", method = RequestMethod.GET)
-	public String followList(@PathVariable("user_ID_o") String user_ID_o, LoginDTO u, HttpServletRequest req,Follow f) {
+	public String followList(@PathVariable("user_ID_o") String user_ID_o, User u, HttpServletRequest req,Follow f) {
 		
 		System.out.println("팔로워리스트?되나?");
 

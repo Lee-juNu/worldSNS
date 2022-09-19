@@ -2,58 +2,53 @@ package com.team.worlds.user;
 
 import java.sql.Date;
 
-import org.apache.tomcat.jni.User;
 
 public interface UserMapper{
-	LoginDTO tempSelectUser();
+	User tempSelectUser();
 
-	LoginDTO getMemberByID(String u);
-	LoginDTO getMemberProfileByID(String p);
+	User getMemberByID(String u);
+	User getMemberProfileByID(String p);
 	
 	
-	static User login(LoginDTO u) {
+	static com.team.worlds.user.User login(User u) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	int joinus(LoginDTO u);
+	int joinus(User u);
 
-	int secession(LoginDTO u);
+	int secession(User u);
 
 	int update(Profile p);
 
 
-	int updateInfo(LoginDTO u);
+	int updateInfo(User u);
 
-	int updatePW(LoginDTO u);
+	int updatePW(User u);
 
-	LoginDTO getMemberByEmail(LoginDTO u);
+	User getMemberByEmail(User u);
 
-	LoginDTO getMemberByIDEmail(LoginDTO u);
+	User getMemberByIDEmail(User u);
 
-	int updateFindPW(LoginDTO u);
+	int updateFindPW(User u);
 
 
-	int updateUserProfile(LoginDTO u);
+	int updateUserProfile(User u);
 	
 	int joinusp(Profile p);
 
-	LoginDTO checkOverId(String user_ID);
+	User checkOverId(String user_ID);
 
 	User_o getOtherMemberByID(User_o u_o);
 
 
 	User_o getOtherProfileMemberByID(Profile_o p_o);
 
-	int updateProfile(LoginDTO u);
+	int updateProfile(User u);
 
 	void keepLogin(String user_ID, String sessionId, Date next) throws Exception;
 
-	static com.team.worlds.user.User checkLoginBefore(String value) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+
+		
 	
 }

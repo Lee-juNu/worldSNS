@@ -24,7 +24,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.team.worlds.user.LoginDTO;
+import com.team.worlds.user.User;
 
 @Service
 public class MessageDAO {
@@ -90,7 +90,7 @@ public class MessageDAO {
 	public void open(HttpServletRequest req, Message m) {
 
 		
-		LoginDTO u = (LoginDTO)req.getSession().getAttribute("loginMember");
+		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		
 		System.out.println(u.getUser_ID());
@@ -113,7 +113,7 @@ public class MessageDAO {
 	public void join(HttpServletRequest req, Message m) {
 		
 		
-		LoginDTO u = (LoginDTO)req.getSession().getAttribute("loginMember");
+		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		//	String rm_roomNum = req.getParameter("join");
 		String rm_roomNum = u.getUser_ID();
@@ -138,7 +138,7 @@ public class MessageDAO {
 	public void join2(HttpServletRequest req, Message m) {
 		
 		
-		LoginDTO u = (LoginDTO)req.getSession().getAttribute("loginMember");
+		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		//	String rm_roomNum = req.getParameter("join");
 		String rm_roomNum = u.getUser_ID();
@@ -183,8 +183,8 @@ public class MessageDAO {
 		
 	}*/
 
-	public void getUser(HttpServletRequest req, LoginDTO u) {
-		LoginDTO lu = (LoginDTO)req.getSession().getAttribute("loginMember");
+	public void getUser(HttpServletRequest req, User u) {
+		User lu = (User)req.getSession().getAttribute("loginMember");
 	
 		String User_ID = lu.getUser_ID();
 		u.setUser_ID(User_ID);
@@ -198,7 +198,7 @@ public class MessageDAO {
 
 	public void getRoom(HttpServletRequest req, Message m) {
 		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
-		LoginDTO u = (LoginDTO)req.getSession().getAttribute("loginMember");
+		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		String rm_userID = u.getUser_ID();
 		
@@ -216,7 +216,7 @@ public class MessageDAO {
 	public void updateIndex(HttpServletRequest req, Message m) {
 		
 		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
-		LoginDTO u = (LoginDTO)req.getSession().getAttribute("loginMember");
+		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		String rm_userID = u.getUser_ID();
 		
@@ -340,7 +340,7 @@ public class MessageDAO {
 		ss.getMapper(MessageMapper.class).destroyRoom(m);		
 	}
 
-	public List<LoginDTO> search(String name) {
+	public List<User> search(String name) {
 		ss.getMapper(MessageMapper.class).search(name);
 		return ss.getMapper(MessageMapper.class).search(name);				
 	}

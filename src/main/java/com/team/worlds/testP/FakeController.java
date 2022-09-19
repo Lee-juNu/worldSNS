@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.worlds.user.Follow;
 import com.team.worlds.user.FollowDAO;
-import com.team.worlds.user.LoginDTO;
+import com.team.worlds.user.User;
 import com.team.worlds.user.UserDAO;
 
 @Controller
@@ -41,7 +41,7 @@ public class FakeController {
 	}
 	
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public @ResponseBody boolean joinDo(HttpServletRequest req, LoginDTO u) {
+	public @ResponseBody boolean joinDo(HttpServletRequest req, User u) {
 			
 		if(uDAO.joinUs(u, req))
 		{
@@ -54,7 +54,7 @@ public class FakeController {
 	}
 	
 	@RequestMapping(value = "/loginTest", method = RequestMethod.GET)
-	public @ResponseBody boolean testLogin(HttpServletRequest req, LoginDTO u) {
+	public @ResponseBody boolean testLogin(HttpServletRequest req, User u) {
 		System.out.println("되나?fakecontroller");
 	
 		if(uDAO.login2(u,req))
@@ -89,7 +89,7 @@ public class FakeController {
 	
 	@RequestMapping(value = "{profile}", method = RequestMethod.GET)
 	public String goProfile(HttpServletRequest req, @PathVariable("profile") String profile
-			,LoginDTO u, Follow f, @PathVariable("profile") String user_ID_o // jy수정 : 팔로워 수를 위한
+			,User u, Follow f, @PathVariable("profile") String user_ID_o // jy수정 : 팔로워 수를 위한
 			) {
 										
 		uDAO.loginCheck(req);

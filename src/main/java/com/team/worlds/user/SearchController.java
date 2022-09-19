@@ -64,7 +64,7 @@ public class SearchController {
 	
 	
 	@RequestMapping(value = "/Search.post", method = RequestMethod.GET)
-	public String goSearchPost(Profile p, LoginDTO u, HttpServletRequest req) {
+	public String goSearchPost(Profile p, User u, HttpServletRequest req) {
 		
 		uDAO.loginCheck(req);
 		
