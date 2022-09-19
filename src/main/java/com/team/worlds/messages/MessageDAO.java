@@ -383,6 +383,12 @@ public class MessageDAO {
 		return indexresult;
 	}
 
+	public List<Message> getroomuser(String roomno) {
+		System.out.println(roomno);
+		ss.getMapper(MessageMapper.class).getroomuser(roomno);
+		return ss.getMapper(MessageMapper.class).getroomuser(roomno);
+	}
+
 	
 	
 /*	public void updateIndex2(String userId, String pageType, Message m) {

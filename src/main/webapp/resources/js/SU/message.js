@@ -96,22 +96,30 @@ $(function() {
 	 });
 
 
-$(function() {
-
-	 let room = $('#roomNum').val();
+function getroomuser() {
+	
+	var room = $('.crNum').children('input');
+		console.log(room)
+		
 	$.ajax({
-				
-				url:"messages.getMsg",
-				data:{"msg_RoomNum": room},
-				type:'GET',
-				dataType: 'json',
-		           success :  
-		        	   function(data) {
-						alert('s1s') },
-						error:function(){
-						}
-		           });
-	 });
+		
+		url:"messages.getroomuser",
+		data:{"rm_RoomNum": room},
+		type:'GET',
+		dataType: 'json',
+		success :  
+			function() {
+			 const getroom = getroomuser;
+			 console.log(getroom)
+			 console.log(getroomuser)
+			 console.log(typeof(getroom))
+			 console.log(typeof(getroomuser))
+			 },
+			error:function(){
+			console.log('error')
+			}
+	});
+};
 
 
 
@@ -130,17 +138,22 @@ function search() {
 				dataType: 'json',
 		           success :  
 		        	   function(search) {
+		        	   
 		        	   console.log(search)
 		        	   const userdata = search;
 		        	   console.log(typeof(search))
 		        	   
+		        	   var tbody = document.getElementById("userList");
+		        		while(tbody.hasChildNodes()){
+		        			tbody.removeChild(tbody.firstChild);
+		        		}
+		        	   
 		        	   for (var i = 0; i < userdata.length; i++) {
-		        		   var friendlist = userdata[i].user_ID
+		        		var friendlist = userdata[i].user_ID
 						var user = document.createElement('div'); 
 						user.innerHTML =
-							
-							"<form onsubmit=\"invite()\" id=\"invite\"><div>"+friendlist+"<button>초대</button></div>" +
-							"<input type=\"hidden\" id=\"inviteUser\" value="+ friendlist +"></form>";
+						"<form onsubmit=\"invite()\" id=\"invite\"><div>"+friendlist+"<button>초대</button></div>" +
+						"<input type=\"hidden\" id=\"inviteUser\" value="+ friendlist +"></form>";
 						document.getElementById('userList').appendChild(user);
 		        	   }
 		        	   
@@ -171,6 +184,12 @@ function search() {
 				 const SBUdata = searchbyUser;
 				 console.log(SBUdata)
 				 console.log(typeof(searchbyUser))
+				 
+				 
+				   var tbody = document.getElementById("sbuDiv");
+	        		while(tbody.hasChildNodes()){
+	        			tbody.removeChild(tbody.firstChild);
+	        		}
 				 
 				 for (var i = 0; i < SBUdata.length; i++) {
 					 var SBUlist = SBUdata[i].cr_Num

@@ -138,4 +138,15 @@ public class MessagesController {
 //		mDAO.updateIndex(req, M);
 		return "home";
 	}
+
+	@RequestMapping(value = "/messages.getroomuser", method = RequestMethod.GET)
+	public @ResponseBody List<Message> getroomuser(HttpServletRequest req, Message M) {
+		System.out.println(req.getParameter("rm_RoomNum"));
+		System.out.println(M.getRm_roomNum());
+		String roomno = M.getRm_roomNum();
+		mDAO.getroomuser(roomno);
+		return mDAO.getroomuser(roomno);
+	}
+	
+	
 }

@@ -59,6 +59,7 @@ select * from messageTbl
 select * from  userTbl;
 	select * from messageTbl where msg_RoomNum = 'CR215' order by msg_sendTime
 	select * from RoomMemberTbl
+	select rm_userid from RoomMemberTbl where rm_roomnum='CR515'
 	select * from messageTbl
 	select * from chatroomTbl
 select rm_roomnum from RoomMemberTbl where rm_userid = '5'

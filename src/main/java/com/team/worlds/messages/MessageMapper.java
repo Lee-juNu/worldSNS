@@ -61,6 +61,8 @@ public interface MessageMapper {
 
 	public ArrayList<Message> checkroomindex(Message m);
 
+	public ArrayList<Message> getroomuser(String roomno);
+
 
 
 

@@ -91,4 +91,8 @@ select rm_lastindex from RoomMemberTbl where rm_userid = #{rm_userID}
 select max(msg_index) as msg_index from MESSAGETBL where msg_roomnum in (select rm_roomnum from ROOMMEMBERTBL where rm_userid =#{rm_userID}) group by msg_roomnum
 </select>
 
+<select id="getroomuser" resultType="com.team.worlds.messages.Message">
+select rm_userid from RoomMemberTbl where rm_roomnum=#{rm_RoomNum}
+</select>
+
 </mapper>
