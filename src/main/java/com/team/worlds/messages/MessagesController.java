@@ -23,7 +23,7 @@ public class MessagesController {
 	private MessageDAO mDAO;
 	
 	@RequestMapping(value = "/messages.go", method = RequestMethod.GET)
-	public String home(HttpServletRequest req, User u) {
+	public String home(HttpServletRequest req, User u, Message M) {
 		req.setAttribute("profilePage", "profileMini.jsp");
 		
 		//로그인완성되면 체크 필수
@@ -31,6 +31,7 @@ public class MessagesController {
 		req.setAttribute("contentsPage", "su/message.jsp");
 		mDAO.get(req);
 		mDAO.getUser(req, u);
+		mDAO.indexcheck(M, req);
 //		mDAO.getMsg(req);
 		return "home";
 	}
@@ -76,11 +77,12 @@ public class MessagesController {
 	}
 
 	@RequestMapping(value = "/messages.inviteUser", method = RequestMethod.GET)
-	public @ResponseBody void invite(Message msg) {
+	public @ResponseBody void invite(Message msg, HttpServletRequest req) {
 		String name = msg.getRm_roomNum();
 		System.out.println(msg);
 		System.out.println(name);
 		mDAO.inviteUser(msg);
+		mDAO.get(req);
 	}
 
 	@RequestMapping(value = "/messages.open", method = RequestMethod.GET)
@@ -102,6 +104,7 @@ public class MessagesController {
 		req.setAttribute("profilePage", "profileMini.jsp");
 		req.setAttribute("menuPage", "jy/menu.jsp");
 		req.setAttribute("contentsPage", "su/message.jsp");
+		mDAO.get(req);
 		mDAO.out(req, M);
 		if (mDAO.checkRoom(req, M) == null) {
 			mDAO.destroy(req, M);
@@ -131,7 +134,19 @@ public class MessagesController {
 		mDAO.get(req);
 //		mDAO.getMsg(req);
 		mDAO.getRoom(req, M);
+		mDAO.indexcheck(M, req);
 //		mDAO.updateIndex(req, M);
 		return "home";
 	}
+
+	@RequestMapping(value = "/messages.getroomuser", method = RequestMethod.GET)
+	public @ResponseBody List<Message> getroomuser(HttpServletRequest req, Message M) {
+		System.out.println(req.getParameter("rm_RoomNum"));
+		System.out.println(M.getRm_roomNum());
+		String roomno = M.getRm_roomNum();
+		mDAO.getroomuser(roomno);
+		return mDAO.getroomuser(roomno);
+	}
+	
+	
 }

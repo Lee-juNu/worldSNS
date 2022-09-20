@@ -57,6 +57,12 @@ public interface MessageMapper {
 
 	public List<Message> searchbyUser(String name);
 
+	public ArrayList<Message> checkuserindex(Message m);
+
+	public ArrayList<Message> checkroomindex(Message m);
+
+	public ArrayList<Message> getroomuser(String roomno);
+
 
 
 

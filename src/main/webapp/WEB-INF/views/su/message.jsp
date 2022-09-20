@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div id="chatList" style="display: none">
+<div id="chatList">
 채팅방목록
 <button id="btn-modal">채팅방 만들기</button>
 <button id="btn-modal2">채팅에 초대하기</button>
@@ -24,10 +24,9 @@
 <c:forEach var="chat" items="${msgs}" >
 <div id="chatTbl">
 <form action="messages.select" name="selectroom">
-${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
+${chat.cr_Num }
+<button name="join" id="join" value="${chat.cr_Num }"> 참여 </button>
 </form>
-
-
 </div>
 </c:forEach>
 <div id="sbuDiv">
@@ -40,7 +39,6 @@ ${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
 <div id="titleMessage">
 ${roomNum } 
 </div>
-
 <div id="chatRoom">
 <div id="chatMsg">
 
@@ -58,15 +56,17 @@ ${roomNum }
 <button onclick="jwSendWithFile()">송신</button><BR>
 <input type="hidden" name="roomNum" id="roomNum" value="${roomNum }">
 <input type="hidden" name="userID" id="userID" value="${loginMember.user_ID }">
-<button id="hide" onclick="if(chatList.style.display=='none')
+<!-- <button id="hide" onclick="if(chatList.style.display=='none')
 {chatList.style.display='';}
-else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button>
+else {chatList.style.display='none';}">채팅방 목록 접기 펼치기</button> -->
 <form action="messages.out" method="get">
 <input type="hidden" id="outRoom" name="outRoom" value="${roomNum }">
 <input type="hidden" id="outId" name="outID" value="${loginMember.user_ID }">
 <button>방 나가기</button>
 </form>
-</div>
+<!-- <button id="getroomuserBtn" onclick="getroomuser()">딸깍</button>
+ -->
+ </div>
 </div>
 
 
