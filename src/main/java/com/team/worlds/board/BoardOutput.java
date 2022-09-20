@@ -17,13 +17,17 @@ public class BoardOutput
 	private Date board_regDate;
 	private String user_nickName;
 	private int imgSize;
+	
+	private int likeCount;
+	private String like_BoardNum;
 	public BoardOutput() {
 		super();
 		// TODO Auto-generated constructor stub
+		this.like_BoardNum="-1";
 	}
 	public BoardOutput(String board_Num, String board_ParentNum, String board_userID, String board_img1,
 			String board_img2, String board_img3, String board_img4, String board_Contents, String board_Country,
-			String board_City, Date board_regDate, String user_nickName, int imgSize) {
+			String board_City, Date board_regDate, String user_nickName, int imgSize, int likeCount, String like_BoardNum) {
 		super();
 		this.board_Num = board_Num;
 		this.board_ParentNum = board_ParentNum;
@@ -38,6 +42,8 @@ public class BoardOutput
 		this.board_regDate = board_regDate;
 		this.user_nickName = user_nickName;
 		this.imgSize = imgSize;
+		this.likeCount = likeCount;
+		this.like_BoardNum = like_BoardNum;
 	}
 	public String getBoard_Num() {
 		return board_Num;
@@ -116,6 +122,17 @@ public class BoardOutput
 	}
 	public void setImgSize(int imgSize) {
 		this.imgSize = imgSize;
-	}	
-	
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+	public String getlike_BoardNum() {
+		return like_BoardNum;
+	}
+	public void setlike_BoardNum(String like_BoardNum) {
+		this.like_BoardNum = like_BoardNum;
+	}
 }

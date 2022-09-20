@@ -9,16 +9,72 @@
 	text-align: center;
 }
 
-.mapDiv
+
+.hideDiv
 {
 	padding-top : 10px;
+	border-bottom: 1px solid #3c3c3c;
+	padding-bottom: 10px;
+}
+.mapDiv
+{
 	padding-bottom : 10px;
 	
 	border-top		: 1px solid #3c3c3c;
-	border-bottom	: 1px solid #3c3c3c;
 	
 	width : 100%;
 }
+
+
+
+.mapFold ,.mapOpen
+{
+	display : flex;
+	justify-content: space-between;	
+	cursor: pointer;
+}
+
+.hideDiv:hover
+{
+	background-color: #3c3c3c;
+}
+
+.back
+{
+	padding-left: 10px;
+	width  : 20px;
+	height : 20px;
+}
+.icon
+{
+	padding-right: 10px;
+	width  : 20px;
+	height : 20px;
+}
+.back img, .icon img
+{
+	width  : 100%;
+	height : 100%;
+}
+
+.board:hover
+{
+	background: #202020;
+}
+.accountDiv, .reactDiv
+{
+	display: flex;
+	justify-content: space-between;	
+}
+
+.mapIncludeDiv
+{
+	padding-top : 10px;
+	padding-bottom : 10px;
+	border-bottom: 1px solid #3c3c3c;
+		
+}
+
 
 .contentsDiv
 {
@@ -278,7 +334,54 @@
 	flex-wrap: wrap;
 	justify-content: space-between;	
 	
+	overflow: hidden;
+	border : 1px solid #202020;
+	border-radius: 25px;
 }
+.image2Conatiner
+{
+	width :49.5%;
+	height :98%;
+	border : 1px solid #202020;
+	border-radius: 25px;
+}
+
+.image3ConatinerLeft
+{
+	width :49.5%;
+	height : 282px;
+}
+.image4Conatiner
+{
+	width :49.5%;
+	height : 282px;
+}
+.img4
+{
+	height : 50%;
+}
+
+.image3ConatinerRight
+{
+	width :49.5%;
+	height : 282px;
+}
+
+.img3R
+{
+	height : 49.5%;
+	overflow: hidden;
+}
+
+
+.imgContainerDiv img
+{
+	width: 100%;
+  	height: 100%;
+  	object-fit: cover;
+  	object-position: center center;
+}
+
 
 .uploadImgBox
 {
@@ -309,6 +412,10 @@
 	width : 502px;
 }
 
+.reactDiv
+{
+	display:flex;
+}
 
 .board
 {

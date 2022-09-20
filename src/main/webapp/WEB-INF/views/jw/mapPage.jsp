@@ -7,11 +7,9 @@
 <title>Insert title here</title>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/map.css">
 <script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
-<script type = "text/javascript" src="resources/js/jw/map.js"></script>
 
 </head>
 <body>
-<!-- http://www.smashingmagazine.com/2015/09/making-svg-maps-from-natural-earth-data/ -->
 <div class="container" id = "tempMapDiv">
 	<svg
    class="mapSvg"

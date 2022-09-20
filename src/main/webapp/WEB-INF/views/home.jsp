@@ -12,6 +12,8 @@
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/subPage.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/profile.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/colorTemplet.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/map.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">

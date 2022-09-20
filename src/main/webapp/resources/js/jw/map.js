@@ -33,54 +33,121 @@ function mapInit(){
 	addCountrySelectEvent();
 	mapMatrixInit();
 	addMapDivEvnet();
+}
+
+
+function mapPlusTransition()
+{
 	svg.addEventListener('mousemove',function(evt){
   		var loc = cursorPoint(evt);
 		onMouse = loc;
 		if(onClick)
 		{
-			//MapMove();			
+			MapMove();			
 		}
 		
 		
 	},false);    	
 	
-	document.addEventListener("wheel", function (e) {
 	
-	if (e.deltaY > 0) {
-			//zoom(-1,e);    		 
+	
+	
+	document.addEventListener("wheel", function (e) {
+	});
+	$('.mapIncludeDiv').on('mousewheel', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+		if (e.originalEvent.deltaY > 0) {
+			zoom(-1,e);    		 
   		} else {
-			//zoom(1,e);
+			zoom(1,e);
   		}
+    return false;
 	});
 	
 }
 
 
+var currentCountry ="";
+
+
+function mapSelectorInit()
+{
+	$(currentCountry).hide();
+	$("#worldsMap").show();
+}
+
+var svgCountry= "";
+var matrixGroupCountry =""; 
 function addCountrySelectEvent()
 {
 	var countryElements = document.getElementById('countries').childNodes;
     	var countryCount = countryElements.length;
     	for (var i = 0; i < countryCount; i++) {
       countryElements[i].onclick = function() {
-        alert('You clicked on ' + this.getAttribute('data-name'));
+		$('.back').show();
+		currentCountry ="#map-"+this.getAttribute('data-id');
+		svgCountry = document.getElementById('map'+this.getAttribute('data-id'));
+		matrixGroupCountry = svgCountry.getElementById("region-"+this.getAttribute('data-id'));
+		//TODO
+		svgCountry.addEventListener('mousemove',function(evt){
+  		var loc = cursorPoint(evt);
+		onMouse = loc;
+		if(onClick)
+		{
+			MapMove();			
+		}
+		
+		
+	},false);   
+		prevMousePt.x=0;
+		prevMousePt.y=0;
+		prevScale = 1;
+		currentScale = 1;
+		offsetPtX=0;
+		offsetPtY=0;
+		transformMatrix = [1, 0, 0, 1, 0, 0];
+		$(currentCountry).show();
+		$("#worldsMap").hide();
+		
+		var regionElements = document.getElementById('region-'+this.getAttribute('data-id')).childNodes;
+		var regionCounts = regionElements.length;
+		
+		for(var i = 0; i < regionCounts; i++)
+		{
+			regionElements[i].onclick = function()
+			{
+				changeRegionAndCountry(this.getAttribute('country-id'),this.getAttribute('name') )
+			}
+		}
       }
     }
 }
 
+
 function addMapDivEvnet()
 {
+	$('.container').mousedown(function(event)
+	{
+		 mapMouseDown(event);
+	});
+	
 	var mapDiv = document.getElementById("tempMapDiv");
-
+	
 	mapDiv.addEventListener('mousedown', (event) => {
-  			mapMouseDown(event);
 		});
 		document.addEventListener('mouseup', (event) => {
   			mapMouseUp();
 		});
 }
+
+
+
 function mapMatrixInit()
 {
 		svg = document.getElementById('mapID');
+
     	viewbox = svg.getAttributeNS(null, "viewBox").split(" ");
     	centerX = parseFloat(viewbox[2]) / 2;
     	centerY = parseFloat(viewbox[3]) / 2;
@@ -152,7 +219,14 @@ function zoom(scale,event) {
 
   	var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
   	matrixGroup.setAttributeNS(null, "transform", newMatrix);
+
+	if(currentCountry!="")
+	{
+		matrixGroupCountry.setAttributeNS(null, "transform", newMatrix);
+	}
 }
+
+
 
 function pan(dx, dy) {     	
   transformMatrix[4] += dx 
@@ -160,9 +234,16 @@ function pan(dx, dy) {
   transformMatrix[5] += dy;
             
   var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
-  matrixGroup.setAttributeNS(null, "transform", newMatrix);
-	console.log(transformMatrix);	
-
+ 	 console.log(transformMatrix);	
+	
+	if(currentCountry!="")
+	{
+		matrixGroupCountry.setAttributeNS(null, "transform", newMatrix);
+	}
+	else
+	{
+		matrixGroup.setAttributeNS(null, "transform", newMatrix);
+	}
 }
 
 
@@ -175,15 +256,9 @@ function cursorPoint(evt){
 function mapMouseDown(event)  {
   	onClick=true;
 	prevMousePt= cursorPoint(event);
-	
-	
-	console.log(onClick);
-	console.log(Math.floor(cursorPoint(event).x));
-	console.log(Math.floor(cursorPoint(event).y));
 }
 function mapMouseUp()  {
   	onClick=false;
-	console.log(onClick);
 }
 
 

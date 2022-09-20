@@ -2,9 +2,9 @@ jQuery(document).ready(function () {
   ImgUpload();
 });
 
+  var imgArray = [];
 function ImgUpload() {
   var imgWrap = "";
-  var imgArray = [];
 
   $('.inputFile').each(function () {
     $(this).on('change', function (e) {
@@ -59,7 +59,7 @@ function ImgUpload() {
         imgArray.splice(i, 1);
         break;
       }
-    }
+    } 
     $(this).parent().parent().remove();
   });
 }

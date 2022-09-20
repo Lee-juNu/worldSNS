@@ -3,21 +3,50 @@
 <mapper namespace="com.team.worlds.board.BoardMapper">
 
 <insert id="boardInsert" parameterType="com.team.worlds.board.Board">
-	insert into boardTbl values(board_seq.nextval,#{board_ParentNum},#{board_userID},
-	#{board_img1},#{board_img2},#{board_img3},#{board_img4},#{board_Contents},#{board_Country},#{board_City},sysdate)
+	<selectKey keyProperty="board_Num" resultType="string" order="BEFORE">
+		select board_seq.nextval from dual
+	</selectKey>
+	insert into boardTbl values(#{board_Num},#{board_ParentNum},#{board_userID},
+	#{board_img1},#{board_img2},#{board_img3},#{board_img4},#{board_Contents},#{board_Country},#{board_City},sysdate, 0)
 </insert>
 
 
-<select id="getBoardByFollower" resultType="com.team.worlds.board.BoardOutput">
-SELECT *
-FROM 
- (
-select ROWNUM rm, user_nickName, boardTbl.* from USERTBL, boardTbl  where board_userId in (
-	select Flw_toId from followTbl where Flw_FromId = 'admin'
-) and user_id = board_userId or board_userId = 'admin' and user_id = board_userId
-order by  board_regdate desc
-)
-where rm  between 1 and 6
+
+<select id="getBoardByNum" parameterType="map" resultType="com.team.worlds.board.BoardOutput">
+	select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId = #{userId}
+	 		and user_id = board_userId and like_BoardNum(+) = board_num and board_num = #{boardNum}
+			order by  board_regdate desc
 </select>
+
+
+
+<select id="getBoardByFollower" resultType="com.team.worlds.board.BoardOutput">
+select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId in 
+	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = #{user_ID} or user_id = #{user_ID})
+	 		and user_id = board_userId and like_SenderID(+)= #{user_ID} and like_BoardNum(+) = board_num
+			order by  board_regdate desc
+</select>
+
+
+<select id = "getBoardByFollowerAndRegion" resultType="com.team.worlds.board.BoardOutput">
+select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId in 
+	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = #{userID} or user_id = #{userID})
+	 			 and user_id = board_userId and like_SenderID(+)= #{user_ID} and like_BoardNum(+) = board_num and Board_City = #{region}
+			order by  board_regdate desc
+</select>
+
+<select id = "getBoardByFollowerAndCountry" resultType="com.team.worlds.board.BoardOutput">
+</select>
+
+
+<delete id="boardDelete">
+	DELETE BOARDTBL WHERE BOARD_NUM= #{user_id}
+</delete>
 
 </mapper>

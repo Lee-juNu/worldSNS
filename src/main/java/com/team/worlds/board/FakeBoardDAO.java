@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team.worlds.alarm.AlarmMapper;
 import com.team.worlds.fileUtil.FileManager;
 import com.team.worlds.user.User;
 import com.team.worlds.util.Country;
@@ -46,8 +47,28 @@ public class FakeBoardDAO {
 		return null;
 	}
 	
-	
-	public void insertBoard(JSONObject result)
+	public JsonArray getBoardByRegion(String userID, String region) {
+		
+		HashMap<String, String> boardMap = new HashMap<String, String>();
+		boardMap.put("userID", userID);
+		boardMap.put("region", region);
+		
+		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollowerAndRegion(boardMap);
+		if(arrBoard.size()!=0)
+		{
+			System.out.println(arrBoard.get(0).getBoard_Contents());			
+			System.out.println(arrBoard.get(0).getBoard_regDate());			
+			
+			return new GsonBuilder().create().toJsonTree(arrBoard).getAsJsonArray();
+		}
+		else 
+		{
+			System.out.println("실패인듯");
+		}
+		return null;
+
+	}
+	public JsonArray insertBoard(JSONObject result)
 	{
 		Board board = new Board();
 		board.setBoard_userID(result.get("board_userId").toString());
@@ -77,16 +98,21 @@ public class FakeBoardDAO {
 				board.setBoard_img4(imgs[i]);				
 			}
 		}
-		
-		if(1== ss.getMapper(BoardMapper.class).boardInsert(board))
+		ss.getMapper(BoardMapper.class).boardInsert(board);
+		if(board.getBoard_Num() != null)
 		{
-			System.out.println("성공이닷");
+			HashMap<String, String> boardMap = new HashMap<String, String>();
+			boardMap.put("userId", board.getBoard_userID());
+			boardMap.put("boardNum", board.getBoard_Num());
+			
+			System.out.println(board.getBoard_Num());
+			ArrayList<BoardOutput> bo =  ss.getMapper(BoardMapper.class).getBoardByNum(boardMap);
+			if(bo.get(0).getBoard_Num() != null)
+			{
+				return new GsonBuilder().create().toJsonTree(bo).getAsJsonArray();
+			}
 		}
-		else
-		{
-			System.out.println("실패쓰");
-		}
-		
+		return null;
 	}
 	
 	public JsonArray getAllCountry()
@@ -99,19 +125,61 @@ public class FakeBoardDAO {
 
 		return new GsonBuilder().create().toJsonTree(arrCountry).getAsJsonArray();
 	}
+	
+	public boolean regLike(JSONObject result)
+	{
+		
+		
+		Like like = new Like();
+		like.setLike_BoardNum(result.get("boardNumber").toString());
+		like.setLike_ReceiverID(result.get("receiverID").toString());
+		like.setLike_SenderID(result.get("senderID").toString());
+
+		
+		System.out.println("");
+		Like likes =  ss.getMapper(ReactMapper.class).getByID(like);
+		
+		if(likes!=null)
+		{
+			System.out.println("이미있어");
+			return false;
+		}
+		ss.getMapper(ReactMapper.class).regLike(like);
+		
+		if(like.getLike_Num() != null)
+		{
+			System.out.println(like.getLike_Num());
+			//ss.getMapper(AlarmMapper.class)
+		}
+		return true;
+	}
 
 
 
 
 	public JsonArray getRegionByCountry(String countryName) {
-		
 		ArrayList<Region> arrRegion = ss.getMapper(CountryMapper.class).getRegionByCountry(countryName);
 		return new GsonBuilder().create().toJsonTree(arrRegion).getAsJsonArray();
 
 	}
 
-	public void getBoardByID(HttpServletRequest req) {
-		
+	public void deleteBoard(String number) {
+		ss.getMapper(BoardMapper.class).boardDelete(number);
 	}
+
+	public boolean deleteLike(JSONObject result) {
+		Like like = new Like();
+		like.setLike_BoardNum(result.get("boardNumber").toString());
+		like.setLike_ReceiverID(result.get("receiverID").toString());
+		like.setLike_SenderID(result.get("senderID").toString());
+		Like likes =  ss.getMapper(ReactMapper.class).getByID(like);
+	
+		ss.getMapper(ReactMapper.class).deleteLike(likes);
+		
+		return true;
+	}
+
+
+	
 	
 }

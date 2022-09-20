@@ -66,8 +66,6 @@ public class wsChatController {
 			System.out.println(img);
 			try
 				{
-
-			
 /*				if (Dtype.equals("send")&&contents!=null) {
 //					basic.sendText(message.toString());	
 					mDAO.send(message);
