@@ -12,20 +12,21 @@
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/subPage.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/profile.css">
 <link rel = "stylesheet" type = "text/css" href = "resources/css/jw/colorTemplet.css">
+<link rel = "stylesheet" type = "text/css" href = "resources/css/jw/map.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
 
 
-<!-- JS모음-->
-<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 
+<!-- JS모음-->
 <!-- 병합전의 JS를 입력해주세요 -->
+<script type = "text/javascript" src="resources/js/utill/jQuery.js"></script>
 
 </head>
 <body class ="homeBody bgColor">
-
 
 <div class = "homeDiv">
 	<!-- Header는 그냥 DIV라고 생각해주세요 -->

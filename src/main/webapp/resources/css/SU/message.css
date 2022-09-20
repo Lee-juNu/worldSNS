@@ -2,7 +2,8 @@
 
 
 #chat{
-	margin-top: 50px;
+	margin-top:15px;
+	padding-left: 25px;
 	width:600px;
 	float: left;
 }
@@ -14,15 +15,95 @@ height:700px;
 margin-top: 20px;
 border: 1px solid black;
 }
+
+
+#chatList .chatBtn
+{
+	background-color: #ee005d;
+	margin-right:15px;
+    border-radius: 25px;
+    display: block;
+    font-size: 15px;
+    color: white;
+}
+
+#chatList .titleMainDiv
+{
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 15px;
+}
+#chatList .search
+{
+	display: flex;
+	width :100%;
+	height :40px;
+	border: 1px solid #202020;
+	border-radius: 25px;
+}
+#chatList .search input
+{
+	margin: auto 0;
+	width:90%;
+	height : 70%;
+	border: none; background: transparent;
+	color: white;
+	font-size:20px;
+	padding-left: 10px;
+}
+#chatList .search .searchImg
+{
+	padding-top :5px;
+	padding-right: 15px;
+}
+
+
+#chatList .search input:focus
+{
+	outline: 0;
+}
+
+.arrChat
+{
+	padding: 15px 0;
+	font-size: 24px;
+	display: flex;
+	justify-content: space-between;
+}
+.arrChat button
+{
+	background-color: #ee005d;
+	margin-right:15px;
+    border-radius: 25px;
+    padding: 5px 30px;
+    display: block;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+}
+.arrChat:hover
+{
+	background-color: #202020;
+}
 	
-	
+#chatList .titleDiv
+{
+	font-size: 24px;
+	padding-top: 5px;
+}
 #chatList{
+	padding: 0 15px;
+	margin-top:15px;
 	width: 388px;
 	height: 100%;
 	float: left;
-	border-right: 1px solid black;
+	border-right: 1px solid #202020;
 }
 
+#chat
+{
+	
+}
 #chatTbl{
 	
 }
@@ -62,7 +143,6 @@ border: 1px solid black;
             display: inline;
             text-shadow: 1px 1px 2px gray;
             color: white;
-            
         }
         #modal .title h2 {
             display: inline;

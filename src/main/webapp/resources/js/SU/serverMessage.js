@@ -60,12 +60,15 @@ function jwSendWithFile(){
 {
 		// some other listener for incoming messages
 				ws.addEventListener("message", function(event) {
+					
 					//원하는 코드를 적으면 됩니다 저는 밖에 함수로 뺴서 사
 					receiveMessage(event.data);
 					//event.data를 하면 보낸 데이터가 들어가있음
 					//json으로 보내면 json형식을 유지하고
 					//string으로 보내면 string으로 돌아옵니다.
 
+
+					
 					const rr = event.data;
 					var rs = JSON.parse(rr);
 					
@@ -84,8 +87,9 @@ function jwSendWithFile(){
 						 if (typeof rs[i].msg_img != "undefined") {
 							 for (msg_sendUserID in rs[i]) {
 								var sendimg = rs[i].msg_img
+								console.log(sendimg);
 								var sendimg = sendimg.replace('C:\\fakepath', 'resources\\img\\chatimg\\')
-								var imgtag = "<img src="+sendimg+">"								
+								var imgtag = "<div style =' width: 200px;border-radius:25px; overflow: hidden;'><img style= 'width:100%;' src="+sendimg+"></div>"								
 							 } 
 						} else {
 							 var imgtag = null;
@@ -114,24 +118,21 @@ function jwSendWithFile(){
 						if (rs.msg_img!="") {
 							var sendimg = rs.msg_img
 							var sendimg = sendimg.replace('C:\\fakepath', 'resources\\img\\chatimg\\')
-							console.log(sendimg)
-							var imgtag = "<img src="+sendimg+">"
+								var imgtag = "<div style =' width: 200px;border-radius:25px; overflow: hidden;'><img style= 'width:100%;' src="+sendimg+"></div>"								
 						}
 					 if (imgtag !=null && sendCon!=null) {
 						 var chatdiv = document.createElement('div'); 
-						 chatdiv.innerHTML = "<div>"+ sendId + ":" + sendCon + imgtag + "</div>";
+						 chatdiv.innerHTML = "<div>"+ sendId + ":" + sendCon +"<br>"+ imgtag + "</div>";
 						 document.getElementById('chatMsg').appendChild(chatdiv);
 					} else if (imgtag ==null && sendCon != null) {
 						 var chatdiv = document.createElement('div'); 
-						 chatdiv.innerHTML = "<div>"+ sendId + ":" + sendCon +"</div>";
+						 chatdiv.innerHTML = "<div>"+ sendId + ":" + sendCon + "</div>";
 						 document.getElementById('chatMsg').appendChild(chatdiv);
 					 } else if(imgtag !=null && sendCon == null) {
 						 var chatdiv = document.createElement('div'); 
-						 chatdiv.innerHTML = "<div>"+ sendId + ":" + imgtag +"</div>";
+						 chatdiv.innerHTML = "<div>"+ sendId + ":" + imgtag  + "</div>";
 						 document.getElementById('chatMsg').appendChild(chatdiv);
-						
 					}
-					
 				}
 					
 					

@@ -19,7 +19,7 @@
 		<div class = "searchBlankDiv">
 		</div>
 		
-		
+		<!--  
 		<div class = "subLoginUsers">
 			<div class = "titleDiv">
 				titleDiv
@@ -28,6 +28,7 @@
 				loginUsers
 			</div>
 		</div>
+		-->
 	</div>
 </body>
 </html>

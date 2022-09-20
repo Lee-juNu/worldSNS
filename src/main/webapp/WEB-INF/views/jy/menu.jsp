@@ -79,9 +79,7 @@
 		</div>	
 	</div>
 	
-	<div>
-	<div><button onclick="goLogout();">로그아웃</button></div>
-	</div>
+	
 	
 	
 	<div class = "menuProfile" >
@@ -97,6 +95,7 @@
 				<span>@${sessionScope.loginMember.user_ID}</span>
 			</div>
 		</div>
+			<div><button class ="logoutBtn" onclick="goLogout();">로그아웃</button></div>
 	</div>
 	</div>
 	<!-- 이미지 주소 생성 후에 이미지 주소 넣기 -->

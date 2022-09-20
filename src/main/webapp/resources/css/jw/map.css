@@ -13,6 +13,10 @@ path {fill: #202020; stroke: #ee005d;}
 path:hover {fill: #ee005d;}
 
 
+#countries
+{
+}
+
 .mapSvg
 {
 	height : 100%;

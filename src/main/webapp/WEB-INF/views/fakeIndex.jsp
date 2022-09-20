@@ -44,7 +44,7 @@
 		</div>
 		<div class = "menuDiv">
 			<button id = "loginModal" class = "loginBtn">Login</button>
-			<button id = "testButton" class = "loginBtn">test</button>
+			<button id = "testBtn" class = "loginBtn">test</button>
 		</div>
 	</div>
 	<div class = "mapDiv">	
@@ -155,9 +155,15 @@
         <input type="hidden" id = "join_city" value = "seoul">
          
          
+<<<<<<< HEAD
          <div class = "stepBtnDiv">
         <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
         <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
+=======
+        <div class = "stepBtnDiv">
+        	<div class = "stepLeftDiv"> <button class = "prevModalBtn stepBtn">이전으로</button></div>
+        	<div class = "stepRightDiv"> <button class = "nextModalBtn stepBtn">다음</button></div>
+>>>>>>> JW2
         </div>
         
         </div>

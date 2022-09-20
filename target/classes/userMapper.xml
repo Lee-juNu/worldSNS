@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team.worlds.user.UserMapper">
-
-
-	<resultMap id="userResultMap" type="User">
-		<result property="user_ID" column="user_ID" />
-		<result property="user_PW" column="user_PW" />
-		<result property="user_nickName" column="user_nickName" />
-		<result property="user_phoneNumber" column="user_phoneNumber" />
-		<result property="user_name" column="user_name" />
-		<result property="user_email" column="user_email" />
-		<result property="user_country" column="user_country" />
-		<result property="user_city" column="user_city" />
-		<result property="user_birthDay" column="user_birthDay" />
-		<result property="level" column="level" />
-		<result property="regDate" column="regDate" />
-		<result property="user_contents" column="user_contents" />
-		<result property="session_key" column="session_key" />
-		<result property="session_limit" column="session_limit" />
-	</resultMap>
-
-
-
-
+	
+	
 	<!-- id 다시 보기! -->
 	<insert id="joinus">
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
-		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null)
+		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null,null,null)
 	</insert>
 
 
@@ -45,22 +25,9 @@
 		WHERE user_ID = #{user_ID}
 	</update>
 
-	<select id="checkUserWithSessionKey" resultMap="userResultMap">
-		SELECT
-		*
-		FROM
-		userTbl
-		WHERE session_key = #{value}
-	</select>
-
-
 	<insert id="joinusp">
-
-
 		insert into proFileTbl
 		values(#{pf_userID},null,null,null)
-
-
 	</insert>
 
 

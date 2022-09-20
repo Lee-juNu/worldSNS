@@ -131,9 +131,7 @@ public class MessageDAO {
 			req.setAttribute("result", "참여성공");
 		} else {
 			req.setAttribute("result", "참여실패");
-			
 		}
-		
 	}
 
 	public void join2(HttpServletRequest req, Message m) {
@@ -255,7 +253,6 @@ public class MessageDAO {
 				
 		return new Message(ss.getMapper(MessageMapper.class).send(m));
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Message getMsg(Message m) {

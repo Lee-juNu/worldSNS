@@ -10,28 +10,40 @@
 <title>Insert title here</title>
 <link rel = "stylesheet" type = "text/css" href = "resources/css/SU/message.css">
 
- 
-
 </head>
 <body>
 
 <div id="chatList">
-채팅방목록
-<button id="btn-modal">채팅방 만들기</button>
-<button id="btn-modal2">채팅에 초대하기</button>
-<br>
-<input id="searchbyUser"><button id="searchbyUserBtn" onclick="searchbyUser()">친구 이름으로 검색</button>
+	<div class ="titleMainDiv">
+	<div class ="titleDiv">メッセージ</div>
+	<div style ="display: flex;">
+	<button class = "chatBtn" id="btn-modal">ルームを作る</button>
+	<a id="btn-modal2"> <img style='width:40px;' alt="招待する" src="resources/icon/white/invite.png"></a>
+	</div>
+	</div>
+	
+	<div class ="search">
+		<input id="searchbyUser" placeholder="IDで検索">
+		<div class ="searchImg">
+		<a id="searchbyUserBtn" onclick="searchbyUser()">
+		<img style='width:30px; height:30px;' src="resources/icon/white/serach.png">
+		</a>
+		</div>
+	</div>
+
+
 <c:forEach var="chat" items="${msgs}" >
-<div id="chatTbl">
+<div id="chatTbl" >
 <form action="messages.select" name="selectroom">
-${chat.cr_Num }
-<button name="join" id="join" value="${chat.cr_Num }"> 참여 </button>
+<div class ="arrChat">
+ ルーム：${chat.cr_Num }
+<button name="join" id="join" value="${chat.cr_Num }"> 入る </button>
+</div>
 </form>
 </div>
 </c:forEach>
-<div id="sbuDiv">
-새로새로<br>
-</div>
+	<div id="sbuDiv">
+	</div>
 </div>
 
 

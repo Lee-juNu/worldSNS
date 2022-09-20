@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.worlds.server.wsFileManager;
+
 public class loginIntercepter implements HandlerInterceptor {
 
 	@Override
@@ -25,36 +27,13 @@ public class loginIntercepter implements HandlerInterceptor {
             HttpServletRequest request, HttpServletResponse response,
             Object obj, ModelAndView mav)
             throws Exception {
-    	
-    	 HttpSession httpSession = request.getSession();
-    	 
-    	 
-    	 
-    	 ModelMap modelMap = mav.getModelMap();
-    	    Object userVO =  modelMap.get("User");
-
-    	    if (userVO != null) {
-    	    	System.out.println("로그인 성공");
-    	        
-    	        
-    	        httpSession.setAttribute("loginMember", userVO);
-    	        //response.sendRedirect("/");
-
-    	        if (request.getParameter("useCookie") != null) {
-    	           System.out.println("remember me");
-    	        	
-    	        	
-    	        	// 쿠키 생성
-    	            Cookie loginCookie = new Cookie("loginCookie", httpSession.getId());
-    	            loginCookie.setPath("/");
-    	            loginCookie.setMaxAge(60*60*24*7);
-    	            // 전송
-    	            response.addCookie(loginCookie);
-    	        }
-
-    	        Object destination = httpSession.getAttribute("destination");
-    	        response.sendRedirect(destination != null ? (String) destination : "/");
-    	    }
+		
+		if(wsFileManager.getFilePath()=="")
+		{
+			wsFileManager.setFilePath(request.getSession().getServletContext().getRealPath("resources/img/"));
+			//파일 이미지 경로가 셋팅되었습니다.
+			System.out.println(wsFileManager.getFilePath());	
+		}
 
     	}
 
@@ -63,9 +42,4 @@ public class loginIntercepter implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object obj, Exception e)
 			throws Exception {
 	}
-	
-	
-	
-	
-	
 }

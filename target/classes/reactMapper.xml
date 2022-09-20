@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.worlds.board.ReactMapper">
+
+
+<insert id = "regLike" parameterType="com.team.worlds.board.Like">
+	<selectKey keyProperty="like_Num" resultType="string" order="BEFORE">
+		select alarm_seq.nextval from dual
+	</selectKey>	
+	DECLARE
+    BEGIN
+		insert into 
+		LIKETBL 
+		values(#{like_Num},#{like_SenderID},#{like_ReceiverID},#{like_BoardNum});
+
+		UPDATE boardTbl
+   		SET likeCount  = (SELECT Count(like_BoardNum) FROM liketbl WHERE #{like_BoardNum} = like_boardNum)
+   		where board_num = #{like_BoardNum};
+	END;
+	</insert>
+
+<select id="getByID" resultType="com.team.worlds.board.Like">
+	select * from LIKETBL where like_BoardNum = #{like_BoardNum} and like_SenderID = #{like_SenderID}
+</select>
+
+<insert id="deleteLike"  parameterType="com.team.worlds.board.Like">
+	DECLARE
+    BEGIN
+	delete LIKETBL where like_Num = #{like_Num};
+	
+	UPDATE boardTbl
+   		SET likeCount  = (SELECT Count(like_BoardNum) FROM liketbl WHERE #{like_BoardNum} = like_boardNum)
+   		where board_num = #{like_BoardNum};
+	END;
+</insert>
+	
+</mapper>

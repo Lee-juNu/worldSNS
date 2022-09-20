@@ -1,7 +1,5 @@
 const loremIpsum = document.getElementById("lorem-ipsum")
-fetch("https://baconipsum.com/api/?type=all-meat&paras=200&format=html")
-    .then(response => response.text())
-    .then(result => loremIpsum.innerHTML = result)
+
 const modal = document.getElementById("modal")
 function modalOn() {
     modal.style.display = "flex"
@@ -150,7 +148,8 @@ function search() {
 		        	   
 		        	   for (var i = 0; i < userdata.length; i++) {
 		        		var friendlist = userdata[i].user_ID
-						var user = document.createElement('div'); 
+						var user = document.createElement('div');
+						$('#userList').val(""); 
 						user.innerHTML =
 						"<form onsubmit=\"invite()\" id=\"invite\"><div>"+friendlist+"<button>초대</button></div>" +
 						"<input type=\"hidden\" id=\"inviteUser\" value="+ friendlist +"></form>";

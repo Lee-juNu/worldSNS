@@ -66,8 +66,6 @@ public class wsChatController {
 			System.out.println(img);
 			try
 				{
-
-			
 /*				if (Dtype.equals("send")&&contents!=null) {
 //					basic.sendText(message.toString());	
 					mDAO.send(message);
@@ -113,7 +111,14 @@ public class wsChatController {
 				String img = (String)message.get("msg_img");
 //				mDAO.send(message);
 				for (ChatUser chatUser : tempUserList) {
-					chatUser.getSession().getBasicRemote().sendText(message.toString());
+					if(!chatUser.getSession().isOpen())
+					{
+						tempUserList.remove(chatUser);
+					}
+					else
+					{
+						chatUser.getSession().getBasicRemote().sendText(message.toString());						
+					}
 				}			
 			}
 			catch (Exception e) {

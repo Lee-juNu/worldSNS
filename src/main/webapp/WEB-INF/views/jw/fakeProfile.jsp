@@ -20,7 +20,7 @@ $(document).ready(function(){
     $("#followButton").click(follow); //id="listButton"인 태그에 click하면 function getMemberList() 실행
 });
 function follow(){
-     var user_ID_o = ${findUser.user_ID};
+     var user_ID_o = $('#findUser').val();
      alert(user_ID_o);
      
      $.ajax({
@@ -45,15 +45,12 @@ function follow(){
 })
 };
 
-</script>
-
-<script type="text/javascript">
 
 $(document).ready(function(){
     $("#unfollowButton").click(unfollow);
 });
 function unfollow(){
-     var user_ID_o = ${findUser.user_ID};
+    var user_ID_o = $('#findUser').val();
      alert(user_ID_o);
      
      $.ajax({
@@ -84,6 +81,8 @@ function unfollow(){
 
 </head>
 <body class = "bgColor">
+
+	<input id="findUser" type="hidden" value = '${findUser.user_ID}'>
 
 <div class = "profileSectionDiv" >
 	<div class = "profileMainDiv ">
@@ -141,11 +140,6 @@ function unfollow(){
 			
 			
 			<!-- jy수정 : 팔로우 수, 팔로워 수 추가 끝 -->
-			
-			
-			
-			
-			
 			</div>
 		</div>
 	</div>
