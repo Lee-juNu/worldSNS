@@ -131,6 +131,7 @@ public class MessagesController {
 		mDAO.get(req);
 //		mDAO.getMsg(req);
 		mDAO.getRoom(req, M);
+		mDAO.getroomUser(req, M);
 //		mDAO.updateIndex(req, M);
 		return "home";
 	}

@@ -210,7 +210,7 @@ public class WebSocketServer {
 
 	// 여기는 받아오는 프로그램 메시지를 처리하는부분입니다.
 	@OnMessage
-	public void processUpload(ByteBuffer msg, boolean last, Session session) {
+	public void processUpload(ByteBuffer msg, boolean last, Session session,@PathParam(value = "pageType") String pageType) {
 		try {
 			while (msg.hasRemaining()) {
 				bufferMap.get(session).write(msg.get());
@@ -219,10 +219,13 @@ public class WebSocketServer {
 				bufferMap.get(session).flush();
 				bufferMap.get(session).close();
 				bufferMap.remove(session);
-				JSONObject obj = new JSONObject();
-				obj.put("type", "reqNextFile");
 				
-				session.getBasicRemote().sendText(obj.toString());
+				if(!pageType.contains("CR"))
+				{
+					JSONObject obj = new JSONObject();
+					obj.put("type", "reqNextFile");
+					session.getBasicRemote().sendText(obj.toString());
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

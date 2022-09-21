@@ -38,7 +38,7 @@ ${chat.cr_Num } <button name="join" value="${chat.cr_Num }"> 참여 </button>
 
 <div id="chat">
 <div id="titleMessage">
-${roomNum } 
+${roomNum } <c:forEach var="gru" items="${roomuserlist }"> ${gru.rm_userID }, </c:forEach>
 </div>
 
 <div id="chatRoom">

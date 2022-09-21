@@ -57,6 +57,8 @@ public interface MessageMapper {
 
 	public List<Message> searchbyUser(String name);
 
+	public List<Message> getroomUser(Message m);
+
 
 
 

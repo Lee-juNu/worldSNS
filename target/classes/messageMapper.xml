@@ -83,4 +83,8 @@ select * from RoomMemberTbl where RM_ROOMNUM = #{rm_roomNum}
 select * from chatroomTbl where cr_num in (select rm_roomnum from RoomMemberTbl where rm_userid like '%' ||#{rm_userID} || '%')
 </select>
 
+<select id="getroomUser" resultType="com.team.worlds.messages.Message">
+select rm_userID from RoomMemberTbl where rm_roomNum = #{rm_roomNum}
+</select>
+
 </mapper>
