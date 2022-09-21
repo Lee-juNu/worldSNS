@@ -32,31 +32,27 @@ import org.springframework.stereotype.Service;
 
 import oracle.as.management.opmn.integrator.PingCallback;
 
-/*
+
 @Service
 class alarmThread{
    @PostConstruct
    private void resendThread()
    {
-	   int sleepSec = 1;
-   	   
+	   int sleepSec = 500;
 	   final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(2);
-	   
 	   exec.scheduleAtFixedRate(new Runnable() {
-		
 		@Override
 		public void run() {
 			try {
 				WebSocketServer.Allnotice();	
 			}catch (Exception e) {
-
+				System.out.println("アラム問題"+e);
 			}
-			
 		}
 	}, 0, sleepSec, TimeUnit.SECONDS);
    }
 }
-*/
+
 
 @Controller // CR001 //adsfasd
 @ServerEndpoint(value = "/jwSocket/{pageType}/{userId}")
@@ -65,11 +61,17 @@ public class WebSocketServer {
 	// 웹소켓 접속한 사람을 구별하기 위한 개별ID라고 생각하시면좋아요
 	// 홈페이지가 이동할때마다 세션은 새로 주어집니다.
 	// 맵을 통해서 (UserID,Session)으로 이루어집니다.
-
-	public static final HashMap<String, ArrayList<Session>> sessionMap = new HashMap<String, ArrayList<Session>>();
+	
 	// 로그를 남겨주는 아이입니다 몰라도되요
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
-	public static final HashMap<Session,BufferedOutputStream> bufferMap = new HashMap<Session,BufferedOutputStream>();
+
+	public static final HashMap<String, ArrayList<Session>> sessionMap =
+			new HashMap<String, ArrayList<Session>>();
+	
+	public static final HashMap<Session,BufferedOutputStream> bufferMap = 
+			new HashMap<Session,BufferedOutputStream>();
+	
+	
 	// 저희의 Json을 파싱해주는 아이입니다.
 
 	// 파일을 만들때 사용하는 장치입니다
@@ -81,12 +83,19 @@ public class WebSocketServer {
 		System.out.println("웹소켓(서버) 객체생성");
 
 	}
-	/*
-	 * public static synchronized void Allnotice() throws IOException { for
-	 * (Map.Entry<String, ArrayList<Session>> entry :
-	 * WebSocketServer.sessionMap.entrySet()) { for (Session arrSession:
-	 * entry.getValue()){ arrSession.getBasicRemote().sendText("공지왔어용"); } } }
-	 */
+	
+	  public static synchronized void Allnotice() throws IOException { for
+	 (Map.Entry<String, ArrayList<Session>> entry :
+	  WebSocketServer.sessionMap.entrySet()) { 
+		  for (Session arrSession:entry.getValue())
+		  {if(arrSession.isOpen()){return;}
+			
+			  JSONObject obj = new JSONObject();
+				obj.put("type", "notice");
+				obj.put("noticeType", "newBoard");
+			  arrSession.getBasicRemote().sendText(obj.toJSONString()); 
+		  }}}
+	 
 
 	// 웹소켓 연결될때 나오는 문구
 	// 생성후 사용자와 "연결"이 될때 불려지는 함수입니다.
@@ -157,8 +166,6 @@ public class WebSocketServer {
 		try {
 			JSONObject result = (JSONObject) jsonParser.parse(message);
 			String type = (String) result.get("type");
-
-
 			if 		(type.equals("chat")) 	wsChatController.onMessage(result, session, sessionMap, pageType, userId);
 			else if (type.equals("board")) 	wsBoardController.onMessage(result, session, sessionMap, userId);
 			else if (type.equals("alarm")) 	wsAlaramController.onMessage(result, session, sessionMap);

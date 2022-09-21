@@ -209,7 +209,6 @@ public class MessageDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void getnowuser(Message m, HttpServletRequest req) {
@@ -247,11 +246,7 @@ public class MessageDAO {
 
 
 	public void select(HttpServletRequest req, Message m) {
-		
-		req.removeAttribute("roomNum");
-		String roomno = req.getParameter("join");
-		req.getSession().setAttribute("roomNum", roomno);
-		req.getSession().setMaxInactiveInterval(-1);
+		req.setAttribute("roomNum", req.getParameter("join"));
 	}
 
 	public Message send(Message m) {

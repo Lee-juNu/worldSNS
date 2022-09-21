@@ -229,8 +229,7 @@ function zoom(scale,event) {
 
 
 function pan(dx, dy) {     	
-  transformMatrix[4] += dx 
- ;
+  transformMatrix[4] += dx;
   transformMatrix[5] += dy;
             
   var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
