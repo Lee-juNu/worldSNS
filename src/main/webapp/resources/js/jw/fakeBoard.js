@@ -68,7 +68,7 @@ function receiveMessage(message)
 
 function successLike(data)
 {
-	var button = `<a onclick="regLikedeleteLike(`+data.board_Num+`,'`+data.board_userID+`','`+userId+`')">
+	var button = `<a onclick="deleteLike(`+data.board_Num+`,'`+data.board_userID+`','`+userId+`')">
 	<img style = "width:20px;height:20px;" class = "deleteIcon" alt="" src="resources/icon/white/unLike.png">
 	</a>`;	
 			var likePlus= ($("#likeInput"+data.board_Num).val()*1+1);
