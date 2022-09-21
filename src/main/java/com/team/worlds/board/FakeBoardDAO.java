@@ -53,6 +53,8 @@ public class FakeBoardDAO {
 		boardMap.put("userID", userID);
 		boardMap.put("region", region);
 		
+		System.out.println("내가 왜"+userID);
+		System.out.println("내가 안돼"+region);
 		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollowerAndRegion(boardMap);
 		if(arrBoard.size()!=0)
 		{

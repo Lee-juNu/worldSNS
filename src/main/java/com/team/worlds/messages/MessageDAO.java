@@ -194,6 +194,17 @@ public class MessageDAO {
 		}
 		
 	}
+	public void getroomUser(HttpServletRequest req, Message m) {
+		String roomno = req.getParameter("join");
+		m.setRm_roomNum(roomno);
+		
+		try {
+			req.setAttribute("roomuserlist", ss.getMapper(MessageMapper.class).getroomUser(m));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void getRoom(HttpServletRequest req, Message m) {
 		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
