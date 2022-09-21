@@ -25,7 +25,8 @@ create sequence alarm_seq
 create sequence like_seq
 
 ALTER TABLE boardtbl ADD likeCount number(10) DEFAULT 0;
-
+alter table usertbl drop column SESSION_KEY
+select * from usertbl
 select * from boardtbl where board_num = 485
 select * from likeTbl where like_boardNum = 485
 UPDATE boardTbl

@@ -7,7 +7,7 @@
 	<insert id="joinus">
 		insert into userTbl
 		values(#{user_ID},#{user_PW},#{user_nickName},#{user_phoneNumber},#{user_name},#{user_email},
-		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null,null,null)
+		#{user_country},#{user_city}, 1 ,sysdate,#{user_birthDay},null)
 	</insert>
 
 
@@ -17,13 +17,6 @@
 	</select>
 
 
-	<update id="keepLogin">
-		UPDATE userTbl
-		SET session_key = #{sessionId}
-		,
-		session_limit = #{sessionLimit}
-		WHERE user_ID = #{user_ID}
-	</update>
 
 	<insert id="joinusp">
 		insert into proFileTbl
@@ -126,10 +119,6 @@
 		pf_contents=#{pf_contents}
 		where
 		pf_userID=#{pf_userID}
-
-
-
-
 	</update>
 
 	<update id="updateUserProfile">

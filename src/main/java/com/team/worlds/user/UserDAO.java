@@ -365,7 +365,7 @@ public class UserDAO {
 		System.out.println(u.getUser_ID());
 		System.out.println(u.getUser_PW());
 		System.out.println(u.getUser_birthDay());
-
+		System.out.println("이거 정말안딤?");
 		ss.getMapper(UserMapper.class).joinus(u);
 
 		if (login2(u, req)) {

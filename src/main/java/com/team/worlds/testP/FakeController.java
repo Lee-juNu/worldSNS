@@ -42,7 +42,7 @@ public class FakeController {
 	
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public @ResponseBody boolean joinDo(HttpServletRequest req, User u) {
-			
+			System.out.println("안되냐?");
 		if(uDAO.joinUs(u, req))
 		{
 			return true;

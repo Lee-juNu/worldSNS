@@ -34,7 +34,12 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String temp_home(HttpServletRequest req) {
 		
-		
+		if(wsFileManager.getFilePath()=="")
+		{
+			wsFileManager.setFilePath(req.getSession().getServletContext().getRealPath("resources/img/"));
+			//파일 이미지 경로가 셋팅되었습니다.
+			System.out.println(wsFileManager.getFilePath());	
+		}
 		
 		
 		bDAO.getBoardByUserID("admin");

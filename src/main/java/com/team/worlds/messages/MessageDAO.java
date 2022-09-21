@@ -211,6 +211,20 @@ public class MessageDAO {
 		}
 		
 	}
+
+	public void getnowuser(Message m, HttpServletRequest req) {
+		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		
+		
+		m.setRm_roomNum(msg_RoomNum);
+		
+		try {
+			req.setAttribute("gru", ss.getMapper(MessageMapper.class).getnowuser(m));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void updateIndex(HttpServletRequest req, Message m) {
 		

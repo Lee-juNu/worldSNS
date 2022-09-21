@@ -63,6 +63,8 @@ public interface MessageMapper {
 
 	public ArrayList<Message> getroomuser(String roomno);
 
+	public List<Message> getnowuser(Message m);
+
 
 
 

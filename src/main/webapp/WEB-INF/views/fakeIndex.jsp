@@ -155,26 +155,12 @@
         <input type="hidden" id = "join_city" value = "seoul">
          
          
-<<<<<<< HEAD
          <div class = "stepBtnDiv">
         <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
-=======
-        <div class = "stepBtnDiv">
-        	<div class = "stepLeftDiv"> <button class = "prevModalBtn stepBtn">이전으로</button></div>
-        	<div class = "stepRightDiv"> <button class = "nextModalBtn stepBtn">다음</button></div>
->>>>>>> JW2
-        </div>
-        
+       <div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">가입하기</button></div>
         </div>
 
 
-        <div id = "joinDiv4" class="content"> 
-        <div class = "stepBtnDiv">
-        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button type="submit" id = "joinBtn" class = "stepBtn">가입하기</button></div>
-        </div>
-        </div>
         
         
 

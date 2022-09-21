@@ -92,7 +92,11 @@ select max(msg_index) as msg_index from MESSAGETBL where msg_roomnum in (select 
 </select>
 
 <select id="getroomuser" resultType="com.team.worlds.messages.Message">
-select rm_userid from RoomMemberTbl where rm_roomnum=#{rm_RoomNum}
+select rm_userid from RoomMemberTbl where rm_roomnum=#{rm_roomNum}
+</select>
+
+<select id="getnowuser" resultType="com.team.worlds.messages.Message">
+select rm_userid from RoomMemberTbl where rm_roomnum=#{rm_roomNum}
 </select>
 
 </mapper>

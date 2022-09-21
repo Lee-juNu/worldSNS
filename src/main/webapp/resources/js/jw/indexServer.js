@@ -91,7 +91,7 @@ window.onload = function()
 					"user_city"			: $("#join_city").val(),
 					"str_user_birthDay"		: birthDay
 					},
-				type:'GET',
+				type:'POST',
 				dataType: 'json',
 		        	
 				success:function(result){
