@@ -33,8 +33,23 @@ public class wsBoardController {
 			HashMap<String, ArrayList<Session>> sessionmap, String userID) {
 		// TODO Auto-generated method stub
 		
-		
-		if(result.get("contents").toString().equals("upload"))
+		if(result.get("contents").toString().equals("nextPageReq"))
+		{
+			int pageSize = Integer.parseInt(result.get("size").toString()) ;
+			int currPage = Integer.parseInt(result.get("currPage").toString());
+			System.out.println("페이지 사이즈"+pageSize);
+			System.out.println("지금 사이즈"+currPage);
+			reqNextPage(session,userID,pageSize,currPage);
+		}
+		else if(result.get("contents").toString().equals("mapNextPageReq"))
+		{
+			int pageSize = Integer.parseInt(result.get("size").toString()) ;
+			int currPage = Integer.parseInt(result.get("currPage").toString());
+			System.out.println("페이지 사이즈"+pageSize);
+			System.out.println("지금 사이즈"+currPage);
+			reqNextPageByRegion(session,userID,pageSize,currPage,result.get("regionName").toString());
+		}
+		else if(result.get("contents").toString().equals("upload"))
 		{
 			if(true)
 			{
@@ -70,11 +85,24 @@ public class wsBoardController {
 		else if(result.get("contents").toString().equals("boardDelete"))
 		{
 			bDAO.deleteBoard(result.get("boardNumber").toString());
-			System.out.println("삭제를 시작한다!"+ result.get("boardNumber"));
+			try
+			{
+			System.out.println("");
+			JSONObject obj = new JSONObject();
+			obj.put("type", "result");
+			obj.put("resultType", "deleteSuceess");
+			obj.put("boardNum", result.get("boardNumber").toString());
+			System.out.println(obj.toJSONString());
+			if(session.isOpen())
+				session.getBasicRemote().sendText(obj.toJSONString());
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 		else if(result.get("contents").toString().equals("boardInit"))
 		{
-			getBoardID(session,userID);
+			getBoardID(session,userID,5,1);
 		}
 		else if(result.get("contents").toString().equals("regionInit"))
 		{
@@ -85,6 +113,10 @@ public class wsBoardController {
 			countryInit(session);
 		}
 	}
+	
+
+
+
 	private static void regLike(Session session, JSONObject result) {
 		if(bDAO.regLike(result))
 		{
@@ -146,7 +178,7 @@ public class wsBoardController {
 			JSONObject obj = new JSONObject();
 			obj.put("type", "clickMapReturn");
 			obj.put("regions",bDAO.getRegionByCountry(countryName));
-			obj.put("boards",bDAO.getBoardByRegion(userID,region));
+			obj.put("boards",bDAO.getBoardByRegion(userID,region,5,1));
 			obj.put("countryName",countryName);
 			obj.put("regionName",region);
 			System.out.println(obj.toJSONString());
@@ -156,6 +188,22 @@ public class wsBoardController {
 			System.out.println(e);
 		}
 	}
+	private static void reqNextPageByRegion(Session session, String userID, int pageSize, int currPage,
+			String region) {
+	
+		try
+		{			
+			JSONObject obj = new JSONObject();
+			obj.put("type", "nextBoard");
+			obj.put("boards",bDAO.getBoardByRegion(userID,region, pageSize,currPage));
+			if(session.isOpen())
+				session.getBasicRemote().sendText(obj.toJSONString());
+				
+		}catch (Exception e) {
+			
+		}
+
+	}
 	
 	private static void deleteBoard(String id)
 	{
@@ -163,21 +211,34 @@ public class wsBoardController {
 		System.out.println("aa");
 	}
 	
-	private static void getBoardID(Session session, String userID)
+	private static void getBoardID(Session session, String userID,int pageSize, int currPage)
 	{
 		try {
 
 		JSONObject obj = new JSONObject();
-		
 		obj.put("type", "getBoard");
-		obj.put("arrBoard",bDAO.getBoardByUserID(userID));
+		obj.put("arrBoard",bDAO.getBoardByUserID(userID,pageSize,currPage));
 		System.out.println(obj.toJSONString());
 		if(session.isOpen())
 		session.getBasicRemote().sendText(obj.toJSONString());
 		}catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	private static void reqNextPage(Session session, String userID, int pageSize, int currPage) {
+		try {
 
+			JSONObject obj = new JSONObject();
+			
+			obj.put("type", "nextBoard");
+			obj.put("arrBoard",bDAO.getBoardByUserID(userID,pageSize,currPage));
+			System.out.println(obj.toJSONString());
+			if(session.isOpen())
+			session.getBasicRemote().sendText(obj.toJSONString());
+			}catch (Exception e) {
+				System.out.println(e);
+			}
 	}
 	private static void countryInit(Session session)
 	{

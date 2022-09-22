@@ -42,7 +42,6 @@ public class HomeController {
 		}
 		
 		
-		bDAO.getBoardByUserID("admin");
 		
 		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");

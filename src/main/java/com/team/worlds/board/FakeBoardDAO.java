@@ -30,9 +30,13 @@ public class FakeBoardDAO {
 	private SqlSession ss;
 
 	
-	public JsonArray getBoardByUserID(String userId)
+	public JsonArray getBoardByUserID(String userId, int pageSize, int currPage)
 	{
-		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollower(userId);
+		HashMap<String, Object> boardMap = new HashMap<String, Object>();
+		boardMap.put("user_ID", userId);
+		boardMap.put("pageSize", pageSize);
+		boardMap.put("page", currPage);
+		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollower(boardMap);
 		if(arrBoard.size()!=0)
 		{
 			System.out.println(arrBoard.get(0).getBoard_Contents());			
@@ -47,11 +51,14 @@ public class FakeBoardDAO {
 		return null;
 	}
 	
-	public JsonArray getBoardByRegion(String userID, String region) {
+	public JsonArray getBoardByRegion(String userID, String region, int pageSize, int currPage) {
 		
-		HashMap<String, String> boardMap = new HashMap<String, String>();
-		boardMap.put("userID", userID);
+		HashMap<String, Object> boardMap = new HashMap<String, Object>();
+		boardMap.put("user_ID", userID);
 		boardMap.put("region", region);
+		boardMap.put("pageSize", pageSize);
+		boardMap.put("page", currPage);
+		
 		
 		ArrayList<BoardOutput> arrBoard =  ss.getMapper(BoardMapper.class).getBoardByFollowerAndRegion(boardMap);
 		if(arrBoard.size()!=0)
@@ -128,8 +135,6 @@ public class FakeBoardDAO {
 	
 	public boolean regLike(JSONObject result)
 	{
-		
-		
 		Like like = new Like();
 		like.setLike_BoardNum(result.get("boardNumber").toString());
 		like.setLike_ReceiverID(result.get("receiverID").toString());

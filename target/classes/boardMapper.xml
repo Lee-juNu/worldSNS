@@ -23,22 +23,37 @@
 
 
 <select id="getBoardByFollower" resultType="com.team.worlds.board.BoardOutput">
-select user_nickName, boardTbl.*,like_BoardNum
+select * from(
+select ROWNUM rn, user_nickName, like_BoardNum,Board_Num,Board_ParentNum,board_userID,
+Board_img1,Board_img2,Board_img3,Board_img4,Board_Contents,Board_Country,Board_City,likeCount,board_regdate
+from
+(select user_nickName, boardTbl.*,like_BoardNum
 	 	from USERTBL,boardTbl,liketbl
 	 		where board_userId in 
-	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = #{user_ID} or user_id = #{user_ID})
+	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = #{user_ID} or board_userId = #{user_ID})
 	 		and user_id = board_userId and like_SenderID(+)= #{user_ID} and like_BoardNum(+) = board_num
-			order by  board_regdate desc
+	 		ORDER BY board_regdate desc
+	 		)) 
+	 		WHERE rn BETWEEN to_number(#{pageSize}) * (to_number(#{page}) - 1) + 1 AND to_number(#{pageSize})*to_number(#{page})
 </select>
 
 
+
 <select id = "getBoardByFollowerAndRegion" resultType="com.team.worlds.board.BoardOutput">
-select user_nickName, boardTbl.*,like_BoardNum
-	 	from USERTBL,boardTbl,liketbl
-	 		where board_userId in 
-	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = #{userID} or user_id = #{userID})
-	 			 and user_id = board_userId and like_SenderID(+)= #{user_ID} and like_BoardNum(+) = board_num and Board_City = #{region}
-			order by  board_regdate desc
+select * from(
+select ROWNUM rn, user_nickName, like_BoardNum,Board_Num,Board_ParentNum,board_userID,
+Board_img1,Board_img2,Board_img3,Board_img4,Board_Contents,Board_Country,Board_City,likeCount,board_regdate
+from
+(select user_nickName, boardTbl.*,like_BoardNum
+	from USERTBL,boardTbl,liketbl
+	where board_userId in 
+	(select Flw_toId from followTbl,USERTBL 
+	where Flw_FromId = #{user_ID} or board_userId = #{user_ID})
+	and user_id = board_userId and like_SenderID(+)= #{user_ID} 
+	and like_BoardNum(+) = board_num and Board_City = #{region}
+	 order by  board_regdate desc))
+WHERE rn BETWEEN to_number(#{pageSize}) * (to_number(#{page}) - 1) + 1 AND
+ to_number(#{pageSize})*to_number(#{page})
 </select>
 
 <select id = "getBoardByFollowerAndCountry" resultType="com.team.worlds.board.BoardOutput">

@@ -8,6 +8,44 @@ create table userTbl
 	user_email varchar(60 char) not null,
 	user_regDate date not null
 )
+
+Board_Num 			varchar2(10 char) 	primary key	,
+	Board_ParentNum 	varchar2(10 char) 				,
+	Board_userID 		varchar2(16 char) 	not null	,
+	Board_img1 			varchar2(256 char)				,
+	Board_img2 			varchar2(256 char)				,
+	Board_img3 			varchar2(256 char)				,
+	Board_img4 			varchar2(256 char)				,
+	Board_Contents 		varchar2(400 char)				,
+	Board_Country 		varchar2(50 char) 	not null	,
+	Board_City 
+	
+select * from(
+select ROWNUM rm, user_nickName, like_BoardNum,Board_Num,Board_ParentNum,
+Board_img1,Board_img2,Board_img3,Board_img4,Board_Contents,Board_Country,Board_City,likeCount
+from
+(select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId in 
+	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = 'admin' or user_id = 'admin')
+	 		and user_id = board_userId and like_SenderID(+)= 'admin' and like_BoardNum(+) = board_num)
+	 			 		ORDER BY board_regdate desc
+
+) WHERE rn BETWEEN :pageSize * (:page - 1) + 1 AND :pageSize*:page;
+
+select * from boardTbl
+select * from usertbl
+
+
+
+select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId in 
+	 		(select Flw_toId from followTbl,USERTBL where Flw_FromId = 'admin' or user_id = 'admin')
+	 		and user_id = board_userId and like_SenderID(+)= 'admin' and like_BoardNum(+) = board_num
+	 			 		ORDER BY board_regdate desc
+
+
 select * from profileTbl
  alter table userTbl add user_contents varchar2(160 char);
 

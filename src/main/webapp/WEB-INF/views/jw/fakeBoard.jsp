@@ -10,7 +10,7 @@
 <body class ="bgColor">
 
 
-<div class = "contentsDiv" >
+<div class = "contentsDiv" id ="contentsDivID" >
 	<div class = "contentsMainDiv bgColor">
 	
 		<div class = "contesntsBlank">
@@ -47,18 +47,18 @@
 								</div>
 								<div class = "birthDaySelectDiv">
            	   						<div class = "monthDiv joinBirthDiv" style= "width:150px;">
-           	   							<div class = "birthTextDiv">나라</div>
+           	   							<div class = "birthTextDiv">Country</div>
 										<select name="board_country" id="country" class ="joinBirthSel"></select>
 									</div>
            	   				
            	   						<div class = "dayDiv joinBirthDiv"  style= "width:150px;">
-										<div class = "birthTextDiv">도시</div>
+										<div class = "birthTextDiv">City</div>
 										<select name="board_region" id="region" class ="joinBirthSel"></select>
 									</div>
            	   					</div>
 							</div>
 						<div>
-							<button type="button" id="submit">Wolrds</button>
+							<button type="button" id="submit" class = "boardSubmit">Wolrds</button>
 						</div>
 					</div>
 				</div>
@@ -67,25 +67,29 @@
 		<div class = "mapDiv">
 			
 			<div class = "hideDiv">
+				<a onclick ="mapOpen()">
 				<div class = "mapOpen" >
 				<div>
 				</div>
 				<div>
-				<a onclick ="mapOpen()">지도 확장</a>
+				地図を開く
 				</div>
 					<div class = "icon">
 							<img alt="" src="resources/icon/white/extend.png">
 					</div>
 				</div>
+				</a>
 				<div class = "mapFold" style = "display:none;">
 				<div>
 				<div class ="back" style = "display:none;">
 					<img alt="" src="resources/icon/white/backIcon.png">				
 				</div>
 				</div>
-				<div>
-					<a onclick ="mapFold()">지도 축소</a>
+				<a style="width:80%;height:100%" onclick ="mapFold()">
+				<div style="width:100%;height:100%">
+					地図を閉じる
 				</div>
+				</a>
 				<div class = "icon">
 					<img alt="" src="resources/icon/white/fold.png">				
 				</div>
@@ -122,6 +126,7 @@
 <script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
 <script type = "text/javascript" src="resources/js/jw/map.js"></script>
 <script type = "text/javascript" src="resources/js/jw/fakeBoard.js"></script>
+<script type = "text/javascript" src="resources/js/jw/paiging.js"></script>
 <script type = "text/javascript" src="resources/js/utill/imageUploader.js"></script>
 
 </html>

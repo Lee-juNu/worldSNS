@@ -28,7 +28,14 @@ function receiveMessage(message)
 {
 	var resultJson = JSON.parse(message);
 	console.log(resultJson);
-	if(resultJson.type == "changeRegion")
+	if(resultJson.type == "nextBoard")
+	{
+		if(resultJson.arrBoard!= null)
+		{
+			receiveBoard(resultJson.arrBoard);			
+		}
+	}
+	else if(resultJson.type == "changeRegion")
 	{
 		changeRegions(resultJson.regions);
 	}
@@ -44,8 +51,8 @@ function receiveMessage(message)
 	{
 		if(resultJson.resultType =="boardSuceess")
 		{
-			console.log("뭔가이상해"+resultJson.board);
 			addMultiBoard(resultJson.board);
+			resetBoard();
 		}
 		else if(resultJson.resultType == "likeSuceess")
 		{
@@ -55,6 +62,10 @@ function receiveMessage(message)
 		{
 			successDelLike(resultJson);
 		}	
+		else if(resultJson.resultType =="deleteSuceess")
+		{
+			suceessDeleteBoard(resultJson.boardNum);
+		}
 	}
 	else if(resultJson.type =="countryInit")
 	{
@@ -64,6 +75,10 @@ function receiveMessage(message)
 	{
 		nextFileUpload();
 	}
+}
+function suceessDeleteBoard(data)
+{
+	$('#board'+data).remove();
 }
 
 function successLike(data)
@@ -121,6 +136,7 @@ window.onload = function()
 	boardInit();
 	mapInit();
 	mapPlusTransition();
+	YesScroll();
 	userId = $('#wsUserId').val();
 	$('#submit').click(function(){
 		if(0!=document.getElementById(fileId).files.length)
@@ -169,9 +185,14 @@ function changeRegionByCountry(countryId)
 		}
 	sendMsg(country);
 }
+var currCountry ="";
+var currRegion ="";
 function changeRegionAndCountry(countryId,regionId)
 {
 	if(countryId == "")	return;
+	currCountry = countryId;
+	currRegion = regionId;
+	
 	var country = 
 	{
 		type : "board",
@@ -188,6 +209,8 @@ function mapClicked(data)
 	$('#country').val(data.countryName).prop("selected",true);
 	$('#region').val(data.regionName).prop("selected",true);
 	boardContainer.children().remove();
+	oneTime= false;
+
 	addMultiBoard(data.boards);
 }
 
@@ -232,7 +255,7 @@ function addBoard(data)
 			imgs=addImg1(data);
 		}
 		var tempHtml = `
-					<div class = "board" style = "">
+					<div class = "board" id="board`+data.board_Num+`" style = "">
 					<div class = "boardProfile">
 					<div class = "profileIcon" style = "margin: auto;"> 
 								<img style="width:100%; height:100%;" alt="" src="resources/img/profile/`+data.board_userID+`/photo.png"/
@@ -344,8 +367,10 @@ function deleteLike(boardNum,receiverId,senderId)
 
 function addImg1(data)
 {
-	return `<img style="width:100%; height:100%;" alt="" src="resources/img/board/`+data.board_userID+`/`+data.board_img1+`"
-								 />`;
+	return `
+	<div class = "imgContainerDiv">
+	<img style="width:100%; height:100%;" alt="" src="resources/img/board/`+data.board_userID+`/`+data.board_img1+`"
+								 /></div>`;
 }
 function addImg2(data)
 {
@@ -486,8 +511,6 @@ function resetBoard()
 {
 		$('#board_contents').val("");
 		$('#inputFile').val("");
-		$('#country').val("null").prop("selected",true);
-		$('#region').val("null").prop("selected",true);
 		const myNode = document.getElementById("classRemover");
   		myNode.textContent = '';
 		imgArray = [];

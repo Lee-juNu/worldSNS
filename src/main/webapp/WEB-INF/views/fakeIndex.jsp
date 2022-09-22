@@ -40,10 +40,10 @@
 			<img class = "logoImg" alt="LOGO" src="resources/img/util/logo/wlogo.png">		
 		</div>
 		<div class = "countryInputDiv">
-		<input placeholder="나라를 입력해주세요">
+		<input autocapitalize="none" placeholder="どこか探したい国はありますか？">
 		</div>
 		<div class = "menuDiv">
-			<button id = "loginModal" class = "loginBtn">Login</button>
+			<button id = "loginModal" class = "loginBtn">ログイン</button>
 			<button id = "testBtn" class = "loginBtn">test</button>
 		</div>
 	</div>
@@ -65,10 +65,9 @@
                 <input id="user_ID" class = "input-modal" name="user_ID" placeholder="아이디를 입력해주세요"><br>
                 <input id="user_PW" type='password' class = "input-modal" name="user_PW" placeholder="비밀번호를 입력해주세요"><br>
                
-                <button id="loginBtn" class = "mloginBtn">로그인</button><br>
+                <button id="loginBtn" class = "mloginBtn">ログイン</button><br>
                <!--  <input type="checkbox" name="useCookie"> 로그인유지 -->
-                <div class = "forgotPwDiv"><a>비밀번호를 잊어버리셨나요?</a></div>
-                <div class = "joinUsDiv">계정이 없으신가요? <a id = "joinUsTag">회원가입</a></div>
+                <div class = "joinUsDiv">アカウントを作りますか? <a id = "joinUsTag">会員登録</a></div>
                 <div class = "tempLogin"></div>                               
             </div>
         </div>
@@ -78,34 +77,34 @@
     <div id="modalJoin" class="modal-overlay">
         <div class="modal-window">
         <div class = "joinTitle">
-			<span id = "joinStep">5단계 중 1단계</span>
+			<span id = "joinStep">5段階 中 1段階</span>
         </div>
 
         <div id = "joinDiv1" class="content">   
-           	<div><h1>계정을 생성하세요</h1></div>    
+           	<div><h1>アカウントを作ります</h1></div>    
             	   
            	<div class ="inputContents">
             	   
             	   
             	<div class = "idInputDiv">
-           	   		<input id="join_ID" placeholder="아이디">
+           	   		<input id="join_ID" placeholder="ID" autocomplete="off">
            	   	</div>
            	   	<div class = "pwInputDiv">
-           	   		<input id="join_PW" placeholder="비밀번호">
+           	   		<input id="join_PW" placeholder="PW" type = "password" autocomplete="off">
            	   	</div>   
             	   
            	   
            	   <div class = "phoneInputDiv">
-           	   		<input id="join_phoneNumber" placeholder="핸드폰번호">
+           	   		<input id="join_phoneNumber" placeholder="携帯番号">
            	   	</div>
            	   
            	   	<div class = "mailInputDiv">
-           	   		<input id="join_email" placeholder="이메일">
+           	   		<input id="join_email" placeholder="e-Mail">
            	   	</div>
            	   	
            	   	<div class = "stepBtnDiv"> 	        
-           	   		<div class = "stepLeftDiv"> <button type="button" class = "returnModalBtn stepBtn">돌아가기</button></div>
-           	   		<div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
+           	   		<div class = "stepLeftDiv"> <button type="button" class = "returnModalBtn stepBtn">戻る</button></div>
+           	   		<div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">次へ</button></div>
            	   	</div>	
         	</div>            
         </div>
@@ -113,57 +112,52 @@
         
         
         		<div class = "nameInputDiv">
-           	   		<input id="join_name" placeholder="이름">
+           	   		<input id="join_name" placeholder="名前">
            	   	</div>
            	   
            	   	<div class = "nickInputDiv">
-           	   		<input id="join_nickName" placeholder="닉네임">
+           	   		<input id="join_nickName" placeholder="ニックネーム">
            	   	</div>
 
 				<div class = "birthDayDiv">           	   	
-         		<span>생년월일 <br></span>
+         		<span>誕生日<br></span>
          		<span>
-         			이 곳은 반드시 당신의 생일이 아니여도 상관없습니다.<br>
-         			당신의 회사, 애완동물, 좋아하는 날짜 무엇이든 괜찮습니다.
+         			本当の誕生日じゃ無くってもかまいません<br>
+         			会社、ペット、好きな日どっちでも大丈夫です
          		</span>
            	   		<div class = "birthDaySelectDiv">
            	   			<div class = "monthDiv joinBirthDiv">
-           	   				<div class = "birthTextDiv">월</div>
+           	   				<div class = "birthTextDiv">月</div>
 							<select name="mm" id="month" class ="joinBirthSel"></select>
 						</div>
            	   			<div class = "dayDiv joinBirthDiv">
-							<div class = "birthTextDiv">일</div>
+							<div class = "birthTextDiv">日</div>
 							<select name="dd" id="day" class ="joinBirthSel"></select>
 						</div>
 						<div class = "yearDiv joinBirthDiv">
-							<div class = "birthTextDiv">년</div>
+							<div class = "birthTextDiv">年</div>
            	   				<select name="yy" id="year" class ="joinBirthSel"></select>
 						</div>
            	   		</div>
            	  </div>
         <div class = "stepBtnDiv"> 	        
-        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
-        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">다음</button></div>
+        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">戻る</button></div>
+        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">次へ</button></div>
 		</div>
         
         </div>
 
         <div id = "joinDiv3" class="content">
-        <h1>당신이 흥미있는 도시를 선택해주세요</h1>
+        <h1>あなたが興味を持っている地域を選んでください</h1>
         <input placeholder="나라 또는 도시를 입력해주세요">
         <input type="hidden" id = "join_country" value = "korea">
         <input type="hidden" id = "join_city" value = "seoul">
          
          
          <div class = "stepBtnDiv">
-        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">이전으로</button></div>
-       <div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">가입하기</button></div>
-        </div>
-
-
-        
-        
-
+        <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">戻る</button></div>
+       	<div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">登録する</button></div>
+        	</div>
         </div>
     </div>
   

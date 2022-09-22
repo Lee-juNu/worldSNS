@@ -129,6 +129,7 @@
 	width:100%;
 	display: flex;
  	justify-content: space-between;	
+ 	padding: 10px 0;
 }
 
  		.birthDaySelectDiv
@@ -256,6 +257,17 @@
 			font-family: 'Fredoka One', cursive;
 			color : white;
         }
+        .boardSubmit
+        {
+        	height:52px;
+        	padding : 0 32px;
+        	background-color: #ee005d;
+        	border-radius: 25px; 
+        	display:block;
+        	font-size : 16px;
+			font-family: 'Fredoka One', cursive;
+			color : white;
+        }
         
 .menuTitle
 {
@@ -272,7 +284,7 @@
 
 .menuProfile
 {
-	width : 227px; 
+	width : 235px; 
 	height : 40px; 
 	backgorund-color:red;
 	border-radius: 25px;
