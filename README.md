@@ -5,7 +5,7 @@
 
 
 
-##　0．JavaWebSocekt
+## 0．JavaWebSocekt
 ITスクール「ソールデスク」でチームプロジェクトで会ったために学んだSpringを使いながらリアルタイムで処理できるようにJavaWebSocektを非同期で使用しています<br>
 [javax.websocket Ver 1.1](https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api/1.1)<br>
 これでWebSocketを使いたいチームメンバーは私が用意したWebSocketを使いまだSpringの理解がまだだったメンバーはSpringとAjaxを使う勉強目的のプロジェクトでした<br>
