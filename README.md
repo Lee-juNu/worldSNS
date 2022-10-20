@@ -13,7 +13,7 @@
 
 
 ## 2.ログイン画面
-![Login](https://user-images.githubusercontent.com/35514984/197023149-6010740f-e79f-4bea-bd08-27e279bdb209.png)
+
 
 モーダルウィンドウを使ってIndexページを簡潔にしログインするときに右上ではなく中央で見ることでユーザーが右を見なくっていいように作りました。
 
@@ -30,7 +30,7 @@
 に分けて作りました。
 
 ## 4.メインページ
-![Login](https://user-images.githubusercontent.com/35514984/197023149-6010740f-e79f-4bea-bd08-27e279bdb209.png)
+![Page](https://user-images.githubusercontent.com/35514984/197023139-b7a87348-3234-484c-9f38-a8e326bc6a3d.png)
 メインページでは私がよく使っていたツイッターをモティーフとして作られました<br>
 スクロールページネーションを使うことで気軽に次のページを見ることができます
 
