@@ -143,10 +143,10 @@ function isEmailExist()
 {
 	var exResult = false;
 	$.ajax({
-				url:"idCheck.do",
+				url:"emailCheck.do",
 				async:false,
 				data:{
-					"user_ID": $("#join_email").val(),
+					"user_email": $("#join_email").val(),
 					},
 				type:'GET',
 				dataType: 'json',
@@ -167,10 +167,10 @@ function isPhoneExist()
 {
 	var exResult = false;
 	$.ajax({
-				url:"idCheck.do",
+				url:"phoneCheck.do",
 				async:false,
 				data:{
-					"user_ID": $("#join_phoneNumber").val(),
+					"user_phoneNumber": $("#join_phoneNumber").val(),
 					},
 				type:'GET',
 				dataType: 'json',
