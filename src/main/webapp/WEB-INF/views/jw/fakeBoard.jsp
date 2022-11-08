@@ -65,7 +65,6 @@
 			</div>
 		</div>
 		<div class = "mapDiv">
-			
 			<div class = "hideDiv">
 				<a onclick ="mapOpen()">
 				<div class = "mapOpen" >
@@ -125,7 +124,9 @@
 </body>
 <script type = "text/javascript" src="resources/js/utill/jwServer.js"></script>
 <script type = "text/javascript" src="resources/js/jw/map.js"></script>
-<script type = "text/javascript" src="resources/js/jw/fakeBoard.js"></script>
+<script type = "text/javascript" src="resources/js/jw/board/fakeBoard.js"></script>
+<script type = "text/javascript" src="resources/js/jw/board/boardAdder.js"></script>
+<script type = "text/javascript" src="resources/js/jw/board/boardMain.js"></script>
 <script type = "text/javascript" src="resources/js/jw/paiging.js"></script>
 <script type = "text/javascript" src="resources/js/utill/imageUploader.js"></script>
 

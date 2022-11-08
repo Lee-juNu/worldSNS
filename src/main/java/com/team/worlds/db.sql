@@ -9,6 +9,9 @@ create table userTbl
 	user_regDate date not null
 )
 
+select * from chatrooomtbl
+
+
 Board_Num 			varchar2(10 char) 	primary key	,
 	Board_ParentNum 	varchar2(10 char) 				,
 	Board_userID 		varchar2(16 char) 	not null	,
@@ -33,9 +36,26 @@ from
 
 ) WHERE rn BETWEEN :pageSize * (:page - 1) + 1 AND :pageSize*:page;
 
+
+
+select * from userTbl,
+(select COUNT(*) as Follwer from followTbl where FLW_Fromid = 'yorunohosi'),
+(select COUNT(*) as myFollow from followTbl where FLW_toid = 'yorunohosi')
+where user_id = 'yorunohosi'
+
+select * from followTbl
+
 select * from boardTbl
 select * from usertbl
 
+
+
+select usertbl.* from usertbl,followTbl 
+	where FLW_Fromid ='yorunohosi' and FLW_toid =user_id
+	and (FLW_toid like '%ad%'
+	 or user_nickName like '%ad%') 
+select usertbl.*,FLW_Fromid from usertbl,followTbl where FLW_Fromid ='yorunohosi' and FLW_toid =user_id
+and (FLW_toid like '%ddsfd%' or user_nickName like '%yana%') 
 
 
 select user_nickName, boardTbl.*,like_BoardNum
@@ -182,6 +202,42 @@ create table regionTbl
 					on delete cascade
 )
 
+select * from chatTbl
+drop table ChatRoomTbl
+create table ChatRoomTbl_temp
+(
+	cr_RoomID 		varchar2(33 char) 	not null, 
+	cr_lastIndex 	number(10) 			not null,
+	cr_subject 		varchar2(20 char),
+	cr_sysDate		date				not null
+)
+
+create table messageTbl
+(
+	msg_Num 			varchar2(16 char) 	primary key,
+	msg_RoomNum 		varchar2(10 char) 	not null,
+	msg_sendUserID 		varchar2(16 char) 	not null,
+	msg_receiverUserID 	varchar2(16 char) 	not null,
+	msg_sendTime 		date 				not null,
+	msg_index 			number(10) 			not null,
+	msg_img 			varchar2(256 char)			,
+	msg_Contents 		varchar2(400 char)			,
+	
+		CONSTRAINT msg_c_id
+			foreign key(msg_RoomNum)
+				references ChatRoomTbl(cr_Num)
+					on delete cascade,
+			foreign key(msg_sendUserID)
+				references userTbl(user_id)
+					on delete cascade,
+			foreign key(msg_receiverUserID)
+				references userTbl(user_id)
+					on delete cascade
+)
+
+
+
+
 insert into countryTbl values ('KR','Republic of Korea')
 insert into countryTbl values ('JP','Japan')
 
@@ -312,6 +368,20 @@ set rm_lastIndex=(select max(msg_index) from messageTbl where MSG_roomnum ='CR45
 select max(msg_index) from messageTbl where msg_roomnum ='CR456'
 
 select * from chatroomTbl
+insert into chatroomTbl values('CR001','yorunohosi',sysdate);
+insert into chatroomTbl values('CR002','yanagi',sysdate);
+insert into roomMemberTbl values ('CR002','yorunohosi',0);
+insert into roomMemberTbl values ('CR002','yanagi',0);
+insert into roomMemberTbl values ('CR001','admin',0);
+
+
+
+create table msgRoomTbl
+select * from chatroomTbl
+(select RM_ROOMNUM from roomMemberTbl where RM_USERID in all('admin','yorunohosi'))
+
+
+select * from roomMemberTbl
 
 select * from messageTbl
 
@@ -328,6 +398,18 @@ select rm_roomnum from RoomMemberTbl where rm_userid = '5'
 	select * from chatroomTbl where cr_num= (select rm_roomnum from RoomMemberTbl where rm_userid like like '%5%') 
 	delete from chatroomTbl
 	delete from MESSAGETBL
+	
+select * from messageTbl
+select * from chatroomTbl
+select * from roommembertbl
+
+
+select * from followTbl
+
+select * from boardtbl
+
+select * from userTbl,followTbl where user_id = FLW_fromid and user_id = 'yorunohosi'
+
 insert into messageTbl values('0', 'CR216', 'admin', sysdate, '0', 'cont', 'cont')	
 insert into userTbl values('yorunohosi','team802!@$','yorunohosi','01089854474','이준우','yorunohosi@naver.com',sysdate);
 

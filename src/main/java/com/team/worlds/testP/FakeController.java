@@ -58,10 +58,7 @@ public class FakeController {
 		System.out.println("되나?fakecontroller");
 	
 		if(uDAO.login2(u,req))
-			
 		{
-			req.setAttribute("profilePage", "profileMini.jsp");
-			
 			req.setAttribute("menuPage", "jy/menu.jsp");
 			req.setAttribute("contentsPage", "fakePage");
 			return true;			
@@ -89,18 +86,14 @@ public class FakeController {
 	
 	@RequestMapping(value = "{profile}", method = RequestMethod.GET)
 	public String goProfile(HttpServletRequest req, @PathVariable("profile") String profile
-			,User u, Follow f, @PathVariable("profile") String user_ID_o // jy수정 : 팔로워 수를 위한
-			) {
+			,User u, Follow f) {
 										
 		uDAO.loginCheck(req);
 		
 		
-		uDAO.getUserByID(profile, req);
+		uDAO.getUserWidthProfileByID(profile, req);
 		
 		
-		// jy수정 : 팔로워 수를 위한
-		fDAO.follow_count(req,u,user_ID_o,f);
-		fDAO.follower_count(req,u,user_ID_o,f);
 		
 		
 		

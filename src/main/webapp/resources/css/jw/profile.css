@@ -12,9 +12,19 @@
 	height:100%;
 }
 
+.nickNameDiv
+{
+	font-size: 18px;
+}
+.idDiv
+{
+	color : #71767B;
+}
+
+
 .profileDiv
 {
-	width			:100%;
+	width : 100%;
 }
 
 .profileBlank
@@ -46,7 +56,6 @@
 {
 	display: flex;
 	flex-direction: column;
-	height : 400px;
 	padding: 16px 12px;
 	padding-bottom: 0px; 
 }
@@ -97,6 +106,10 @@
 	color : white;
 }
 
+.profileFollowCount
+{
+	display: flex;
+}
 
 .iconEditDiv .editDiv button:hover
 {

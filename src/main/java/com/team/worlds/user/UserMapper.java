@@ -1,12 +1,15 @@
 package com.team.worlds.user;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Map;
 
 
 public interface UserMapper{
 	User tempSelectUser();
 
 	User getMemberByID(String u);
+	User_Profile getProfileMemberByID(String u);
 	User getMemberProfileByID(String p);
 	
 	
@@ -47,6 +50,12 @@ public interface UserMapper{
 	int updateProfile(User u);
 
 	void keepLogin(String user_ID, String sessionId, Date next) throws Exception;
+
+	ArrayList<User> getFollwerByID(Map<String, Object> paramMap);
+
+	User checkOverEmail(String user_email);
+
+	User checkOverPhoneNum(String user_phoneNumber);
 
 
 		

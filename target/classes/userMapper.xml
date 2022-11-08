@@ -15,8 +15,22 @@
 		resultType="com.team.worlds.user.User">
 		select * from userTbl where user_ID = #{user_ID}
 	</select>
+	
+	<select id="checkOverPhoneNum" parameterType="String"
+		resultType="com.team.worlds.user.User">
+		select * from userTbl where user_phoneNumber = #{user_phoneNumber}
+	</select>
+	
+	<select id="checkOverEmail" parameterType="String"
+		resultType="com.team.worlds.user.User">
+		select * from userTbl where user_email = #{user_email}
+	</select>
 
-
+	<select id ="getFollwerByID" parameterType="map"  resultType="com.team.worlds.user.User">
+	select usertbl.* from usertbl,followTbl 
+	where FLW_Fromid =#{userId} and FLW_toid =user_id
+	and (FLW_toid like '%'||#{search}||'%' or user_nickName like '%'||#{search}||'%') 
+	</select>
 
 	<insert id="joinusp">
 		insert into proFileTbl
@@ -36,12 +50,20 @@
 		select * from userTbl where user_id = #{user_ID}
 	</select>
 
+	<select id="getProfileMemberByID"
+		resultType="com.team.worlds.user.User_Profile">
+	select * from userTbl,
+	(select COUNT(*) as follower from followTbl where FLW_Fromid = #{user_ID}),
+	(select COUNT(*) as followed from followTbl where FLW_toid = #{user_ID})
+	where user_id = #{user_ID}
+	</select>
+
 	<select id="getMemberProfileByID"
 		resultType="com.team.worlds.user.Profile">
 		select * from proFileTbl where pf_userID = #{pf_userID}
 	</select>
 
-
+	
 
 
 

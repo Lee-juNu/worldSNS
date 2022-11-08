@@ -16,6 +16,36 @@ margin-top: 20px;
 border: 1px solid black;
 }
 
+.searchUserMainDiv
+{
+	display:flex;
+	padding-bottom: 15px;
+}
+
+.userDiv:hover
+{
+	background-color: #202020;
+}
+.userDiv
+{
+	padding : 7px 0;
+	cursor: pointer;
+	
+}
+.userDiv .iconDiv .profileIcon
+{
+	width:48px;
+	height:48px;
+}
+.idNameDiv
+{
+	padding-left: 12px;
+}
+#userContainer .userDiv
+{
+	display: flex;
+}
+
 
 #chatList .chatBtn
 {
@@ -91,15 +121,19 @@ border: 1px solid black;
 	font-size: 24px;
 	padding-top: 5px;
 }
-#chatList{
+#chatList
+{
 	padding: 0 15px;
-	margin-top:15px;
 	width: 388px;
 	height: 100%;
 	float: left;
 	border-right: 1px solid #202020;
 }
-
+#backIconDiv:hover
+{
+	cursor: pointer;
+	background-color: #202020;
+}
 #chat
 {
 	

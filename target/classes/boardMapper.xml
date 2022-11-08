@@ -37,7 +37,20 @@ from
 	 		WHERE rn BETWEEN to_number(#{pageSize}) * (to_number(#{page}) - 1) + 1 AND to_number(#{pageSize})*to_number(#{page})
 </select>
 
-
+<select id="getBoardByID" resultType="com.team.worlds.board.BoardOutput">
+select * from(
+select ROWNUM rn, user_nickName, like_BoardNum,Board_Num,Board_ParentNum,board_userID,
+Board_img1,Board_img2,Board_img3,Board_img4,Board_Contents,Board_Country,Board_City,likeCount,board_regdate
+from
+(select user_nickName, boardTbl.*,like_BoardNum
+	 	from USERTBL,boardTbl,liketbl
+	 		where board_userId in 
+	 		(select Flw_toId from followTbl,USERTBL where board_userId = #{user_ID})
+	 		and user_id = board_userId and like_SenderID(+)= #{user_ID} and like_BoardNum(+) = board_num
+	 		ORDER BY board_regdate desc
+	 		)) 
+	 		WHERE rn BETWEEN to_number(#{pageSize}) * (to_number(#{page}) - 1) + 1 AND to_number(#{pageSize})*to_number(#{page})
+</select>
 
 <select id = "getBoardByFollowerAndRegion" resultType="com.team.worlds.board.BoardOutput">
 select * from(

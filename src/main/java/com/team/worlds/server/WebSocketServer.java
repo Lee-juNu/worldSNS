@@ -169,6 +169,7 @@ public class WebSocketServer {
 			if 		(type.equals("chat")) 	wsChatController.onMessage(result, session, sessionMap, pageType, userId);
 			else if (type.equals("board")) 	wsBoardController.onMessage(result, session, sessionMap, userId);
 			else if (type.equals("alarm")) 	wsAlaramController.onMessage(result, session, sessionMap);
+			else if (type.equals("profile")) wsProfileController.onMessage(result, session, sessionMap);
 			else if (type.equals("file")) 
 			{
 				System.out.println("타입File로 들어왔습니다.");

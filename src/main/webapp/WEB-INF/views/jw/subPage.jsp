@@ -12,7 +12,7 @@
 			<div class = "iconDiv"> <img alt="" src="resources/icon/white/serach.png"> </div>
 		
 			<form action="Search.user">
-			<div class = "searchDiv"><input name="searchWord" placeholder="검색"> <button>검색</button></div>
+			<div class = "searchDiv"><input name="searchWord" placeholder="ユーザーを探す"></div>
 			</form>
 		</div>
 		

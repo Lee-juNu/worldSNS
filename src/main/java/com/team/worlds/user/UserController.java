@@ -84,73 +84,52 @@ public class UserController {
 		return uDAO.userIdCheck(user_ID);
 	}
 
+	@RequestMapping(value = "/idCheck.do", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean idOverCheck(@RequestParam("user_ID") String user_ID) {
+		return uDAO.userIdCheck(user_ID);
+	}
+	
+	@RequestMapping(value = "/emailCheck.do", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean emailOverCheck(@RequestParam("user_email") String user_email) {
+		System.out.println("이메일:"+user_email);
+		return uDAO.userEmailCheck(user_email);
+	}
+	@RequestMapping(value = "/phoneCheck.do", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean phoneOverCheck(@RequestParam("user_phoneNumber") String user_phoneNumber) {
+		System.out.println("폰넘버:"+user_phoneNumber);
+		return uDAO.userPhoneNumCheck(user_phoneNumber);
+	}
+	
 	@RequestMapping(value = "/user.findid.go", method = RequestMethod.GET)
 	public String findid(HttpServletRequest req) {
-
 		req.setAttribute("joinusPage", "Find/FID.jsp");
-
 		return "jy/joinusMain";
-
 	}
 
 	@RequestMapping(value = "/user.findid.idr", method = RequestMethod.POST)
 	public String findidR(User u, HttpServletRequest req) {
-
-		System.out.println("컨트롤러");
-
 		uDAO.findID(u, req);
-
 		req.setAttribute("joinusPage", "Find/FIDR.jsp");
-
 		return "jy/joinusMain";
-
 	}
 
 	@RequestMapping(value = "/user.findid.pw", method = RequestMethod.GET)
 	public String findpw(HttpServletRequest req) {
-
 		req.setAttribute("joinusPage", "Find/FPW.jsp");
-
 		return "jy/joinusMain";
-
 	}
 
 	@RequestMapping(value = "/user.findid.pwr", method = RequestMethod.POST)
 	public String findpwR(User u, HttpServletRequest req) {
-
 		uDAO.findPW(u, req);
 		req.setAttribute("joinusPage", "Find/FPWR.jsp");
 
 		return "jy/joinusMain";
-
 	}
 
-	@RequestMapping(value = "/user.joinus.go2", method = RequestMethod.POST)
-	public String joinusGo2(HttpServletRequest req) {
-
-		req.setAttribute("joinusPage", "joinus2.jsp");
-
-		return "jy/joinusMain";
-
-	}
-
-	@RequestMapping(value = "/user.joinus.go3", method = RequestMethod.POST)
-	public String joinusGo3(HttpServletRequest req) {
-
-		req.setAttribute("joinusPage", "joinus3.jsp");
-
-		return "jy/joinusMain";
-
-	}
-
-	@RequestMapping(value = "/user.joinus.go4", method = RequestMethod.POST)
-	public String joinusGo4(HttpServletRequest req) {
-
-		req.setAttribute("joinusPage", "joinus4.jsp");
-
-		return "jy/joinusMain";
-
-	}
 
 	@RequestMapping(value = "/user.joinus.go5", method = RequestMethod.POST)
 	public String joinusGo5(Profile p, User u, HttpServletRequest req) {
@@ -172,8 +151,6 @@ public class UserController {
 		uDAO.templogin(req);
 		uDAO.loginCheck(req);
 
-		
-		
 		req.setAttribute("profilePage", "profileMini.jsp");
 
 		req.setAttribute("menuPage", "jy/menu.jsp");

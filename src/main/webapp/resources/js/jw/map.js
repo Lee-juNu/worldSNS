@@ -125,6 +125,16 @@ function addCountrySelectEvent()
     }
 }
 
+function mapMatrixInit()
+	{
+		prevScale = 1;
+		currentScale = 1;
+		offsetPtX=0;
+		offsetPtY=0;
+		transformMatrix = [1, 0, 0, 1, 0, 0];
+		var newMatrix = "matrix(" +  transformMatrix.join(' ') + ")";
+  		matrixGroup.setAttributeNS(null, "transform", newMatrix);
+	}
 
 function addMapDivEvnet()
 {

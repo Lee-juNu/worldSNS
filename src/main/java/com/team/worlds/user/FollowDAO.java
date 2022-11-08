@@ -92,17 +92,12 @@ public class FollowDAO {
 	public void follow_count(HttpServletRequest req, User u, String user_ID_o, Follow f) {
 		// TODO Auto-generated method stub
 
-		/*u = (User) req.getSession().getAttribute("loginMember");
-
-		String user_ID = u.getUser_ID();*/
-
 		f.setFlw_FromId(user_ID_o);
 
 		int follow_count = Integer.parseInt(ss.getMapper(FollowMapper.class).follow_count(f));
 		System.out.println(follow_count);
 
 		if (follow_count != 0) {
-
 			req.setAttribute("follow_count", follow_count);
 		} else {
 

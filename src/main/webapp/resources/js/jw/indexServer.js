@@ -56,6 +56,7 @@ window.onload = function()
 				}		 
 		});
 	}
+	
 	function testLogin()
 	{
 		$.ajax({

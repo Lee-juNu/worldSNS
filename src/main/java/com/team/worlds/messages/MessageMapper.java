@@ -65,7 +65,4 @@ public interface MessageMapper {
 
 	public List<Message> getnowuser(Message m);
 
-
-
-
 }

@@ -16,9 +16,4 @@ public interface FollowMapper {
 	public List<Follow> follower_list(Follow f);
 
 	int already_follow(Follow f);
-
-	
-	
-	
-	
 }

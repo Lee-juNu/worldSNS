@@ -10,4 +10,5 @@ public interface BoardMapper {
 	ArrayList<BoardOutput> getBoardByFollowerAndRegion(HashMap<String, Object> map);
 	ArrayList<BoardOutput> getBoardByFollowerAndCountry(HashMap<String, String> map);
 	void boardDelete(String number);
+	ArrayList<BoardOutput> getBoardByID(HashMap<String, Object> boardMap);
 }

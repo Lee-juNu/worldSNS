@@ -44,7 +44,6 @@
 		</div>
 		<div class = "menuDiv">
 			<button id = "loginModal" class = "loginBtn">ログイン</button>
-			<button id = "testBtn" class = "loginBtn">test</button>
 		</div>
 	</div>
 	<div class = "mapDiv">	
@@ -62,12 +61,12 @@
 			<img class = "mLogoImg" alt="LOGO" src="resources/img/util/logo/wlogo.png">		
         </div>
             <div class="content">   
-                <input id="user_ID" class = "input-modal" name="user_ID" placeholder="아이디를 입력해주세요"><br>
-                <input id="user_PW" type='password' class = "input-modal" name="user_PW" placeholder="비밀번호를 입력해주세요"><br>
+                <input id="user_ID" class = "input-modal" name="user_ID" placeholder="ID"><br>
+                <input id="user_PW" type='password' class = "input-modal" name="user_PW" placeholder="PW"><br>
                
                 <button id="loginBtn" class = "mloginBtn">ログイン</button><br>
                <!--  <input type="checkbox" name="useCookie"> 로그인유지 -->
-                <div class = "joinUsDiv">アカウントを作りますか? <a id = "joinUsTag">会員登録</a></div>
+                <div class = "joinUsDiv" >アカウントを作りますか? <a id = "joinUsTag">会員登録</a></div>
                 <div class = "tempLogin"></div>                               
             </div>
         </div>
@@ -77,29 +76,35 @@
     <div id="modalJoin" class="modal-overlay">
         <div class="modal-window">
         <div class = "joinTitle">
-			<span id = "joinStep">5段階 中 1段階</span>
+			<span id = "joinStep">2段階 中 1段階</span>
         </div>
 
         <div id = "joinDiv1" class="content">   
-           	<div><h1>アカウントを作ります</h1></div>    
+           	<div><h1><span style = 'font-size:35px'>アカウントを作ります</span></h1></div>    
             	   
            	<div class ="inputContents">
             	   
             	   
             	<div class = "idInputDiv">
            	   		<input id="join_ID" placeholder="ID" autocomplete="off">
+           	   		<div class="ruleDiv" id = "join_IDRule" style ='display:none;'>
+           	   		IDは8~16文字の英語、数字、ー、＿だけを<br>入力してください
+           	   		</div>
            	   	</div>
            	   	<div class = "pwInputDiv">
            	   		<input id="join_PW" placeholder="PW" type = "password" autocomplete="off">
+           	   		<div class="ruleDiv" id = "join_PWRule" style ='display:none;'>PWは8~16文字の英語、数字、ー、＿だけを使ってください</div>
            	   	</div>   
             	   
            	   
            	   <div class = "phoneInputDiv">
-           	   		<input id="join_phoneNumber" placeholder="携帯番号">
+           	   		<input id="join_phoneNumber" placeholder="000-0000-0000">
+           	   		<div class="ruleDiv" id = "join_phoneRule" style ='display:none;'>携帯番号を入力してください</div>
            	   	</div>
            	   
            	   	<div class = "mailInputDiv">
            	   		<input id="join_email" placeholder="e-Mail">
+           	   		<div class="ruleDiv" id = "join_emailRule" style ='display:none;'>メールを入力してください</div>
            	   	</div>
            	   	
            	   	<div class = "stepBtnDiv"> 	        
@@ -113,10 +118,12 @@
         
         		<div class = "nameInputDiv">
            	   		<input id="join_name" placeholder="名前">
+           	   		<div class="ruleDiv" id = "join_nameRule" style ='display:none;'>名前は40文字までです</div>
            	   	</div>
            	   
            	   	<div class = "nickInputDiv">
            	   		<input id="join_nickName" placeholder="ニックネーム">
+           	   		<div class="ruleDiv" id = "join_nickInputDiv" style ='display:none;'>ニックネームは8文字までです</div>
            	   	</div>
 
 				<div class = "birthDayDiv">           	   	
@@ -142,7 +149,7 @@
            	  </div>
         <div class = "stepBtnDiv"> 	        
         <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">戻る</button></div>
-        <div class = "stepRightDiv"> <button type="button" class = "nextModalBtn stepBtn">次へ</button></div>
+       	<div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">登録する</button></div>
 		</div>
         
         </div>
@@ -156,12 +163,10 @@
          
          <div class = "stepBtnDiv">
         <div class = "stepLeftDiv"> <button type="button" class = "prevModalBtn stepBtn">戻る</button></div>
-       	<div class = "stepRightDiv"> <button id = "joinBtn" class = "stepBtn">登録する</button></div>
         	</div>
         </div>
     </div>
-  
-<script type = "text/javascript" src="resources/js/jw/indexServer.js"></script>
+	<script type = "text/javascript" src="resources/js/jw/indexServer.js"></script>
     <script type = "text/javascript" src="resources/js/jw/map.js"></script>
 </body>
 </html>

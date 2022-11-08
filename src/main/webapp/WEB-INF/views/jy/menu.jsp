@@ -91,12 +91,12 @@
 			<div class = "profileNickName">
 				<span>${sessionScope.loginMember.user_nickName}</span>
 			</div>
-			<div class = "profileID">
+			<div class = "profileID idDiv">
 				<span>@${sessionScope.loginMember.user_ID}</span>
 			</div>
 		</div>
-			<div><button class ="logoutBtn" onclick="goLogout();">로그아웃</button></div>
-	</div>
+			<div><button class ="logoutBtn" onclick="goLogout();">ログアウト</button></div>
+		</div>
 	</div>
 	<!-- 이미지 주소 생성 후에 이미지 주소 넣기 -->
 </body>

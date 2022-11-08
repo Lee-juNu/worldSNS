@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.team.worlds.messages.Message;
 import com.team.worlds.messages.MessageDAO;
+import com.team.worlds.user.UserDAO;
 
 import javax.annotation.PostConstruct;
 import javax.websocket.RemoteEndpoint.Basic;
@@ -39,51 +40,54 @@ public class wsChatController {
 	
 	//실제로 사용하면 되는 mDAO
 	private static MessageDAO mDAO;
+	private static UserDAO uDAO;
 	//끌어오기 위한  임시dao
 	@Autowired
 	private MessageDAO mTempDAO;
-	
+	@Autowired
+	private UserDAO uTempDAO;
 	  @PostConstruct     
 	  private void initStaticDao () {
 		  mDAO = mTempDAO;
+		  uDAO = uTempDAO;
 	  }
 
 	  private static HashMap<String, ArrayList<ChatUser>> chatRoomMap = new HashMap<String, ArrayList<ChatUser>>();
 	
 	  
 	//1.자신이 속해있는 방이 어디인가
-		public static void onMessage(JSONObject message, Session session
+		public static void onMessage(JSONObject result, Session session
 				, HashMap<String, ArrayList<Session>> sessionMap, String pageType, String userId) {
-			
-			JSONParser jsonParser = new JSONParser();
-//			JSONObject result = (JSONObject)jsonParser.parse(message);
-			String Dtype = (String)message.get("dataType");
-			final Basic basic=session.getBasicRemote();
-			String contents = (String)message.get("msg_Contents");
-			String img = (String)message.get("msg_img");
-			
-			//타입에 맞게 바꿔주세요
-			System.out.println(img);
-			try
-				{
-/*				if (Dtype.equals("send")&&contents!=null) {
-//					basic.sendText(message.toString());	
-					mDAO.send(message);
-					sendAllChatRoomMember(message, session, pageType, userId);
-					}else if (Dtype.equals("send")&&img!=null) {
-						
-					}else if (contents!=null&&img!=null&&Dtype.equals("send")) {
-						
-					}*/
-				if (Dtype.equals("send")) {
-					mDAO.send(message);
-					sendAllChatRoomMember(message, session, pageType, userId);
-					mDAO.updateIndex2(message);
-
-				}}catch (Exception e) 
-				{
+			if(result.get("contents").toString().equals("reqUsers"))
+			{
+				String search =  result.get("searchVal").toString();
+				try {
+					JSONObject obj = new JSONObject();
+					
+					obj.put("type", "serachUserList");
+					obj.put("reqSearch", search);
+					obj.put("arrUser",uDAO.getFollwerByID(userId,search));
+					if(session.isOpen())
+						session.getBasicRemote().sendText(obj.toJSONString());
+				}catch (Exception e) {
 					System.out.println(e);
 				}
+			}
+			else if(result.get("contents").toString().equals("createChatRoom"))
+			{
+				String chatUserId = result.get("chatUserID").toString();
+				String resultStr="";
+				if(userId.compareTo(chatUserId) <0)
+				{
+					resultStr= userId+"-"+chatUserId;
+				}
+				else
+				{
+					resultStr=chatUserId+"-"+userId;
+				}
+				mDAO.createRoom(userId,result.get("chatUserID").toString());
+				
+			}
 		}
 		
 		
@@ -179,9 +183,7 @@ public class wsChatController {
 
 	}
 	public static void onUserExit(Session session, String pageType, String userId)
-	
 	{
-		
 		if(chatRoomMap.get(pageType).size()<=1)
 		{
 			//마지막한명이 나갈꺼면 그냥 방을 폭발시켜버렷

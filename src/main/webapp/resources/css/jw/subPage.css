@@ -44,10 +44,13 @@
 }	
 .subSearchDiv .searchDiv
 {
+	height:100%;
+	width:100%;
+	
 	flex: 1;
 }
 
-.subSearchDiv input
+.subSearchDiv .searchDiv input
 {
 	border:none;
 	height:100%;

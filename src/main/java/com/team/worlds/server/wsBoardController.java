@@ -60,7 +60,6 @@ public class wsBoardController {
 					obj.put("type", "result");
 					obj.put("resultType", "boardSuceess");
 					obj.put("board",  bDAO.insertBoard(result));
-					System.out.println("실험중");
 					System.out.println(obj.toJSONString());
 					if(session.isOpen())
 						session.getBasicRemote().sendText(obj.toJSONString());

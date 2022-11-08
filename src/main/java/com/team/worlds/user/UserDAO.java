@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.team.worlds.fileUtil.FileManager;
@@ -154,15 +157,11 @@ public class UserDAO {
 	// 중복 아이디 체크
 	public boolean userIdCheck(String user_ID) {
 
-		System.out.println(user_ID);
 
 		if (ss.getMapper(UserMapper.class).checkOverId(user_ID) == null) {
-
-			return false;
-
+			return true;
 		}
-
-		return true;
+		return false;
 
 	}
 
@@ -385,6 +384,13 @@ public class UserDAO {
 
 		req.setAttribute("findUser", user);
 	}
+	
+	public void getUserWidthProfileByID(String userId, HttpServletRequest req)
+	{
+		User_Profile user = ss.getMapper(UserMapper.class).getProfileMemberByID(userId);
+		
+		req.setAttribute("findUser", user);
+	}
 
 	public void settingProfile(User u, HttpServletRequest req) {
 
@@ -398,9 +404,41 @@ public class UserDAO {
 		ss.update(user_ID + ".keepLogin", paramMap);
 	}
 
-	// 세션키 검증
-	public User checkUserWithSessionKey(String user_ID, String value) throws Exception {
-		return ss.selectOne(user_ID + ".checkUserWithSessionKey", value);
+
+	public JsonArray getFollwerByID(String userId, String search) {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("userId", userId);
+		paramMap.put("search", search);
+		System.out.println(userId);
+		System.out.println(search);
+		ArrayList<User> user = ss.getMapper(UserMapper.class).getFollwerByID(paramMap);
+		
+		
+		
+		System.out.println(user.size());
+		return new GsonBuilder().create().toJsonTree(user).getAsJsonArray();
+	}
+
+
+
+
+	public boolean userEmailCheck(String user_email) {
+		if (ss.getMapper(UserMapper.class).checkOverEmail(user_email) == null) {
+			return true;
+		}
+		return false;
+
+	}
+
+
+
+
+	public boolean userPhoneNumCheck(String user_phoneNumber) {
+		if (ss.getMapper(UserMapper.class).checkOverPhoneNum(user_phoneNumber) == null) {
+			return true;
+		}
+		return false;
+
 	}
 	
 	

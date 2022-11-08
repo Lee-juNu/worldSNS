@@ -51,7 +51,7 @@ html, .homeBody{
 .homeMain
 {
 	display: flex;
-	
+	min-height:100%;
 }
 
 .homeMainDiv

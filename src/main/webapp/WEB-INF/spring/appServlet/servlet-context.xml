@@ -41,7 +41,7 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@210.179.100.120:1521:xe" />
+			value="jdbc:oracle:thin:@221.151.195.166:1521:xe" />
 		<beans:property name="username" value="C##jw" />
 		<beans:property name="password" value="jw1234" />
 	</beans:bean>
@@ -75,9 +75,6 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-
-
-	
 </beans:beans>
 
 

@@ -196,7 +196,7 @@ public class MessageDAO {
 	}
 
 	public void getRoom(HttpServletRequest req, Message m) {
-		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		String msg_RoomNum = (String) req.getParameter("join");
 		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		String rm_userID = u.getUser_ID();
@@ -212,7 +212,7 @@ public class MessageDAO {
 	}
 
 	public void getnowuser(Message m, HttpServletRequest req) {
-		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		String msg_RoomNum = (String) req.getParameter("join");
 		
 		
 		m.setRm_roomNum(msg_RoomNum);
@@ -227,7 +227,7 @@ public class MessageDAO {
 	
 	public void updateIndex(HttpServletRequest req, Message m) {
 		
-		String msg_RoomNum = (String) req.getSession().getAttribute("roomNum");
+		String msg_RoomNum = (String) req.getParameter("join");
 		User u = (User)req.getSession().getAttribute("loginMember");
 		
 		String rm_userID = u.getUser_ID();
@@ -393,6 +393,10 @@ public class MessageDAO {
 		System.out.println(roomno);
 		ss.getMapper(MessageMapper.class).getroomuser(roomno);
 		return ss.getMapper(MessageMapper.class).getroomuser(roomno);
+	}
+
+	public void createRoom(String userId, String string) {
+		
 	}
 
 	
