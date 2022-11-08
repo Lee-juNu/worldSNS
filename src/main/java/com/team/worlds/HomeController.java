@@ -41,19 +41,14 @@ public class HomeController {
 			System.out.println(wsFileManager.getFilePath());	
 		}
 		
-		
-		
-		uDAO.templogin(req);
 		req.setAttribute("loginPage", "jy/login.jsp");
-		return "fakeIndex";
+		return "/index.go";
 	}
 	
 
 	@RequestMapping(value = "/index.go", method = RequestMethod.GET)
 	public String go_index(HttpServletRequest req) {
-		uDAO.templogin(req);
-		req.setAttribute("loginPage", "jy/login.jsp");
-		return "index";
+		return "fakeIndex";
 	}
 	
 	@RequestMapping(value = "/home.go", method = RequestMethod.GET)

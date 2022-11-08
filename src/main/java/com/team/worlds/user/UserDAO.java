@@ -99,11 +99,8 @@ public class UserDAO {
 
 		User u = (User) req.getSession().getAttribute("loginMember");
 		if (u != null) {
-			req.setAttribute("profileMini", "jy/profileMini.jsp");
 			return true;
-
 		} else {
-
 			return false;
 		}
 

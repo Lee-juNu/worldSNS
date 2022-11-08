@@ -75,6 +75,12 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
+	<interceptors>
+           <interceptor>
+               <mapping path="/**"/>
+                   <beans:bean id="commonInterceptor" class="com.team.worlds.Interceptor.loginInterceptor"/>
+        </interceptor>
+    </interceptors>
 </beans:beans>
 
 
